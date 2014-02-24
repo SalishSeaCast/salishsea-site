@@ -4,4 +4,4 @@
    :maxdepth: 1
 
    contributors
-
+   license
