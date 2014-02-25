@@ -12,7 +12,9 @@ $(error The '$(SPHINXBUILD)' command was not found. Make sure you have Sphinx in
 endif
 
 # Internal variables.
-ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(SPHINXOPTS) .
+ALLSPHINXOPTS = -d $(BUILDDIR)/doctrees $(SPHINXOPTS) .
+EOS_HOST = sable
+EOS_WEB = /home/dlatorne/public_html/salissea-site/
 
 .PHONY: help clean html linkcheck
 
@@ -20,6 +22,7 @@ help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html       to make standalone HTML files"
 	@echo "  linkcheck  to check all external links for integrity"
+	@echo "  rsync      to rsync HTML files to EOS server"
 
 clean:
 	rm -rf $(BUILDDIR)/*
@@ -34,3 +37,8 @@ linkcheck:
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
+
+rsync:
+	chmod -R g+w _build/html
+	rsync -rlpgoDvhz _build/html/ $(EOS_HOST):$(EOS_WEB)
+	@echo "rsync to EOS server complete."
