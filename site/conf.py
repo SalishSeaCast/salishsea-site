@@ -70,12 +70,12 @@ html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 html_theme_options = {
     'bootswatch_theme': 'superhero',
     'source_link_position': 'footer',
-    'navbar_class': "navbar navbar-inverse",
+    'navbar_class': 'navbar navbar-inverse',
 }
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = 'Salish Sea Oceanography'
+html_title = project
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
