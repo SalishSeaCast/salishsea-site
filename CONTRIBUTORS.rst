@@ -8,7 +8,7 @@ The salishsea.eos.ubc.ca site is the product of research conducted in the Mesosc
 
 .. _Susan Allen: http://eos.ubc.ca/~sallen/
 
-People who have contributed to the site:
+People who have contributed to the content of this site:
 
 * Susan Allen <sallen@eos.ubc.ca>
 * Doug Latornell <dlatornell@eos.ubc.ca>
