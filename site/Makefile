@@ -14,7 +14,7 @@ endif
 # Internal variables.
 ALLSPHINXOPTS = -d $(BUILDDIR)/doctrees $(SPHINXOPTS) .
 EOS_HOST = sable
-EOS_WEB = /home/dlatorne/public_html/salissea-site/
+EOS_WEB = /home/dlatorne/public_html/salishsea-site/
 
 .PHONY: help clean html linkcheck
 
