@@ -13,16 +13,17 @@ endif
 
 # Internal variables.
 ALLSPHINXOPTS = -d $(BUILDDIR)/doctrees $(SPHINXOPTS) .
-EOS_HOST = sable
-EOS_WEB = /home/dlatorne/public_html/salishsea-site/
+EOAS_HOST = sable
+EOAS_WEB = public_html/salishsea-site/
 
 .PHONY: help clean html linkcheck
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  html       to make standalone HTML files"
-	@echo "  linkcheck  to check all external links for integrity"
-	@echo "  rsync      to rsync HTML files to EOS server"
+	@echo "  html          to make standalone HTML files"
+	@echo "  linkcheck     to check all external links for integrity"
+	@echo "  rsync-eoas     to rsync HTML files to your EOAS web space"
+	@echo "  rsync-shelob  to rsync HTML files from EOAS machine to EOAS web server"
 
 clean:
 	rm -rf $(BUILDDIR)/*
@@ -38,7 +39,15 @@ linkcheck:
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
-rsync:
+rsync-eoas:
+	rsync -rlpgoDvhz _build/html/ $(EOAS_HOST):$(EOAS_WEB)
+	@echo "rsync to your $(EOAS_WEB) directory complete."
+
+rsync-shelob:
+	# This target can only be used from a machine on the EOAS network
 	chmod -R g+w _build/html
-	rsync -rlpgoDvhz _build/html/ $(EOS_HOST):$(EOS_WEB)
-	@echo "rsync to EOS server complete."
+	rsync -rltpDvhz \
+		--exclude bloomcast/spring_diatoms.html \
+		--exclude _static/bloomcast/spring_diatoms/ \
+		_build/html/ shelob:/www/salishsea/data/
+	@echo "rsync to shelob web server complete."
