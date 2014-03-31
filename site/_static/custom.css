@@ -1,0 +1,16 @@
+/* Styles to be applied in addition to those from Sphinx, */
+/* sphinx-bootstrap-theme, and the bootswatch theme specified in conf.py */
+
+.transition-date {
+    padding-right: 8px;
+    width: 8em;
+}
+.bloom-date {
+    width: 7em;
+}
+.ensemble-member {
+    width: 6em;
+}
+.centre-span2 {
+    text-align: center;
+}
