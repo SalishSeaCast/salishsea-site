@@ -1,8 +1,6 @@
 .. salishsea.eos.ubc.ca site landing page
 
-***********************
-Salish Sea Oceanography
-***********************
+.. title:: Salish Sea Oceanography
 
 .. raw:: html
 
