@@ -1,4 +1,4 @@
-.. salishsea.eos.ubc.ca site landing page
+.. salishsea.eos.ubc.ca/sog section landing page
 
 :license:
   Copyright 2014 The Salish Sea MEOPAR Contributors
@@ -17,22 +17,6 @@
   limitations under the License.
 
 
-.. title:: Salish Sea Oceanography
-
-.. raw:: html
-
-    <object type="image/svg+xml" data="_static/index.svg"></object>
-
-
-.. toctree::
-    :hidden:
-
-    nemo
-    sog
-    bloomcast
-
-.. toctree::
-    :maxdepth: 1
-
-    contributors
-    license
+*************************************
+SOG 1-D Physics-Biogeochemistry Model
+*************************************
