@@ -20,3 +20,39 @@
 *********************
 Salish Sea NEMO Model
 *********************
+
+About the Project
+=================
+
+The Salish Sea is home to a large population of Canadians living in coastal communities at risk to ocean related hazards.
+There is an ongoing need to assess the impact of these hazards on human and marine environments through a multidisciplinary approach involving Canadian oceanographers,
+biologists,
+and social scientists.
+The Marine Environmental Observation Prediction and Response network
+(MEOPAR_)
+provides a platform to accelerate this type of research.
+
+.. _MEOPAR: http://meopar.ca/
+
+The Salish Sea MEOPAR project team is developing a three-dimensional ocean model for the Strait of Georgia and Salish Sea.
+Using the NEMO_ modelling architecture the Salish Sea model will be used to evaluate storm surge risk in coastal communities.
+Long term goals include data assimilation from the VENUS network and a coupled biogeochemical modelling component.
+
+.. _NEMO: http://www.nemo-ocean.eu/
+
+.. image:: _static/nemo/SalishSeaBathy.png
+    :alt: Salish Sea NEMO Model Domain
+    :align: center
+
+
+Project Resources
+=================
+
+* The main project documentation site is at http://salishsea-meopar-docs.readthedocs.org/.
+* The project team maintains a set of Mercurial_ version control repositories for code,
+  documentation (including the source files for this site),
+  and analyses of model results.
+  The contents of those repositories and their development history is accessible at https://bitbucket.org/salishsea/.
+
+.. _Mercurial: http://mercurial.selenic.com/
+
