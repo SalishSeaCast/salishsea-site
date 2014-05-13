@@ -4,6 +4,11 @@
 Salish Sea Oceanography
 ***********************
 
+.. raw:: html
+
+    <object type="image/svg+xml" data="_static/index.svg"></object>
+
+
 .. toctree::
    :maxdepth: 1
 
