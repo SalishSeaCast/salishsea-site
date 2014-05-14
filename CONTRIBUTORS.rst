@@ -12,3 +12,4 @@ People who have contributed to the content of this site:
 
 * Susan Allen <sallen@eos.ubc.ca>
 * Doug Latornell <dlatornell@eos.ubc.ca>
+* Nancy Soontiens <nsoontiens@eos.ubc.ca>
