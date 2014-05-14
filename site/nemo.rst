@@ -56,3 +56,44 @@ Project Resources
 
 .. _Mercurial: http://mercurial.selenic.com/
 
+
+Project Team and Collaborators
+==============================
+
+The Salish Sea NEMO Model project is lead by `Susan Allen`_ in the Department of Earth, Ocean, and Atmospheric Sciences at the University of British Columbia.
+Other team members:
+
+* Nancy Soontiens
+* Doug Latornell
+* Ben Moore-Maley
+* Kate Le Souef (emeritus)
+
+The team collaborates with other MEOPAR_ funded research teams at UBC:
+
+* The observations team in EOAS lead by `Rich Pawlowicz`_:
+
+  * Mark Halverson
+  * Chuning Wang
+
+* The impacts and indictors of marine hazards team in the UBC School of Community and Regional Planning lead by `Stephanie Chang`_:
+
+  * Shona van Zijll de jong
+
+.. _Susan Allen: http://eos.ubc.ca/~sallen/
+.. _Rich Pawlowicz: http://www.eos.ubc.ca/~rich/research.html
+.. _Stephanie Chang: https://sites.google.com/site/stephanieechang1/home
+
+We also collaborate with MEOPAR_ researchers and NEMO_ users across Canada:
+
+* Keith Thompson, Dalhousie University
+* Vasily Korabel, Dalhousie University
+* Youyu Lu, Fisheries and Oceans Canada
+* J-P Paquin, Dalhousie University
+
+and with many other researchers,
+including:
+
+* Diane Masson, Fisheries and Oceans Canada
+* Mike Foreman, Fisheries and Oceans Canada
+* Debby Ianson, Fisheries and Oceans Canada
+* John Morrison, Fisheries and Oceans Canada
