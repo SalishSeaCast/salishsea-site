@@ -78,6 +78,7 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
 * The impacts and indictors of marine hazards team in the UBC School of Community and Regional Planning lead by `Stephanie Chang`_:
 
   * Shona van Zijll de jong
+  * Jackie Yip
 
 .. _Susan Allen: http://eos.ubc.ca/~sallen/
 .. _Rich Pawlowicz: http://www.eos.ubc.ca/~rich/research.html
