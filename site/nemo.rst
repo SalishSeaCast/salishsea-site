@@ -66,7 +66,7 @@ Other team members:
 * Nancy Soontiens
 * Doug Latornell
 * Ben Moore-Maley
-* Kate Le Souef (emeritus)
+* Kate Le Souëf (emeritus)
 
 The team collaborates with other MEOPAR_ funded research teams at UBC:
 
