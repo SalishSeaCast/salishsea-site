@@ -98,3 +98,15 @@ including:
 * Mike Foreman, Fisheries and Oceans Canada
 * Debby Ianson, Fisheries and Oceans Canada
 * John Morrison, Fisheries and Oceans Canada
+
+
+Storm Surge Modeling
+====================
+
+Work is presently under way to evaluate the NEMO model's calculations of tides and sea surface height by hindcasting storm surge events that occurred between 2002 and 2011.
+Once the model's hindcasting skill has been determined to be adequate,
+and atmospheric model products of sufficient resolution are available,
+the intent is to run the model to provide daily sea surface height forecasts that will be published to the web.
+When that objective is reached the Salish Sea NEMO model will augment the `storm surge prediction and risk assessment resources`_ that are presently available.
+
+.. _storm surge prediction and risk assessment resources: storm-surge/index.html

@@ -92,6 +92,18 @@ The storm surge information there elaborates on the `Storm Surge BC`_ site.
 .. _web page about climate change adaptation: http://www2.gov.bc.ca/gov/topic.page?id=F09F1EC7576643CEB5FB1536913730BA
 
 
+Salish Sea NEMO Model
+=====================
+
+Work is presently under way to evaluate the `Salish Sea NEMO model's`_ calculations of tides and sea surface height by hindcasting storm surge events that occurred between 2002 and 2011.
+Once the model's hindcasting skill has been determined to be adequate,
+and atmospheric model products of sufficient resolution are available,
+the intent is to run the model to provide daily sea surface height forecasts that will be published to the web.
+When that objective is reached the Salish Sea NEMO model will augment the storm surge prediction and risk assessment resources listed above.
+
+.. _Salish Sea NEMO model's: ../nemo.html
+
+
 Feedback
 ========
 
