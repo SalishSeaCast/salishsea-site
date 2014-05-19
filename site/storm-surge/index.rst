@@ -51,6 +51,21 @@ The forecasting system is considered to be a research tool only and is to be use
 .. _Dr. Scott Tinis: http://stormsurgebc.ca/contact.html
 
 
+Halibut Bank Weather Buoy
+=========================
+
+The `Halibut Bank Weather Buoy`_ is located at `49.34°N, 123.72°W`_,
+west of Bowen Island and north-east of Nanaimo,
+in the open water of the south-central Georgia Strait.
+The buoy is equipped with automated weather and wave measuring sensors whose data are provided on an `Environment Canada web page`__.
+Current conditions as well as those for the preceding 24 hours are available.
+
+
+.. _Halibut Bank Weather Buoy: http://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146
+.. _49.34°N, 123.72°W: https://www.google.com/maps/place/49%C2%B020%2724.0%22N+123%C2%B043%2712.0%22W/@49.3077769,-123.7302997,11z/data=!4m2!3m1!1s0x0:0x0
+__ `Halibut Bank Weather Buoy`_
+
+
 Feedback
 ========
 
