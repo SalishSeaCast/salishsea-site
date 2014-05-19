@@ -66,6 +66,23 @@ Current conditions as well as those for the preceding 24 hours are available.
 __ `Halibut Bank Weather Buoy`_
 
 
+NOAA Storm Surge Forecast at Neah Bay, WA
+=========================================
+
+The US National Oceanic and Atmospheric Administration (NOAA) maintains storm surge advisory pages for various locations on the Pacific Coast.
+The `Neah Bay, Washington advisory page`_ provides measurements and model predictions of the sea surface height at the entrance to the Strait of Juan de Fuca.
+The forecast extends about 3 and a half days into the future.
+The water level at Neah Bay provides information about the effects of Pacific Ocean storms on the Salish Sea water levels.
+The same NOAA site also provides advisories for other locations on the Washington State coast of the Salish Sea,
+including,
+Port Angeles,
+Port Townsend,
+Friday Harbor,
+and Cherry Point.
+
+.. _Neah Bay, Washington advisory page: http://www.nws.noaa.gov/mdl/etsurge/index.php?page=stn&region=wc&datum=mllw&list=&map=0-48&type=both&stn=waneah
+
+
 Feedback
 ========
 
