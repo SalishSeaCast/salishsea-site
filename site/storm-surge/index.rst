@@ -1,0 +1,61 @@
+.. salishsea.eos.ubc.ca/storm-surge information page
+
+:license:
+  Copyright 2014 The Salish Sea MEOPAR Contributors
+  and The University of British Columbia
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+
+.. _StormSurgeInformationPortal:
+
+******************************
+Storm Surge Information Portal
+******************************
+
+This is a collection of links to web resources that may help interested parties assess the risks and possible impacts of storm surge events in the Salish Sea region,
+with particular emphasis on the Southern Strait of Georgia.
+
+
+Storm Surge BC
+==============
+
+.. image:: http://www.stormsurgebc.ca/files/images/alert.gif
+    :class: pull-left pad-right-15
+    :height: 100px
+    :alt: Storm Surge BC Alert Map
+    :target: http://www.stormsurgebc.ca/
+
+`Storm Surge BC`_ is the British Columbia Storm Surge Forecasting Program site.
+The program is a joint effort between the BC Ministry of Environment and the federal Department of Fisheries and Oceans.
+The objective of the program is to provide 6-day forecasts of storm surge and total water levels at several sites in the marine waters of southern British Columbia.
+A predictive numerical ocean model and real-time data monitoring are employed to generate bulletins_ for Victoria, Vancouver and Campbell River.
+The site also provides a `seasonal almanac`_ and a `Twitter feed`_.
+The forecasting system is considered to be a research tool only and is to be used at your own risk.
+`Storm Surge BC`_ is maintained by `Dr. Scott Tinis`_.
+
+.. _Storm Surge BC: http://stormsurgebc.ca/
+.. _bulletins: http://stormsurgebc.ca/bulletins.html
+.. _seasonal almanac: http://stormsurgebc.ca/almanac.html
+.. _Twitter feed: http://stormsurgebc.ca/twitter.html
+.. _Dr. Scott Tinis: http://stormsurgebc.ca/contact.html
+
+
+Feedback
+========
+
+If you have comments or questions on the information provided on this page,
+or suggestions of other resources that should be linked here,
+please contact `Susan Allen`_.
+
+.. _Susan Allen: mailto:sallen@eos.ubc.ca

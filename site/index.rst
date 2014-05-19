@@ -27,6 +27,7 @@
 .. toctree::
     :hidden:
 
+    storm-surge/index
     nemo
     sog
     bloomcast
