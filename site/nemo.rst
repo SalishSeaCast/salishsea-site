@@ -90,6 +90,8 @@ We also collaborate with MEOPAR_ researchers and NEMO_ users across Canada:
 * Vasily Korabel, Dalhousie University
 * Youyu Lu, Fisheries and Oceans Canada
 * J-P Paquin, Dalhousie University
+* Luc Fillion, Environment Canada
+* Kao-Shen Chung, Environment Canada
 
 and with many other researchers,
 including:
