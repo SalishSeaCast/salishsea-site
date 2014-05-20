@@ -79,6 +79,7 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
 
   * Shona van Zijll de jong
   * Jackie Yip
+  * Christopher Carter
 
 .. _Susan Allen: http://eos.ubc.ca/~sallen/
 .. _Rich Pawlowicz: http://www.eos.ubc.ca/~rich/research.html
