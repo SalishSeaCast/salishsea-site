@@ -46,7 +46,7 @@ rsync-eoas:
 rsync-shelob:
 	# This target can only be used from a machine on the EOAS network
 	chmod -R g+w _build/html
-	rsync -rltpDvhz \
+	rsync -rltpDvh \
 		--exclude bloomcast/spring_diatoms.html \
 		--exclude _static/bloomcast/spring_diatoms/ \
 		_build/html/ shelob:/www/salishsea/data/
