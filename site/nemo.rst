@@ -38,7 +38,10 @@ The Salish Sea MEOPAR project team is developing a three-dimensional ocean model
 Using the NEMO_ modelling architecture the Salish Sea model will be used to evaluate storm surge risk in coastal communities.
 Long term goals include data assimilation from the VENUS network and a coupled biogeochemical modelling component.
 
+Daily nowcast and forecast research results are available `here`_.
+
 .. _NEMO: http://www.nemo-ocean.eu/
+.. _here: http://eoas.ubc.ca/~dlatorne/MEOPAR/nowcast/
 
 .. image:: _static/nemo/SalishSeaBathy.png
     :alt: Salish Sea NEMO Model Domain
