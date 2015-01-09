@@ -43,7 +43,7 @@ Daily nowcast and forecast research results are available `here`_.
 .. _NEMO: http://www.nemo-ocean.eu/
 .. _here: http://eoas.ubc.ca/~dlatorne/MEOPAR/nowcast/
 
-.. image:: _static/nemo/SalishSeaBathy.png
+.. image:: _static/nemo/SalishSeaImage.png
     :alt: Salish Sea NEMO Model Domain
     :align: center
 
