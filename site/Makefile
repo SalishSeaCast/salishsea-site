@@ -53,5 +53,5 @@ rsync-shelob:
 		--exclude _static/nemo/results_figures/nowcast/ \
 		--exclude _static/nemo/results_figures/forecast/ \
 		--exclude _static/nemo/results_figures/forecast2/ \
-		_build/html/ shelob:/www/salishsea/data/
+		_build/html/ shelob-salishsea:/www/salishsea/data/
 	@echo "rsync to shelob web server complete."
