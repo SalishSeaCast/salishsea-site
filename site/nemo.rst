@@ -82,11 +82,11 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
 
 * The impacts and indictors of marine hazards team in the UBC School of Community and Regional Planning lead by `Stephanie Chang`_:
 
-  * Shona van Zijll de jong
   * Jackie Yip
   * Christopher Carter
   * Rebecca Chaster
   * Ashley Lowcock
+  * Shona van Zijll de jong (emeritus)
 
 .. _Susan Allen: http://eos.ubc.ca/~sallen/
 .. _Rich Pawlowicz: http://www.eos.ubc.ca/~rich/research.html
@@ -98,8 +98,10 @@ We also collaborate with MEOPAR_ researchers and NEMO_ users across Canada:
 * Vasily Korabel, Dalhousie University
 * Youyu Lu, Fisheries and Oceans Canada
 * J-P Paquin, Dalhousie University
+* Fatemeh Chegini, Dalhousie University
 * Luc Fillion, Environment Canada
 * Kao-Shen Chung, Environment Canada
+* Weiguang Chang, Environment Canada
 
 and with many other researchers,
 including:
@@ -108,6 +110,8 @@ including:
 * Mike Foreman, Fisheries and Oceans Canada
 * Debby Ianson, Fisheries and Oceans Canada
 * John Morrison, Fisheries and Oceans Canada
+* Charles Hannah, Fisheries and Oceans Canada
+* Pramod Thupaki, Fisheries and Oceans Canada
 
 
 Storm Surge Modeling
