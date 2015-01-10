@@ -40,7 +40,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'Salish Sea'
 copyright = (
-    u'{this_year}, The UBC EOAS MOAD Group'
+    u'2014-{this_year}, The UBC EOAS MOAD Group'
     .format(this_year=datetime.date.today().year)
 )
 
