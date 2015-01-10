@@ -70,6 +70,7 @@ Other team members:
 * Doug Latornell
 * Ben Moore-Maley
 * Idalia Machuca
+* Jie Liu
 * Kate Le Souëf (emeritus)
 
 The team collaborates with other MEOPAR_ funded research teams at UBC:
