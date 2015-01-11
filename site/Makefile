@@ -44,11 +44,15 @@ rsync-eoas:
 	@echo "rsync to your $(EOAS_WEB) directory complete."
 
 rsync-shelob:
-	# This target can only be used from a machine on the EOAS network
+	# This target can only be used from a machine on the EOAS network.
+	#
+	# A shelob-salishsea host must be defined in your .ssh/config file.
+
 	chmod -R g+w _build/html
 	rsync -rltpDvh \
 		--exclude bloomcast/spring_diatoms.html \
 		--exclude _static/bloomcast/spring_diatoms/ \
+		--exclude nemo/results/ \
 		--exclude storm-surge/forecast*.html \
 		--exclude _static/nemo/results_figures/nowcast/ \
 		--exclude _static/nemo/results_figures/forecast/ \
