@@ -28,7 +28,7 @@
     :hidden:
 
     storm-surge/index
-    nemo
+    nemo/index
     sog
     bloomcast
 
