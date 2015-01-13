@@ -48,6 +48,9 @@ Research results on current and previous nowcasts and forecasts are available `h
 .. _forecast.html: http://salishsea.eos.ubc.ca/storm-surge/forecast.html
 .. _here: http://eoas.ubc.ca/~dlatorne/MEOPAR/nowcast/
 
+Domain
+------
+
 .. image:: _static/nemo/SalishSeaImage.png
     :alt: Salish Sea NEMO Model Domain
     :align: center
@@ -125,7 +128,7 @@ Storm Surge Modeling
 
 The Salish Sea models ability to calculate tides and sea surface height was evaluatee by hindcasting storm surge events that occurred between 2002 and 2011.  A manuscript (Soontiens et al) will be submitted soon.
 Since Oct, 2014  the model is run daily to provide a nowcast and one or two forecasts, providing sea surface height forecasts that are published to the web.
-The Salish Sea NEMO model `forecast results`_ are part of the `storm surge prediction and risk assessment resources`_.  
+The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge prediction and risk assessment resources`_.  
 
 .. _storm surge prediction and risk assessment resources: storm-surge/index.html
 .. _forecast results: http://salishsea.eos.ubc.ca/storm-surge/forecast.html
