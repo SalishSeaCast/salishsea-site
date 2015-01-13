@@ -51,7 +51,7 @@ Research results on current and previous nowcasts and forecasts are available `h
 Domain
 ------
 
-.. image:: _static/nemo/SalishSeaImage.png
+.. image:: ../_static/nemo/SalishSeaImage.png
     :alt: Salish Sea NEMO Model Domain
     :align: center
 
