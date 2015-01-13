@@ -38,15 +38,18 @@ The Salish Sea MEOPAR project team is developing a three-dimensional ocean model
 Using the NEMO_ modelling architecture the Salish Sea model will be used to evaluate storm surge risk in coastal communities.
 Long term goals include data assimilation from the VENUS network and a coupled biogeochemical modelling component.
 
+
 Results
 -------
 
-The most recent Storm Surge Forecast is available at `forecast.html`_. More on our storm surge modelling is available at the bottom of the page, see StormSurge_.
+The most recent Storm Surge Forecast is available at http://salishsea.eos.ubc.ca/storm-surge/forecast.html.
+More on our storm surge modelling is available at the bottom of this page,
+see `Storm Surge Modeling`_.
 Research results on current and previous nowcasts and forecasts are available `here`_.
 
 .. _NEMO: http://www.nemo-ocean.eu/
-.. _forecast.html: http://salishsea.eos.ubc.ca/storm-surge/forecast.html
 .. _here: http://eoas.ubc.ca/~dlatorne/MEOPAR/nowcast/
+
 
 Domain
 ------
@@ -121,19 +124,21 @@ including:
 * Charles Hannah, Fisheries and Oceans Canada
 * Pramod Thupaki, Fisheries and Oceans Canada
 
-.. _StormSurge:
 
 Storm Surge Modeling
 ====================
 
-The Salish Sea models ability to calculate tides and sea surface height was evaluatee by hindcasting storm surge events that occurred between 2002 and 2011.  A manuscript (Soontiens et al) will be submitted soon.
-Since Oct, 2014  the model is run daily to provide a nowcast and one or two forecasts, providing sea surface height forecasts that are published to the web.
-The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge prediction and risk assessment resources`_.  
+The Salish Sea models ability to calculate tides and sea surface height was evaluated by hindcasting storm surge events that occurred between 2002 and 2011.
+A manuscript (Soontiens et al [#]_) will be submitted soon.
+Since Oct 2014 the model has been run daily to provide a nowcast and one or two forecasts,
+providing sea surface height forecasts that are published to the web.
+The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge prediction and risk assessment resources`_.
 
 .. _storm surge prediction and risk assessment resources: storm-surge/index.html
-.. _forecast results: http://salishsea.eos.ubc.ca/storm-surge/forecast.html
+.. _forecast results: storm-surge/forecast.html
 
 
 Reference
 ---------
-Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2015). Storm surges in the Strait of Georgia simulated with a regional model. in prep.
+
+.. [#] Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2015). Storm surges in the Strait of Georgia simulated with a regional model. in prep.
