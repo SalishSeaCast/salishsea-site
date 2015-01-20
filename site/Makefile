@@ -53,9 +53,10 @@ rsync-shelob:
 		--exclude bloomcast/spring_diatoms.html \
 		--exclude _static/bloomcast/spring_diatoms/ \
 		--exclude nemo/results/ \
-		--exclude storm-surge/forecast*.html \
+		--exclude storm-surge/forecast.html \
 		--exclude _static/nemo/results_figures/nowcast/ \
 		--exclude _static/nemo/results_figures/forecast/ \
 		--exclude _static/nemo/results_figures/forecast2/ \
+		--exclude _static/storm-surge/ \
 		_build/html/ shelob-salishsea:/www/salishsea/data/
 	@echo "rsync to shelob web server complete."
