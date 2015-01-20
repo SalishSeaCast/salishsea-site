@@ -30,9 +30,11 @@ with particular emphasis on the Southern Strait of Georgia.
 UBC Storm Surge
 ===============
 
-.. image:: ../_static/nemo/overview_image_21dec14.png
-    :alt: Overview image for December 21, 2014
+.. image:: /_static/storm-surge/Threshold_website.svg
+    :alt: Overview image
     :align: center
+    :height: 300px
+    :target: forecast.html 
 
 
 Storm Surge BC
