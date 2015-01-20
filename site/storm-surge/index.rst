@@ -30,11 +30,20 @@ with particular emphasis on the Southern Strait of Georgia.
 UBC Storm Surge
 ===============
 
-.. image:: /_static/storm-surge/Threshold_website.svg
-    :alt: Overview image
-    :align: center
-    :height: 300px
-    :target: forecast.html 
+.. raw:: html
+
+    <div class="row">
+      <div class="col-md-4">
+        <object class="img-responsive" type="image/svg+xml"
+          data="/_static/storm-surge/Threshold_website.svg">
+        </object>
+      </div>
+      <div class="col-md-8">
+        <p>
+
+        </p>
+      </div>
+    </div>
 
 
 Storm Surge BC
