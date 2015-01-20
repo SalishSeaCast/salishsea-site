@@ -48,7 +48,7 @@ see `Storm Surge Modeling`_.
 Research results on current and previous nowcasts and forecasts are available `here`_.
 
 .. _NEMO: http://www.nemo-ocean.eu/
-.. _here: http://eoas.ubc.ca/~dlatorne/MEOPAR/nowcast/
+.. _here: nemo/results/index.html
 
 
 Domain
