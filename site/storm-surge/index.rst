@@ -24,7 +24,15 @@ Storm Surge Information Portal
 ******************************
 
 This is a collection of links to web resources that may help interested parties assess the risks and possible impacts of storm surge events in the Salish Sea region,
-with particular emphasis on the Southern Strait of Georgia.test
+with particular emphasis on the Southern Strait of Georgia.
+
+
+UBC Storm Surge
+===============
+
+.. image:: ../_static/nemo/overview_image_21dec14.png
+    :alt: Overview image for December 21, 2014
+    :align: center
 
 
 Storm Surge BC
