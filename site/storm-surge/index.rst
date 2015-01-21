@@ -40,7 +40,15 @@ UBC Storm Surge
       </div>
       <div class="col-md-8">
         <p>
-         <a href="forecast.html">Salish Sea Forecast</a> gives our most recent forecast, usually for tomorrow.  The summary figure to the left, shows green if maximum water levels are predicted to be below maximum tides for the year, orange if the maximum water levels are predicted to between maximum tides and extreme water and red if the maximum water levels are predicted to be above extreme water.  The vectors are winds averaged over the four hours previous to the predicted maximum water levels.  The forecasting system is considered to be a research tool only and is to be used at your own risk. Details of the model system are at <a href="../nemo.html">Salish Sea NEMO Model</a>
+         <a href="forecast.html">Salish Sea Forecast</a> gives our most recent forecast,
+         usually for tomorrow.
+         The summary figure to the left,
+         shows green if maximum water levels are predicted to be below maximum tides for the year,
+         orange if the maximum water levels are predicted to between maximum tides and extreme water,
+         and red if the maximum water levels are predicted to be above extreme water.
+         The vectors are winds averaged over the four hours previous to the predicted maximum water levels.
+         The forecasting system is considered to be a research tool only and is to be used at your own risk.
+         Details of the model system are at <a href="../nemo.html">Salish Sea NEMO Model</a>
         </p>
       </div>
     </div>
