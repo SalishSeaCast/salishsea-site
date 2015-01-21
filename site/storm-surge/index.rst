@@ -48,7 +48,7 @@ UBC Storm Surge
          and red if the maximum water levels are predicted to be above extreme water.
          The vectors are winds averaged over the four hours previous to the predicted maximum water levels.
          The forecasting system is considered to be a research tool only and is to be used at your own risk.
-         Details of the model system are at <a href="../nemo.html">Salish Sea NEMO Model</a>
+         Details of the model system are at <a href="/nemo/index.html">Salish Sea NEMO Model</a>
         </p>
       </div>
     </div>
