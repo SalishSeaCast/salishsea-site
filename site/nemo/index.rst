@@ -137,7 +137,7 @@ providing sea surface height forecasts that are published to the web.
 The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge prediction and risk assessment resources`_.
 
 .. _storm surge prediction and risk assessment resources: ../storm-surge/index.html
-.. _forecast results: storm-surge/forecast.html
+.. _forecast results: ../storm-surge/forecast.html
 
 
 Reference
