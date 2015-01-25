@@ -34,9 +34,13 @@ UBC Storm Surge
 
     <div class="row">
       <div class="col-md-4">
-        <object class="img-responsive" type="image/svg+xml"
-          data="/_static/storm-surge/Threshold_website.svg">
-        </object>
+        <a href="/storm-surge/forecast.html">
+          <img class="img-responsive"
+            src="/_static/storm-surge/Website_thumbnail.png"
+            title="UBC Storm Surge Forecast"
+            alt="UBC Storm Surge Forecast Thumbnail Image">
+          </img>
+        </a>
       </div>
       <div class="col-md-8">
         <p>
