@@ -129,7 +129,7 @@ Storm Surge Modeling
 ====================
 
 The Salish Sea models ability to calculate tides and sea surface height was evaluated by hindcasting storm surge events that occurred between 2002 and 2011.
-A manuscript (Soontiens et al [#]_) will be submitted soon.
+A manuscript (Soontiens et al [#]_) has been submitted.
 Since Oct 2014 the model has been run daily to provide a nowcast and one or two forecasts,
 providing sea surface height forecasts that are published to the web.
 The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge prediction and risk assessment resources`_.
@@ -141,4 +141,4 @@ The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge
 Reference
 ---------
 
-.. [#] Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2015). Storm surges in the Strait of Georgia simulated with a regional model. in prep.
+.. [#] Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2015). Storm surges in the Strait of Georgia simulated with a regional model. Submitted to Atmosphere-Ocean.
