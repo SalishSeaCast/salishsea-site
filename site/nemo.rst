@@ -1,5 +1,7 @@
 .. salishsea.eos.ubc.ca/nemo section landing page
 
+:orphan: True
+
 :license:
   Copyright 2014-2015 The Salish Sea MEOPAR Contributors
   and The University of British Columbia
