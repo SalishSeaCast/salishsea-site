@@ -20,3 +20,62 @@
 ***************************
 Strait of Georgia Bloomcast
 ***************************
+
+About the Project
+=================
+
+The timing of the spring phytoplankton bloom in the Strait of Georgia is highly variable,
+ranging from late February to mid-April.
+Changes in the timing have been related to the success of herring larval recruitment [#f1]_ and studies in a nearby fjord suggest it may affect the zooplankton species composition [#f2]_.
+In this well stratified,
+mid-latitude system,
+the timing is controlled by the light availability to the phytoplankton which is in turn controlled by the incoming light
+(cloud fraction decreases this)
+and by the depth over which the phytoplankton are mixed
+(wind increases this).
+The role of freshwater is more nuanced;
+more river outflow both
+
+a) stabilizes the water column which decreases the depth over which the phytoplankton are mixed,
+   increasing their growth rate,
+   and
+b) increases the advection loss of phytoplankton.
+
+The `SOG biophysical model for deep estuaries`_ [#f3]_ is a vertical-mixing layer model forced by observed winds at Sand Heads,
+observed air temperature and humidity at Vancouver International Airport (YVR) [#f4]_,
+Fraser River flow at Hope and Englishman River flow at Parksville [#f5]_.
+The latter is multiplied by 55 to represent all river flows into the Strait other than the Fraser River.
+Cloud fraction is interpreted based on the weather description and the historical average cloud fraction to weather,
+done by month for the most common weather descriptions.
+
+.. _SOG biophysical model for deep estuaries: http://www.eos.ubc.ca/~sallen/SOG-docs/
+
+The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added (Collins et al,. 2009).
+To model a spring bloom,
+only a simple nitrate-diatom biological model is used.
+The diatom growth parameters are taken from the literature based on the first phytoplankton to bloom in the Strait (Thalassiosira spp.).
+The model zooplankton concentration was taken from observations (Sastri and Dower, 2009) and the model was tuned by adjusting the phytoplankton growth rate (Allen and Wolfe, 2013) within the range measured in the laboratory.
+The model was tuned,
+within 4 days,
+for the spring blooms of 2002-2005 for which detailed observations were made as part of the STRATOGEM project (Allen and Wolfe, 2013).
+
+A carbon module that models dissolved inorganic carbon and total alkalinity has been added to the model and allows estimation of aragonite saturation state (Moore-Maley, 2014).
+
+Results
+-------
+
+The most recent predictions for the first spring diatom bloom in the Strait fo Georgia are available at http://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html.
+
+
+References
+----------
+
+.. [#f1] Schweigert, J.F., M. Thompson, C. Fort, D.E. Hay, T.W. Therriault, and L.N. Brown. 2013. Factors linking Pacific herring (Clupea pallasi) productivity and the spring plankton bloom in the Strait of Georgia, British Columbia, Canada. Prog. Oceanogr., 115: 103-110
+
+.. [#f2] Tommasi, D., B.P.V. Hunt, E.A. Pakhomov, and D.L. Mackas. 2013. Mesozooplankton community seasonal succession and its drivers: Insights from a British Columbia, Canada, fjord. J. Mar. Systems, 115: 10-32
+
+.. [#f3] Allen, S. E. and M. A. Wolfe, Hindcast of the Timing of the Spring Phytoplankton Bloom in the Strait of Georgia, 1968-2010. Progress in Oceanography, vol 115, pp 6-13 (2013). http://dx.doi.org/10.1016/j.pocean.2013.05.026
+
+.. [#f4] Environment Canada, 2015. Climate database. http://climate.weather.gc.ca/index_e.html
+
+.. [#f5] Environment Canada, 2015. Hydrometric data. http://www.ec.gc.ca/rhc-wsc/
