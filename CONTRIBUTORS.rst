@@ -14,3 +14,4 @@ People who have contributed to the content of this site:
 * Doug Latornell <dlatornell@eos.ubc.ca>
 * Nancy Soontiens <nsoontiens@eos.ubc.ca>
 * Idalia Machuca <imachuca@eos.ubc.ca>
+* Muriel Dunn <mdunn@eos.ubc.ca>
