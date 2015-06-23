@@ -50,16 +50,16 @@ done by month for the most common weather descriptions.
 
 .. _SOG biophysical model for deep estuaries: http://www.eos.ubc.ca/~sallen/SOG-docs/
 
-The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added (Collins et al,. 2009).
+The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added [#f6]_.
 To model a spring bloom,
 only a simple nitrate-diatom biological model is used.
 The diatom growth parameters are taken from the literature based on the first phytoplankton to bloom in the Strait (Thalassiosira spp.).
-The model zooplankton concentration was taken from observations (Sastri and Dower, 2009) and the model was tuned by adjusting the phytoplankton growth rate (Allen and Wolfe, 2013) within the range measured in the laboratory.
+The model zooplankton concentration was taken from observations [#f7]_ and the model was tuned by adjusting the phytoplankton growth rate [#f3]_ within the range measured in the laboratory.
 The model was tuned,
 within 4 days,
-for the spring blooms of 2002-2005 for which detailed observations were made as part of the STRATOGEM project (Allen and Wolfe, 2013).
+for the spring blooms of 2002-2005 for which detailed observations were made as part of the STRATOGEM project [#f3]_.
 
-A carbon module that models dissolved inorganic carbon and total alkalinity has been added to the model and allows estimation of aragonite saturation state (Moore-Maley, 2014).
+A carbon module that models dissolved inorganic carbon and total alkalinity has been added to the model and allows estimation of aragonite saturation state [#f8]_.
 
 Results
 -------
@@ -74,8 +74,14 @@ References
 
 .. [#f2] Tommasi, D., B.P.V. Hunt, E.A. Pakhomov, and D.L. Mackas. 2013. Mesozooplankton community seasonal succession and its drivers: Insights from a British Columbia, Canada, fjord. J. Mar. Systems, 115: 10-32
 
-.. [#f3] Allen, S. E. and M. A. Wolfe, Hindcast of the Timing of the Spring Phytoplankton Bloom in the Strait of Georgia, 1968-2010. Progress in Oceanography, vol 115, pp 6-13 (2013). http://dx.doi.org/10.1016/j.pocean.2013.05.026
+.. [#f3] Allen, S. E. and M. A. Wolfe. 2013. Hindcast of the Timing of the Spring Phytoplankton Bloom in the Strait of Georgia, 1968-2010. Progress in Oceanography, vol 115, pp 6-13. http://dx.doi.org/10.1016/j.pocean.2013.05.026
 
 .. [#f4] Environment Canada, 2015. Climate database. http://climate.weather.gc.ca/index_e.html
 
 .. [#f5] Environment Canada, 2015. Hydrometric data. http://www.ec.gc.ca/rhc-wsc/
+
+.. [#f6] Collins, A. K., S. E. Allen, and R. Pawlowicz. 2009. The role of wind in determining the timing of the spring bloom in the Strait of Georgia. Can. J. Fish. Aquat. Sci, 66:, 1597-1616.
+
+.. [#f7] Sastri, A. R., and J. F. Dower. 2009. Interannual variability in chitobiase-based production rates of the crustacean zooplankton community in the Strait of Georgia, British Columbia, Canada. Mar. Ecol. Prog. Ser. 388,: 147–157.
+
+.. [#f8] Moore-Maley, Benjamin. 2014. The inorganic carbonate chemistry of the southern Strait of Georgia, Masters Thesis, University of British Columbia. https://circle.ubc.ca/handle/2429/51770
