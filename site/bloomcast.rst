@@ -53,7 +53,7 @@ done by month for the most common weather descriptions.
 The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added [#f6]_.
 To model a spring bloom,
 only a simple nitrate-diatom biological model is used.
-The diatom growth parameters are taken from the literature based on the first phytoplankton to bloom in the Strait (Thalassiosira spp.).
+The diatom growth parameters are taken from the literature based on the first phytoplankton to bloom in the Strait (*Thalassiosira* spp.).
 The model zooplankton concentration was taken from observations [#f7]_ and the model was tuned by adjusting the phytoplankton growth rate [#f3]_ within the range measured in the laboratory.
 The model was tuned,
 within 4 days,
