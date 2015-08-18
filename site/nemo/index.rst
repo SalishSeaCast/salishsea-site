@@ -83,6 +83,7 @@ Other team members:
 * Idalia Machuca
 * Jie Liu
 * Kate Le Souëf (emeritus)
+* Muriel Dunn (emeritus)
 
 The team collaborates with other MEOPAR_ funded research teams at UBC:
 
