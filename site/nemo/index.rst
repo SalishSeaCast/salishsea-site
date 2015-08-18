@@ -78,6 +78,7 @@ The Salish Sea NEMO Model project is lead by `Susan Allen`_ in the Department of
 Other team members:
 
 * Nancy Soontiens
+* Elise Olson
 * Doug Latornell
 * Ben Moore-Maley
 * Idalia Machuca
