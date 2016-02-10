@@ -3,7 +3,7 @@
 :orphan: True
 
 :license:
-  Copyright 2014-2015 The Salish Sea MEOPAR Contributors
+  Copyright 2014-2016 The Salish Sea MEOPAR Contributors
   and The University of British Columbia
 
   Licensed under the Apache License, Version 2.0 (the "License");
