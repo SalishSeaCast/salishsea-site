@@ -52,5 +52,5 @@ rsync:
 		--exclude _static/nemo/results_figures/forecast/ \
 		--exclude _static/nemo/results_figures/forecast2/ \
 		--exclude _static/storm-surge/ \
-		_build/html/ /vasr/www/html/
+		_build/html/ /var/www/html/
 	@echo "rsync to /var/www/html/ complete."
