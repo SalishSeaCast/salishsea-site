@@ -20,10 +20,9 @@ EOAS_WEB = public_html/salishsea-site/
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  html          to make standalone HTML files"
-	@echo "  linkcheck     to check all external links for integrity"
-	@echo "  rsync-eoas     to rsync HTML files to your EOAS web space"
-	@echo "  rsync-shelob  to rsync HTML files from EOAS machine to EOAS web server"
+	@echo "  html       to make standalone HTML files"
+	@echo "  linkcheck  to check all external links for integrity"
+	@echo "  rsync      to rsync HTML files to /var/www/html/"
 
 clean:
 	rm -rf $(BUILDDIR)/*
@@ -39,14 +38,9 @@ linkcheck:
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
-rsync-eoas:
-	rsync -rlpgoDvhz _build/html/ $(EOAS_HOST):$(EOAS_WEB)
-	@echo "rsync to your $(EOAS_WEB) directory complete."
-
-rsync-shelob:
-	# This target can only be used from a machine on the EOAS network.
-	#
-	# A shelob-salishsea host must be defined in your .ssh/config file.
+rsync:
+	# This target is typically only used on skookum
+	# (where the site is served from).
 
 	chmod -R g+w _build/html
 	rsync -rltpDvh \
@@ -58,5 +52,5 @@ rsync-shelob:
 		--exclude _static/nemo/results_figures/forecast/ \
 		--exclude _static/nemo/results_figures/forecast2/ \
 		--exclude _static/storm-surge/ \
-		_build/html/ shelob-salishsea:/www/salishsea/data/
-	@echo "rsync to shelob web server complete."
+		_build/html/ /vasr/www/html/
+	@echo "rsync to /var/www/html/ complete."
