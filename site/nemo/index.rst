@@ -81,17 +81,25 @@ Other team members:
 * Elise Olson
 * Doug Latornell
 * Ben Moore-Maley
-* Idalia Machuca
 * Jie Liu
 * Kate Le Souëf (emeritus)
+* Idalia Machuca (emeritus)
 * Muriel Dunn (emeritus)
+
+Researchers from several other teams in UBC EOAS joined the project team for the August 2015 Development Sprint on Stakeholder Support Features:
+
+* Alex Huang
+* Alyssia Law
+* Karina Ramos Musalem
+* Yingkai (Kyle) Sha
+* Xiaoxin (Cindy) Yu
 
 The team collaborates with other MEOPAR_ funded research teams at UBC:
 
 * The observations team in EOAS lead by `Rich Pawlowicz`_:
 
   * Mark Halverson
-  * Chuning Wang
+  * Chuning Wang (emeritus)
 
 * The impacts and indictors of marine hazards team in the UBC School of Community and Regional Planning lead by `Stephanie Chang`_:
 
