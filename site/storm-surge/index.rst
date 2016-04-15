@@ -36,7 +36,7 @@ UBC Storm Surge
       <div class="col-md-4">
         <a href="/storm-surge/forecast.html">
           <img class="img-responsive"
-            src="/_static/storm-surge/Website_thumbnail.png"
+            src="http://salishsea.eos.ubc.ca/nowcast-sys/figures/storm-surge/Website_thumbnail.png"
             title="UBC Storm Surge Forecast"
             alt="UBC Storm Surge Forecast Thumbnail Image">
           </img>
