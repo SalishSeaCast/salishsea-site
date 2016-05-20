@@ -84,6 +84,7 @@ Other team members:
 * Doug Latornell
 * Ben Moore-Maley
 * Jie Liu
+* James Petrie
 * Kate Le Souëf (emeritus)
 * Idalia Machuca (emeritus)
 * Muriel Dunn (emeritus)
