@@ -42,14 +42,20 @@ Long term goals include data assimilation from the VENUS network and a coupled b
 Results
 -------
 
-The most recent Storm Surge Forecast is available at http://salishsea.eos.ubc.ca/storm-surge/forecast.html.
-More on our storm surge modelling is available at the bottom of this page,
-see :ref:`StormSurgeModeling`.
-Research results on current and previous nowcasts and forecasts are available `here`_.
+Our results are available in a number of formats:
+
+* Our Storm Surge forecast: http://salishsea.eos.ubc.ca/storm-surge/forecast.html
+* A more general storm surge portal: http://salishsea.eos.ubc.ca/storm-surge/
+
+* You can subscribe to our storm surge atom feed for Vancouver: http://salishsea.eos.ubc.ca/storm-surge/atom/pmv.xml
+
+* Static plots of our results are: http://salishsea.eos.ubc.ca/nemo/results/
+
+* Animations on ocean viewer: http://oceanviewer.org
+
+* Full access to our nowcast results in numerous formats via an ERDDAP server: https://salishsea.eos.ubc.ca/erddap/
 
 .. _NEMO: http://www.nemo-ocean.eu/
-.. _here: results/index.html
-
 
 Domain
 ------
@@ -58,6 +64,18 @@ Domain
     :alt: Salish Sea NEMO Model Domain
     :align: center
 
+Evaluation
+----------
+
+**General evaluation:** as a slide presentation: `here`_
+
+**Storm surge:** The Salish Sea model's ability to calculate tides and sea surface height was evaluated by hindcasting storm surge events that occurred between 2002 and 2011.
+(Soontiens et al, 2016 [#]_).
+
+**Mixing in San Juan/Gulf Islands:** The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and advection has been determined. (Soontiens and Allen, submitted)
+
+
+.. _here: ../_static/nemo/model_evaluation_summary.pdf
 
 Project Resources
 =================
@@ -77,11 +95,11 @@ Project Team and Collaborators
 The Salish Sea NEMO Model project is lead by `Susan Allen`_ in the Department of Earth, Ocean, and Atmospheric Sciences at the University of British Columbia.
 Other team members:
 
-* Nancy Soontiens
+* `Nancy Soontiens`_
 * Elise Olson
 * Doug Latornell
-* Ben Moore-Maley
-* Jie Liu
+* `Ben Moore-Maley`_
+* `Jie Liu`_
 * James Petrie
 * Kate Le Souëf (emeritus)
 * Idalia Machuca (emeritus)
@@ -100,6 +118,7 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
 * The observations team in EOAS lead by `Rich Pawlowicz`_:
 
   * Mark Halverson
+  * Romain Di Costanzo
   * Chuning Wang (emeritus)
 
 * The impacts and indictors of marine hazards team in the UBC School of Community and Regional Planning lead by `Stephanie Chang`_:
@@ -108,11 +127,18 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
   * Christopher Carter
   * Rebecca Chaster
   * Ashley Lowcock
+  * Michelle Marteleira
+  * Greg Oulahen
   * Shona van Zijll de jong (emeritus)
 
 .. _Susan Allen: http://eos.ubc.ca/~sallen/
 .. _Rich Pawlowicz: http://www.eos.ubc.ca/~rich/research.html
 .. _Stephanie Chang: https://sites.google.com/site/stephanieechang1/home
+
+.. _Nancy Soontiens: http://www.nancysoontiens.com
+.. _Ben Moore-Maley: https://www.eoas.ubc.ca/about/grad/B.Moore-Maley.html
+.. _Jie Liu: https://ca.linkedin.com/in/jie-liu-0a93a5ab
+
 
 We also collaborate with MEOPAR_ researchers and NEMO_ users across Canada:
 
@@ -124,15 +150,20 @@ We also collaborate with MEOPAR_ researchers and NEMO_ users across Canada:
 * Luc Fillion, Environment Canada
 * Kao-Shen Chung, Environment Canada
 * Weiguang Chang, Environment Canada
+* Jim Christian, Environment Canada
+* Olivier Riche, Environment Canada
 
 and with many other researchers,
 including:
 
-* Diane Masson, Fisheries and Oceans Canada
 * Mike Foreman, Fisheries and Oceans Canada
-* Debby Ianson, Fisheries and Oceans Canada
-* John Morrison, Fisheries and Oceans Canada
 * Charles Hannah, Fisheries and Oceans Canada
+* Debby Ianson, Fisheries and Oceans Canada
+* Diane Masson, Fisheries and Oceans Canada
+* John Morrison, Fisheries and Oceans Canada
+* Paul Myers, University of Alberta
+* Angelica Pena, Fisheries and Oceans Canada
+* Neil Swart, Environment Canada
 * Pramod Thupaki, Fisheries and Oceans Canada
 
 
@@ -141,8 +172,6 @@ including:
 Storm Surge Modeling
 ====================
 
-The Salish Sea model's ability to calculate tides and sea surface height was evaluated by hindcasting storm surge events that occurred between 2002 and 2011.
-A manuscript (Soontiens et al [#]_) has been submitted.
 Since Oct-2014 the model has been run daily to provide a nowcast and one or two forecasts,
 providing sea surface height forecasts that are published to the web.
 The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge prediction and risk assessment resources`_.
@@ -153,4 +182,6 @@ The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge
 
 Reference
 ---------
-.. [#] Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2015). Storm surges in the Strait of Georgia simulated with a regional model. Submitted to Atmosphere-Ocean.
+.. [#] Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2016). `Storm surges in the Strait of Georgia simulated with a regional model`_. *Atmosphere-Ocean* **54** 1-21.
+
+.. _Storm surges in the Strait of Georgia simulated with a regional model: http://www.tandfonline.com/doi/full/10.1080/07055900.2015.1108899#abstract
