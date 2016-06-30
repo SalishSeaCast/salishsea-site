@@ -167,19 +167,6 @@ including:
 * Pramod Thupaki, Fisheries and Oceans Canada
 
 
-.. _StormSurgeModeling:
-
-Storm Surge Modeling
-====================
-
-Since Oct-2014 the model has been run daily to provide a nowcast and one or two forecasts,
-providing sea surface height forecasts that are published to the web.
-The Salish Sea NEMO model `forecast results`_ will form part of the `storm surge prediction and risk assessment resources`_.
-
-.. _storm surge prediction and risk assessment resources: ../storm-surge/index.html
-.. _forecast results: ../storm-surge/forecast.html
-
-
 Reference
 ---------
 .. [#] Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2016). `Storm surges in the Strait of Georgia simulated with a regional model`_. *Atmosphere-Ocean* **54** 1-21.
