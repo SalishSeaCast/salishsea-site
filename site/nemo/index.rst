@@ -67,15 +67,18 @@ Domain
 Evaluation
 ----------
 
-**General evaluation:** as a slide presentation: `here`_
+**General evaluation:** as a `slide presentation`_.
+
+.. _slide presentation: ../_static/nemo/model_evaluation_summary.pdf
+
+
 
 **Storm surge:** The Salish Sea model's ability to calculate tides and sea surface height was evaluated by hindcasting storm surge events that occurred between 2002 and 2011.
-(Soontiens et al, 2016 [#]_).
+(Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V., 2016. Storm surges in the Strait of Georgia simulated with a regional model. *Atmosphere-Ocean* **54** 1-21. `https://dx.doi.org/10.1080/07055900.2015.1108899`_)
+
+.. _https://dx.doi.org/10.1080/07055900.2015.1108899: https://dx.doi.org/10.1080/07055900.2015.1108899
 
 **Mixing in San Juan/Gulf Islands:** The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and advection has been determined. (Soontiens and Allen, submitted)
-
-
-.. _here: ../_static/nemo/model_evaluation_summary.pdf
 
 Project Resources
 =================
@@ -167,8 +170,4 @@ including:
 * Pramod Thupaki, Fisheries and Oceans Canada
 
 
-Reference
----------
-.. [#] Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2016). `Storm surges in the Strait of Georgia simulated with a regional model`_. *Atmosphere-Ocean* **54** 1-21.
 
-.. _Storm surges in the Strait of Georgia simulated with a regional model: http://www.tandfonline.com/doi/full/10.1080/07055900.2015.1108899#abstract
