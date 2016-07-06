@@ -99,7 +99,7 @@ The Salish Sea NEMO Model project is lead by `Susan Allen`_ in the Department of
 Other team members:
 
 * `Nancy Soontiens`_
-* Elise Olson
+* `Elise Olson`_
 * Doug Latornell
 * `Ben Moore-Maley`_
 * `Jie Liu`_
@@ -139,6 +139,7 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
 .. _Stephanie Chang: https://sites.google.com/site/stephanieechang1/home
 
 .. _Nancy Soontiens: http://www.nancysoontiens.com
+.. _Elise Olson: https://www.eoas.ubc.ca/~eolson/
 .. _Ben Moore-Maley: https://www.eoas.ubc.ca/about/grad/B.Moore-Maley.html
 .. _Jie Liu: https://ca.linkedin.com/in/jie-liu-0a93a5ab
 
