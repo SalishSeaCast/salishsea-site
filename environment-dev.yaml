@@ -1,0 +1,23 @@
+# conda environment description file for salishsea_site package
+# development environment
+#
+# Create a conda environment for development, testing, and documentation
+# of the salishsea_site web app with:
+#
+#    $ cd salishsea_site
+#    $ conda env create -f environment-dev.yaml
+#    $ source activate salishsea_site
+#    $ pip install --editable .
+
+name: salishsea_site
+dependencies:
+- pip
+- python=3
+- pip:
+  - pyramid
+  - pyramid_crow
+  - pyramid_debugtoolbar
+  - pyramid_mako
+  - sphinx
+  - sphinx-bootstrap-theme
+  - waitress
