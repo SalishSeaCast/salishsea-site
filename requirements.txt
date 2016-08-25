@@ -1,16 +1,24 @@
 # Python packages and version used in development environment
 
+chaussett==1.3.0
+circus==0.14.0
 contextlib2==0.5.4
+iowait==0.2
 Mako==1.0.4
 MarkupSafe==0.23
 PasteDeploy==1.5.2
+psutil==4.3.0
 Pygments==2.1.3
 pyramid==1.7
 pyramid-crow==0.3.1
 pyramid-debugtoolbar==3.0.4
 pyramid-mako==1.0.2
+pyyaml==3.11
+pyzmq==15.4.0
 raven==5.24.3
 repoze.lru==0.6
+six==1.10.0
+tornado==4.4.1
 translationstring==1.3
 venusian==1.0
 waitress==0.9.0
