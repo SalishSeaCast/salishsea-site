@@ -49,9 +49,12 @@ install_requires = [
     # see environment-prod.yaml for conda environment production installation,
     # see environment-dev.yaml for conda environment dev installation,
     # see requirements.txt for package versions used during recent development
+    'chaussette',
+    'circus',
     'pyramid',
     'pyramid_crow',
     'pyramid_mako',
+    'pyyaml',
     'waitress',
 ]
 
