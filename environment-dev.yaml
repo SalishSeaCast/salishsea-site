@@ -10,14 +10,18 @@
 #    $ pip install --editable .
 
 name: salishsea_site
+
 dependencies:
-- pip
-- python=3
-- pip:
-  - pyramid
-  - pyramid_crow
-  - pyramid_debugtoolbar
-  - pyramid_mako
-  - sphinx
-  - sphinx-bootstrap-theme
-  - waitress
+  - pip
+  - python=3
+  - pyyaml
+  - pip:
+    - chaussette
+    - circus
+    - pyramid
+    - pyramid_crow
+    - pyramid_debugtoolbar
+    - pyramid_mako
+    - sphinx
+    - sphinx-bootstrap-theme
+    - waitress
