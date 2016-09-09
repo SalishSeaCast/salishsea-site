@@ -9,7 +9,7 @@
 #    $ source activate salishsea_site
 #    $ pip install --editable .
 
-name: salishsea_site
+name: salishsea-site
 
 dependencies:
   - pip
