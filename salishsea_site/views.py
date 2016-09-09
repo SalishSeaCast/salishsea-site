@@ -19,4 +19,4 @@ from pyramid.static import static_view
 
 
 static_page = static_view(
-    '../site/_build/html', use_subpath=True, cache_max_age=3600)
+    '/var/www/html', use_subpath=True, cache_max_age=3600)
