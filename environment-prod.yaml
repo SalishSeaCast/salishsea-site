@@ -21,4 +21,4 @@ dependencies:
     - pyramid
     - pyramid_crow
     - pyramid_mako
-    - waitress
+    - waitress=0.9.0

@@ -24,4 +24,4 @@ dependencies:
     - pyramid_mako
     - sphinx
     - sphinx-bootstrap-theme
-    - waitress
+    - waitress=0.9.0
