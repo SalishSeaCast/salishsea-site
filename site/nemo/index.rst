@@ -102,11 +102,12 @@ Other team members:
 * `Elise Olson`_
 * Doug Latornell
 * `Ben Moore-Maley`_
+* Tereza Jarníková
 * `Jie Liu`_
-* James Petrie
 * Kate Le Souëf (emeritus)
 * Idalia Machuca (emeritus)
 * Muriel Dunn (emeritus)
+* James Petrie (emeritus)
 
 Researchers from several other teams in UBC EOAS joined the project team for the August 2015 Development Sprint on Stakeholder Support Features:
 
