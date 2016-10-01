@@ -44,12 +44,12 @@ Results
 
 Our results are available in a number of formats:
 
-* Our Storm Surge forecast: http://salishsea.eos.ubc.ca/storm-surge/forecast.html
-* A more general storm surge portal: http://salishsea.eos.ubc.ca/storm-surge/
+* Our Storm Surge forecast: https://salishsea.eos.ubc.ca/storm-surge/forecast.html
+* A more general storm surge portal: https://salishsea.eos.ubc.ca/storm-surge/
 
-* You can subscribe to our storm surge atom feed for Vancouver: http://salishsea.eos.ubc.ca/storm-surge/atom/pmv.xml
+* You can subscribe to our storm surge atom feed for Vancouver: https://salishsea.eos.ubc.ca/storm-surge/atom/pmv.xml
 
-* Static plots of our results are: http://salishsea.eos.ubc.ca/nemo/results/
+* Static plots of our results are: https://salishsea.eos.ubc.ca/nemo/results/
 
 * Animations on ocean viewer: http://oceanviewer.org
 
@@ -85,13 +85,13 @@ Evaluation
 Project Resources
 =================
 
-* The main project documentation site is at http://salishsea-meopar-docs.readthedocs.org/.
+* The main project documentation site is at http://salishsea-meopar-docs.readthedocs.io/en/latest/.
 * The project team maintains a set of Mercurial_ version control repositories for code,
   documentation (including the source files for this site),
   and analyses of model results.
   The contents of those repositories and their development history is accessible at https://bitbucket.org/salishsea/.
 
-.. _Mercurial: http://mercurial.selenic.com/
+.. _Mercurial: https://www.mercurial-scm.org/
 
 
 Project Team and Collaborators
@@ -137,8 +137,8 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
   * Greg Oulahen
   * Shona van Zijll de jong (emeritus)
 
-.. _Susan Allen: http://eos.ubc.ca/~sallen/
-.. _Rich Pawlowicz: http://www.eos.ubc.ca/~rich/research.html
+.. _Susan Allen: https://www.eoas.ubc.ca/~sallen/
+.. _Rich Pawlowicz: https://www.eoas.ubc.ca/~rich/research.html
 .. _Stephanie Chang: https://sites.google.com/site/stephanieechang1/home
 
 .. _Nancy Soontiens: http://www.nancysoontiens.com
