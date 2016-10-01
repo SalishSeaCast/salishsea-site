@@ -120,7 +120,7 @@ Sea Level Rise and Storm Surges on the BC Coast
 The BC provincial government maintains a `web page about climate change adaptation`_ with information about sea level rise and storm surges.
 The storm surge information there elaborates on the `Storm Surge BC`_ site.
 
-.. _web page about climate change adaptation: http://www2.gov.bc.ca/gov/topic.page?id=F09F1EC7576643CEB5FB1536913730BA
+.. _web page about climate change adaptation: http://www2.gov.bc.ca/gov/content/environment/climate-change/policy-legislation-programs/adaptation/sea-level-rise
 
 
 Salish Sea NEMO Model
