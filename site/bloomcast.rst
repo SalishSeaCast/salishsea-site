@@ -48,7 +48,7 @@ The latter is multiplied by 55 to represent all river flows into the Strait othe
 Cloud fraction is interpreted based on the weather description and the historical average cloud fraction to weather,
 done by month for the most common weather descriptions.
 
-.. _SOG biophysical model for deep estuaries: http://www.eos.ubc.ca/~sallen/SOG-docs/
+.. _SOG biophysical model for deep estuaries: https://www.eoas.ubc.ca/~sallen/SOG-docs/
 
 The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added [#f6]_.
 To model a spring bloom,
@@ -64,7 +64,7 @@ A carbon module that models dissolved inorganic carbon and total alkalinity has 
 Results
 -------
 
-The most recent predictions for the first spring diatom bloom in the Strait fo Georgia are available at http://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html.
+The most recent predictions for the first spring diatom bloom in the Strait of Georgia are available at https://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html.
 
 
 References
