@@ -60,6 +60,10 @@ exclude_patterns = ['_build']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Supress nonlocal image URI warning generated due to image from
+# StormSurgeBC site
+suppress_warnings = ['image.nonlocal_uri']
+
 
 # -- Options for HTML output ----------------------------------------------
 

@@ -44,18 +44,19 @@ Results
 
 Our results are available in a number of formats:
 
-* Our Storm Surge forecast: http://salishsea.eos.ubc.ca/storm-surge/forecast.html
-* A more general storm surge portal: http://salishsea.eos.ubc.ca/storm-surge/
+* Our Storm Surge forecast: https://salishsea.eos.ubc.ca/storm-surge/forecast.html
+* A more general storm surge portal: https://salishsea.eos.ubc.ca/storm-surge/
 
-* You can subscribe to our storm surge atom feed for Vancouver: http://salishsea.eos.ubc.ca/storm-surge/atom/pmv.xml
+* You can subscribe to our storm surge atom feed for Vancouver: https://salishsea.eos.ubc.ca/storm-surge/atom/pmv.xml
 
-* Static plots of our results are: http://salishsea.eos.ubc.ca/nemo/results/
+* Static plots of our results are: https://salishsea.eos.ubc.ca/nemo/results/
 
 * Animations on ocean viewer: http://oceanviewer.org
 
 * Full access to our nowcast results in numerous formats via an ERDDAP server: https://salishsea.eos.ubc.ca/erddap/
 
 .. _NEMO: http://www.nemo-ocean.eu/
+
 
 Domain
 ------
@@ -64,6 +65,7 @@ Domain
     :alt: Salish Sea NEMO Model Domain
     :align: center
 
+
 Evaluation
 ----------
 
@@ -71,25 +73,25 @@ Evaluation
 
 .. _slide presentation: ../_static/nemo/model_evaluation_summary.pdf
 
-
-
 **Storm surge:** The Salish Sea model's ability to calculate tides and sea surface height was evaluated by hindcasting storm surge events that occurred between 2002 and 2011.
 (Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V., 2016. Storm surges in the Strait of Georgia simulated with a regional model. *Atmosphere-Ocean* **54** 1-21. `https://dx.doi.org/10.1080/07055900.2015.1108899`_)
 
 .. _https://dx.doi.org/10.1080/07055900.2015.1108899: https://dx.doi.org/10.1080/07055900.2015.1108899
 
-**Mixing in San Juan/Gulf Islands:** The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and advection has been determined. (Soontiens and Allen, submitted)
+**Mixing in San Juan/Gulf Islands:** The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and advection has been determined.
+(Soontiens, N. and Allen, S. Modelling sensitivities to mixing and advection in a sill-basin estuarine system. *Submitted to Ocean Modelling*)
+
 
 Project Resources
 =================
 
-* The main project documentation site is at http://salishsea-meopar-docs.readthedocs.org/.
+* The main project documentation site is at http://salishsea-meopar-docs.readthedocs.io/en/latest/.
 * The project team maintains a set of Mercurial_ version control repositories for code,
   documentation (including the source files for this site),
   and analyses of model results.
   The contents of those repositories and their development history is accessible at https://bitbucket.org/salishsea/.
 
-.. _Mercurial: http://mercurial.selenic.com/
+.. _Mercurial: https://www.mercurial-scm.org/
 
 
 Project Team and Collaborators
@@ -102,11 +104,12 @@ Other team members:
 * `Elise Olson`_
 * Doug Latornell
 * `Ben Moore-Maley`_
+* Tereza Jarníková
 * `Jie Liu`_
-* James Petrie
 * Kate Le Souëf (emeritus)
 * Idalia Machuca (emeritus)
 * Muriel Dunn (emeritus)
+* James Petrie (emeritus)
 
 Researchers from several other teams in UBC EOAS joined the project team for the August 2015 Development Sprint on Stakeholder Support Features:
 
@@ -134,8 +137,8 @@ The team collaborates with other MEOPAR_ funded research teams at UBC:
   * Greg Oulahen
   * Shona van Zijll de jong (emeritus)
 
-.. _Susan Allen: http://eos.ubc.ca/~sallen/
-.. _Rich Pawlowicz: http://www.eos.ubc.ca/~rich/research.html
+.. _Susan Allen: https://www.eoas.ubc.ca/~sallen/
+.. _Rich Pawlowicz: https://www.eoas.ubc.ca/~rich/research.html
 .. _Stephanie Chang: https://sites.google.com/site/stephanieechang1/home
 
 .. _Nancy Soontiens: http://www.nancysoontiens.com
@@ -169,6 +172,3 @@ including:
 * Angelica Pena, Fisheries and Oceans Canada
 * Neil Swart, Environment Canada
 * Pramod Thupaki, Fisheries and Oceans Canada
-
-
-
