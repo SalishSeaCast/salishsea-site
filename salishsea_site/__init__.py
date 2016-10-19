@@ -22,9 +22,9 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     config = Configurator(settings=settings)
-    config.add_static_view('static', 'static', cache_max_age=3600)
-    config.add_route('catchall_static', '/*subpath')
+    config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
     config.add_view(
         'salishsea_site.views.static_page', route_name='catchall_static')
+    config.add_route('catchall_static', '/*subpath')
     config.scan()
     return config.make_wsgi_app()
