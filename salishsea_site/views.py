@@ -15,8 +15,17 @@
 
 """salishsea_site views
 """
+from pathlib import Path
+
 from pyramid.static import static_view
+from pyramid.view import view_config
 
 
 static_page = static_view(
     '/var/www/html', use_subpath=True, cache_max_age=3600)
+
+
+@view_config(route_name='nowcast.logs', renderer='string')
+def hello_world(request):
+    logs_dir = Path('/results/nowcast-sys/logs/nowcast')
+    return (logs_dir/request.matchdict['filename']).open().read()
