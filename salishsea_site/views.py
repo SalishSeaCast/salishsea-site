@@ -15,10 +15,16 @@
 
 """salishsea_site views
 """
+import logging
+import os
 from pathlib import Path
 
+from pyramid.httpexceptions import HTTPNotFound
 from pyramid.static import static_view
 from pyramid.view import view_config
+
+
+logger = logging.getLogger(__name__)
 
 
 static_page = static_view(
@@ -26,6 +32,17 @@ static_page = static_view(
 
 
 @view_config(route_name='nowcast.logs', renderer='string')
-def hello_world(request):
-    logs_dir = Path('/results/nowcast-sys/logs/nowcast')
-    return (logs_dir/request.matchdict['filename']).open().read()
+def nowcast_logs(request):
+    """Render the requested file from the :envvar:`NOWCAST_LOGS` directory
+    as text.
+    """
+    try:
+        logs_dir = Path(os.environ['NOWCAST_LOGS'])
+    except KeyError:
+        logger.warning('NOWCAST_LOGS environment variable is not set')
+        raise HTTPNotFound
+    try:
+        return (logs_dir/request.matchdict['filename']).open().read()
+    except FileNotFoundError as e:
+        logger.debug(e)
+        raise HTTPNotFound
