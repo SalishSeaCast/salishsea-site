@@ -5,6 +5,7 @@ Babel==2.3.4
 chaussette==1.3.0
 circus==0.14.0
 contextlib2==0.5.4
+coverage==4.2
 docutils==0.12
 imagesize==0.7.1
 iowait==0.2
@@ -13,11 +14,13 @@ Mako==1.0.4
 MarkupSafe==0.23
 PasteDeploy==1.5.2
 psutil==4.4.0
+py==1.4.31
 Pygments==2.1.3
 pyramid==1.7.3
 pyramid-crow==0.3.2
 pyramid-debugtoolbar==3.0.4
 pyramid-mako==1.0.2
+pytest==3.0.3
 pytz==2016.7
 PyYAML==3.12
 pyzmq==16.0.0
