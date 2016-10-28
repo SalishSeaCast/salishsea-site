@@ -23,6 +23,8 @@
     <%block name="title">Salish Sea</%block>
   </title>
 
+  <link href=${request.static_url("salishsea_site:static/img/MEOPAR_favicon.ico")} rel="icon">
+
   <%block name="site_css">
   </%block>
 
