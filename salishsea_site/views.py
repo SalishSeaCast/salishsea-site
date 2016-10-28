@@ -19,6 +19,7 @@ import logging
 import os
 from pathlib import Path
 
+import arrow as arrow
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.static import static_view
 from pyramid.view import view_config
@@ -46,3 +47,15 @@ def nowcast_logs(request):
     except FileNotFoundError as e:
         logger.debug(e)
         raise HTTPNotFound
+
+
+@view_config(route_name='results.nowcast.publish', renderer='publish.mako')
+def nowcast_publish(request):
+    run_date = arrow.get(request.matchdict['run_date'], 'DDMMMYY')
+    return {
+        'run_type': 'nowcast',
+        'run_date': run_date,
+        'results_date': run_date,
+        'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
+        'svg_file': 'Threshold_website',
+    }

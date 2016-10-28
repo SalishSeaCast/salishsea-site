@@ -22,6 +22,9 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     config = Configurator(settings=settings)
+    config.add_static_view(
+        name=settings['nowcast_figures_server_name'],
+        path='/results/nowcast-sys/figures')
     _nowcast_system_routes(config)
     _catchall_static_pages(config)
     config.scan()
@@ -29,6 +32,8 @@ def main(global_config, **settings):
 
 
 def _nowcast_system_routes(config):
+    config.add_route(
+        'results.nowcast.publish', 'nemo/results/nowcast/publish/{run_date}')
     config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
 
 
