@@ -16,6 +16,7 @@ dependencies:
   - python=3
   - pyyaml
   - pip:
+    - arrow
     - chaussette
     - circus
     - pyramid

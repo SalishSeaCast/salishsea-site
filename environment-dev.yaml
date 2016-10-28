@@ -15,10 +15,13 @@ dependencies:
   - pip
   - python=3
   - pyyaml
+
   # For unit tests
   - coverage
   - pytest
+
   - pip:
+    - arrow
     - chaussette
     - circus
     - pyramid
