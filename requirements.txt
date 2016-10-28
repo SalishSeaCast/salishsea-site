@@ -1,6 +1,7 @@
 # Python packages and version used in development environment
 
 alabaster==0.7.9
+arrow==0.8.0
 Babel==2.3.4
 chaussette==1.3.0
 circus==0.14.0
