@@ -24,11 +24,11 @@
   </title>
 
   <link rel="icon"
-        href=${request.static_url("salishsea_site:static/img/MEOPAR_favicon.ico")} >
+        href=${request.static_path("salishsea_site:static/img/MEOPAR_favicon.ico")} >
 
   <%block name="site_css">
     <link rel="stylesheet"
-          href=${request.static_url("salishsea_site:static/css/bootswatch-3.3.7/superhero/bootstrap.min.css")}>
+          href=${request.static_path("salishsea_site:static/css/bootswatch-3.3.7/superhero/bootstrap.min.css")}>
   </%block>
 
   <%block name="page_css"></%block>
