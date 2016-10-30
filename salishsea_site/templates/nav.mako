@@ -74,7 +74,7 @@
               About <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="https://salishsea.eos.ubc.ca/contributors.html">Contributors</a></li>
+              <li><a href=${request.route_url('about.contributors')}>Contributors</a></li>
               <li><a href="#">Publications</a></li>
               <li><a href="https://salishsea.eos.ubc.ca/license.html">License</a></li>
             </ul>
