@@ -23,7 +23,7 @@ def main(global_config, **settings):
     """
     config = Configurator(settings=settings)
     _static_views(config, settings)
-    _nowcast_system_routes(config)
+    _salishseacast_routes(config)
     _about_site_routes(config)
     _catchall_static_pages(config)
     config.scan()
@@ -37,7 +37,7 @@ def _static_views(config, settings):
         path='/results/nowcast-sys/figures')
 
 
-def _nowcast_system_routes(config):
+def _salishseacast_routes(config):
     config.add_route(
         'results.nowcast.publish', 'nemo/results/nowcast/publish/{run_date}')
     config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
