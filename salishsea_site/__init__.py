@@ -48,7 +48,9 @@ def _about_site_routes(config):
     config.add_route('about.contributors.html', 'contributors.html')
 
 
+## TODO: Delete this function and the views.static_pages module
+## once all pages have been converted to views.
 def _catchall_static_pages(config):
     config.add_view(
-        'salishsea_site.views.static_page', route_name='catchall_static')
+        'salishsea_site.views.static_pages.static_page', route_name='catchall_static')
     config.add_route('catchall_static', '/*subpath')
