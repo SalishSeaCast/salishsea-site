@@ -24,6 +24,7 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
     _static_views(config, settings)
     _nowcast_system_routes(config)
+    _about_site_routes(config)
     _catchall_static_pages(config)
     config.scan()
     return config.make_wsgi_app()
@@ -40,6 +41,11 @@ def _nowcast_system_routes(config):
     config.add_route(
         'results.nowcast.publish', 'nemo/results/nowcast/publish/{run_date}')
     config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
+
+
+def _about_site_routes(config):
+    config.add_route('about.contributors', 'contributors')
+    config.add_route('about.contributors.html', 'contributors.html')
 
 
 def _catchall_static_pages(config):

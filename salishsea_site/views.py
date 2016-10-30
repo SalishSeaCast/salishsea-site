@@ -19,7 +19,7 @@ import logging
 import os
 from pathlib import Path
 
-import arrow as arrow
+import arrow
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.static import static_view
 from pyramid.view import view_config
@@ -59,3 +59,9 @@ def nowcast_publish(request):
         'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
         'svg_file': 'Threshold_website',
     }
+
+
+@view_config(route_name='about.contributors', renderer='contributors.mako')
+@view_config(route_name='about.contributors.html', renderer='contributors.mako')
+def contributors(request):
+    return {}
