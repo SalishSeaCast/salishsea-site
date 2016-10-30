@@ -16,14 +16,26 @@
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</%block>
 
-<h1 id="top">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 id="top">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</h1>
 
-<h3 id="${plot_title.replace(' ', '-').lower()}">
-  ${plot_title}
-  <a class="headerlink" href="#${plot_title.replace(' ', '-').lower()}" title="Permalink to this headline">¶</a>
-</h3>
-<img class="img-responsive"
-  src="${request.static_url(
-          '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_file}_{run_dmy}.svg'
-          .format(run_type=run_type, svg_file=svg_file, run_dmy=run_date.format('DDMMMYY').lower()))}"
-  alt="${plot_title} image">
+      <h3 id="${plot_title.replace(' ', '-').lower()}"> ${plot_title} ${header_link(plot_title)} </h3>
+      <img class="img-responsive"
+        src="${request.static_url(
+                '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_file}_{run_dmy}.svg'
+                .format(run_type=run_type, svg_file=svg_file, run_dmy=run_date.format('DDMMMYY').lower()))}"
+        alt="${plot_title} image">
+
+    </div>
+  </div>
+</div>
+
+
+<%def name="header_link(title)">\
+  <a class="header-link" href="#${title.replace(' ', '-').lower()}"
+     title="Link to this heading">
+    <span class="fa fa-link fa-flip-horizontal" aria-hidden="true"></span>
+  </a>
+</%def>

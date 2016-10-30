@@ -29,6 +29,8 @@
   <%block name="site_css">
     <link rel="stylesheet"
           href=${request.static_path("salishsea_site:static/css/bootswatch-3.3.7/superhero/bootstrap.min.css")}>
+    <link rel="stylesheet"
+          href=${request.static_path("salishsea_site:static/css/site.css")}>
   </%block>
 
   <%block name="page_css"></%block>
