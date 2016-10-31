@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Unit tests for views module.
+"""Unit tests for salishseacast views module.
 
 .. note:: :py:func:`pconfig` fixture is defined in :file:`tests/conftest.py`.
 """
@@ -25,15 +25,17 @@ from pyramid.httpexceptions import HTTPNotFound
 from pyramid.threadlocal import get_current_request
 import pytest
 
-from salishsea_site import views
+from salishsea_site.views import salishseacast
 
 
 @pytest.mark.usefixtures('pconfig')
-@patch('salishsea_site.views.logger')
+@patch('salishsea_site.views.salishseacast.logger')
 class TestNowcastLogs:
     def test_envvar_not_Set(self, m_logger):
+        request = get_current_request()
+        request.matchdict = {'filename': 'foo'}
         with pytest.raises(HTTPNotFound):
-            views.nowcast_logs(get_current_request())
+            salishseacast.nowcast_logs(get_current_request())
         m_logger.warning.assert_called_once_with(
             'NOWCAST_LOGS environment variable is not set')
 
@@ -42,14 +44,14 @@ class TestNowcastLogs:
         request.matchdict = {'filename': 'foo'}
         with patch.dict(os.environ, NOWCAST_LOGS='logs/nowcast/'):
             with pytest.raises(HTTPNotFound):
-                views.nowcast_logs(request)
+                salishseacast.nowcast_logs(request)
         assert m_logger.debug.called
 
-    @patch('salishsea_site.views.Path', spec=Path)
+    @patch('salishsea_site.views.salishseacast.Path', spec=Path)
     def test_render_log_file(self, m_path, m_logger):
         request = get_current_request()
         request.matchdict = {'filename': 'nowcast.log'}
         m_path().__truediv__().open().read.return_value = 'foo'
         with patch.dict(os.environ, NOWCAST_LOGS='logs/nowcast/'):
-            response = views.nowcast_logs(request)
+            response = salishseacast.nowcast_logs(request)
         assert response == 'foo'
