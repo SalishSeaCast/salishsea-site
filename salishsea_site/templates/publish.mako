@@ -13,6 +13,9 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 <%inherit file="site.mako"/>
+<%
+  from salishsea_site.mako_filters import slug
+%>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</%block>
 
@@ -21,7 +24,7 @@
     <div class="col-md-12">
       <h1 id="top">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</h1>
 
-      <h3 id="${plot_title.replace(' ', '-').lower()}"> ${plot_title} ${header_link(plot_title)} </h3>
+      <h3 id="${plot_title | slug}"> ${plot_title} ${header_link(plot_title)} </h3>
       <img class="img-responsive"
         src="${request.static_url(
                 '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_file}_{run_dmy}.svg'
@@ -34,7 +37,7 @@
 
 
 <%def name="header_link(title)">\
-  <a class="header-link" href="#${title.replace(' ', '-').lower()}"
+  <a class="header-link" href="#${title | slug}"
      title="Link to this heading">
     <span class="fa fa-link fa-flip-horizontal" aria-hidden="true"></span>
   </a>
