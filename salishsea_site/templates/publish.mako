@@ -24,12 +24,12 @@
     <div class="col-md-12">
       <h1 id="top">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</h1>
 
-      <h3 id="${plot_title | slug}"> ${plot_title} ${header_link(plot_title)} </h3>
+      <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(figures[0].title)} </h3>
       <img class="img-responsive"
         src="${request.static_url(
-                '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_file}_{run_dmy}.svg'
-                .format(run_type=run_type, svg_file=svg_file, run_dmy=run_date.format('DDMMMYY').lower()))}"
-        alt="${plot_title} image">
+                '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
+                .format(run_type=run_type, svg_name=figures[0].svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
+        alt="${figures[0].title} image">
     </div>
   </div>
 
@@ -57,6 +57,30 @@
       </p>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots')}</h2>
+      <ul>
+        %for figure in figures:
+          <li><a href="#${figure.title | slug}">${figure.title}</a></li>
+        %endfor
+      </ul>
+    </div>
+  </div>
+
+  %for figure in figures[1:]:
+    <div class="row">
+      <div class="col-md-12">
+        <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(figure.title)} </h3>
+        <img class="img-responsive"
+          src="${request.static_url(
+                  '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
+                  .format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
+          alt="${figure.title} image">
+      </div>
+    </div>
+  %endfor
 
   <div class="row">
     <div class="col-md-12">
