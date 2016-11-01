@@ -39,8 +39,17 @@ def _static_views(config, settings):
 
 def _salishseacast_routes(config):
     config.add_route(
-        'results.nowcast.publish', 'nemo/results/nowcast/publish/{run_date}')
-    config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
+        'results.nowcast.publish',
+        'nemo/results/nowcast/publish/{results_date}')
+    config.add_route(
+        'results.forecast.publish',
+        'nemo/results/forecast/publish/{results_date}')
+    config.add_route(
+        'results.forecast2.publish',
+        'nemo/results/forecast2/publish/{results_date}')
+    config.add_route(
+        'nowcast.logs',
+        'nemo/nowcast/logs/{filename}')
 
 
 def _about_site_routes(config):
