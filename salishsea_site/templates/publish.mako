@@ -30,7 +30,31 @@
                 '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_file}_{run_dmy}.svg'
                 .format(run_type=run_type, svg_file=svg_file, run_dmy=run_date.format('DDMMMYY').lower()))}"
         alt="${plot_title} image">
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Disclaimer</h2>
+      <p>
+        This page presents output from a research project.
+        Results are not expected to be a robust prediction of the storm surge.
+      </p>
+      <p>
+        Model sea surface height has been evaluated through a series of hindcasts for significant surge events in 2006,
+        2009, and 2012 <a id="#footnote1-back-link" href="#footnote1" title="Link to citation">[1]</a>.
+      </p>
+
+      <h3>Reference</h3>
+      <p>
+        <a id="footnote1" href="#footnote1-back-link" title="Link to reference">[1]</a>
+        Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2015).
+        Storm surges in the Strait of Georgia simulated with a regional model.
+        Atmosphere-Ocean volume 54, issue 1.
+        <a href="https://dx.doi.org/10.1080/07055900.2015.1108899" title="Link to paper via DOI">
+          https://dx.doi.org/10.1080/07055900.2015.1108899
+        </a>
+      </p>
     </div>
   </div>
 </div>
