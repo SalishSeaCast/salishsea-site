@@ -20,11 +20,28 @@ import os
 from pathlib import Path
 
 import arrow
+import attr
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
 
 
 logger = logging.getLogger(__name__)
+
+
+@attr.s
+class FigureMetadata:
+    title = attr.ib()
+    svg_name = attr.ib()
+
+
+publish_figures = [
+    FigureMetadata(
+        title='Marine and Atmospheric Conditions - Storm Surge Alerts',
+        svg_name='Threshold_website'),
+    FigureMetadata(
+        title='Tidal Predictions for Point Atkinson',
+        svg_name='PA_tidal_predictions'),
+]
 
 
 @view_config(route_name='nowcast.logs', renderer='string')
@@ -51,8 +68,7 @@ def nowcast_publish(request):
         'run_type': 'nowcast',
         'run_date': results_date,
         'results_date': results_date,
-        'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
-        'svg_file': 'Threshold_website',
+        'figures': publish_figures,
     }
 
 
@@ -63,8 +79,7 @@ def forecast_publish(request):
         'run_type': 'forecast',
         'run_date': results_date.replace(days=-1),
         'results_date': results_date,
-        'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
-        'svg_file': 'Threshold_website',
+        'figures': publish_figures,
     }
 
 
@@ -75,6 +90,5 @@ def forecast2_publish(request):
         'run_type': 'forecast2',
         'run_date': results_date.replace(days=-2),
         'results_date': results_date,
-        'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
-        'svg_file': 'Threshold_website',
+        'figures': publish_figures,
     }
