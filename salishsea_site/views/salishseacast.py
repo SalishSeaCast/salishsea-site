@@ -38,7 +38,7 @@ def nowcast_logs(request):
         logger.warning('NOWCAST_LOGS environment variable is not set')
         raise HTTPNotFound
     try:
-        return (logs_dir/request.matchdict['filename']).open().read()
+        return (logs_dir / request.matchdict['filename']).open().read()
     except FileNotFoundError as e:
         logger.debug(e)
         raise HTTPNotFound
@@ -46,11 +46,35 @@ def nowcast_logs(request):
 
 @view_config(route_name='results.nowcast.publish', renderer='publish.mako')
 def nowcast_publish(request):
-    run_date = arrow.get(request.matchdict['run_date'], 'DDMMMYY')
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     return {
         'run_type': 'nowcast',
-        'run_date': run_date,
-        'results_date': run_date,
+        'run_date': results_date,
+        'results_date': results_date,
+        'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
+        'svg_file': 'Threshold_website',
+    }
+
+
+@view_config(route_name='results.forecast.publish', renderer='publish.mako')
+def forecast_publish(request):
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    return {
+        'run_type': 'forecast',
+        'run_date': results_date.replace(days=-1),
+        'results_date': results_date,
+        'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
+        'svg_file': 'Threshold_website',
+    }
+
+
+@view_config(route_name='results.forecast2.publish', renderer='publish.mako')
+def forecast2_publish(request):
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    return {
+        'run_type': 'forecast2',
+        'run_date': results_date.replace(days=-2),
+        'results_date': results_date,
         'plot_title': 'Marine and Atmospheric Conditions - Storm Surge Alerts',
         'svg_file': 'Threshold_website',
     }
