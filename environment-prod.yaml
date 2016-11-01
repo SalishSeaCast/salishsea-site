@@ -17,6 +17,7 @@ dependencies:
   - pyyaml
   - pip:
     - arrow
+    - attrs
     - chaussette
     - circus
     - pyramid

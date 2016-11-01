@@ -22,6 +22,7 @@ dependencies:
 
   - pip:
     - arrow
+    - attrs
     - chaussette
     - circus
     - pyramid
