@@ -64,31 +64,30 @@ def nowcast_logs(request):
 @view_config(route_name='results.nowcast.publish', renderer='publish.mako')
 def nowcast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    return {
-        'run_type': 'nowcast',
-        'run_date': results_date,
-        'results_date': results_date,
-        'figures': publish_figures,
-    }
+    return _template_data_publish(
+        'nowcast', results_date, publish_figures, run_date=results_date)
 
 
 @view_config(route_name='results.forecast.publish', renderer='publish.mako')
 def forecast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    return {
-        'run_type': 'forecast',
-        'run_date': results_date.replace(days=-1),
-        'results_date': results_date,
-        'figures': publish_figures,
-    }
+    return _template_data_publish(
+        'forecast', results_date, publish_figures,
+        run_date=results_date.replace(days=-1))
 
 
 @view_config(route_name='results.forecast2.publish', renderer='publish.mako')
 def forecast2_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    return _template_data_publish(
+        'nowcast', results_date, publish_figures,
+        run_date=results_date.replace(days=-2))
+
+
+def _template_data_publish(run_type, results_date, figures, run_date):
     return {
-        'run_type': 'forecast2',
-        'run_date': results_date.replace(days=-2),
+        'run_type': run_type,
+        'run_date': run_date,
         'results_date': results_date,
-        'figures': publish_figures,
+        'figures': figures,
     }
