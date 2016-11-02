@@ -33,6 +33,13 @@ class FigureMetadata:
     title = attr.ib()
     svg_name = attr.ib()
 
+    def file_available(self, run_type, run_date, path_prefix):
+        run_dmy = run_date.format('DDMMMYY').lower()
+        fig_path = Path(
+            path_prefix, run_type, run_dmy,
+            '{0.svg_name}_{run_dmy}.svg'.format(self, run_dmy=run_dmy))
+        return fig_path.exists()
+
 
 publish_figures = [
     FigureMetadata(
@@ -64,6 +71,10 @@ def nowcast_logs(request):
 @view_config(route_name='results.nowcast.publish', renderer='publish.mako')
 def nowcast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    storm_surge_alerts_fig_ready = publish_figures[0].file_available(
+        'nowcast', results_date, '/results/nowcast-sys/figures')
+    if not storm_surge_alerts_fig_ready:
+        raise HTTPNotFound
     return _template_data_publish(
         'nowcast', results_date, publish_figures, run_date=results_date)
 
@@ -71,17 +82,25 @@ def nowcast_publish(request):
 @view_config(route_name='results.forecast.publish', renderer='publish.mako')
 def forecast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    run_date = results_date.replace(days=-1)
+    storm_surge_alerts_fig_ready = publish_figures[0].file_available(
+        'nowcast', run_date, '/results/nowcast-sys/figures')
+    if not storm_surge_alerts_fig_ready:
+        raise HTTPNotFound
     return _template_data_publish(
-        'forecast', results_date, publish_figures,
-        run_date=results_date.replace(days=-1))
+        'forecast', results_date, publish_figures, run_date)
 
 
 @view_config(route_name='results.forecast2.publish', renderer='publish.mako')
 def forecast2_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    run_date = results_date.replace(days=-2)
+    storm_surge_alerts_fig_ready = publish_figures[0].file_available(
+        'nowcast', run_date, '/results/nowcast-sys/figures')
+    if not storm_surge_alerts_fig_ready:
+        raise HTTPNotFound
     return _template_data_publish(
-        'nowcast', results_date, publish_figures,
-        run_date=results_date.replace(days=-2))
+        'nowcast', results_date, publish_figures, run_date)
 
 
 def _template_data_publish(run_type, results_date, figures, run_date):
