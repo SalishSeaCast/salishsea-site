@@ -71,11 +71,7 @@ def nowcast_logs(request):
 @view_config(route_name='results.nowcast.publish', renderer='publish.mako')
 def nowcast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    storm_surge_alerts_fig_ready = publish_figures[0].file_available(
-        'nowcast', results_date, '/results/nowcast-sys/figures')
-    if not storm_surge_alerts_fig_ready:
-        raise HTTPNotFound
-    return _template_data_publish(
+    return _data_for_publish_template(
         'nowcast', results_date, publish_figures, run_date=results_date)
 
 
@@ -83,11 +79,7 @@ def nowcast_publish(request):
 def forecast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-1)
-    storm_surge_alerts_fig_ready = publish_figures[0].file_available(
-        'nowcast', run_date, '/results/nowcast-sys/figures')
-    if not storm_surge_alerts_fig_ready:
-        raise HTTPNotFound
-    return _template_data_publish(
+    return _data_for_publish_template(
         'forecast', results_date, publish_figures, run_date)
 
 
@@ -95,18 +87,28 @@ def forecast_publish(request):
 def forecast2_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-2)
+    return _data_for_publish_template(
+        'forecast2', results_date, publish_figures, run_date)
+
+
+def _data_for_publish_template(run_type, results_date, figures, run_date):
     storm_surge_alerts_fig_ready = publish_figures[0].file_available(
-        'nowcast', run_date, '/results/nowcast-sys/figures')
+        run_type, run_date, '/results/nowcast-sys/figures')
     if not storm_surge_alerts_fig_ready:
         raise HTTPNotFound
-    return _template_data_publish(
-        'nowcast', results_date, publish_figures, run_date)
-
-
-def _template_data_publish(run_type, results_date, figures, run_date):
+    run_type_titles = {
+        'nowcast': 'Nowcast',
+        'forecast': 'Forecast',
+        'forecast2': 'Preliminary Forecast',
+    }
+    available_figures = [
+        fig for fig in figures
+        if fig.file_available(
+            run_type, run_date, '/results/nowcast-sys/figures')]
     return {
+        'results_date': results_date,
+        'run_type_title': run_type_titles[run_type],
         'run_type': run_type,
         'run_date': run_date,
-        'results_date': results_date,
-        'figures': figures,
+        'figures': available_figures,
     }

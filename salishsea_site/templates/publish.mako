@@ -17,12 +17,12 @@
   from salishsea_site.mako_filters import slug
 %>
 
-<%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</%block>
+<%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</%block>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 id="top">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type.title()}</h1>
+      <h1 id="top">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</h1>
 
       <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(figures[0].title)} </h3>
       <img class="img-responsive"
