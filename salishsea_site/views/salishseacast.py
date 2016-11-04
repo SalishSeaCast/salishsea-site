@@ -48,6 +48,36 @@ publish_figures = [
     FigureMetadata(
         title='Tidal Predictions for Point Atkinson',
         svg_name='PA_tidal_predictions'),
+    FigureMetadata(
+        title='Victoria Sea Surface Height',
+        svg_name='Vic_maxSSH'),
+    FigureMetadata(
+        title='Cherry Point Sea Surface Height',
+        svg_name='CP_maxSSH'),
+    FigureMetadata(
+        title='Point Atkinson Sea Surface Height',
+        svg_name='PA_maxSSH'),
+    FigureMetadata(
+        title='Nanaimo Sea Surface Height',
+        svg_name='Nan_maxSSH'),
+    FigureMetadata(
+        title='Campbell River Sea Surface Height',
+        svg_name='CR_maxSSH'),
+    FigureMetadata(
+        title='Sea Surface Height at Selected NOAA Stations',
+        svg_name='NOAA_ssh'),
+    FigureMetadata(
+        title='Storm Surge Alert Thresholds',
+        svg_name='WaterLevel_Thresholds'),
+    FigureMetadata(
+        title='Sandheads Wind',
+        svg_name='SH_wind'),
+    FigureMetadata(
+        title='Winds from Atmospheric Forcing Averaged Over Run Duration',
+        svg_name='Avg_wind_vectors'),
+    FigureMetadata(
+        title='Instantaneous Winds from Atmospheric Forcing',
+        svg_name='Wind_vectors_at_max'),
 ]
 
 
