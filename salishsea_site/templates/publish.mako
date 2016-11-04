@@ -78,6 +78,7 @@
                   '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
                   .format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
           alt="${figure.title} image">
+        <p><a href="#top">Back to top</a></p>
       </div>
     </div>
   %endfor
