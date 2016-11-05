@@ -23,22 +23,53 @@ import arrow
 import attr
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
+import requests
 
 
 logger = logging.getLogger(__name__)
 
+FIG_FILE_TMPL = (
+    '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
+)
 
 @attr.s
 class FigureMetadata:
+    #: Figure title that appears on rendered page.
     title = attr.ib()
+    #: SVG file name of figure, excluding date part and .svg extension.
+    #: So, if the file name is Vic_maxSSH_05nov16.svg, the svg_name value
+    #: is Vic_maxSSH.
     svg_name = attr.ib()
 
-    def file_available(self, run_type, run_date, path_prefix):
-        run_dmy = run_date.format('DDMMMYY').lower()
-        fig_path = Path(
-            path_prefix, run_type, run_dmy,
-            '{0.svg_name}_{run_dmy}.svg'.format(self, run_dmy=run_dmy))
-        return fig_path.exists()
+    def available(self, request, run_type, run_date, session):
+        """Return a boolean indicating whether or not the figure is available
+        on the static file server that provides figure files.
+
+        :param request: HTTP request.
+        :type request: :py:class:`pyramid.request.Request`
+
+        :param str run_type: Run type for which the figure was generated.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date:
+
+        :param session: Requests session object to re-use server connection,
+                        if possible.
+        :type session: :py:class:`requests.Session`
+
+        :return: Figure is availability on the static figure file server.
+        :rtype: boolean
+        """
+        path = FIG_FILE_TMPL.format(run_type=run_type,
+            svg_name=self.svg_name, run_dmy=run_date.format('DDMMMYY').lower())
+        figure_url = request.static_url(
+            path)
+        try:
+            return session.head(figure_url).status_code == 200
+        except requests.ConnectionError:
+            # Development environment
+            return session.head(
+                figure_url.replace('4567', '6543')).status_code == 200
 
 
 publish_figures = [
@@ -102,7 +133,8 @@ def nowcast_logs(request):
 def nowcast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     return _data_for_publish_template(
-        'nowcast', results_date, publish_figures, run_date=results_date)
+        request, 'nowcast', results_date, publish_figures,
+        run_date=results_date)
 
 
 @view_config(route_name='results.forecast.publish', renderer='publish.mako')
@@ -110,7 +142,7 @@ def forecast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-1)
     return _data_for_publish_template(
-        'forecast', results_date, publish_figures, run_date)
+        request, 'forecast', results_date, publish_figures, run_date)
 
 
 @view_config(route_name='results.forecast2.publish', renderer='publish.mako')
@@ -118,23 +150,25 @@ def forecast2_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-2)
     return _data_for_publish_template(
-        'forecast2', results_date, publish_figures, run_date)
+        request, 'forecast2', results_date, publish_figures, run_date)
 
 
-def _data_for_publish_template(run_type, results_date, figures, run_date):
-    storm_surge_alerts_fig_ready = publish_figures[0].file_available(
-        run_type, run_date, '/results/nowcast-sys/figures')
-    if not storm_surge_alerts_fig_ready:
-        raise HTTPNotFound
+def _data_for_publish_template(
+    request, run_type, results_date, figures, run_date,
+):
+    with requests.Session() as session:
+        storm_surge_alerts_fig_ready = publish_figures[0].available(request,
+            run_type, run_date, session)
+        if not storm_surge_alerts_fig_ready:
+            raise HTTPNotFound
+        available_figures = [
+            fig for fig in figures
+            if fig.available(request, run_type, run_date, session)]
     run_type_titles = {
         'nowcast': 'Nowcast',
         'forecast': 'Forecast',
         'forecast2': 'Preliminary Forecast',
     }
-    available_figures = [
-        fig for fig in figures
-        if fig.file_available(
-            run_type, run_date, '/results/nowcast-sys/figures')]
     return {
         'results_date': results_date,
         'run_type_title': run_type_titles[run_type],
