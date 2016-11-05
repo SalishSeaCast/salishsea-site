@@ -50,6 +50,16 @@ def _salishseacast_routes(config):
     config.add_route(
         'nowcast.logs',
         'nemo/nowcast/logs/{filename}')
+    # Legacy routes
+    config.add_route(
+        'results.nowcast.publish.html',
+        'nemo/results/nowcast/publish_{results_date}.html')
+    config.add_route(
+        'results.forecast.publish.html',
+        'nemo/results/forecast/publish_{results_date}.html')
+    config.add_route(
+        'results.forecast2.publish.html',
+        'nemo/results/forecast2/publish_{results_date}.html')
 
 
 def _about_site_routes(config):
