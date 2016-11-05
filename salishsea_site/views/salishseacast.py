@@ -130,6 +130,8 @@ def nowcast_logs(request):
 
 
 @view_config(route_name='results.nowcast.publish', renderer='publish.mako')
+@view_config(
+    route_name='results.nowcast.publish.html', renderer='publish.mako')
 def nowcast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     return _data_for_publish_template(
@@ -138,6 +140,8 @@ def nowcast_publish(request):
 
 
 @view_config(route_name='results.forecast.publish', renderer='publish.mako')
+@view_config(
+    route_name='results.forecast.publish.html', renderer='publish.mako')
 def forecast_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-1)
@@ -146,6 +150,8 @@ def forecast_publish(request):
 
 
 @view_config(route_name='results.forecast2.publish', renderer='publish.mako')
+@view_config(
+    route_name='results.forecast2.publish.html', renderer='publish.mako')
 def forecast2_publish(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-2)
