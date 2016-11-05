@@ -175,4 +175,5 @@ def _data_for_publish_template(
         'run_type': run_type,
         'run_date': run_date,
         'figures': available_figures,
+        'FIG_FILE_TMPL': FIG_FILE_TMPL,
     }

@@ -27,8 +27,7 @@
       <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(figures[0].title)} </h3>
       <img class="img-responsive"
         src="${request.static_url(
-                '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
-                .format(run_type=run_type, svg_name=figures[0].svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
+                FIG_FILE_TMPL.format(run_type=run_type, svg_name=figures[0].svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
         alt="${figures[0].title} image">
     </div>
   </div>
@@ -75,8 +74,7 @@
         <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(figure.title)} </h3>
         <img class="img-responsive"
           src="${request.static_url(
-                  '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
-                  .format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
+                  FIG_FILE_TMPL.format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
           alt="${figure.title} image">
       </div>
       <div class="row">
