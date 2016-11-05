@@ -43,7 +43,7 @@
   <![endif]-->
 </head>
 
-<body>
+<body id="top">
   <%namespace name="nav" file="nav.mako"/>
   ${nav.navbar()}
 
