@@ -28,6 +28,7 @@ PyYAML==3.12
 pyzmq==16.0.0
 raven==5.31.0
 repoze.lru==0.6
+requests==2.11.1
 six==1.10.0
 snowballstemmer==1.2.1
 Sphinx==1.4.8

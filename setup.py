@@ -57,6 +57,7 @@ install_requires = [
     'pyramid_crow',
     'pyramid_mako',
     'pyyaml',
+    'requests',
     'waitress==0.9.0',
 ]
 
