@@ -211,3 +211,12 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'), salishseacast.publish_figures,
             arrow.get('2016-11-03'))
         assert data['figures'] == [salishseacast.publish_figures[0]]
+
+    def test_fig_file_tmpl(self, m_available):
+        request = get_current_request()
+        m_available.return_value = True
+        data = salishseacast._data_for_publish_template(
+            request, 'forecast',
+            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            arrow.get('2016-11-03'))
+        assert data['FIG_FILE_TMPL'] == salishseacast.FIG_FILE_TMPL
