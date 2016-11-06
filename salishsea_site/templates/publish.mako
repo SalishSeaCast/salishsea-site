@@ -13,7 +13,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 <%inherit file="site.mako"/>
-<%namespace file="header_link.mako" import="header_link"/>
+<%namespace file="figures_page_defs.mako" import="header_link"/>
 <%
   from salishsea_site.mako_filters import slug
 %>
