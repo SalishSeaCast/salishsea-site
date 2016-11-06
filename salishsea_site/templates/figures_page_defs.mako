@@ -37,3 +37,17 @@
     </div>
   </div>
 </%def>
+
+
+<%def name="figure_row(figure, FIG_FILE_TMPL, run_type, run_date)">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(figure.title) | slug}</h3>
+      <img class="img-responsive"
+        src="${request.static_url(
+                FIG_FILE_TMPL.format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
+        alt="${figure.title} image">
+    </div>
+  </div>
+</%def>
+

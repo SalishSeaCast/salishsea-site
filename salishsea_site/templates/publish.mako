@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row"/>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</%block>
 
@@ -62,24 +62,17 @@
   ${list_of_plots(figures)}
 
   %for figure in figures[1:]:
+    ${figure_row(figure, FIG_FILE_TMPL, run_type, run_date)}
+
     <div class="row">
-      <div class="col-md-12">
-        <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(figure.title) | slug}</h3>
-        <img class="img-responsive"
-          src="${request.static_url(
-                  FIG_FILE_TMPL.format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
-          alt="${figure.title} image">
+      <div class="col-md-2 col-md-offset-3">
+        <p class="text-center"><a href="https://salishsea.eos.ubc.ca/nemo/results/">Index Page</a></p>
       </div>
-      <div class="row">
-        <div class="col-md-2 col-md-offset-3">
-          <p class="text-center"><a href="https://salishsea.eos.ubc.ca/nemo/results/">Index Page</a></p>
-        </div>
-        <div class="col-md-2">
-          <p class="text-center"><a href="#top">Top of Page</a></p>
-        </div>
-        <div class="col-md-2">
-          <p class="text-center"><a href="#${'List of Plots' | slug}">List of Plots</a></p>
-        </div>
+      <div class="col-md-2">
+        <p class="text-center"><a href="#top">Top of Page</a></p>
+      </div>
+      <div class="col-md-2">
+        <p class="text-center"><a href="#${'List of Plots' | slug}">List of Plots</a></p>
       </div>
     </div>
   %endfor
