@@ -51,6 +51,9 @@ def _salishseacast_routes(config):
         'results.nowcast.research',
         'nemo/results/nowcast/research/{results_date}')
     config.add_route(
+        'results.nowcast.comparison',
+        'nemo/results/nowcast/comparison/{results_date}')
+    config.add_route(
         'nowcast.logs',
         'nemo/nowcast/logs/{filename}')
     # Legacy routes
@@ -66,6 +69,9 @@ def _salishseacast_routes(config):
     config.add_route(
         'results.nowcast.research.html',
         'nemo/results/nowcast/research_{results_date}.html')
+    config.add_route(
+        'results.nowcast.comparison.html',
+        'nemo/results/nowcast/comparison_{results_date}.html')
 
 
 def _about_site_routes(config):

@@ -21,16 +21,16 @@ from pathlib import Path
 
 import arrow
 import attr
+import requests
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
-import requests
-
 
 logger = logging.getLogger(__name__)
 
 FIG_FILE_TMPL = (
     '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
 )
+
 
 @attr.s
 class FigureMetadata:
@@ -129,6 +129,39 @@ research_figures = [
         svg_name='Currents_at_VENUS_Central'),
 ]
 
+comparison_figures = [
+    FigureMetadata(
+        title='Modeled and Observed Winds at Sandheads',
+        svg_name='SH_wind'),
+    FigureMetadata(
+        title=(
+            'Modeled and Observed Surface Salinity '
+            'Along Horseshoe Bay-Departure Bay Ferry Route'),
+        svg_name='HB_DB_ferry_salinity'),
+    FigureMetadata(
+        title=(
+            'Modeled and Observed Surface Salinity '
+            'Along Tsawwassen-Duke Pt. Ferry Route'),
+        svg_name='TW_DP_ferry_salinity'),
+    FigureMetadata(
+        title=(
+            'Modeled and Observed Surface Salinity '
+            'Along Tsawwassen-Schwartz Bay Ferry Route'),
+        svg_name='TW_SB_ferry_salinity'),
+    FigureMetadata(
+        title='Salinity and Temperature at ONC VENUS Central Node',
+        svg_name='Compare_VENUS_Central'),
+    FigureMetadata(
+        title='Salinity and Temperature at ONC VENUS Delta BBL Node',
+        svg_name='Compare_VENUS_Delta_BBL'),
+    FigureMetadata(
+        title='Salinity and Temperature at ONC VENUS Delta DDL Node',
+        svg_name='Compare_VENUS_Delta_DDL'),
+    FigureMetadata(
+        title='Salinity and Temperature at ONC VENUS East Node',
+        svg_name='Compare_VENUS_East'),
+]
+
 
 @view_config(route_name='nowcast.logs', renderer='string')
 def nowcast_logs(request):
@@ -193,6 +226,29 @@ def nowcast_research(request):
     with requests.Session() as session:
         available_figures = [
             fig for fig in research_figures
+            if fig.available(request, 'nowcast', results_date, session)]
+    if not available_figures:
+        raise HTTPNotFound
+    return {
+        'results_date': results_date,
+        'run_type': 'nowcast',
+        'run_date': results_date,
+        'figures': available_figures,
+        'FIG_FILE_TMPL': FIG_FILE_TMPL,
+    }
+
+
+@view_config(
+    route_name='results.nowcast.comparison', renderer='comparison.mako')
+@view_config(
+    route_name='results.nowcast.comparison.html', renderer='comparison.mako')
+def nowcast_comparison(request):
+    """Render model and observation comparisons figures page.
+    """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    with requests.Session() as session:
+        available_figures = [
+            fig for fig in comparison_figures
             if fig.available(request, 'nowcast', results_date, session)]
     if not available_figures:
         raise HTTPNotFound
