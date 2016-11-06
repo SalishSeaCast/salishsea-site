@@ -12,11 +12,28 @@
 ## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
+<%!
+  from salishsea_site.mako_filters import slug
+%>
 
 
-<%def name="header_link(title_slug)">\
-  <a class="header-link" href="#${title_slug}"
+<%def name="header_link(title)">\
+  <a class="header-link" href="#${title | slug}"
      title="Link to this heading">
     <span class="fa fa-link fa-flip-horizontal" aria-hidden="true"></span>
   </a>
+</%def>
+
+
+<%def name="list_of_plots(figures)">\
+  <div class="row">
+    <div class="col-md-12">
+      <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots') | slug}</h2>
+      <ul>
+        %for figure in figures:
+          <li><a href="#${figure.title | slug}">${figure.title}</a></li>
+        %endfor
+      </ul>
+    </div>
+  </div>
 </%def>
