@@ -12,10 +12,12 @@
 ## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
-<%namespace file="header_link.mako" import="header_link"/>
-<%
+<%!
   from salishsea_site.mako_filters import slug
 %>
+
+<%namespace file="figures_page_defs.mako" import="header_link"/>
+
 <div class="row">
   <div class="col-md-12">
     <h2 id="${'Data Sources' | slug}">Data Sources ${header_link(slug('Data Sources'))}</h2>
