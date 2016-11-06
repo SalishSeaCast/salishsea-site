@@ -55,7 +55,7 @@
 <%def name="figure_nav_links()">
   <div class="row">
     <div class="col-md-2 col-md-offset-3">
-      <p class="text-center"><a href="https://salishsea.eos.ubc.ca/nemo/results/">Index Page</a></p>
+      <p class="text-center"><a href=${request.route_url('results.index')}>Results Index Page</a></p>
     </div>
     <div class="col-md-2">
       <p class="text-center"><a href="#top">Top of Page</a></p>
