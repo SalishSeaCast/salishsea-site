@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</%block>
 
@@ -63,18 +63,7 @@
 
   %for figure in figures[1:]:
     ${figure_row(figure, FIG_FILE_TMPL, run_type, run_date)}
-
-    <div class="row">
-      <div class="col-md-2 col-md-offset-3">
-        <p class="text-center"><a href="https://salishsea.eos.ubc.ca/nemo/results/">Index Page</a></p>
-      </div>
-      <div class="col-md-2">
-        <p class="text-center"><a href="#top">Top of Page</a></p>
-      </div>
-      <div class="col-md-2">
-        <p class="text-center"><a href="#${'List of Plots' | slug}">List of Plots</a></p>
-      </div>
-    </div>
+    ${figure_nav_links()}
   %endfor
 
   <%include file="data_sources.mako"/>
