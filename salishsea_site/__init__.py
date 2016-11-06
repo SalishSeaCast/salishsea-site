@@ -48,6 +48,9 @@ def _salishseacast_routes(config):
         'results.forecast2.publish',
         'nemo/results/forecast2/publish/{results_date}')
     config.add_route(
+        'results.nowcast.research',
+        'nemo/results/nowcast/research/{results_date}')
+    config.add_route(
         'nowcast.logs',
         'nemo/nowcast/logs/{filename}')
     # Legacy routes
@@ -60,6 +63,9 @@ def _salishseacast_routes(config):
     config.add_route(
         'results.forecast2.publish.html',
         'nemo/results/forecast2/publish_{results_date}.html')
+    config.add_route(
+        'results.nowcast.research.html',
+        'nemo/results/nowcast/research_{results_date}.html')
 
 
 def _about_site_routes(config):
