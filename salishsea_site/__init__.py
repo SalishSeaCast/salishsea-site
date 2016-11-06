@@ -39,6 +39,9 @@ def _static_views(config, settings):
 
 def _salishseacast_routes(config):
     config.add_route(
+        'results.index',
+        'nemo/results/')
+    config.add_route(
         'results.nowcast.publish',
         'nemo/results/nowcast/publish/{results_date}')
     config.add_route(
@@ -57,6 +60,9 @@ def _salishseacast_routes(config):
         'nowcast.logs',
         'nemo/nowcast/logs/{filename}')
     # Legacy routes
+    config.add_route(
+        'results.index.html',
+        'nemo/results/index.html')
     config.add_route(
         'results.nowcast.publish.html',
         'nemo/results/nowcast/publish_{results_date}.html')
@@ -83,5 +89,6 @@ def _about_site_routes(config):
 ## once all pages have been converted to views.
 def _catchall_static_pages(config):
     config.add_view(
-        'salishsea_site.views.static_pages.static_page', route_name='catchall_static')
+        'salishsea_site.views.static_pages.static_page',
+        route_name='catchall_static')
     config.add_route('catchall_static', '/*subpath')
