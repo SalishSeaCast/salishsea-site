@@ -62,35 +62,91 @@ class TestFigureMetadata:
 
 
 @pytest.mark.usefixtures('pconfig')
-@patch('salishsea_site.views.salishseacast.logger')
-class TestNowcastLogs:
-    """Unit tests for nowcast_logs view function.
+@patch('salishsea_site.views.salishseacast.FigureMetadata.available')
+class TestResultsIndex:
+    """Unit tests for results_index function.
     """
 
-    def test_envvar_not_Set(self, m_logger):
+    def test_first_date(self, m_available):
+        m_available.return_value = True
         request = get_current_request()
-        request.matchdict = {'filename': 'foo'}
-        with pytest.raises(HTTPNotFound):
-            salishseacast.nowcast_logs(get_current_request())
-        m_logger.warning.assert_called_once_with(
-            'NOWCAST_LOGS environment variable is not set')
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 13:05:42+07:00')
+            data = salishseacast.results_index(request)
+        assert data['first_date'] == arrow.get('2016-10-18 00:00:00+07:00')
 
-    def test_log_file_not_found(self, m_logger):
+    def test_last_date(self, m_available):
+        m_available.return_value = True
         request = get_current_request()
-        request.matchdict = {'filename': 'foo'}
-        with patch.dict(os.environ, NOWCAST_LOGS='logs/nowcast/'):
-            with pytest.raises(HTTPNotFound):
-                salishseacast.nowcast_logs(request)
-        assert m_logger.debug.called
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 13:09:42+07:00')
+            data = salishseacast.results_index(request)
+        assert data['last_date'] == arrow.get('2016-11-07 00:00:00+07:00')
 
-    @patch('salishsea_site.views.salishseacast.Path', spec=Path)
-    def test_render_log_file(self, m_path, m_logger):
+    @pytest.mark.parametrize('now, this_month_cols, last_month_cols', [
+        (arrow.get('2016-11-06 13:15:42+07:00'), 7, 14),
+        (arrow.get('2016-10-30 13:15:42+07:00'), 21, 0),
+        (arrow.get('2016-10-31 13:15:42+07:00'), 1, 20),
+        (arrow.get('2016-10-19 13:15:42+07:00'), 20, 1),
+        (arrow.get('2016-02-28 13:15:42+07:00'), 21, 0),
+        (arrow.get('2016-02-29 13:15:42+07:00'), 1, 20),
+        (arrow.get('2015-02-28 13:15:42+07:00'), 1, 20),
+        (arrow.get('2016-12-30 13:15:42+07:00'), 21, 0),
+        (arrow.get('2016-12-31 13:15:42+07:00'), 1, 20),
+        (arrow.get('2017-01-06 13:15:42+07:00'), 7, 14),
+    ])
+    def test_month_cols(
+        self, m_available, now, this_month_cols, last_month_cols,
+    ):
+        m_available.return_value = True
         request = get_current_request()
-        request.matchdict = {'filename': 'nowcast.log'}
-        m_path().__truediv__().open().read.return_value = 'foo'
-        with patch.dict(os.environ, NOWCAST_LOGS='logs/nowcast/'):
-            response = salishseacast.nowcast_logs(request)
-        assert response == 'foo'
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = now
+            data = salishseacast.results_index(request)
+        assert data['this_month_cols'] == this_month_cols
+        assert data['last_month_cols'] == last_month_cols
+
+    @patch('salishsea_site.views.salishseacast._exclude_missing_dates')
+    def test_grid_dates(self, m_exlude_missing_dates, m_available):
+        m_available.return_value = True
+        request = get_current_request()
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 13:09:42+07:00')
+            data = salishseacast.results_index(request)
+        expected = {
+            'prelim forecast': m_exlude_missing_dates(),
+            'forecast': m_exlude_missing_dates(),
+            'nowcast publish': m_exlude_missing_dates(),
+            'nowcast research': m_exlude_missing_dates(),
+            'nowcast comparison': m_exlude_missing_dates(),
+        }
+        assert data['grid_dates'] == expected
+
+    @pytest.mark.parametrize('figures, figs_type, run_type', [
+        (salishseacast.publish_figures, 'publish', 'nowcast'),
+        (salishseacast.publish_figures, 'publish', 'forecast'),
+        (salishseacast.publish_figures, 'publish', 'forecast2'),
+        (salishseacast.research_figures, 'research', 'nowcast'),
+        (salishseacast.comparison_figures, 'comparison', 'nowcast'),
+    ])
+    @patch('salishsea_site.views.salishseacast.requests.Session')
+    @patch('salishsea_site.views.salishseacast._exclude_missing_dates')
+    def test_exclude_missing_dates_calls(
+        self, m_exlude_missing_dates, m_session, m_available,
+        figures, figs_type, run_type,
+    ):
+        m_available.return_value = True
+        request = get_current_request()
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 13:09:42+07:00')
+            salishseacast.results_index(request)
+        fcst_date = m_now().floor('day').replace(days=+1)
+        dates = arrow.Arrow.range(
+            'day', fcst_date.replace(days=-20), fcst_date)
+        expected = call(
+            request, dates, figures, figs_type, run_type,
+            m_session().__enter__())
+        assert expected in m_exlude_missing_dates.call_args_list
 
 
 @pytest.mark.usefixtures('pconfig')
@@ -316,3 +372,35 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'), salishseacast.publish_figures,
             arrow.get('2016-11-03'))
         assert data['FIG_FILE_TMPL'] == salishseacast.FIG_FILE_TMPL
+
+
+@pytest.mark.usefixtures('pconfig')
+@patch('salishsea_site.views.salishseacast.logger')
+class TestNowcastLogs:
+    """Unit tests for nowcast_logs view function.
+    """
+
+    def test_envvar_not_set(self, m_logger):
+        request = get_current_request()
+        request.matchdict = {'filename': 'foo'}
+        with pytest.raises(HTTPNotFound):
+            salishseacast.nowcast_logs(get_current_request())
+        m_logger.warning.assert_called_once_with(
+            'NOWCAST_LOGS environment variable is not set')
+
+    def test_log_file_not_found(self, m_logger):
+        request = get_current_request()
+        request.matchdict = {'filename': 'foo'}
+        with patch.dict(os.environ, NOWCAST_LOGS='logs/nowcast/'):
+            with pytest.raises(HTTPNotFound):
+                salishseacast.nowcast_logs(request)
+        assert m_logger.debug.called
+
+    @patch('salishsea_site.views.salishseacast.Path', spec=Path)
+    def test_render_log_file(self, m_path, m_logger):
+        request = get_current_request()
+        request.matchdict = {'filename': 'nowcast.log'}
+        m_path().__truediv__().open().read.return_value = 'foo'
+        with patch.dict(os.environ, NOWCAST_LOGS='logs/nowcast/'):
+            response = salishseacast.nowcast_logs(request)
+        assert response == 'foo'

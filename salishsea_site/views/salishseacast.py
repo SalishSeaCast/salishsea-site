@@ -163,21 +163,68 @@ comparison_figures = [
 ]
 
 
-@view_config(route_name='nowcast.logs', renderer='string')
-def nowcast_logs(request):
-    """Render the requested file from the :envvar:`NOWCAST_LOGS` directory
-    as text.
+@view_config(route_name='results.index', renderer='results_index.mako')
+@view_config(route_name='results.index.html', renderer='results_index.mako')
+def results_index(request):
+    """Render results calendar grid index page.
     """
-    try:
-        logs_dir = Path(os.environ['NOWCAST_LOGS'])
-    except KeyError:
-        logger.warning('NOWCAST_LOGS environment variable is not set')
-        raise HTTPNotFound
-    try:
-        return (logs_dir / request.matchdict['filename']).open().read()
-    except FileNotFoundError as e:
-        logger.debug(e)
-        raise HTTPNotFound
+    INDEX_GRID_COLS = 21
+    # Calculate the date range to display in the grid and the number of
+    # columns for the month headings of the grid
+    fcst_date = arrow.now().floor('day').replace(days=+1)
+    dates = arrow.Arrow.range(
+        'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date)
+    if dates[0].month != dates[-1].month:
+        this_month_cols = dates[-1].day
+        last_month_cols = INDEX_GRID_COLS - this_month_cols
+    else:
+        this_month_cols, last_month_cols = INDEX_GRID_COLS, 0
+    # Replace dates for which there are no figures with None
+    grid_rows = (
+        # Calendar grid row key, run type, figures, figures type
+        ('prelim forecast', 'forecast2', publish_figures, 'publish'),
+        ('forecast', 'forecast', publish_figures, 'publish'),
+        ('nowcast publish', 'nowcast', publish_figures, 'publish'),
+        ('nowcast research', 'nowcast', research_figures, 'research'),
+        ('nowcast comparison', 'nowcast', comparison_figures, 'comparison'),
+    )
+    with requests.Session() as session:
+        grid_dates = {
+            row: _exclude_missing_dates(request, dates, figures, figs_type,
+                run_type, session)
+            for row, run_type, figures, figs_type in grid_rows
+        }
+    return {
+        'first_date': dates[0],
+        'last_date': dates[-1],
+        'this_month_cols': this_month_cols,
+        'last_month_cols': last_month_cols,
+        'grid_dates': grid_dates,
+    }
+
+
+def _exclude_missing_dates(
+    request, dates, figures, figs_type, run_type, session,
+):
+    run_date_offsets = {
+        'nowcast': 0,
+        'forecast': -1,
+        'forecast2': -2
+    }
+    if figs_type == 'publish':
+        return (
+            (d if figures[0].available(
+                request, run_type,
+                d.replace(days=run_date_offsets[run_type]), session)
+             else None)
+            for d in dates)
+    else:
+        return (
+            (d if any(fig.available(
+                request, run_type, d, session) for fig in figures)
+             else None)
+            for d in dates
+        )
 
 
 @view_config(route_name='results.nowcast.publish', renderer='publish.mako')
@@ -288,3 +335,20 @@ def _data_for_publish_template(
         'figures': available_figures,
         'FIG_FILE_TMPL': FIG_FILE_TMPL,
     }
+
+
+@view_config(route_name='nowcast.logs', renderer='string')
+def nowcast_logs(request):
+    """Render the requested file from the :envvar:`NOWCAST_LOGS` directory
+    as text.
+    """
+    try:
+        logs_dir = Path(os.environ['NOWCAST_LOGS'])
+    except KeyError:
+        logger.warning('NOWCAST_LOGS environment variable is not set')
+        raise HTTPNotFound
+    try:
+        return (logs_dir / request.matchdict['filename']).open().read()
+    except FileNotFoundError as e:
+        logger.debug(e)
+        raise HTTPNotFound
