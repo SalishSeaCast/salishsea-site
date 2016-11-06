@@ -188,6 +188,54 @@ class TestNowcastResearch:
 
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
+class TestNowcastComparison:
+    """Unit tests for nowcast_comparison function.
+    """
+
+    def test_no_figures_raises_httpnotfound(self, m_available):
+        request = get_current_request()
+        m_available.return_value = False
+        with pytest.raises(HTTPNotFound):
+            salishseacast.nowcast_comparison(request)
+
+    def test_results_date(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '06nov16'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_comparison(request)
+        assert data['results_date'] == arrow.get('2016-11-06')
+
+    def test_run_type(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '06nov16'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_comparison(request)
+        assert data['run_type'] == 'nowcast'
+
+    def test_run_date(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '06nov16'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_comparison(request)
+        assert data['run_date'] == arrow.get('2016-11-06')
+
+    def test_figures(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '06nov16'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_comparison(request)
+        assert data['figures'] == salishseacast.comparison_figures
+
+    def test_fig_file_tmpl(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '06nov16'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_comparison(request)
+        assert data['FIG_FILE_TMPL'] == salishseacast.FIG_FILE_TMPL
+
+
+@pytest.mark.usefixtures('pconfig')
+@patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestDataForPublishTemplate:
     """Unit test for _data_for_publish_template view utility functions.
     """
