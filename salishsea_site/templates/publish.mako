@@ -12,11 +12,12 @@
 ## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
-<%inherit file="site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link"/>
-<%
+<%!
   from salishsea_site.mako_filters import slug
 %>
+
+<%inherit file="site.mako"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots"/>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</%block>
 
@@ -25,7 +26,7 @@
     <div class="col-md-12">
       <h1>${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</h1>
 
-      <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(slug(figures[0].title))} </h3>
+      <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(figures[0].title) | slug} </h3>
       <img class="img-responsive"
         src="${request.static_url(
                 FIG_FILE_TMPL.format(run_type=run_type, svg_name=figures[0].svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
@@ -58,21 +59,12 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2 id="${'List of Plots' | slug}">Plots ${header_link(slug('List of Plots'))}</h2>
-      <ul>
-        %for figure in figures:
-          <li><a href="#${figure.title | slug}">${figure.title}</a></li>
-        %endfor
-      </ul>
-    </div>
-  </div>
+  ${list_of_plots(figures)}
 
   %for figure in figures[1:]:
     <div class="row">
       <div class="col-md-12">
-        <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(slug(figure.title))}</h3>
+        <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(figure.title) | slug}</h3>
         <img class="img-responsive"
           src="${request.static_url(
                   FIG_FILE_TMPL.format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
