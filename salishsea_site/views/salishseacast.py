@@ -111,6 +111,24 @@ publish_figures = [
         svg_name='Wind_vectors_at_max'),
 ]
 
+research_figures = [
+    FigureMetadata(
+        title='Salinity Field Along Thalweg',
+        svg_name='Salinity_on_thalweg'),
+    FigureMetadata(
+        title='Temperature Field Along Thalweg',
+        svg_name='Temperature_on_thalweg'),
+    FigureMetadata(
+        title='Surface Salinity, Temperature and Currents',
+        svg_name='T_S_Currents_on_surface'),
+    FigureMetadata(
+        title='Model Currents at ONC VENUS East Node',
+        svg_name='Currents_at_VENUS_East'),
+    FigureMetadata(
+        title='Model Currents at ONC VENUS Central Node',
+        svg_name='Currents_at_VENUS_Central'),
+]
+
 
 @view_config(route_name='nowcast.logs', renderer='string')
 def nowcast_logs(request):
@@ -133,6 +151,8 @@ def nowcast_logs(request):
 @view_config(
     route_name='results.nowcast.publish.html', renderer='publish.mako')
 def nowcast_publish(request):
+    """Render storm surge nowcast figures page.
+    """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     return _data_for_publish_template(
         request, 'nowcast', results_date, publish_figures,
@@ -143,6 +163,8 @@ def nowcast_publish(request):
 @view_config(
     route_name='results.forecast.publish.html', renderer='publish.mako')
 def forecast_publish(request):
+    """Render storm surge forecast figures page.
+    """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-1)
     return _data_for_publish_template(
@@ -153,15 +175,42 @@ def forecast_publish(request):
 @view_config(
     route_name='results.forecast2.publish.html', renderer='publish.mako')
 def forecast2_publish(request):
+    """Render preliminary storm surge forecast figures page.
+    """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-2)
     return _data_for_publish_template(
         request, 'forecast2', results_date, publish_figures, run_date)
 
 
+@view_config(route_name='results.nowcast.research', renderer='research.mako')
+@view_config(
+    route_name='results.nowcast.research.html', renderer='research.mako')
+def nowcast_research(request):
+    """Render model research evaluation results figures page.
+    """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    with requests.Session() as session:
+        available_figures = [
+            fig for fig in research_figures
+            if fig.available(request, 'nowcast', results_date, session)]
+    if not available_figures:
+        raise HTTPNotFound
+    return {
+        'results_date': results_date,
+        'run_type': 'nowcast',
+        'run_date': results_date,
+        'figures': available_figures,
+        'FIG_FILE_TMPL': FIG_FILE_TMPL,
+    }
+
+
 def _data_for_publish_template(
     request, run_type, results_date, figures, run_date,
 ):
+    """Calculate template variable values for a storm surge forecast figures
+    page.
+    """
     with requests.Session() as session:
         storm_surge_alerts_fig_ready = publish_figures[0].available(request,
             run_type, run_date, session)
