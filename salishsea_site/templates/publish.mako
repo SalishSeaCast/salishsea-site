@@ -13,6 +13,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 <%inherit file="site.mako"/>
+<%namespace file="header_link.mako" import="header_link"/>
 <%
   from salishsea_site.mako_filters import slug
 %>
@@ -24,7 +25,7 @@
     <div class="col-md-12">
       <h1>${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</h1>
 
-      <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(figures[0].title)} </h3>
+      <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(slug(figures[0].title))} </h3>
       <img class="img-responsive"
         src="${request.static_url(
                 FIG_FILE_TMPL.format(run_type=run_type, svg_name=figures[0].svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
@@ -59,7 +60,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots')}</h2>
+      <h2 id="${'List of Plots' | slug}">Plots ${header_link(slug('List of Plots'))}</h2>
       <ul>
         %for figure in figures:
           <li><a href="#${figure.title | slug}">${figure.title}</a></li>
@@ -71,7 +72,7 @@
   %for figure in figures[1:]:
     <div class="row">
       <div class="col-md-12">
-        <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(figure.title)} </h3>
+        <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(slug(figure.title))}</h3>
         <img class="img-responsive"
           src="${request.static_url(
                   FIG_FILE_TMPL.format(run_type=run_type, svg_name=figure.svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
@@ -93,7 +94,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2 id="${'Data Sources' | slug}">Data Sources ${header_link('Data Sources')}</h2>
+      <h2 id="${'Data Sources' | slug}">Data Sources ${header_link(slug('Data Sources'))}</h2>
       <p>The forcing data used to drive the Salish Sea model is obtained from several sources:</p>
       <dl>
         <dt>Winds and metorological conditions</dt>
@@ -169,11 +170,3 @@
     </div>
   </div>
 </div>
-
-
-<%def name="header_link(title)">\
-  <a class="header-link" href="#${title | slug}"
-     title="Link to this heading">
-    <span class="fa fa-link fa-flip-horizontal" aria-hidden="true"></span>
-  </a>
-</%def>
