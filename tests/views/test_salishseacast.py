@@ -62,6 +62,59 @@ class TestFigureMetadata:
 
 
 @pytest.mark.usefixtures('pconfig')
+@patch('salishsea_site.views.salishseacast._data_for_publish_template')
+class TestStormSurgeForecast:
+    """Unit tests for storm_surge_forecast function.
+    """
+
+    def test_no_forecast(self, m_dfpt):
+        m_dfpt.side_effect = HTTPNotFound
+        request = get_current_request()
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 18:09:42+07:00')
+            with pytest.raises(HTTPNotFound):
+                salishseacast.storm_surge_forecast(request)
+
+    def test_forecast(self, m_dfpt):
+        m_dfpt.side_effect = [{}, HTTPNotFound, HTTPNotFound]
+        request = get_current_request()
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 18:09:42+07:00')
+            data = salishseacast.storm_surge_forecast(request)
+            assert data == {}
+            expected = call(
+                request, 'forecast', m_now().floor('day').replace(days=+1),
+                salishseacast.publish_figures, m_now().floor('day'))
+            assert m_dfpt.call_args_list[0] == expected
+
+    def test_forecas2(self, m_dfpt):
+        m_dfpt.side_effect = [HTTPNotFound, {}, HTTPNotFound]
+        request = get_current_request()
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 18:09:42+07:00')
+            data = salishseacast.storm_surge_forecast(request)
+            assert data == {}
+            expected = call(
+                request, 'forecast2', m_now().floor('day').replace(days=+1),
+                salishseacast.publish_figures,
+                m_now().floor('day').replace(days=-1))
+            assert m_dfpt.call_args_list[1] == expected
+
+    def test_previous_forecast(self, m_dfpt):
+        m_dfpt.side_effect = [HTTPNotFound, HTTPNotFound, {}]
+        request = get_current_request()
+        with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
+            m_now.return_value = arrow.get('2016-11-06 18:09:42+07:00')
+            data = salishseacast.storm_surge_forecast(request)
+            assert data == {}
+            expected = call(
+                request, 'forecast', m_now().floor('day'),
+                salishseacast.publish_figures,
+                m_now().floor('day').replace(days=-1))
+            assert m_dfpt.call_args_list[2] == expected
+
+
+@pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestResultsIndex:
     """Unit tests for results_index function.

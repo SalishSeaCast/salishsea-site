@@ -60,10 +60,10 @@ class FigureMetadata:
         :return: Figure is availability on the static figure file server.
         :rtype: boolean
         """
-        path = FIG_FILE_TMPL.format(run_type=run_type,
+        path = FIG_FILE_TMPL.format(
+            run_type=run_type,
             svg_name=self.svg_name, run_dmy=run_date.format('DDMMMYY').lower())
-        figure_url = request.static_url(
-            path)
+        figure_url = request.static_url(path)
         try:
             return session.head(figure_url).status_code == 200
         except requests.ConnectionError:
@@ -163,6 +163,30 @@ comparison_figures = [
 ]
 
 
+@view_config(
+    route_name='storm_surge.forecast', renderer='publish.mako')
+@view_config(
+    route_name='storm_surge.forecast.html', renderer='publish.mako')
+def storm_surge_forecast(request):
+    """Render storm surge forecast page that shows most recent forecast or
+    forecast2 results figures.
+    """
+    fcst_date = arrow.now().floor('day').replace(days=+1)
+    try:
+        try:
+            return _data_for_publish_template(
+                request, 'forecast', fcst_date, publish_figures,
+                fcst_date.replace(days=-1))
+        except HTTPNotFound:
+            return _data_for_publish_template(
+                request, 'forecast2', fcst_date, publish_figures,
+                fcst_date.replace(days=-2))
+    except HTTPNotFound:
+        return _data_for_publish_template(
+            request, 'forecast', fcst_date.replace(days=-1), publish_figures,
+            fcst_date.replace(days=-2))
+
+
 @view_config(route_name='results.index', renderer='results_index.mako')
 @view_config(route_name='results.index.html', renderer='results_index.mako')
 def results_index(request):
@@ -190,8 +214,8 @@ def results_index(request):
     )
     with requests.Session() as session:
         grid_dates = {
-            row: _exclude_missing_dates(request, dates, figures, figs_type,
-                run_type, session)
+            row: _exclude_missing_dates(
+                request, dates, figures, figs_type, run_type, session)
             for row, run_type, figures, figs_type in grid_rows
         }
     return {
@@ -315,8 +339,8 @@ def _data_for_publish_template(
     page.
     """
     with requests.Session() as session:
-        storm_surge_alerts_fig_ready = publish_figures[0].available(request,
-            run_type, run_date, session)
+        storm_surge_alerts_fig_ready = publish_figures[0].available(
+            request, run_type, run_date, session)
         if not storm_surge_alerts_fig_ready:
             raise HTTPNotFound
         available_figures = [
