@@ -64,7 +64,7 @@ class TestFigureMetadata:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast._data_for_publish_template')
 class TestStormSurgeForecast:
-    """Unit tests for storm_surge_forecast function.
+    """Unit tests for storm_surge_forecast view.
     """
 
     def test_no_forecast(self, m_dfpt):
@@ -115,9 +115,40 @@ class TestStormSurgeForecast:
 
 
 @pytest.mark.usefixtures('pconfig')
+@patch('salishsea_site.views.salishseacast.logger')
+class TestStormSurgeAlertFeed:
+    """Unit tests for storm_surge_alert_feed view.
+    """
+
+    def test_feed_file_not_found(self, m_logger, pconfig):
+        pconfig.add_settings(nowcast_figures_server_name='nowcast-sys/figures/')
+        pconfig.add_static_view(
+            name='nowcast-sys/figures/', path='/results/nowcast-sys/figures')
+        request = get_current_request()
+        request.registry = pconfig.registry
+        request.matchdict = {'filename': 'foo'}
+        with pytest.raises(HTTPNotFound):
+            salishseacast.storm_surge_alert_feed(request)
+        assert m_logger.debug.called
+
+    @patch('salishsea_site.views.salishseacast.Path', spec=Path)
+    def test_render_feed_file(self, m_path, m_logger, pconfig):
+        pconfig.add_settings(nowcast_figures_server_name='nowcast-sys/figures/')
+        pconfig.add_static_view(
+            name='nowcast-sys/figures/', path='/results/nowcast-sys/figures')
+        request = get_current_request()
+        request.registry = pconfig.registry
+        request.matchdict = {'filename': 'foo'}
+        m_path().__truediv__().open().read.return_value = 'foo'
+        response = salishseacast.storm_surge_alert_feed(request)
+        assert response == 'foo'
+        assert request.response.content_type == 'application/atom+xml'
+
+
+@pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestResultsIndex:
-    """Unit tests for results_index function.
+    """Unit tests for results_index view.
     """
 
     def test_first_date(self, m_available):
@@ -205,7 +236,7 @@ class TestResultsIndex:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast._data_for_publish_template')
 class TestNowcastPublish:
-    """Unit test for nowcast_publish view function.
+    """Unit test for nowcast_publish view view.
     """
 
     def test_nowcast_publish(self, m_dfpt):
@@ -220,7 +251,7 @@ class TestNowcastPublish:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast._data_for_publish_template')
 class TestForecastPublish:
-    """Unit test for forecast_publish view function.
+    """Unit test for forecast_publish view view.
     """
 
     def test_forecast_publish(self, m_dfpt):
@@ -235,7 +266,7 @@ class TestForecastPublish:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast._data_for_publish_template')
 class TestForecast2Publish:
-    """Unit test for forecast2_publish view function.
+    """Unit test for forecast2_publish view view.
     """
 
     def test_forecast2_publish(self, m_dfpt):
@@ -250,7 +281,7 @@ class TestForecast2Publish:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestNowcastResearch:
-    """Unit tests for nowcast_research function.
+    """Unit tests for nowcast_research view.
     """
 
     def test_no_figures_raises_httpnotfound(self, m_available):
@@ -298,7 +329,7 @@ class TestNowcastResearch:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestNowcastComparison:
-    """Unit tests for nowcast_comparison function.
+    """Unit tests for nowcast_comparison view.
     """
 
     def test_no_figures_raises_httpnotfound(self, m_available):
@@ -346,7 +377,7 @@ class TestNowcastComparison:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestDataForPublishTemplate:
-    """Unit test for _data_for_publish_template view utility functions.
+    """Unit test for _data_for_publish_template view utility function.
     """
 
     def test_no_alerts_fig_raises_httpnotfound(self, m_available):
@@ -430,7 +461,7 @@ class TestDataForPublishTemplate:
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.logger')
 class TestNowcastLogs:
-    """Unit tests for nowcast_logs view function.
+    """Unit tests for nowcast_logs view.
     """
 
     def test_envvar_not_set(self, m_logger):

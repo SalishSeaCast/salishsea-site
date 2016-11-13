@@ -187,6 +187,23 @@ def storm_surge_forecast(request):
             fcst_date.replace(days=-2))
 
 
+@view_config(
+    route_name='storm_surge.alert.feed', renderer='string')
+def storm_surge_alert_feed(request):
+    """Render the requested storm surge alert ATOM feed file.
+    """
+    introspector = request.registry.introspector
+    figs_server = request.registry.settings['nowcast_figures_server_name']
+    figs_path = introspector.get('static views', figs_server)['spec']
+    feeds_path = Path(figs_path, 'storm-surge/atom')
+    try:
+        request.response.content_type = 'application/atom+xml'
+        return (feeds_path / request.matchdict['filename']).open().read()
+    except FileNotFoundError as e:
+        logger.debug(e)
+        raise HTTPNotFound
+
+
 @view_config(route_name='results.index', renderer='results_index.mako')
 @view_config(route_name='results.index.html', renderer='results_index.mako')
 def results_index(request):
@@ -239,14 +256,12 @@ def _exclude_missing_dates(
         return (
             (d if figures[0].available(
                 request, run_type,
-                d.replace(days=run_date_offsets[run_type]), session)
-             else None)
+                d.replace(days=run_date_offsets[run_type]), session) else None)
             for d in dates)
     else:
         return (
             (d if any(fig.available(
-                request, run_type, d, session) for fig in figures)
-             else None)
+                request, run_type, d, session) for fig in figures) else None)
             for d in dates
         )
 
