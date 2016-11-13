@@ -42,6 +42,9 @@ def _salishseacast_routes(config):
         'storm_surge.forecast',
         'storm-surge/forecast')
     config.add_route(
+        'storm_surge.alert.feed',
+        'storm-surge/atom/{filename}')
+    config.add_route(
         'results.index',
         'nemo/results/')
     config.add_route(
