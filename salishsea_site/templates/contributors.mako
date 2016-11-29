@@ -42,6 +42,8 @@
         <li>Yingkai (Kyle) Sha &lt;<a href="yingkai@eos.ubc.ca">yingkai@eos.ubc.ca</a>&gt;</li>
         <li>Alex Huang</li>
         <li>Alyssia Law</li>
+        <li>Michael Dunphy &lt;<a href="mdunphy@eoas.ubc.ca">mdunphy@eoas.ubc.ca</a>&gt&gt;</li>
+        <li>Tereza Jarníková &lt;<a href="tjarniko@eos.ubc.ca">tjarniko@eos.ubc.ca</a>&gt;</li>
       </ul>
     </div>
   </div>
