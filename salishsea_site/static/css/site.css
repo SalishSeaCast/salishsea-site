@@ -26,3 +26,9 @@ h5:hover > a.header-link,
 h6:hover > a.header-link {
     visibility: visible;
 }
+
+.footer {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}

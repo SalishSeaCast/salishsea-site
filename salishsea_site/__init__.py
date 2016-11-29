@@ -15,6 +15,8 @@
 
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
+import datetime
+
 from pyramid.config import Configurator
 
 
@@ -23,11 +25,21 @@ def main(global_config, **settings):
     """
     config = Configurator(settings=settings)
     _static_views(config, settings)
+    _copyright_year_range(config)
     _salishseacast_routes(config)
     _about_site_routes(config)
     _catchall_static_pages(config)
     config.scan()
     return config.make_wsgi_app()
+
+
+def _copyright_year_range(config):
+    def _add_copyright_year_range(request):
+        return (
+            '2013' if datetime.date.today().year == 2013
+            else '2013-{:%Y}'.format(datetime.date.today()))
+    config.add_request_method(
+        _add_copyright_year_range, 'copyright_years', reify=True)
 
 
 def _static_views(config, settings):
