@@ -85,7 +85,7 @@ Evaluation
 Project Resources
 =================
 
-* The main project documentation site is at http://salishsea-meopar-docs.readthedocs.io/en/latest/.
+* The main project documentation site is at https://salishsea-meopar-docs.readthedocs.io/en/latest/.
 * The project team maintains a set of Mercurial_ version control repositories for code,
   documentation (including the source files for this site),
   and analyses of model results.
