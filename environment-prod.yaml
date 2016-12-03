@@ -1,0 +1,27 @@
+# conda environment description file for salishsea_site package
+# production deployment
+#
+# Create a conda environment for production deployment of the
+# salishsea_site web app with:
+#
+#    $ cd salishsea_site
+#    $ conda env create -f environment-prod.yaml
+#    $ source activate salishsea_site
+#    $ pip install --editable .
+
+name: salishsea-site-env
+
+dependencies:
+  - pip
+  - python=3
+  - pyyaml
+  - requests
+  - pip:
+    - arrow
+    - attrs
+    - chaussette
+    - circus
+    - pyramid
+    - pyramid_crow
+    - pyramid_mako
+    - waitress==0.9.0
