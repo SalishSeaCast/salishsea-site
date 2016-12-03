@@ -56,7 +56,7 @@
         <li>
           Soontiens, N. and Allen, S.
           Modelling sensitivities to mixing and advection in a sill-basin estuarine system.
-          <em>Submitted to Ocean Modelling</em>.
+          <em>Under revision for Ocean Modelling</em>.
         </li>
       </ul>
     </div>
