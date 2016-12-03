@@ -79,7 +79,7 @@ Evaluation
 .. _https://dx.doi.org/10.1080/07055900.2015.1108899: https://dx.doi.org/10.1080/07055900.2015.1108899
 
 **Mixing in San Juan/Gulf Islands:** The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and advection has been determined.
-(Soontiens, N. and Allen, S. Modelling sensitivities to mixing and advection in a sill-basin estuarine system. *Submitted to Ocean Modelling*)
+(Soontiens, N. and Allen, S. Modelling sensitivities to mixing and advection in a sill-basin estuarine system. *Under revision for Ocean Modelling*)
 
 
 Project Resources
