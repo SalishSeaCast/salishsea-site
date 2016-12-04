@@ -61,6 +61,16 @@ class TestFigureMetadata:
         assert m_session.head.call_args == call(request.static_url().replace())
 
 
+class TestStormSurgePortal:
+    """Unit tests for storm_surge_portal view.
+    """
+
+    def test_storm_surge_portal(self):
+        request = get_current_request()
+        data = salishseacast.storm_surge_portal(request)
+        assert data == {}
+
+
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast._data_for_publish_template')
 class TestStormSurgeForecast:

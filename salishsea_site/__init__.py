@@ -51,6 +51,9 @@ def _static_views(config, settings):
 
 def _salishseacast_routes(config):
     config.add_route(
+        'storm_surge.portal',
+        'storm-surge/')
+    config.add_route(
         'storm_surge.forecast',
         'storm-surge/forecast')
     config.add_route(
@@ -78,6 +81,9 @@ def _salishseacast_routes(config):
         'nowcast.logs',
         'nemo/nowcast/logs/{filename}')
     # Legacy routes
+    config.add_route(
+        'storm_surge.index.html',
+        'storm-surge/index.html')
     config.add_route(
         'storm_surge.forecast.html',
         'storm-surge/forecast.html')
