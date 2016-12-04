@@ -164,6 +164,16 @@ comparison_figures = [
 
 
 @view_config(
+    route_name='storm_surge.portal', renderer='storm_surge_portal.mako')
+@view_config(
+    route_name='storm_surge.index.html', renderer='storm_surge_portal.mako')
+def storm_surge_portal(request):
+    """Render storm surge portal page.
+    """
+    return {}
+
+
+@view_config(
     route_name='storm_surge.forecast', renderer='publish.mako')
 @view_config(
     route_name='storm_surge.forecast.html', renderer='publish.mako')
