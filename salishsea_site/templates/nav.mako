@@ -37,7 +37,7 @@
               Storm Surge <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="https://salishsea.eos.ubc.ca/storm-surge/index.html">Information Portal</a></li>
+              <li><a href=${request.route_url('storm_surge.portal')}>Information Portal</a></li>
               <li><a href=${request.route_url('storm_surge.forecast')}>SalishSeaCast Forecast</a></li>
               <li><a href="#"><span class="fa fa-rss" aria-hidden="true"></span> Feeds</a></li>
             </ul>
