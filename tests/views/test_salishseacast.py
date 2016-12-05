@@ -155,6 +155,15 @@ class TestStormSurgeAlertFeed:
         assert request.response.content_type == 'application/atom+xml'
 
 
+class TestAboutSalishSeaCast:
+    """Unit tests for SalishSeaCast about view.
+    """
+
+    def test_about(self):
+        request = get_current_request()
+        data = salishseacast.about(request)
+        assert data == {}
+
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestResultsIndex:

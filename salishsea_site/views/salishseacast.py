@@ -197,8 +197,7 @@ def storm_surge_forecast(request):
             fcst_date.replace(days=-2))
 
 
-@view_config(
-    route_name='storm_surge.alert.feed', renderer='string')
+@view_config(route_name='storm_surge.alert.feed', renderer='string')
 def storm_surge_alert_feed(request):
     """Render the requested storm surge alert ATOM feed file.
     """
@@ -212,6 +211,14 @@ def storm_surge_alert_feed(request):
     except FileNotFoundError as e:
         logger.debug(e)
         raise HTTPNotFound
+
+
+@view_config(
+    route_name='salishseacast.about', renderer='about_salishseacast.mako')
+@view_config(
+    route_name='nemo.index.html', renderer='about_salishseacast.mako')
+def about(request):
+    return {}
 
 
 @view_config(route_name='results.index', renderer='results_index.mako')
