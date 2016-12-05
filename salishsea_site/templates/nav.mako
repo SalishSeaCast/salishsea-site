@@ -49,7 +49,7 @@
               SalishSeaCast <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="https://salishsea.eos.ubc.ca/nemo/index.html">About</a></li>
+              <li><a href=${request.route_url('salishseacast.about')}>About</a></li>
               <li><a href=${request.route_url('results.index')}>Results</a></li>
               <li><a href="https://salishsea.eos.ubc.ca/erddap/">ERDDAP</a></li>
               <li><a href="#">Automation Monitoring</a></li>

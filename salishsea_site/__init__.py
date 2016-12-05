@@ -60,6 +60,9 @@ def _salishseacast_routes(config):
         'storm_surge.alert.feed',
         'storm-surge/atom/{filename}')
     config.add_route(
+        'salishseacast.about',
+        'nemo/')
+    config.add_route(
         'results.index',
         'nemo/results/')
     config.add_route(
@@ -90,6 +93,9 @@ def _salishseacast_routes(config):
     config.add_route(
         'results.index.html',
         'nemo/results/index.html')
+    config.add_route(
+        'nemo.index.html',
+        'nemo/index.html')
     config.add_route(
         'results.nowcast.publish.html',
         'nemo/results/nowcast/publish_{results_date}.html')
