@@ -393,6 +393,12 @@ def _data_for_publish_template(
     }
 
 
+@view_config(
+    route_name='nowcast.monitoring', renderer='nowcast_monitoring.mako')
+def nowcast_monitoring(request):
+    return {}
+
+
 @view_config(route_name='nowcast.logs', renderer='string')
 def nowcast_logs(request):
     """Render the requested file from the :envvar:`NOWCAST_LOGS` directory

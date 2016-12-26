@@ -27,6 +27,20 @@ h6:hover > a.header-link {
     visibility: visible;
 }
 
+table a:not(.btn), .table a:not(.btn) {
+    text-decoration: none;
+}
+table a:not(.btn):hover, .table a:not(.btn):hover, table a:not(.btn):focus, .table a:not(.btn):focus {
+    color: #df691a;
+    text-decoration-color: -moz-use-text-color;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+kbd.link {
+    color: #df691a;
+}
+
 .footer {
   width: 100%;
   border-top: 1px solid #ccc;
