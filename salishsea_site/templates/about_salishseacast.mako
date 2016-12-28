@@ -74,7 +74,7 @@
         </li>
         <li>
           Full access to our nowcast results in numerous formats via an ERDDAP server:
-          <a href="https://salishsea.eos.ubc.ca/erddap/">https://salishsea.eos.ubc.ca/erddap/</a>
+          <a href=${request.erddap_url}>${request.erddap_url}</a>
         </li>
       </ul>
 

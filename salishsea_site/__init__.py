@@ -26,6 +26,7 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
     _static_views(config, settings)
     _copyright_year_range(config)
+    _erddap_url(config)
     _salishseacast_routes(config)
     _about_site_routes(config)
     _catchall_static_pages(config)
@@ -40,6 +41,13 @@ def _copyright_year_range(config):
             else '2013-{:%Y}'.format(datetime.date.today()))
     config.add_request_method(
         _add_copyright_year_range, 'copyright_years', reify=True)
+
+
+def _erddap_url(config):
+    def _add_erddap_url(request):
+        return 'https://salishsea.eos.ubc.ca/erddap/'
+    config.add_request_method(
+        _add_erddap_url, 'erddap_url', reify=True)
 
 
 def _static_views(config, settings):
