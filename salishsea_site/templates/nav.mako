@@ -51,7 +51,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href=${request.route_url('salishseacast.about')}>About</a></li>
               <li><a href=${request.route_url('results.index')}>Results</a></li>
-              <li><a href="https://salishsea.eos.ubc.ca/erddap/">ERDDAP</a></li>
+              <li><a href=${request.erddap_url}>ERDDAP</a></li>
               <li><a href=${request.route_url('nowcast.monitoring')}>Automation Monitoring</a></li>
             </ul>
           </li>

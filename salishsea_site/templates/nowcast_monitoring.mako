@@ -61,7 +61,7 @@
       <p>
         The public interface to access SalishSeaCast run results is the project
         ERDDAP server at
-        <a href="https://salishsea.eos.ubc.ca/erddap/">https://salishsea.eos.ubc.ca/erddap/</a>.
+        <a href=${request.erddap_url}>${request.erddap_url}</a>.
       </p>
 
       <p>
