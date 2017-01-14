@@ -28,6 +28,7 @@ def main(global_config, **settings):
     _copyright_year_range(config)
     _erddap_url(config)
     _salishseacast_routes(config)
+    _bloomcast_routes(config)
     _about_site_routes(config)
     _catchall_static_pages(config)
     config.scan()
@@ -124,8 +125,15 @@ def _salishseacast_routes(config):
         'nemo/results/nowcast/comparison_{results_date}.html')
 
 
+def _bloomcast_routes(config):
+    config.add_route('bloomcast.about', 'bloomcast/')
+    # Legacy route
+    config.add_route('bloomcast.index.html', 'bloomcast.html')
+
+
 def _about_site_routes(config):
     config.add_route('about.contributors', 'contributors')
+    # Legacy route
     config.add_route('about.contributors.html', 'contributors.html')
 
 
