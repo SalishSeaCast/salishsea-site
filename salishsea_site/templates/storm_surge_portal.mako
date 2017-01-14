@@ -52,7 +52,7 @@
             The vectors are winds averaged over the four hours previous to the predicted maximum water levels.
             The forecasting system is considered to be a research tool only and is to be used at your own risk.
             Details of the model system are at
-            <a href="/nemo/index.html">SalishSeaCast NEMO Model</a>.
+            <a href=${request.route_url('salishseacast.about')}>SalishSeaCast NEMO Model</a>.
           </p>
         </div>
       </div>
@@ -142,7 +142,7 @@
       <h2>SalishSeaCast NEMO Model</h2>
       <p>
         Work is presently under way to evaluate the
-        <a href="/nemo/index.html">SalishSeaCast NEMO model's</a>
+        <a href=${request.route_url('salishseacast.about')}>SalishSeaCast NEMO model's</a>
         calculations of tides and sea surface height by hindcasting storm surge events that occurred between 2002 and 2011.
         Once the model's hindcasting skill has been determined to be adequate,
         and atmospheric model products of sufficient resolution are available,
