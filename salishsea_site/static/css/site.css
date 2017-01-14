@@ -41,6 +41,10 @@ kbd.link {
     color: #df691a;
 }
 
+ol.lower-alpha {
+    list-style-type: lower-alpha;
+}
+
 .footer {
   width: 100%;
   border-top: 1px solid #ccc;
