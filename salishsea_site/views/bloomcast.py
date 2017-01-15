@@ -23,8 +23,8 @@ from pyramid.view import view_config
 logger = logging.getLogger(__name__)
 
 
-@view_config(route_name='bloomcast.about', renderer='bloomcast.mako')
-@view_config(route_name='bloomcast.index.html', renderer='bloomcast.mako')
+@view_config(route_name='bloomcast.about', renderer='bloomcast/about.mako')
+@view_config(route_name='bloomcast.index.html', renderer='bloomcast/about.mako')
 def about(request):
     return {
         'ec_database_year': datetime.date.today().year,

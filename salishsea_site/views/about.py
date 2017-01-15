@@ -23,7 +23,7 @@ from pyramid.view import view_config
 logger = logging.getLogger(__name__)
 
 
-@view_config(route_name='about.contributors', renderer='contributors.mako')
-@view_config(route_name='about.contributors.html', renderer='contributors.mako')
+@view_config(route_name='about.contributors', renderer='about/contributors.mako')
+@view_config(route_name='about.contributors.html', renderer='about/contributors.mako')
 def contributors(request):
     return {}

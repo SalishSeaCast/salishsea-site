@@ -16,7 +16,7 @@
   from salishsea_site.mako_filters import slug
 %>
 
-<%inherit file="site.mako"/>
+<%inherit file="../site.mako"/>
 <%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</%block>

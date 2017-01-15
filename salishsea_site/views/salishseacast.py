@@ -164,9 +164,9 @@ comparison_figures = [
 
 
 @view_config(
-    route_name='storm_surge.portal', renderer='storm_surge_portal.mako')
+    route_name='storm_surge.portal', renderer='storm_surge/portal.mako')
 @view_config(
-    route_name='storm_surge.index.html', renderer='storm_surge_portal.mako')
+    route_name='storm_surge.index.html', renderer='storm_surge/portal.mako')
 def storm_surge_portal(request):
     """Render storm surge portal page.
     """
@@ -174,9 +174,11 @@ def storm_surge_portal(request):
 
 
 @view_config(
-    route_name='storm_surge.forecast', renderer='publish.mako')
+    route_name='storm_surge.forecast',
+    renderer='salishseacast/publish.mako')
 @view_config(
-    route_name='storm_surge.forecast.html', renderer='publish.mako')
+    route_name='storm_surge.forecast.html',
+    renderer='salishseacast/publish.mako')
 def storm_surge_forecast(request):
     """Render storm surge forecast page that shows most recent forecast or
     forecast2 results figures.
@@ -214,15 +216,19 @@ def storm_surge_alert_feed(request):
 
 
 @view_config(
-    route_name='salishseacast.about', renderer='about_salishseacast.mako')
+    route_name='salishseacast.about', renderer='salishseacast/about.mako')
 @view_config(
-    route_name='nemo.index.html', renderer='about_salishseacast.mako')
+    route_name='nemo.index.html', renderer='salishseacast/about.mako')
 def about(request):
     return {}
 
 
-@view_config(route_name='results.index', renderer='results_index.mako')
-@view_config(route_name='results.index.html', renderer='results_index.mako')
+@view_config(
+    route_name='results.index',
+    renderer='salishseacast/results_index.mako')
+@view_config(
+    route_name='results.index.html',
+    renderer='salishseacast/results_index.mako')
 def results_index(request):
     """Render results calendar grid index page.
     """
@@ -283,9 +289,12 @@ def _exclude_missing_dates(
         )
 
 
-@view_config(route_name='results.nowcast.publish', renderer='publish.mako')
 @view_config(
-    route_name='results.nowcast.publish.html', renderer='publish.mako')
+    route_name='results.nowcast.publish',
+    renderer='salishseacast/publish.mako')
+@view_config(
+    route_name='results.nowcast.publish.html',
+    renderer='salishseacast/publish.mako')
 def nowcast_publish(request):
     """Render storm surge nowcast figures page.
     """
@@ -295,9 +304,12 @@ def nowcast_publish(request):
         run_date=results_date)
 
 
-@view_config(route_name='results.forecast.publish', renderer='publish.mako')
 @view_config(
-    route_name='results.forecast.publish.html', renderer='publish.mako')
+    route_name='results.forecast.publish',
+    renderer='salishseacast/publish.mako')
+@view_config(
+    route_name='results.forecast.publish.html',
+    renderer='salishseacast/publish.mako')
 def forecast_publish(request):
     """Render storm surge forecast figures page.
     """
@@ -307,9 +319,12 @@ def forecast_publish(request):
         request, 'forecast', results_date, publish_figures, run_date)
 
 
-@view_config(route_name='results.forecast2.publish', renderer='publish.mako')
 @view_config(
-    route_name='results.forecast2.publish.html', renderer='publish.mako')
+    route_name='results.forecast2.publish',
+    renderer='salishseacast/publish.mako')
+@view_config(
+    route_name='results.forecast2.publish.html',
+    renderer='salishseacast/publish.mako')
 def forecast2_publish(request):
     """Render preliminary storm surge forecast figures page.
     """
@@ -319,9 +334,12 @@ def forecast2_publish(request):
         request, 'forecast2', results_date, publish_figures, run_date)
 
 
-@view_config(route_name='results.nowcast.research', renderer='research.mako')
 @view_config(
-    route_name='results.nowcast.research.html', renderer='research.mako')
+    route_name='results.nowcast.research',
+    renderer='salishseacast/research.mako')
+@view_config(
+    route_name='results.nowcast.research.html',
+    renderer='salishseacast/research.mako')
 def nowcast_research(request):
     """Render model research evaluation results figures page.
     """
@@ -342,9 +360,11 @@ def nowcast_research(request):
 
 
 @view_config(
-    route_name='results.nowcast.comparison', renderer='comparison.mako')
+    route_name='results.nowcast.comparison',
+    renderer='salishseacast/comparison.mako')
 @view_config(
-    route_name='results.nowcast.comparison.html', renderer='comparison.mako')
+    route_name='results.nowcast.comparison.html',
+    renderer='salishseacast/comparison.mako')
 def nowcast_comparison(request):
     """Render model and observation comparisons figures page.
     """
@@ -394,7 +414,8 @@ def _data_for_publish_template(
 
 
 @view_config(
-    route_name='nowcast.monitoring', renderer='nowcast_monitoring.mako')
+    route_name='nowcast.monitoring',
+    renderer='salishseacast/nowcast_monitoring.mako')
 def nowcast_monitoring(request):
     return {}
 

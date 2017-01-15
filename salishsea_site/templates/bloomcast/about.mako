@@ -13,7 +13,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
-<%inherit file="site.mako"/>
+<%inherit file="../site.mako"/>
 
 <%block name="title">
   Strait of Georgia Bloomcast
