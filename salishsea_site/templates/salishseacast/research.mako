@@ -16,17 +16,15 @@
   from salishsea_site.mako_filters import slug
 %>
 
-<%inherit file="site.mako"/>
+<%inherit file="../site.mako"/>
 <%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
 
-<%block name="title">
-  Salish Sea Model and Observation Comparisons – ${results_date.format('DD-MMM-YYYY')}
-</%block>
+<%block name="title">Salish Sea Model Research Evaluation Results – ${results_date.format('DD-MMM-YYYY')}</%block>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>Salish Sea Model and Observation Comparisons from Nowcast</h1>
+      <h1>Salish Sea Model Research Evaluation Results from Nowcast</h1>
 
       <h2>${results_date.format('dddd, D MMMM YYYY')}</h2>
 
@@ -55,7 +53,7 @@
         </li>
         <li>
           Soontiens, N. and Allen, S.
-          Modelling sensitivities to mixing and advection in a sill-basin estuarine system.
+          Modelling sensitivities to mixing and advection in a sill-basin estuarine system. 
           <em>Under revision for Ocean Modelling</em>.
         </li>
       </ul>
