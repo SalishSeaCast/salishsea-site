@@ -21,7 +21,7 @@ from pyramid.config import Configurator
 
 
 def main(global_config, **settings):
-    """ This function returns a Pyramid WSGI application.
+    """Configure the Pyramid WSGI application.
     """
     config = Configurator(settings=settings)
     _static_views(config, settings)
