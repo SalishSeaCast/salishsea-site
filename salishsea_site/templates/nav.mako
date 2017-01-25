@@ -63,7 +63,7 @@
             </a>
             <ul class="dropdown-menu" role="menu">
               <li><a href=${request.route_url('bloomcast.about')}>About</a></li>
-              <li><a href="https://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html">Spring Diatoms</a></li>
+              <li><a href=${request.route_url('bloomcast.spring_diatoms')}>Spring Diatoms</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#">SMELT</a></li>

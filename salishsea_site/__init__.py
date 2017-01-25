@@ -127,8 +127,11 @@ def _salishseacast_routes(config):
 
 def _bloomcast_routes(config):
     config.add_route('bloomcast.about', 'bloomcast/')
-    # Legacy route
+    config.add_route('bloomcast.spring_diatoms', 'bloomcast/spring_diatoms')
+    # Legacy routes
     config.add_route('bloomcast.index.html', 'bloomcast.html')
+    config.add_route(
+        'bloomcast.spring_diatoms.html', 'bloomcast/spring_diatoms.html')
 
 
 def _about_site_routes(config):

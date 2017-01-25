@@ -45,6 +45,21 @@ ol.lower-alpha {
     list-style-type: lower-alpha;
 }
 
+/* Spring diatoms bloom date evolution table */
+.transition-date {
+    padding-right: 8px;
+    width: 8em;
+}
+.bloom-date {
+    width: 7em;
+}
+.ensemble-member {
+    width: 6em;
+}
+.centre-span2 {
+    text-align: center;
+}
+
 .footer {
   width: 100%;
   border-top: 1px solid #ccc;
