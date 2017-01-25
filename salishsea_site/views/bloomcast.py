@@ -17,7 +17,9 @@
 """
 import datetime
 import logging
+from pathlib import Path
 
+import yaml
 from pyramid.view import view_config
 
 logger = logging.getLogger(__name__)
@@ -29,3 +31,20 @@ def about(request):
     return {
         'ec_database_year': datetime.date.today().year,
     }
+
+
+@view_config(
+    route_name='bloomcast.spring_diatoms',
+    renderer='bloomcast/spring_diatoms.mako')
+@view_config(
+    route_name='bloomcast.spring_diatoms.html',
+    renderer='bloomcast/spring_diatoms.mako')
+def spring_diatoms(request):
+    plots_path = Path('/results/nowcast-sys/figures/bloomcast')
+    with (plots_path/'latest_bloomcast.yaml').open('rt') as f:
+        latest_bloomcast = yaml.safe_load(f)
+    with (plots_path/'bloom_date_evolution.log').open('rt') as f:
+        bloom_date_log = [
+            line.split() for line in f if not line.startswith('#')]
+    latest_bloomcast.update({'bloom_date_log': bloom_date_log})
+    return latest_bloomcast
