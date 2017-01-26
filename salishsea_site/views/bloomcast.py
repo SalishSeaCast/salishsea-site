@@ -46,5 +46,8 @@ def spring_diatoms(request):
     with (plots_path/'bloom_date_evolution.log').open('rt') as f:
         bloom_date_log = [
             line.split() for line in f if not line.startswith('#')]
-    latest_bloomcast.update({'bloom_date_log': bloom_date_log})
+    latest_bloomcast.update({
+        'plots_path': plots_path,
+        'bloom_date_log': bloom_date_log,
+    })
     return latest_bloomcast
