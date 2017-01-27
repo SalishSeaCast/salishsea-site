@@ -136,8 +136,10 @@ def _bloomcast_routes(config):
 
 def _about_site_routes(config):
     config.add_route('about.contributors', 'contributors')
+    config.add_route('about.license', 'license')
     # Legacy route
     config.add_route('about.contributors.html', 'contributors.html')
+    config.add_route('about.license.html', 'license.html')
 
 
 ## TODO: Delete this function and the views.static_pages module
