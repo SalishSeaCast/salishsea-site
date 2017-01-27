@@ -58,7 +58,7 @@
       </a> and The University of British Columbia
       <br>
       Licensed under the Apache License, Version 2.0.
-      <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.
+      <a href="https://www.apache.org/licenses/LICENSE-2.0">https://www.apache.org/licenses/LICENSE-2.0</a>.
       <br>
       Please acknowledge our work by using one or more of
       <a href="https://bitbucket.org/salishsea/docs/src/tip/CITATION.rst">these citations</a>.
