@@ -28,7 +28,7 @@
       </p>
       <p>
         They are licensed under the Apache License, Version 2.0.
-        <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+        <a href="https://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
       </p>
       <pre>${license}</pre>
     </div>
