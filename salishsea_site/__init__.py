@@ -27,6 +27,7 @@ def main(global_config, **settings):
     _static_views(config, settings)
     _copyright_year_range(config)
     _erddap_url(config)
+    _site_routes(config)
     _salishseacast_routes(config)
     _bloomcast_routes(config)
     _about_site_routes(config)
@@ -56,6 +57,12 @@ def _static_views(config, settings):
     config.add_static_view(
         name=settings['nowcast_figures_server_name'],
         path='/results/nowcast-sys/figures')
+
+
+def _site_routes(config):
+    config.add_route('site.index', '/')
+    # Legacy route
+    config.add_route('site.index.html', '/index.html')
 
 
 def _salishseacast_routes(config):
