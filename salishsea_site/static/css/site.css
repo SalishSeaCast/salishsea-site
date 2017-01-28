@@ -15,6 +15,10 @@
 ## limitations under the License.
 */
 
+img.index {
+    padding-bottom: 20px;
+}
+
 a.header-link {
     visibility: hidden;
 }

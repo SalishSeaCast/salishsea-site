@@ -25,7 +25,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="https://salishsea.eos.ubc.ca/" class="navbar-brand">Salish Sea</a>
+        <a href=${request.route_url('site.index')} class="navbar-brand">Salish Sea</a>
       </div>
 
       <div id="bs-salishsea-navbar-collapes" class="collapse navbar-collapse">
