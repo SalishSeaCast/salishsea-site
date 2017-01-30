@@ -19,6 +19,7 @@ import datetime
 import logging
 from pathlib import Path
 
+import arrow
 import yaml
 from pyramid.view import view_config
 
@@ -46,7 +47,11 @@ def spring_diatoms(request):
     with (plots_path/'bloom_date_evolution.log').open('rt') as f:
         bloom_date_log = [
             line.split() for line in f if not line.startswith('#')]
+    forecast_date = (
+        arrow.get(latest_bloomcast['data_date']).replace(days=+1).format(
+            'YYYY-MM-DD'))
     latest_bloomcast.update({
+        'forecast_date': forecast_date,
         'plots_path': plots_path,
         'bloom_date_log': bloom_date_log,
     })

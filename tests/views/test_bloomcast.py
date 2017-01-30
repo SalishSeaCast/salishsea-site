@@ -56,10 +56,13 @@ class TestSpringDiatoms:
         )
         request = get_current_request()
         data = bloomcast.spring_diatoms(request)
-        assert 'run_start_date' in data
-        assert 'data_date' in data
-        assert 'prediction' in data
-        assert 'bloom_dates' in data
-        assert 'ts_plot_files' in data
-        assert 'profiles_plot_file' in data
-        assert 'bloom_date_log' in data
+        assert data['run_start_date'] == datetime.date(2016, 9, 19)
+        assert data['data_date'] == datetime.date(2017, 1, 25)
+        assert data['prediction'] == {'early': 2005}
+        assert data['bloom_dates'] == {1981: '2017-03-19'}
+        assert data['ts_plot_files'] == {'mld_wind': 'mld_wind_timeseries.svg'}
+        assert data['profiles_plot_file'] =='profiles.svg'
+        assert data['forecast_date'] == '2017-01-26'
+        expected = m_path('/results/nowcast-sys/figures/bloomcast')
+        assert data['plots_path'] == expected
+        assert data['bloom_date_log'] == [['2017-01-25', '2017-03-20', '2004']]
