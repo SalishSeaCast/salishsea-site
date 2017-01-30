@@ -21,8 +21,9 @@ dependencies:
   - coverage
   - pytest
 
-  # For documentation and building old static site
+  # For documentation
   - sphinx
+  - sphinx_rtd_theme
 
   - pip:
     - arrow
@@ -34,6 +35,3 @@ dependencies:
     - pyramid_debugtoolbar
     - pyramid_mako
     - waitress==0.9.0
-
-    # For building old static site
-    - sphinx-bootstrap-theme
