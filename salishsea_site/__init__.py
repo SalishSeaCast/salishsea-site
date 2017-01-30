@@ -31,7 +31,6 @@ def main(global_config, **settings):
     _salishseacast_routes(config)
     _bloomcast_routes(config)
     _about_site_routes(config)
-    _catchall_static_pages(config)
     config.scan()
     return config.make_wsgi_app()
 
@@ -147,12 +146,3 @@ def _about_site_routes(config):
     # Legacy route
     config.add_route('about.contributors.html', 'contributors.html')
     config.add_route('about.license.html', 'license.html')
-
-
-## TODO: Delete this function and the views.static_pages module
-## once all pages have been converted to views.
-def _catchall_static_pages(config):
-    config.add_view(
-        'salishsea_site.views.static_pages.static_page',
-        route_name='catchall_static')
-    config.add_route('catchall_static', '/*subpath')
