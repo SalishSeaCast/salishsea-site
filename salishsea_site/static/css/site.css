@@ -1,0 +1,71 @@
+/*
+## Copyright 2013-2016 The Salish Sea MEOPAR Contributors
+## and The University of British Columbia
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##    http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+*/
+
+img.index {
+    padding-bottom: 20px;
+}
+
+a.header-link {
+    visibility: hidden;
+}
+h1:hover > a.header-link,
+h2:hover > a.header-link,
+h3:hover > a.header-link,
+h4:hover > a.header-link,
+h5:hover > a.header-link,
+h6:hover > a.header-link {
+    visibility: visible;
+}
+
+table a:not(.btn), .table a:not(.btn) {
+    text-decoration: none;
+}
+table a:not(.btn):hover, .table a:not(.btn):hover, table a:not(.btn):focus, .table a:not(.btn):focus {
+    color: #df691a;
+    text-decoration-color: -moz-use-text-color;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+kbd.link {
+    color: #df691a;
+}
+
+ol.lower-alpha {
+    list-style-type: lower-alpha;
+}
+
+/* Spring diatoms bloom date evolution table */
+.transition-date {
+    padding-right: 8px;
+    width: 8em;
+}
+.bloom-date {
+    width: 7em;
+}
+.ensemble-member {
+    width: 6em;
+}
+.centre-span2 {
+    text-align: center;
+}
+
+.footer {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
