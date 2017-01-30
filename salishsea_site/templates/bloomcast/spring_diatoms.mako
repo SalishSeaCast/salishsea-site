@@ -14,12 +14,12 @@
 ## limitations under the License.
 <%inherit file="../site.mako"/>
 
-<%block name="title">${data_date} Spring Diatom Bloom Forecast</%block>
+<%block name="title">${forecast_date} Spring Diatom Bloom Forecast</%block>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>${data_date} Spring Diatom Bloom Forecast</h1>
+      <h1>${forecast_date} Spring Diatom Bloom Forecast</h1>
 
       <p>
         The current best estimate of the first spring diatom bloom in the Strait of Georgia is
