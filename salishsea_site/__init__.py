@@ -18,6 +18,7 @@
 import datetime
 
 from pyramid.config import Configurator
+from pyramid.static import static_view
 
 
 def main(global_config, **settings):
@@ -31,8 +32,16 @@ def main(global_config, **settings):
     _salishseacast_routes(config)
     _bloomcast_routes(config)
     _about_site_routes(config)
+    _figure_server(config)
     config.scan()
     return config.make_wsgi_app()
+
+
+def _static_views(config, settings):
+    config.add_static_view(name='static', path='salishsea_site:static')
+    config.add_static_view(
+        name=settings['nowcast_figures_server_name'],
+        path='/results/nowcast-sys/figures')
 
 
 def _copyright_year_range(config):
@@ -49,13 +58,6 @@ def _erddap_url(config):
         return 'https://salishsea.eos.ubc.ca/erddap/'
     config.add_request_method(
         _add_erddap_url, 'erddap_url', reify=True)
-
-
-def _static_views(config, settings):
-    config.add_static_view(name='static', path='salishsea_site:static')
-    config.add_static_view(
-        name=settings['nowcast_figures_server_name'],
-        path='/results/nowcast-sys/figures')
 
 
 def _site_routes(config):
@@ -146,3 +148,11 @@ def _about_site_routes(config):
     # Legacy route
     config.add_route('about.contributors.html', 'contributors.html')
     config.add_route('about.license.html', 'license.html')
+
+
+def _figure_server(config):
+    config.add_view('salishsea_site._figure', route_name='figure')
+    config.add_route('figure', '/*subpath')
+
+
+_figure = static_view('/var/www/html/nowcast-sys/figures', use_subpath=True)
