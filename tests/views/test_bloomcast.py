@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Unit tests for bloomcast views module.
 
 .. note:: :py:func:`pconfig` fixture is defined in :file:`tests/conftest.py`.
@@ -61,7 +60,7 @@ class TestSpringDiatoms:
         assert data['prediction'] == {'early': 2005}
         assert data['bloom_dates'] == {1981: '2017-03-19'}
         assert data['ts_plot_files'] == {'mld_wind': 'mld_wind_timeseries.svg'}
-        assert data['profiles_plot_file'] =='profiles.svg'
+        assert data['profiles_plot_file'] == 'profiles.svg'
         assert data['forecast_date'] == '2017-01-26'
         expected = m_path('/results/nowcast-sys/figures/bloomcast')
         assert data['plots_path'] == expected
