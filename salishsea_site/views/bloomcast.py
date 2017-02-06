@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """salishsea_site Bloomcast views
 """
 import datetime
@@ -27,7 +26,9 @@ logger = logging.getLogger(__name__)
 
 
 @view_config(route_name='bloomcast.about', renderer='bloomcast/about.mako')
-@view_config(route_name='bloomcast.index.html', renderer='bloomcast/about.mako')
+@view_config(
+    route_name='bloomcast.index.html', renderer='bloomcast/about.mako'
+)
 def about(request):
     return {
         'ec_database_year': datetime.date.today().year,
@@ -36,20 +37,25 @@ def about(request):
 
 @view_config(
     route_name='bloomcast.spring_diatoms',
-    renderer='bloomcast/spring_diatoms.mako')
+    renderer='bloomcast/spring_diatoms.mako'
+)
 @view_config(
     route_name='bloomcast.spring_diatoms.html',
-    renderer='bloomcast/spring_diatoms.mako')
+    renderer='bloomcast/spring_diatoms.mako'
+)
 def spring_diatoms(request):
     plots_path = Path('/results/nowcast-sys/figures/bloomcast')
-    with (plots_path/'latest_bloomcast.yaml').open('rt') as f:
+    with (plots_path / 'latest_bloomcast.yaml').open('rt') as f:
         latest_bloomcast = yaml.safe_load(f)
-    with (plots_path/'bloom_date_evolution.log').open('rt') as f:
+    with (plots_path / 'bloom_date_evolution.log').open('rt') as f:
         bloom_date_log = [
-            line.split() for line in f if not line.startswith('#')]
+            line.split() for line in f if not line.startswith('#')
+        ]
     forecast_date = (
-        arrow.get(latest_bloomcast['data_date']).replace(days=+1).format(
-            'YYYY-MM-DD'))
+        arrow.get(latest_bloomcast['data_date']).replace(
+            days=+1
+        ).format('YYYY-MM-DD')
+    )
     latest_bloomcast.update({
         'forecast_date': forecast_date,
         'plots_path': plots_path,

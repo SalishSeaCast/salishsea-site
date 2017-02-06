@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """salishsea_site SalishSeaCast views
 """
 import logging
@@ -62,111 +61,128 @@ class FigureMetadata:
         """
         path = FIG_FILE_TMPL.format(
             run_type=run_type,
-            svg_name=self.svg_name, run_dmy=run_date.format('DDMMMYY').lower())
+            svg_name=self.svg_name,
+            run_dmy=run_date.format('DDMMMYY').lower()
+        )
         figure_url = request.static_url(path)
         try:
             return session.head(figure_url).status_code == 200
         except requests.ConnectionError:
             # Development environment
-            return session.head(
-                figure_url.replace('4567', '6543')).status_code == 200
+            return session.head(figure_url.replace('4567', '6543')
+                                ).status_code == 200
 
 
 publish_figures = [
     FigureMetadata(
         title='Marine and Atmospheric Conditions - Storm Surge Alerts',
-        svg_name='Threshold_website'),
+        svg_name='Threshold_website'
+    ),
     FigureMetadata(
         title='Tidal Predictions for Point Atkinson',
-        svg_name='PA_tidal_predictions'),
+        svg_name='PA_tidal_predictions'
+    ),
+    FigureMetadata(title='Victoria Sea Surface Height', svg_name='Vic_maxSSH'),
     FigureMetadata(
-        title='Victoria Sea Surface Height',
-        svg_name='Vic_maxSSH'),
+        title='Cherry Point Sea Surface Height', svg_name='CP_maxSSH'
+    ),
     FigureMetadata(
-        title='Cherry Point Sea Surface Height',
-        svg_name='CP_maxSSH'),
+        title='Point Atkinson Sea Surface Height', svg_name='PA_maxSSH'
+    ),
+    FigureMetadata(title='Nanaimo Sea Surface Height', svg_name='Nan_maxSSH'),
     FigureMetadata(
-        title='Point Atkinson Sea Surface Height',
-        svg_name='PA_maxSSH'),
-    FigureMetadata(
-        title='Nanaimo Sea Surface Height',
-        svg_name='Nan_maxSSH'),
-    FigureMetadata(
-        title='Campbell River Sea Surface Height',
-        svg_name='CR_maxSSH'),
+        title='Campbell River Sea Surface Height', svg_name='CR_maxSSH'
+    ),
     FigureMetadata(
         title='Sea Surface Height at Selected NOAA Stations',
-        svg_name='NOAA_ssh'),
+        svg_name='NOAA_ssh'
+    ),
     FigureMetadata(
-        title='Storm Surge Alert Thresholds',
-        svg_name='WaterLevel_Thresholds'),
-    FigureMetadata(
-        title='Sandheads Wind',
-        svg_name='SH_wind'),
+        title='Storm Surge Alert Thresholds', svg_name='WaterLevel_Thresholds'
+    ),
+    FigureMetadata(title='Sandheads Wind', svg_name='SH_wind'),
     FigureMetadata(
         title='Winds from Atmospheric Forcing Averaged Over Run Duration',
-        svg_name='Avg_wind_vectors'),
+        svg_name='Avg_wind_vectors'
+    ),
     FigureMetadata(
         title='Instantaneous Winds from Atmospheric Forcing',
-        svg_name='Wind_vectors_at_max'),
+        svg_name='Wind_vectors_at_max'
+    ),
 ]
 
 research_figures = [
     FigureMetadata(
-        title='Salinity Field Along Thalweg',
-        svg_name='Salinity_on_thalweg'),
+        title='Salinity Field Along Thalweg', svg_name='Salinity_on_thalweg'
+    ),
     FigureMetadata(
         title='Temperature Field Along Thalweg',
-        svg_name='Temperature_on_thalweg'),
+        svg_name='Temperature_on_thalweg'
+    ),
     FigureMetadata(
         title='Surface Salinity, Temperature and Currents',
-        svg_name='T_S_Currents_on_surface'),
+        svg_name='T_S_Currents_on_surface'
+    ),
     FigureMetadata(
         title='Model Currents at ONC VENUS East Node',
-        svg_name='Currents_at_VENUS_East'),
+        svg_name='Currents_at_VENUS_East'
+    ),
     FigureMetadata(
         title='Model Currents at ONC VENUS Central Node',
-        svg_name='Currents_at_VENUS_Central'),
+        svg_name='Currents_at_VENUS_Central'
+    ),
 ]
 
 comparison_figures = [
     FigureMetadata(
-        title='Modeled and Observed Winds at Sandheads',
-        svg_name='SH_wind'),
+        title='Modeled and Observed Winds at Sandheads', svg_name='SH_wind'
+    ),
     FigureMetadata(
         title=(
             'Modeled and Observed Surface Salinity '
-            'Along Horseshoe Bay-Departure Bay Ferry Route'),
-        svg_name='HB_DB_ferry_salinity'),
+            'Along Horseshoe Bay-Departure Bay Ferry Route'
+        ),
+        svg_name='HB_DB_ferry_salinity'
+    ),
     FigureMetadata(
         title=(
             'Modeled and Observed Surface Salinity '
-            'Along Tsawwassen-Duke Pt. Ferry Route'),
-        svg_name='TW_DP_ferry_salinity'),
+            'Along Tsawwassen-Duke Pt. Ferry Route'
+        ),
+        svg_name='TW_DP_ferry_salinity'
+    ),
     FigureMetadata(
         title=(
             'Modeled and Observed Surface Salinity '
-            'Along Tsawwassen-Schwartz Bay Ferry Route'),
-        svg_name='TW_SB_ferry_salinity'),
+            'Along Tsawwassen-Schwartz Bay Ferry Route'
+        ),
+        svg_name='TW_SB_ferry_salinity'
+    ),
     FigureMetadata(
         title='Salinity and Temperature at ONC VENUS Central Node',
-        svg_name='Compare_VENUS_Central'),
+        svg_name='Compare_VENUS_Central'
+    ),
     FigureMetadata(
         title='Salinity and Temperature at ONC VENUS Delta BBL Node',
-        svg_name='Compare_VENUS_Delta_BBL'),
+        svg_name='Compare_VENUS_Delta_BBL'
+    ),
     FigureMetadata(
         title='Salinity and Temperature at ONC VENUS Delta DDL Node',
-        svg_name='Compare_VENUS_Delta_DDL'),
+        svg_name='Compare_VENUS_Delta_DDL'
+    ),
     FigureMetadata(
         title='Salinity and Temperature at ONC VENUS East Node',
-        svg_name='Compare_VENUS_East'),
+        svg_name='Compare_VENUS_East'
+    ),
 ]
 
 
 @view_config(
-    route_name='storm_surge.portal', renderer='storm_surge/portal.mako')
+    route_name='storm_surge.portal', renderer='storm_surge/portal.mako'
+)
 @view_config(
-    route_name='storm_surge.index.html', renderer='storm_surge/portal.mako')
+    route_name='storm_surge.index.html', renderer='storm_surge/portal.mako'
+)
 def storm_surge_portal(request):
     """Render storm surge portal page.
     """
@@ -174,11 +190,12 @@ def storm_surge_portal(request):
 
 
 @view_config(
-    route_name='storm_surge.forecast',
-    renderer='salishseacast/publish.mako')
+    route_name='storm_surge.forecast', renderer='salishseacast/publish.mako'
+)
 @view_config(
     route_name='storm_surge.forecast.html',
-    renderer='salishseacast/publish.mako')
+    renderer='salishseacast/publish.mako'
+)
 def storm_surge_forecast(request):
     """Render storm surge forecast page that shows most recent forecast or
     forecast2 results figures.
@@ -187,16 +204,28 @@ def storm_surge_forecast(request):
     try:
         try:
             return _data_for_publish_template(
-                request, 'forecast', fcst_date, publish_figures,
-                fcst_date.replace(days=-1))
+                request,
+                'forecast',
+                fcst_date,
+                publish_figures,
+                fcst_date.replace(days=-1)
+            )
         except HTTPNotFound:
             return _data_for_publish_template(
-                request, 'forecast2', fcst_date, publish_figures,
-                fcst_date.replace(days=-2))
+                request,
+                'forecast2',
+                fcst_date,
+                publish_figures,
+                fcst_date.replace(days=-2)
+            )
     except HTTPNotFound:
         return _data_for_publish_template(
-            request, 'forecast', fcst_date.replace(days=-1), publish_figures,
-            fcst_date.replace(days=-2))
+            request,
+            'forecast',
+            fcst_date.replace(days=-1),
+            publish_figures,
+            fcst_date.replace(days=-2)
+        )
 
 
 @view_config(route_name='storm_surge.alert.feed', renderer='string')
@@ -216,19 +245,20 @@ def storm_surge_alert_feed(request):
 
 
 @view_config(
-    route_name='salishseacast.about', renderer='salishseacast/about.mako')
-@view_config(
-    route_name='nemo.index.html', renderer='salishseacast/about.mako')
+    route_name='salishseacast.about', renderer='salishseacast/about.mako'
+)
+@view_config(route_name='nemo.index.html', renderer='salishseacast/about.mako')
 def about(request):
     return {}
 
 
 @view_config(
-    route_name='results.index',
-    renderer='salishseacast/results_index.mako')
+    route_name='results.index', renderer='salishseacast/results_index.mako'
+)
 @view_config(
     route_name='results.index.html',
-    renderer='salishseacast/results_index.mako')
+    renderer='salishseacast/results_index.mako'
+)
 def results_index(request):
     """Render results calendar grid index page.
     """
@@ -237,7 +267,8 @@ def results_index(request):
     # columns for the month headings of the grid
     fcst_date = arrow.now().floor('day').replace(days=+1)
     dates = arrow.Arrow.range(
-        'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date)
+        'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date
+    )
     if dates[0].month != dates[-1].month:
         this_month_cols = dates[-1].day
         last_month_cols = INDEX_GRID_COLS - this_month_cols
@@ -255,7 +286,8 @@ def results_index(request):
     with requests.Session() as session:
         grid_dates = {
             row: _exclude_missing_dates(
-                request, dates, figures, figs_type, run_type, session)
+                request, dates, figures, figs_type, run_type, session
+            )
             for row, run_type, figures, figs_type in grid_rows
         }
     return {
@@ -268,78 +300,96 @@ def results_index(request):
 
 
 def _exclude_missing_dates(
-    request, dates, figures, figs_type, run_type, session,
+    request,
+    dates,
+    figures,
+    figs_type,
+    run_type,
+    session,
 ):
-    run_date_offsets = {
-        'nowcast': 0,
-        'forecast': -1,
-        'forecast2': -2
-    }
+    run_date_offsets = {'nowcast': 0, 'forecast': -1, 'forecast2': -2}
     if figs_type == 'publish':
-        return (
-            (d if figures[0].available(
-                request, run_type,
-                d.replace(days=run_date_offsets[run_type]), session) else None)
-            for d in dates)
+        return ((
+            d if figures[0].available(
+                request,
+                run_type,
+                d.replace(days=run_date_offsets[run_type]),
+                session
+            ) else None
+        ) for d in dates)
     else:
-        return (
-            (d if any(fig.available(
-                request, run_type, d, session) for fig in figures) else None)
-            for d in dates
-        )
+        return ((
+            d if any(
+                fig.available(request, run_type, d, session) for fig in figures
+            ) else None
+        ) for d in dates)
 
 
 @view_config(
     route_name='results.nowcast.publish',
-    renderer='salishseacast/publish.mako')
+    renderer='salishseacast/publish.mako'
+)
 @view_config(
     route_name='results.nowcast.publish.html',
-    renderer='salishseacast/publish.mako')
+    renderer='salishseacast/publish.mako'
+)
 def nowcast_publish(request):
     """Render storm surge nowcast figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     return _data_for_publish_template(
-        request, 'nowcast', results_date, publish_figures,
-        run_date=results_date)
+        request,
+        'nowcast',
+        results_date,
+        publish_figures,
+        run_date=results_date
+    )
 
 
 @view_config(
     route_name='results.forecast.publish',
-    renderer='salishseacast/publish.mako')
+    renderer='salishseacast/publish.mako'
+)
 @view_config(
     route_name='results.forecast.publish.html',
-    renderer='salishseacast/publish.mako')
+    renderer='salishseacast/publish.mako'
+)
 def forecast_publish(request):
     """Render storm surge forecast figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-1)
     return _data_for_publish_template(
-        request, 'forecast', results_date, publish_figures, run_date)
+        request, 'forecast', results_date, publish_figures, run_date
+    )
 
 
 @view_config(
     route_name='results.forecast2.publish',
-    renderer='salishseacast/publish.mako')
+    renderer='salishseacast/publish.mako'
+)
 @view_config(
     route_name='results.forecast2.publish.html',
-    renderer='salishseacast/publish.mako')
+    renderer='salishseacast/publish.mako'
+)
 def forecast2_publish(request):
     """Render preliminary storm surge forecast figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.replace(days=-2)
     return _data_for_publish_template(
-        request, 'forecast2', results_date, publish_figures, run_date)
+        request, 'forecast2', results_date, publish_figures, run_date
+    )
 
 
 @view_config(
     route_name='results.nowcast.research',
-    renderer='salishseacast/research.mako')
+    renderer='salishseacast/research.mako'
+)
 @view_config(
     route_name='results.nowcast.research.html',
-    renderer='salishseacast/research.mako')
+    renderer='salishseacast/research.mako'
+)
 def nowcast_research(request):
     """Render model research evaluation results figures page.
     """
@@ -347,7 +397,8 @@ def nowcast_research(request):
     with requests.Session() as session:
         available_figures = [
             fig for fig in research_figures
-            if fig.available(request, 'nowcast', results_date, session)]
+            if fig.available(request, 'nowcast', results_date, session)
+        ]
     if not available_figures:
         raise HTTPNotFound
     return {
@@ -361,10 +412,12 @@ def nowcast_research(request):
 
 @view_config(
     route_name='results.nowcast.comparison',
-    renderer='salishseacast/comparison.mako')
+    renderer='salishseacast/comparison.mako'
+)
 @view_config(
     route_name='results.nowcast.comparison.html',
-    renderer='salishseacast/comparison.mako')
+    renderer='salishseacast/comparison.mako'
+)
 def nowcast_comparison(request):
     """Render model and observation comparisons figures page.
     """
@@ -372,7 +425,8 @@ def nowcast_comparison(request):
     with requests.Session() as session:
         available_figures = [
             fig for fig in comparison_figures
-            if fig.available(request, 'nowcast', results_date, session)]
+            if fig.available(request, 'nowcast', results_date, session)
+        ]
     if not available_figures:
         raise HTTPNotFound
     return {
@@ -385,19 +439,25 @@ def nowcast_comparison(request):
 
 
 def _data_for_publish_template(
-    request, run_type, results_date, figures, run_date,
+    request,
+    run_type,
+    results_date,
+    figures,
+    run_date,
 ):
     """Calculate template variable values for a storm surge forecast figures
     page.
     """
     with requests.Session() as session:
         storm_surge_alerts_fig_ready = publish_figures[0].available(
-            request, run_type, run_date, session)
+            request, run_type, run_date, session
+        )
         if not storm_surge_alerts_fig_ready:
             raise HTTPNotFound
         available_figures = [
             fig for fig in figures
-            if fig.available(request, run_type, run_date, session)]
+            if fig.available(request, run_type, run_date, session)
+        ]
     run_type_titles = {
         'nowcast': 'Nowcast',
         'forecast': 'Forecast',
@@ -415,7 +475,8 @@ def _data_for_publish_template(
 
 @view_config(
     route_name='nowcast.monitoring',
-    renderer='salishseacast/nowcast_monitoring.mako')
+    renderer='salishseacast/nowcast_monitoring.mako'
+)
 def nowcast_monitoring(request):
     return {}
 
