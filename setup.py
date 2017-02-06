@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
 import os
@@ -24,10 +23,10 @@ from setuptools import (
 
 import __pkg_metadata__
 
-
 python_classifiers = [
     'Programming Language :: Python :: {0}'.format(py_version)
-    for py_version in ['3', '3.5']]
+    for py_version in ['3', '3.5']
+]
 other_classifiers = [
     'Development Status :: ' + __pkg_metadata__.DEV_STATUS,
     'License :: OSI Approved :: Apache Software License',

@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
 import datetime
@@ -41,23 +40,27 @@ def _static_views(config, settings):
     config.add_static_view(name='static', path='salishsea_site:static')
     config.add_static_view(
         name=settings['nowcast_figures_server_name'],
-        path='/results/nowcast-sys/figures')
+        path='/results/nowcast-sys/figures'
+    )
 
 
 def _copyright_year_range(config):
     def _add_copyright_year_range(request):
         return (
-            '2013' if datetime.date.today().year == 2013
-            else '2013-{:%Y}'.format(datetime.date.today()))
+            '2013' if datetime.date.today().year == 2013 else
+            '2013-{:%Y}'.format(datetime.date.today())
+        )
+
     config.add_request_method(
-        _add_copyright_year_range, 'copyright_years', reify=True)
+        _add_copyright_year_range, 'copyright_years', reify=True
+    )
 
 
 def _erddap_url(config):
     def _add_erddap_url(request):
         return 'https://salishsea.eos.ubc.ca/erddap/'
-    config.add_request_method(
-        _add_erddap_url, 'erddap_url', reify=True)
+
+    config.add_request_method(_add_erddap_url, 'erddap_url', reify=True)
 
 
 def _site_routes(config):
@@ -67,70 +70,58 @@ def _site_routes(config):
 
 
 def _salishseacast_routes(config):
-    config.add_route(
-        'storm_surge.portal',
-        'storm-surge/')
-    config.add_route(
-        'storm_surge.forecast',
-        'storm-surge/forecast')
-    config.add_route(
-        'storm_surge.alert.feed',
-        'storm-surge/atom/{filename}')
-    config.add_route(
-        'salishseacast.about',
-        'nemo/')
-    config.add_route(
-        'results.index',
-        'nemo/results/')
+    config.add_route('storm_surge.portal', 'storm-surge/')
+    config.add_route('storm_surge.forecast', 'storm-surge/forecast')
+    config.add_route('storm_surge.alert.feed', 'storm-surge/atom/{filename}')
+    config.add_route('salishseacast.about', 'nemo/')
+    config.add_route('results.index', 'nemo/results/')
     config.add_route(
         'results.nowcast.publish',
-        'nemo/results/nowcast/publish/{results_date}')
+        'nemo/results/nowcast/publish/{results_date}'
+    )
     config.add_route(
         'results.forecast.publish',
-        'nemo/results/forecast/publish/{results_date}')
+        'nemo/results/forecast/publish/{results_date}'
+    )
     config.add_route(
         'results.forecast2.publish',
-        'nemo/results/forecast2/publish/{results_date}')
+        'nemo/results/forecast2/publish/{results_date}'
+    )
     config.add_route(
         'results.nowcast.research',
-        'nemo/results/nowcast/research/{results_date}')
+        'nemo/results/nowcast/research/{results_date}'
+    )
     config.add_route(
         'results.nowcast.comparison',
-        'nemo/results/nowcast/comparison/{results_date}')
-    config.add_route(
-        'nowcast.monitoring',
-        'nemo/nowcast/monitoring')
-    config.add_route(
-        'nowcast.logs',
-        'nemo/nowcast/logs/{filename}')
+        'nemo/results/nowcast/comparison/{results_date}'
+    )
+    config.add_route('nowcast.monitoring', 'nemo/nowcast/monitoring')
+    config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
     # Legacy routes
-    config.add_route(
-        'storm_surge.index.html',
-        'storm-surge/index.html')
-    config.add_route(
-        'storm_surge.forecast.html',
-        'storm-surge/forecast.html')
-    config.add_route(
-        'results.index.html',
-        'nemo/results/index.html')
-    config.add_route(
-        'nemo.index.html',
-        'nemo/index.html')
+    config.add_route('storm_surge.index.html', 'storm-surge/index.html')
+    config.add_route('storm_surge.forecast.html', 'storm-surge/forecast.html')
+    config.add_route('results.index.html', 'nemo/results/index.html')
+    config.add_route('nemo.index.html', 'nemo/index.html')
     config.add_route(
         'results.nowcast.publish.html',
-        'nemo/results/nowcast/publish_{results_date}.html')
+        'nemo/results/nowcast/publish_{results_date}.html'
+    )
     config.add_route(
         'results.forecast.publish.html',
-        'nemo/results/forecast/publish_{results_date}.html')
+        'nemo/results/forecast/publish_{results_date}.html'
+    )
     config.add_route(
         'results.forecast2.publish.html',
-        'nemo/results/forecast2/publish_{results_date}.html')
+        'nemo/results/forecast2/publish_{results_date}.html'
+    )
     config.add_route(
         'results.nowcast.research.html',
-        'nemo/results/nowcast/research_{results_date}.html')
+        'nemo/results/nowcast/research_{results_date}.html'
+    )
     config.add_route(
         'results.nowcast.comparison.html',
-        'nemo/results/nowcast/comparison_{results_date}.html')
+        'nemo/results/nowcast/comparison_{results_date}.html'
+    )
 
 
 def _bloomcast_routes(config):
@@ -139,7 +130,8 @@ def _bloomcast_routes(config):
     # Legacy routes
     config.add_route('bloomcast.index.html', 'bloomcast.html')
     config.add_route(
-        'bloomcast.spring_diatoms.html', 'bloomcast/spring_diatoms.html')
+        'bloomcast.spring_diatoms.html', 'bloomcast/spring_diatoms.html'
+    )
 
 
 def _about_site_routes(config):
