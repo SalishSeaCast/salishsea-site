@@ -7,4 +7,7 @@ channels:
   - defaults
 
 dependencies:
-- python=3.5
+  - pip
+  - python=3.5
+  - pip:
+      - pyramid
