@@ -25,7 +25,7 @@ These docs provide a brief explanation of the structure of the app,
 and details about its development.
 
 .. _salishsea.eos.ubc.ca: https://salishsea.eos.ubc.ca/
-.. _Python: https://python.org/
+.. _Python: https://www.python.org/
 .. _Pyramid web framework: http://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
 
 If you are new to Python web frameworks you should probably start by reading the `Pyramid Hello World`_ docs,
@@ -94,14 +94,14 @@ The :file:`tests/` directory tree contains the unit test suite for the package.
 It is intended to be run using the `pytest`_ tool.
 Please see :ref:`SalishSeaSiteRunningTheUnitTests` for details.
 
-.. _pytest: http://pytest.org/latest/
+.. _pytest: http://docs.pytest.org/en/latest/
 
 The :file:`docs/` directory tree contains the `reStructuredText`_ source files for these docs,
 and the `Sphinx` configuration and :file:`Makefile` to render them to HTML.
 Please see :ref:`SalishSeaSiteBuildingTheDocumentation` for details.
 
-.. _reStructuredText: http://sphinx-doc.org/rest.html
-.. _Sphinx: http://sphinx-doc.org/
+.. _reStructuredText: http://www.sphinx-doc.org/en/stable/rest.html
+.. _Sphinx: http://www.sphinx-doc.org/en/stable/rest.html
 
 
 .. _SalishSeaSiteDevelopment:
@@ -163,8 +163,8 @@ you can create and activate an environment called :kbd:`salishsea-site` that wil
 testing,
 and building the documentation with the commands:
 
-.. _Conda: http://conda.pydata.org/docs/
-.. _Miniconda3: http://conda.pydata.org/docs/install/quick.html
+.. _Conda: https://conda.io/docs/
+.. _Miniconda3: https://conda.io/docs/install/quick.html
 
 .. code-block:: bash
 
@@ -216,7 +216,7 @@ You can run the app in a development server on you local machine with the comman
     (salishsea-site)$ cd salishsea-site
     (salishsea-site)$ pserve --reload developement.ini
 
-With the dev server running you can view the site by navigating to http://localhost:6543/ in your browser.
+With the dev server running you can view the site by navigating to :kbd:`http://localhost:6543/` in your browser.
 
 The :kbd:`--reload` option in the :command:`pserve` command causes the dev server to monitor the app files in the :file:`salishsea-site/` directory tree and restart whenever it detects that a file has been changed.
 That allows you to easily edit app code and templates and instantly see changes in your browser after a page refresh.
@@ -242,7 +242,7 @@ Building the Documentation
 The documentation for the :kbd:`salishsea-site` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
 Creating a :ref:`SalishSeaSiteDevelopmentEnvironment` as described above includes the installation of Sphinx.
 Building the documentation is driven by :file:`docs/Makefile`.
-With your :kbd:`salishsea-cmd` development environment activated,
+With your :kbd:`salishsea-site` development environment activated,
 use:
 
 .. code-block:: bash
@@ -281,7 +281,7 @@ The output looks something like::
 The HTML rendering of the docs ends up in :file:`docs/_build/html/`.
 You can open the :file:`index.html` file in that directory tree in your browser to preview the results of the build before committing and pushing your changes to Bitbucket.
 
-Whenever you push changes to the :ref:`salishsea-site-repo` on Bitbucket the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.org/en/latest/.
+Whenever you push changes to the :ref:`salishsea-site-repo` on Bitbucket the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
 
 
 .. _SalishSeaSiteRunningTheUnitTests:
@@ -316,7 +316,7 @@ The output looks something like::
 
 You can monitor what lines of code the test suite exercises using the `coverage.py`_ tool with the command:
 
-.. _coverage.py: https://coverage.readthedocs.org/en/latest/
+.. _coverage.py: https://coverage.readthedocs.io/en/latest/
 
 .. code-block:: bash
 
