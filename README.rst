@@ -8,6 +8,13 @@ based on the Pyramid framework that serves the salishsea.eos.ubc.ca
 site where information and research results from various projects about the
 oceanography of the Salish Sea are published to the web.
 
+Documentation for the app is in the ``docs/`` directory and is rendered at
+https://salishsea-site.readthedocs.io/en/latest/.
+
+.. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
+    :target: http://salishsea-site.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 
 License
 =======
