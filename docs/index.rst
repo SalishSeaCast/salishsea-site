@@ -42,10 +42,6 @@ or dive into the `narrative documentation`_.
 .. _narrative documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/index.html#narrative-documentation
 
 
-.. toctree::
-   :maxdepth: 2
-
-
 .. _salishSeaSiteStructure:
 
 App Structure
@@ -350,7 +346,7 @@ Version Control Repository
 
 The :kbd:`salishsea-site` package code and documentation source files are available in the :ref:`salishsea-site-repo` `Mercurial`_ repository at https://bitbucket.org/salishsea/salishsea-site.
 
-.. _Mercurial: http://mercurial.selenic.com/
+.. _Mercurial: https://www.mercurial-scm.org/
 
 
 .. _SalishSeaSiteIssueTracker:
