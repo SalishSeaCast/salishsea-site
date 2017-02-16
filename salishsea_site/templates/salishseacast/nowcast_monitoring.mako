@@ -45,10 +45,10 @@
              Links to the present and preceding 7 days'
              <a href="#log-files">log files</a>
            </li>
-##            <li>
-##              Images produced from the
-##              <a href="#grib_to_netcdf-image">weather forcing dataset</a>
-##            </li>
+           <li>
+             Images produced from the
+             <a href="#grib_to_netcdf-image">weather forcing dataset</a>
+           </li>
 ##            <li>
 ##              An image produced from the
 ##             <a href="#get_NeahBay_ssh-image">sea surface height</a>
@@ -291,6 +291,11 @@
           </table>
         </div>
       </div>
+
+      <h2 id="grib_to_netcdf-image">grib_to_netcdf Worker Monitoring Plots</h2>
+      <img class="img-responsive"
+        src="${request.static_url(grib_to_netcdf_png)}"
+        alt="Profiles from Median Prediction">
     </div>
   </div>
 </div>
