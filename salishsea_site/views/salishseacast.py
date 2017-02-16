@@ -21,6 +21,7 @@ from pathlib import Path
 import arrow
 import attr
 import requests
+import sys
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
 
@@ -478,7 +479,9 @@ def _data_for_publish_template(
     renderer='salishseacast/nowcast_monitoring.mako'
 )
 def nowcast_monitoring(request):
-    return {}
+    return {
+        'grib_to_netcdf_png': '/results/nowcast-sys/figures/monitoring/wg.png',
+    }
 
 
 @view_config(route_name='nowcast.logs', renderer='string')
