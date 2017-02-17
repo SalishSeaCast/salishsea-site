@@ -46,15 +46,15 @@
              <a href="#log-files">log files</a>
            </li>
            <li>
-             Images produced from the
+             Plots produced from the
              <a href="#grib_to_netcdf-image">weather forcing dataset</a>
            </li>
-##            <li>
-##              An image produced from the
-##             <a href="#get_NeahBay_ssh-image">sea surface height</a>
-##             observation and forecast datasets used to force the western boundary
-##             of the model at the mouth of the Strait of Juan de Fuca
-##            </li>
+           <li>
+             Plot produced from the
+            <a href="#get_NeahBay_ssh-image">sea surface height</a>
+            observation and forecast datasets used to force the western boundary
+            of the model at the mouth of the Juan de Fuca Strait
+           </li>
          </ul>
       </p>
 
@@ -295,7 +295,12 @@
       <h2 id="grib_to_netcdf-image">grib_to_netcdf Worker Monitoring Plots</h2>
       <img class="img-responsive"
         src="${request.static_url(grib_to_netcdf_png)}"
-        alt="Profiles from Median Prediction">
+        alt="Weather forcing dataset monitoring plots">
+
+      <h2 id="get_NeahBay_ssh-image">get_NeahBay_ssh Worker Monitoring Plots</h2>
+      <img class="img-responsive"
+        src="${request.static_url(get_NeahBay_ssh_png)}"
+        alt="Juan de Fuca Strait sea surface height forcing dataset observations and forecast plot">
     </div>
   </div>
 </div>
