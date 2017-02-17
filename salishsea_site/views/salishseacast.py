@@ -481,6 +481,8 @@ def _data_for_publish_template(
 def nowcast_monitoring(request):
     return {
         'grib_to_netcdf_png': '/results/nowcast-sys/figures/monitoring/wg.png',
+        'get_NeahBay_ssh_png':
+        '/results/nowcast-sys/figures/monitoring/NBssh.png',
     }
 
 
