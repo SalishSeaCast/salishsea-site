@@ -51,7 +51,7 @@
           <li>
             Fraser river: Real-time Environment Canada data at
             <a
-              href="https://wateroffice.ec.gc.ca/report/report_e.html?mode=Table&type=realTime&stn=08MF005&dataType=Real-Time&startDate=2014-12-30&endDate=2015-01-06&prm1=47&prm2=-1">Hope</a>
+              href="https://wateroffice.ec.gc.ca/report/real_time_e.html?stn=08MF005">Hope</a>
           </li>
           <li>
             Other rivers:
