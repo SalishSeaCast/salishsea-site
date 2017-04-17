@@ -20,7 +20,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <img class="img-responsive index"
-        src="${request.static_url('salishsea_site:static/img/index.svg')}"
+        src="${request.static_url('/results/nowcast-sys/figures/salishsea-site/static/img/index.svg')}"
         alt="Salish Sea Oceanography Model Products">
     </div>
   </div>
