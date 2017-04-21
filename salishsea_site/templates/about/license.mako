@@ -14,7 +14,7 @@
 ## limitations under the License.
 <%inherit file="../site.mako"/>
 
-<%block name="title">Salish Sea – License</%block>
+<%block name="title">Salish Sea - License</%block>
 
 <div class="container">
   <div class="row">
@@ -23,7 +23,7 @@
       <p>
         The salishsea.eos.ubc.ca site content,
         build tools,
-        and documentation are copyright 2014-2016 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group in the Department of Earth, Ocean, and Atmospheric Sciences at The University of British Columbia.
+        and documentation are copyright 2014-2017 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group in the Department of Earth, Ocean, and Atmospheric Sciences at The University of British Columbia.
         Please see <a href=${request.route_url('about.contributors')}>Contributors</a> for details.
       </p>
       <p>
