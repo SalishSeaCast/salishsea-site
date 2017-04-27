@@ -136,6 +136,7 @@ def _bloomcast_routes(config):
 
 def _about_site_routes(config):
     config.add_route('about.contributors', 'contributors')
+    config.add_route('about.publications', 'publications')
     config.add_route('about.license', 'license')
     # Legacy route
     config.add_route('about.contributors.html', 'contributors.html')
