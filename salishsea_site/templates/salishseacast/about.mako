@@ -105,7 +105,10 @@
         advection has been determined.
         (Soontiens, N. and Allen, S.
         Modelling sensitivities to mixing and advection in a sill-basin estuarine system.
-        Under revision for <em>Ocean Modelling</em>)
+        <em>Ocean Modelling</em>, <strong>112</strong>, 17-32.
+        <a href="https://dx.doi.org/10.1016/j.ocemod.2017.02.008" title="Link to paper via DOI">
+          https://dx.doi.org/10.1016/j.ocemod.2017.02.008
+        </a>
       </p>
 
       <h2>Project Resources</h2>
