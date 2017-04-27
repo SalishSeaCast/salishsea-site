@@ -21,7 +21,7 @@
     <div class="col-md-12">
       <h1>Contributors</h1>
       <p>
-        The salishsea.eos.ubc.ca site id the product of research conducted in
+        The salishsea.eos.ubc.ca site is the product of research conducted in
         the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group lead by
         <a href="https://www.eoas.ubc.ca/~sallen/">Susan Allen</a>
         in the Department of Earth, Ocean and Atmospheric Sciences
