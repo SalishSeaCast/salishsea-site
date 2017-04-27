@@ -32,6 +32,13 @@ def contributors(request):
     return {}
 
 
+@view_config(
+    route_name='about.publications', renderer='about/publications.mako'
+)
+def publications(request):
+    return {}
+
+
 @view_config(route_name='about.license', renderer='about/license.mako')
 @view_config(route_name='about.license.html', renderer='about/license.mako')
 def license(request):
