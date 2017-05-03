@@ -14,7 +14,7 @@
 ## limitations under the License.
 <%inherit file="../site.mako"/>
 
-<%block name="title">Salish Sea â€“ Contributors</%block>
+<%block name="title">Salish Sea - Contributors</%block>
 
 <div class="container">
   <div class="row">
@@ -29,21 +29,21 @@
       </p>
       <p>People who have contributed to this site:</p>
       <ul>
-        <li>Susan Allen &lt;<a href="mailto:sallen@eos.ubc.ca">sallen@eos.ubc.ca</a>&gt;</li>
-        <li>Doug Latornell &lt;<a href="dlatornell@eoas.ubc.ca">dlatornell@eos.ubc.ca</a>&gt;</li>
+        <li>Susan Allen &lt;<a href="mailto:sallen@eoas.ubc.ca">sallen@eoas.ubc.ca</a>&gt;</li>
+        <li>Doug Latornell &lt;<a href="dlatornell@eoas.ubc.ca">dlatornell@eoas.ubc.ca</a>&gt;</li>
         <li>Nancy Soontiens &lt;<a href="nsoontiens@eos.ubc.ca">nsoontiens@eos.ubc.ca</a>&gt;</li>
         <li>Idalia Machuca &lt;<a href="imachuca@eos.ubc.ca">imachuca@eos.ubc.ca</a>&gt;</li>
         <li>Muriel Dunn &lt;<a href="mdunn@eos.ubc.ca">mdunn@eos.ubc.ca</a>&gt;</li>
         <li>Jie Liu &lt;<a href="jieliu@eos.ubc.ca">jieliu@eos.ubc.ca</a>&gt;</li>
         <li>Elise Olson &lt;<a href="eolson@eos.ubc.ca">eolson@eos.ubc.ca</a>&gt;</li>
-        <li>Ben Moore-Maley &lt;<a href="bmorremaley@eos.ubc.ca">bmorremaley@eos.ubc.ca</a>&gt;</li>
+        <li>Ben Moore-Maley &lt;<a href="bmoorema@eoas.ubc.ca">bmoorema@eoas.ubc.ca</a>&gt;</li>
         <li>Karina Ramos Musalem &lt;<a href="kramosmusalem@eos.ubc.ca">kramosmusalem@eos.ubc.ca</a>&gt;</li>
         <li>Xiaoxin (Cindy) Yu &lt;<a href="xiaoxiny@eos.ubc.ca">xiaoxiny@eos.ubc.ca</a>&gt;</li>
         <li>Yingkai (Kyle) Sha &lt;<a href="yingkai@eos.ubc.ca">yingkai@eos.ubc.ca</a>&gt;</li>
         <li>Alex Huang</li>
         <li>Alyssia Law</li>
         <li>Michael Dunphy &lt;<a href="mdunphy@eoas.ubc.ca">mdunphy@eoas.ubc.ca</a>&gt&gt;</li>
-        <li>Tereza JarnÃ­kovÃ¡ &lt;<a href="tjarniko@eos.ubc.ca">tjarniko@eos.ubc.ca</a>&gt;</li>
+        <li>Tereza Jarníková &lt;<a href="tjarniko@eos.ubc.ca">tjarniko@eos.ubc.ca</a>&gt;</li>
       </ul>
     </div>
   </div>
