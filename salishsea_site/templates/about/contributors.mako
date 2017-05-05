@@ -43,7 +43,7 @@
         <li>Alex Huang</li>
         <li>Alyssia Law</li>
         <li>Michael Dunphy &lt;<a href="mdunphy@eoas.ubc.ca">mdunphy@eoas.ubc.ca</a>&gt;</li>
-        <li>Tereza Jarn�kov� &lt;<a href="tjarniko@eos.ubc.ca">tjarniko@eos.ubc.ca</a>&gt;</li>
+        <li>Tereza Jarníková &lt;<a href="tjarniko@eos.ubc.ca">tjarniko@eos.ubc.ca</a>&gt;</li>
       </ul>
     </div>
   </div>
