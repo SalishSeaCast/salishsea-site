@@ -134,6 +134,13 @@ currents_physics_figures = [
     ),
 ]
 
+biology_figures = [
+    FigureMetadata(
+        title='Nitrate Fields Along Thalweg and on Surface',
+        svg_name='nitrate_thalweg_and_surface',
+    ),
+]
+
 comparison_figures = [
     FigureMetadata(
         title='Modeled and Observed Winds at Sandheads', svg_name='SH_wind'
@@ -288,6 +295,7 @@ def results_index(request):
         ('forecast', 'forecast', publish_figures, 'publish'),
         ('nowcast publish', 'nowcast', publish_figures, 'publish'),
         ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
+        ('nowcast biology', 'nowcast-green', biology_figures, 'biology'),
         ('nowcast comparison', 'nowcast', comparison_figures, 'comparison'),
     )
     with requests.Session() as session:
@@ -422,6 +430,30 @@ def nowcast_currents_physics(request):
 
 
 @view_config(
+    route_name='results.nowcast.biology',
+    renderer='salishseacast/biology.mako'
+)
+def nowcast_biology(request):
+    """Render model research biology evaluation results figures page.
+    """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    with requests.Session() as session:
+        available_figures = [
+            fig for fig in biology_figures
+            if fig.available(request, 'nowcast-green', results_date, session)
+        ]
+    if not available_figures:
+        raise HTTPNotFound
+    return {
+        'results_date': results_date,
+        'run_type': 'nowcast-green',
+        'run_date': results_date,
+        'figures': available_figures,
+        'FIG_FILE_TMPL': FIG_FILE_TMPL,
+    }
+
+
+@view_config(
     route_name='results.nowcast.comparison',
     renderer='salishseacast/comparison.mako'
 )
@@ -451,11 +483,7 @@ def nowcast_comparison(request):
 
 
 def _data_for_publish_template(
-    request,
-    run_type,
-    results_date,
-    figures,
-    run_date,
+    request, run_type, results_date, figures, run_date
 ):
     """Calculate template variable values for a storm surge forecast figures
     page.
