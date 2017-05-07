@@ -88,8 +88,8 @@ def _salishseacast_routes(config):
         'nemo/results/forecast2/publish/{results_date}'
     )
     config.add_route(
-        'results.nowcast.research',
-        'nemo/results/nowcast/research/{results_date}'
+        'results.nowcast.currents',
+        'nemo/results/nowcast/currents/{results_date}'
     )
     config.add_route(
         'results.nowcast.comparison',
@@ -113,6 +113,10 @@ def _salishseacast_routes(config):
     config.add_route(
         'results.forecast2.publish.html',
         'nemo/results/forecast2/publish_{results_date}.html'
+    )
+    config.add_route(
+        'results.nowcast.research',
+        'nemo/results/nowcast/research/{results_date}'
     )
     config.add_route(
         'results.nowcast.research.html',

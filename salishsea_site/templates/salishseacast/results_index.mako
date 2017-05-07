@@ -45,7 +45,7 @@
           <tr>
             <th>Tracers, Currents &amp; Comparison to Observations</th>
           </tr>
-          ${grid_row("Nowcast", grid_dates['nowcast research'], "nowcast", "research")}
+          ${grid_row("Currents and Physics", grid_dates['nowcast currents'], "nowcast", "currents")}
           ${grid_row("Model vs. Observations", grid_dates['nowcast comparison'], "nowcast", "comparison")}
         </table>
       </div>
