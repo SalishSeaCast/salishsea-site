@@ -19,12 +19,14 @@
 <%inherit file="../site.mako"/>
 <%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
 
-<%block name="title">Salish Sea Model Research Evaluation Results – ${results_date.format('DD-MMM-YYYY')}</%block>
+<%block name="title">Salish Sea Model Currents & Physics – ${results_date.format('DD-MMM-YYYY')}</%block>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>Salish Sea Model Research Evaluation Results from Nowcast</h1>
+      <h1>Salish Sea Model Currents & Physics</h1>
+
+      <h2>Evaluation Results from Nowcast</h2>
 
       <h2>${results_date.format('dddd, D MMMM YYYY')}</h2>
 
@@ -46,7 +48,7 @@
         <li>
           Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P., Lu, Y., Thompson, K., Korabel, V. (2015).
           Storm surges in the Strait of Georgia simulated with a regional model.
-          Atmosphere-Ocean volume 54, issue 1.
+          Atmosphere-Ocean volume 54, issue 1, pp 1-21.
           <a href="https://dx.doi.org/10.1080/07055900.2015.1108899" title="Link to paper via DOI">
             https://dx.doi.org/10.1080/07055900.2015.1108899
           </a>
@@ -54,7 +56,7 @@
         <li>
           Soontiens, N. and Allen, S.
           Modelling sensitivities to mixing and advection in a sill-basin estuarine system. 
-          Ocean Modelling, 112, 17-32.
+          Ocean Modelling, volume 112, pp 17-32.
           <a href="https://dx.doi.org/10.1016/j.ocemod.2017.02.008" title="Link to paper via DOI">
             https://dx.doi.org/10.1016/j.ocemod.2017.02.008
           </a>
