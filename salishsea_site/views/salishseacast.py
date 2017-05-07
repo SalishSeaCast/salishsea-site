@@ -112,7 +112,7 @@ publish_figures = [
     ),
 ]
 
-research_figures = [
+currents_physics_figures = [
     FigureMetadata(
         title='Salinity Field Along Thalweg', svg_name='Salinity_on_thalweg'
     ),
@@ -181,6 +181,7 @@ comparison_figures = [
 @view_config(
     route_name='storm_surge.portal', renderer='storm_surge/portal.mako'
 )
+# Legacy route
 @view_config(
     route_name='storm_surge.index.html', renderer='storm_surge/portal.mako'
 )
@@ -193,6 +194,7 @@ def storm_surge_portal(request):
 @view_config(
     route_name='storm_surge.forecast', renderer='salishseacast/publish.mako'
 )
+# Legacy route
 @view_config(
     route_name='storm_surge.forecast.html',
     renderer='salishseacast/publish.mako'
@@ -248,7 +250,10 @@ def storm_surge_alert_feed(request):
 @view_config(
     route_name='salishseacast.about', renderer='salishseacast/about.mako'
 )
-@view_config(route_name='nemo.index.html', renderer='salishseacast/about.mako')
+# Legacy route
+@view_config(
+    route_name='nemo.index.html', renderer='salishseacast/about.mako'
+)
 def about(request):
     return {}
 
@@ -256,6 +261,7 @@ def about(request):
 @view_config(
     route_name='results.index', renderer='salishseacast/results_index.mako'
 )
+# Legacy route
 @view_config(
     route_name='results.index.html',
     renderer='salishseacast/results_index.mako'
@@ -281,7 +287,7 @@ def results_index(request):
         ('prelim forecast', 'forecast2', publish_figures, 'publish'),
         ('forecast', 'forecast', publish_figures, 'publish'),
         ('nowcast publish', 'nowcast', publish_figures, 'publish'),
-        ('nowcast research', 'nowcast', research_figures, 'research'),
+        ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
         ('nowcast comparison', 'nowcast', comparison_figures, 'comparison'),
     )
     with requests.Session() as session:
@@ -301,12 +307,7 @@ def results_index(request):
 
 
 def _exclude_missing_dates(
-    request,
-    dates,
-    figures,
-    figs_type,
-    run_type,
-    session,
+    request, dates, figures, figs_type, run_type, session
 ):
     run_date_offsets = {'nowcast': 0, 'forecast': -1, 'forecast2': -2}
     if figs_type == 'publish':
@@ -330,6 +331,7 @@ def _exclude_missing_dates(
     route_name='results.nowcast.publish',
     renderer='salishseacast/publish.mako'
 )
+# Legacy route
 @view_config(
     route_name='results.nowcast.publish.html',
     renderer='salishseacast/publish.mako'
@@ -351,6 +353,7 @@ def nowcast_publish(request):
     route_name='results.forecast.publish',
     renderer='salishseacast/publish.mako'
 )
+# Legacy route
 @view_config(
     route_name='results.forecast.publish.html',
     renderer='salishseacast/publish.mako'
@@ -369,6 +372,7 @@ def forecast_publish(request):
     route_name='results.forecast2.publish',
     renderer='salishseacast/publish.mako'
 )
+# Legacy route
 @view_config(
     route_name='results.forecast2.publish.html',
     renderer='salishseacast/publish.mako'
@@ -384,20 +388,26 @@ def forecast2_publish(request):
 
 
 @view_config(
+    route_name='results.nowcast.currents',
+    renderer='salishseacast/currents.mako'
+)
+# Legacy routes
+@view_config(
     route_name='results.nowcast.research',
-    renderer='salishseacast/research.mako'
+    renderer='salishseacast/currents.mako'
 )
 @view_config(
     route_name='results.nowcast.research.html',
-    renderer='salishseacast/research.mako'
+    renderer='salishseacast/currents.mako'
 )
-def nowcast_research(request):
-    """Render model research evaluation results figures page.
+def nowcast_currents_physics(request):
+    """Render model research currents and physics evaluation results figures 
+    page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
         available_figures = [
-            fig for fig in research_figures
+            fig for fig in currents_physics_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
     if not available_figures:
@@ -415,6 +425,7 @@ def nowcast_research(request):
     route_name='results.nowcast.comparison',
     renderer='salishseacast/comparison.mako'
 )
+# Legacy route
 @view_config(
     route_name='results.nowcast.comparison.html',
     renderer='salishseacast/comparison.mako'
