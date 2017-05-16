@@ -44,6 +44,12 @@
         <li>Alyssia Law</li>
         <li>Michael Dunphy &lt;<a href="mdunphy@eoas.ubc.ca">mdunphy@eoas.ubc.ca</a>&gt;</li>
         <li>Tereza Jarníková &lt;<a href="tjarniko@eos.ubc.ca">tjarniko@eos.ubc.ca</a>&gt;</li>
+        <li>Saurav Sahu &lt;<a href="ssahu@eoas.ubc.ca">ssahu@eoas.ubc.ca</a>&gt;</li>
+        <li>Melanie Grenier &lt;<a href="mgrenier@eos.ubc.ca">mgrenier@eos.ubc.ca</a>&gt;</li>
+        <li>Dan Robb &lt;<a href="drobb@eos.ubc.ca">drobb@eos.ubc.ca</a>&gt;</li>
+        <li>Giorgio Sgarbi &lt;<a href="gsgarbi@eos.ubc.ca">gsgarbi@eos.ubc.ca</a>&gt;</li>
+        <li>Vicky Do &lt;<a href="vdo@eos.ubc.ca">vdo@eos.ubc.ca</a>&gt;</li>
+        <li>Birgit Rogalla &lt;<a href="brogalla@eos.ubc.ca">brogalla@eos.ubc.ca</a>&gt;</li>
       </ul>
     </div>
   </div>
