@@ -17,27 +17,44 @@
 <%block name="title">Salish Sea Oceanography</%block>
 
 <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>UBC Salish Sea Model Project</h1>
+</div>
+</div>
+</div>
+
+<div class="container">
      <div class="row">
            <div class="col-sm-4">
+           <h3>About the Project</h3>
                  <a href=${request.route_url('salishseacast.about')}>
                  <img class="img-responsive index"
                       src="${request.static_url('salishsea_site:static/img/index_img1.svg')}"
-                      alt="Salish Sea Oceanography Model Products">
+                      alt="Salish Sea Oceanography Model Products"
+                      width="80%">
                  </a>
+           <p> test </p>
            </div>
            <div class="col-sm-4">
+           <h3>Storm Surge Forecast</h3>
                  <a href=${request.route_url('storm_surge.forecast')}>
                  <img class="img-responsive index"
                       src="${request.static_path('salishsea_site:static/img/index_img2.svg')}"
-                      alt="Salish Sea Oceanography Model Products">
+                      alt="Salish Sea Oceanography Model Products"
+                      width="80%">
                  </a>
+           <p> test </p>
            </div>
            <div class="col-sm-4">
+           <h3>Diatom Bloom Forecast</h3>
                  <a href=${request.route_url('bloomcast.spring_diatoms')}>
                  <img class="img-responsive index"
                       src="${request.static_path('salishsea_site:static/img/index_img3.svg')}"
-                      alt="Salish Sea Oceanography Model Products">
+                      alt="Salish Sea Oceanography Model Products"
+                      width="80%">
                  </a>
+           <p> test </p>
            </div>
      </div>
 </div>
@@ -45,25 +62,34 @@
 <div class="container">
      <div class="row">
            <div class="col-sm-4">
+           <h3>Storm Surge Nowcast</h3>
                  <a href=${request.route_url('results.index')}>
                  <img class="img-responsive index"
                       src="${request.static_path('salishsea_site:static/img/index_img4.svg')}"
-                      alt="Salish Sea Oceanography Model Products">
+                      alt="Salish Sea Oceanography Model Products"
+                      width="80%">
                  </a>
+           <p> test </p>
            </div>
            <div class="col-sm-4">
+           <h3>Currents and Physics</h3>
                  <a href=${request.route_url('results.index')}>
                  <img class="img-responsive index"
                       src="${request.static_path('salishsea_site:static/img/index_img5.svg')}"
-                      alt="Salish Sea Oceanography Model Products">
+                      alt="Salish Sea Oceanography Model Products"
+                      width="80%">
                  </a>
+           <p> test </p>
            </div>
            <div class="col-sm-4">
+           <h3>Biology</h3>
                  <a href=${request.route_url('results.index')}>
                  <img class="img-responsive index"
                       src="${request.static_path('salishsea_site:static/img/index_img6.svg')}"
-                      alt="Salish Sea Oceanography Model Products">
+                      alt="Salish Sea Oceanography Model Products"
+                      width="80%">
                  </a>
+           <p> test </p>
            </div>
      </div>
 </div>
