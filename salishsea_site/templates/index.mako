@@ -19,23 +19,23 @@
 <div class="container">
      <div class="row">
            <div class="col-sm-4">
-                 <a href=${request.route_url('storm_surge.forecast')}>
+                 <a href=${request.route_url('salishseacast.about')}>
                  <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/placeholder.png')}"
+                      src="${request.static_url('salishsea_site:static/img/index_img1.svg')}"
                       alt="Salish Sea Oceanography Model Products">
                  </a>
            </div>
            <div class="col-sm-4">
                  <a href=${request.route_url('storm_surge.forecast')}>
                  <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/placeholder.png')}"
+                      src="${request.static_path('salishsea_site:static/img/index_img2.svg')}"
                       alt="Salish Sea Oceanography Model Products">
                  </a>
            </div>
            <div class="col-sm-4">
-                 <a href=${request.route_url('storm_surge.forecast')}>
+                 <a href=${request.route_url('bloomcast.spring_diatoms')}>
                  <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/placeholder.png')}"
+                      src="${request.static_path('salishsea_site:static/img/index_img3.svg')}"
                       alt="Salish Sea Oceanography Model Products">
                  </a>
            </div>
@@ -45,23 +45,23 @@
 <div class="container">
      <div class="row">
            <div class="col-sm-4">
-                 <a href=${request.route_url('storm_surge.forecast')}>
+                 <a href=${request.route_url('results.index')}>
                  <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/placeholder.png')}"
+                      src="${request.static_path('salishsea_site:static/img/index_img4.svg')}"
                       alt="Salish Sea Oceanography Model Products">
                  </a>
            </div>
            <div class="col-sm-4">
-                 <a href=${request.route_url('storm_surge.forecast')}>
+                 <a href=${request.route_url('results.index')}>
                  <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/placeholder.png')}"
+                      src="${request.static_path('salishsea_site:static/img/index_img5.svg')}"
                       alt="Salish Sea Oceanography Model Products">
                  </a>
            </div>
            <div class="col-sm-4">
-                 <a href=${request.route_url('storm_surge.forecast')}>
+                 <a href=${request.route_url('results.index')}>
                  <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/placeholder.png')}"
+                      src="${request.static_path('salishsea_site:static/img/index_img6.svg')}"
                       alt="Salish Sea Oceanography Model Products">
                  </a>
            </div>
