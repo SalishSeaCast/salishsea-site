@@ -25,7 +25,7 @@
       <h1>SalishSeaCast NEMO Model</h1>
 
       <h2>About the Project</h2>
-      <p>
+      <p style="width:86%" align="justify">
         The Salish Sea is home to a large population of Canadians living in coastal communities 
         at risk to ocean related hazards.
         There is an ongoing need to assess the impact of these hazards on human and 
@@ -36,20 +36,30 @@
         (<a href="http://meopar.ca/">MEOPAR</a>)
         provides a platform to accelerate this type of research.
       </p>
-      <p>
+      <p style="width:86%" align="justify">
         The Salish Sea MEOPAR project team is developing a three-dimensional ocean model
         for the Strait of Georgia and Salish Sea.
         Using the
         <a href="http://www.nemo-ocean.eu/">NEMO</a>
-        modelling architecture the Salish Sea model will be used to evaluate
+        modelling architecture, the Salish Sea model will be used to evaluate
         storm surge risk in coastal communities.
         Long term goals include data assimilation from the VENUS network and a coupled
         biogeochemical modelling component.
       </p>
 
+      <h3>Model Domain</h3>
+      <p style="width:86%" align="justify"> 
+         The region covered by the model includes the Straight of Georgia, Straight of Juan de Fuca, Johnstone Strait, Fraser River, and other connecting waterways.
+      </p>
+      <img class="img-responsive center-block"
+           src="${request.static_path('salishsea_site:static/img/SalishSeaImage.png')}"
+           alt="SalishSeaCast NEMO Model Domain">
+
       <h3>Results</h3>
-      <p>Our results are available in a number of formats:</p>
-      <ul>
+      <p style="width:86%" align="justify">
+        Our results are available in a number of formats:
+      </p>
+      <ul style="width:86%" align="justify">
         <li>
           Our Storm Surge forecast:
           <a href=${request.route_url('storm_surge.forecast')}>${request.route_url('storm_surge.forecast')}</a>
@@ -78,17 +88,12 @@
         </li>
       </ul>
 
-      <h3>Domain</h3>
-      <img class="img-responsive center-block"
-           src="${request.static_path('salishsea_site:static/img/SalishSeaImage.png')}"
-           alt="SalishSeaCast NEMO Model Domain">
-
       <h3>Evaluation</h3>
-      <p>
+      <p style="width:86%" align="justify">
         <strong>General evaluation:</strong> as a
         <a href=${request.static_path('salishsea_site:static/pdf/model_evaluation_summary.pdf')}>slide presentation</a>
       </p>
-      <p>
+      <p style="width:86%" align="justify">
         <strong>Storm surge:</strong>
         The Salish Sea model's ability to calculate tides and sea surface height was evaluated
         by hindcasting storm surge events that occurred between 2002 and 2011.
@@ -98,7 +103,7 @@
         <em>Atmosphere-Ocean</em> <strong>54</strong> 1-21.
         <a href="https://dx.doi.org/10.1080/07055900.2015.1108899">https://dx.doi.org/10.1080/07055900.2015.1108899</a>)
       </p>
-      <p>
+       <p style="width:86%" align="justify">
         <strong>Mixing in San Juan/Gulf Islands:</strong>
         The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water
         pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and
@@ -112,7 +117,7 @@
       </p>
 
       <h2>Project Resources</h2>
-      <ul>
+      <ul style="width:86%" align="justify">
         <li>
           The main project documentation site is at
           <a href="https://salishsea-meopar-docs.readthedocs.io/en/latest/">
@@ -132,7 +137,7 @@
       </ul>
 
       <h2>Project Team and Collaborators</h2>
-      <p>
+      <p style="width:86%" align="justify">
         The Salish Sea NEMO Model project is lead by
         <a href="https://www.eoas.ubc.ca/~sallen/">Susan Allen</a>
         in the Department of Earth, Ocean, and Atmospheric Sciences
