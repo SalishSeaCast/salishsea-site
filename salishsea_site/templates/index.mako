@@ -34,7 +34,7 @@
                       alt="Salish Sea Oceanography Model Products"
                       width="80%">
                  </a>
-           <p> test </p>
+           <p> A three-dimensional physical-biological-chemical ocean model for the Strait of Georgia and Salish Sea.  </p>
            </div>
            <div class="col-sm-4">
            <h3>Storm Surge Forecast</h3>
@@ -44,7 +44,7 @@
                       alt="Salish Sea Oceanography Model Products"
                       width="80%">
                  </a>
-           <p> test </p>
+           <p> Marine and atmospheric conditions: storm surge alerts, tidal predictions, surface height, and winds. </p>
            </div>
            <div class="col-sm-4">
            <h3>Diatom Bloom Forecast</h3>
@@ -54,7 +54,7 @@
                       alt="Salish Sea Oceanography Model Products"
                       width="80%">
                  </a>
-           <p> test </p>
+           <p> SOG biophysical model: best estimate of the first spring diatom bloom in the Straight of Georgia. </p>
            </div>
      </div>
 </div>
@@ -69,7 +69,7 @@
                       alt="Salish Sea Oceanography Model Products"
                       width="80%">
                  </a>
-           <p> test </p>
+           <p> Present marine and atmospheric conditions. </p>
            </div>
            <div class="col-sm-4">
            <h3>Currents and Physics</h3>
@@ -79,7 +79,7 @@
                       alt="Salish Sea Oceanography Model Products"
                       width="80%">
                  </a>
-           <p> test </p>
+           <p> Research results: salinity, temperature, and currents. </p>
            </div>
            <div class="col-sm-4">
            <h3>Biology</h3>
@@ -89,7 +89,7 @@
                       alt="Salish Sea Oceanography Model Products"
                       width="80%">
                  </a>
-           <p> test </p>
+           <p> Research results: nitrate, diatoms, flagellates. </p>
            </div>
      </div>
 </div>
