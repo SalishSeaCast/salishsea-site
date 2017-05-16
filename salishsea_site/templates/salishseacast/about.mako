@@ -57,7 +57,7 @@
 
       <h3>Results</h3>
       <p style="width:86%" align="justify">
-        Our results are available in a number of formats:
+        Our model results include storm surge alerts and the region's atmospheric and marine conditions. They are available in a number of formats:
       </p>
       <ul style="width:86%" align="justify">
         <li>
