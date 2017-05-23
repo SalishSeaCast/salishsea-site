@@ -15,10 +15,12 @@
 ## limitations under the License.
 */
 
-/* Site index page images */
+/* Site index page images and site section descriptions */
 img.index {
     width: 80%;
-    padding-bottom: 20px;
+}
+p.index {
+    padding-top: 20px;
 }
 
 a.header-link {
