@@ -24,7 +24,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <h3>About the Project</h3>
       <a href=${request.route_url('salishseacast.about')}>
         <img class="img-responsive index"
@@ -36,7 +36,7 @@
         A three-dimensional physical-biological-chemical ocean model for the Strait of Georgia and Salish Sea.
       </p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <h3>Storm Surge Forecast</h3>
       <a href=${request.route_url('storm_surge.forecast')}>
         <img class="img-responsive index"
@@ -48,7 +48,7 @@
         Marine and atmospheric conditions: storm surge alerts, tidal predictions, surface height, and winds.
       </p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <h3>Diatom Bloom Forecast</h3>
       <a href=${request.route_url('bloomcast.spring_diatoms')}>
         <img class="img-responsive index"
@@ -63,7 +63,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <h3>Storm Surge Nowcast</h3>
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
@@ -75,7 +75,7 @@
         Present marine and atmospheric conditions.
       </p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <h3>Currents and Physics</h3>
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
@@ -87,7 +87,7 @@
         Research results: salinity, temperature, and currents.
       </p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <h3>Biology</h3>
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
