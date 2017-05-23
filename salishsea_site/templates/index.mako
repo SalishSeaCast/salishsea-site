@@ -22,9 +22,7 @@
       <h1>UBC Salish Sea Model Project</h1>
 </div>
 </div>
-</div>
 
-<div class="container">
      <div class="row">
            <div class="col-sm-4">
            <h3>About the Project</h3>
@@ -57,9 +55,7 @@
            <p> SOG biophysical model: best estimate of the first spring diatom bloom in the Straight of Georgia. </p>
            </div>
      </div>
-</div>
 
-<div class="container">
      <div class="row">
            <div class="col-sm-4">
            <h3>Storm Surge Nowcast</h3>
