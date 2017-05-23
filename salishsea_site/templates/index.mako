@@ -93,18 +93,3 @@
            </div>
      </div>
 </div>
-
-
-<!--
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-         <a href=${request.route_url('storm_surge.forecast')}>
-            <img class="img-responsive index"
-                 src="${request.static_path('salishsea_site:static/img/placeholder.png')}"
-                 alt="Salish Sea Oceanography Model Products">
-         </a>
-    </div>
-  </div>
-</div>
--->
