@@ -15,7 +15,9 @@
 ## limitations under the License.
 */
 
+/* Site index page images */
 img.index {
+    width: 80%;
     padding-bottom: 20px;
 }
 

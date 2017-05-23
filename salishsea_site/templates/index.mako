@@ -29,8 +29,7 @@
       <a href=${request.route_url('salishseacast.about')}>
         <img class="img-responsive index"
              src="${request.static_url('salishsea_site:static/img/index_img1.svg')}"
-             alt="Salish Sea Oceanography Model Products"
-             width="80%">
+             alt="Salish Sea Oceanography Model Products">
       </a>
       <p>
         A three-dimensional physical-biological-chemical ocean model for the Strait of Georgia and Salish Sea.
@@ -41,8 +40,7 @@
       <a href=${request.route_url('storm_surge.forecast')}>
         <img class="img-responsive index"
              src="${request.static_path('salishsea_site:static/img/index_img2.svg')}"
-             alt="Salish Sea Oceanography Model Products"
-             width="80%">
+             alt="Salish Sea Oceanography Model Products">
       </a>
       <p>
         Marine and atmospheric conditions: storm surge alerts, tidal predictions, surface height, and winds.
@@ -53,8 +51,7 @@
       <a href=${request.route_url('bloomcast.spring_diatoms')}>
         <img class="img-responsive index"
              src="${request.static_path('salishsea_site:static/img/index_img3.svg')}"
-             alt="Salish Sea Oceanography Model Products"
-             width="80%">
+             alt="Salish Sea Oceanography Model Products">
       </a>
       <p>
         SOG biophysical model: best estimate of the first spring diatom bloom in the Straight of Georgia.
@@ -68,8 +65,7 @@
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
              src="${request.static_path('salishsea_site:static/img/index_img4.svg')}"
-             alt="Salish Sea Oceanography Model Products"
-             width="80%">
+             alt="Salish Sea Oceanography Model Products">
       </a>
       <p>
         Present marine and atmospheric conditions.
@@ -80,8 +76,7 @@
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
              src="${request.static_path('salishsea_site:static/img/index_img5.svg')}"
-             alt="Salish Sea Oceanography Model Products"
-             width="80%">
+             alt="Salish Sea Oceanography Model Products">
       </a>
       <p>
         Research results: salinity, temperature, and currents.
@@ -92,8 +87,7 @@
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
              src="${request.static_path('salishsea_site:static/img/index_img6.svg')}"
-             alt="Salish Sea Oceanography Model Products"
-             width="80%">
+             alt="Salish Sea Oceanography Model Products">
       </a>
       <p>
         Research results: nitrate, diatoms, flagellates.
