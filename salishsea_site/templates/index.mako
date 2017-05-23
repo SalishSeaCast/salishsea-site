@@ -31,7 +31,7 @@
              src="${request.static_url('salishsea_site:static/img/index_img1.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
-      <p>
+      <p class="index">
         A three-dimensional physical-biological-chemical ocean model for the Strait of Georgia and Salish Sea.
       </p>
     </div>
@@ -42,7 +42,7 @@
              src="${request.static_path('salishsea_site:static/img/index_img2.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
-      <p>
+      <p class="index">
         Marine and atmospheric conditions: storm surge alerts, tidal predictions, surface height, and winds.
       </p>
     </div>
@@ -53,7 +53,7 @@
              src="${request.static_path('salishsea_site:static/img/index_img3.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
-      <p>
+      <p class="index">
         SOG biophysical model: best estimate of the first spring diatom bloom in the Straight of Georgia.
       </p>
     </div>
@@ -67,7 +67,7 @@
              src="${request.static_path('salishsea_site:static/img/index_img4.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
-      <p>
+      <p class="index">
         Present marine and atmospheric conditions.
       </p>
     </div>
@@ -78,7 +78,7 @@
              src="${request.static_path('salishsea_site:static/img/index_img5.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
-      <p>
+      <p class="index">
         Research results: salinity, temperature, and currents.
       </p>
     </div>
@@ -89,7 +89,7 @@
              src="${request.static_path('salishsea_site:static/img/index_img6.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
-      <p>
+      <p class="index">
         Research results: nitrate, diatoms, flagellates.
       </p>
     </div>
