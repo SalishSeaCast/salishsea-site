@@ -25,7 +25,7 @@
       <h1>SalishSeaCast NEMO Model</h1>
 
       <h2>About the Project</h2>
-      <p style="width:86%" align="justify">
+      <p class="text-justify" style="width:86%">
         The Salish Sea is home to a large population of Canadians living in coastal communities 
         at risk to ocean related hazards.
         There is an ongoing need to assess the impact of these hazards on human and 
@@ -36,7 +36,7 @@
         (<a href="http://meopar.ca/">MEOPAR</a>)
         provides a platform to accelerate this type of research.
       </p>
-      <p style="width:86%" align="justify">
+      <p class="text-justify" style="width:86%">
         The Salish Sea MEOPAR project team is developing a three-dimensional ocean model
         for the Strait of Georgia and Salish Sea.
         Using the
@@ -48,7 +48,7 @@
       </p>
 
       <h3>Model Domain</h3>
-      <p style="width:86%" align="justify"> 
+      <p class="text-justify" style="width:86%">
          The region covered by the model includes the Straight of Georgia, Straight of Juan de Fuca, Johnstone Strait, Fraser River, and other connecting waterways.
       </p>
       <img class="img-responsive center-block"
@@ -56,7 +56,7 @@
            alt="SalishSeaCast NEMO Model Domain">
 
       <h3>Results</h3>
-      <p style="width:86%" align="justify">
+      <p class="text-justify" style="width:86%">
         Our model results include storm surge alerts and the region's atmospheric and marine conditions. They are available in a number of formats:
       </p>
       <ul style="width:86%" align="justify">
@@ -89,11 +89,11 @@
       </ul>
 
       <h3>Evaluation</h3>
-      <p style="width:86%" align="justify">
+      <p class="text-justify" style="width:86%">
         <strong>General evaluation:</strong> as a
         <a href=${request.static_path('salishsea_site:static/pdf/model_evaluation_summary.pdf')}>slide presentation</a>
       </p>
-      <p style="width:86%" align="justify">
+      <p class="text-justify" style="width:86%">
         <strong>Storm surge:</strong>
         The Salish Sea model's ability to calculate tides and sea surface height was evaluated
         by hindcasting storm surge events that occurred between 2002 and 2011.
@@ -103,7 +103,7 @@
         <em>Atmosphere-Ocean</em> <strong>54</strong> 1-21.
         <a href="https://dx.doi.org/10.1080/07055900.2015.1108899">https://dx.doi.org/10.1080/07055900.2015.1108899</a>)
       </p>
-       <p style="width:86%" align="justify">
+       <p class="text-justify" style="width:86%">
         <strong>Mixing in San Juan/Gulf Islands:</strong>
         The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water
         pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and
@@ -137,7 +137,7 @@
       </ul>
 
       <h2>Project Team and Collaborators</h2>
-      <p style="width:86%" align="justify">
+      <p class="text-justify" style="width:86%">
         The Salish Sea NEMO Model project is lead by
         <a href="https://www.eoas.ubc.ca/~sallen/">Susan Allen</a>
         in the Department of Earth, Ocean, and Atmospheric Sciences
