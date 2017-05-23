@@ -20,72 +20,72 @@
   <div class="row">
     <div class="col-md-12">
       <h1>UBC Salish Sea Model Project</h1>
-</div>
-</div>
+    </div>
+  </div>
 
-     <div class="row">
-           <div class="col-sm-4">
-           <h3>About the Project</h3>
-                 <a href=${request.route_url('salishseacast.about')}>
-                 <img class="img-responsive index"
-                      src="${request.static_url('salishsea_site:static/img/index_img1.svg')}"
-                      alt="Salish Sea Oceanography Model Products"
-                      width="80%">
-                 </a>
-           <p> A three-dimensional physical-biological-chemical ocean model for the Strait of Georgia and Salish Sea.  </p>
-           </div>
-           <div class="col-sm-4">
-           <h3>Storm Surge Forecast</h3>
-                 <a href=${request.route_url('storm_surge.forecast')}>
-                 <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/index_img2.svg')}"
-                      alt="Salish Sea Oceanography Model Products"
-                      width="80%">
-                 </a>
-           <p> Marine and atmospheric conditions: storm surge alerts, tidal predictions, surface height, and winds. </p>
-           </div>
-           <div class="col-sm-4">
-           <h3>Diatom Bloom Forecast</h3>
-                 <a href=${request.route_url('bloomcast.spring_diatoms')}>
-                 <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/index_img3.svg')}"
-                      alt="Salish Sea Oceanography Model Products"
-                      width="80%">
-                 </a>
-           <p> SOG biophysical model: best estimate of the first spring diatom bloom in the Straight of Georgia. </p>
-           </div>
-     </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>About the Project</h3>
+      <a href=${request.route_url('salishseacast.about')}>
+        <img class="img-responsive index"
+             src="${request.static_url('salishsea_site:static/img/index_img1.svg')}"
+             alt="Salish Sea Oceanography Model Products"
+             width="80%">
+      </a>
+      <p> A three-dimensional physical-biological-chemical ocean model for the Strait of Georgia and Salish Sea.  </p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Storm Surge Forecast</h3>
+      <a href=${request.route_url('storm_surge.forecast')}>
+        <img class="img-responsive index"
+             src="${request.static_path('salishsea_site:static/img/index_img2.svg')}"
+             alt="Salish Sea Oceanography Model Products"
+             width="80%">
+      </a>
+      <p> Marine and atmospheric conditions: storm surge alerts, tidal predictions, surface height, and winds. </p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Diatom Bloom Forecast</h3>
+      <a href=${request.route_url('bloomcast.spring_diatoms')}>
+        <img class="img-responsive index"
+             src="${request.static_path('salishsea_site:static/img/index_img3.svg')}"
+             alt="Salish Sea Oceanography Model Products"
+             width="80%">
+      </a>
+      <p> SOG biophysical model: best estimate of the first spring diatom bloom in the Straight of Georgia. </p>
+    </div>
+  </div>
 
-     <div class="row">
-           <div class="col-sm-4">
-           <h3>Storm Surge Nowcast</h3>
-                 <a href=${request.route_url('results.index')}>
-                 <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/index_img4.svg')}"
-                      alt="Salish Sea Oceanography Model Products"
-                      width="80%">
-                 </a>
-           <p> Present marine and atmospheric conditions. </p>
-           </div>
-           <div class="col-sm-4">
-           <h3>Currents and Physics</h3>
-                 <a href=${request.route_url('results.index')}>
-                 <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/index_img5.svg')}"
-                      alt="Salish Sea Oceanography Model Products"
-                      width="80%">
-                 </a>
-           <p> Research results: salinity, temperature, and currents. </p>
-           </div>
-           <div class="col-sm-4">
-           <h3>Biology</h3>
-                 <a href=${request.route_url('results.index')}>
-                 <img class="img-responsive index"
-                      src="${request.static_path('salishsea_site:static/img/index_img6.svg')}"
-                      alt="Salish Sea Oceanography Model Products"
-                      width="80%">
-                 </a>
-           <p> Research results: nitrate, diatoms, flagellates. </p>
-           </div>
-     </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Storm Surge Nowcast</h3>
+      <a href=${request.route_url('results.index')}>
+        <img class="img-responsive index"
+             src="${request.static_path('salishsea_site:static/img/index_img4.svg')}"
+             alt="Salish Sea Oceanography Model Products"
+             width="80%">
+      </a>
+      <p> Present marine and atmospheric conditions. </p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Currents and Physics</h3>
+      <a href=${request.route_url('results.index')}>
+        <img class="img-responsive index"
+             src="${request.static_path('salishsea_site:static/img/index_img5.svg')}"
+             alt="Salish Sea Oceanography Model Products"
+             width="80%">
+      </a>
+      <p> Research results: salinity, temperature, and currents. </p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Biology</h3>
+      <a href=${request.route_url('results.index')}>
+        <img class="img-responsive index"
+             src="${request.static_path('salishsea_site:static/img/index_img6.svg')}"
+             alt="Salish Sea Oceanography Model Products"
+             width="80%">
+      </a>
+      <p> Research results: nitrate, diatoms, flagellates. </p>
+    </div>
+  </div>
 </div>
