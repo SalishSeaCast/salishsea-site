@@ -21,11 +21,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <h1>Strait of Georgia Bloomcast</h1>
 
       <h2>About the Project</h2>
-      <p class="text-justify"  style="width:86%">
+      <p class="text-justify">
         The timing of the spring phytoplankton bloom in the Strait of Georgia is highly variable,
         ranging from late February to mid-April.
         Changes in the timing have been related to the success of herring larval recruitment
@@ -51,7 +51,7 @@
           increases the advection loss of phytoplankton.
         </li>
       </ol>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         The <a href="https://www.eoas.ubc.ca/~sallen/SOG-docs/">SOG biophysical model for deep estuaries</a>
         <a href="#footnote3" id="footnote3-back-link" title="Link to citation">[3]</a>
         is a vertical-mixing layer model forced by observed winds at Sand Heads,
@@ -63,7 +63,7 @@
         Cloud fraction is interpreted based on the weather description and the historical average cloud fraction to weather,
         done by month for the most common weather descriptions.
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added 
         <a href="#footnote6" id="footnote6-back-link" title="Link to citation">[6]</a>.
         To model a spring bloom,
@@ -80,19 +80,19 @@
         for the spring blooms of 2002-2005 for which detailed observations were made as part of the STRATOGEM project 
         <a href="#footnote3" id="footnote3-back-link" title="Link to citation">[3]</a>.
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         A carbon module that models dissolved inorganic carbon and total alkalinity has been added to the model and allows estimation of aragonite saturation state 
         <a href="#footnote8" id="footnote8-back-link" title="Link to citation">[8]</a>.
       </p>
 
       <h3>Results</h3>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         The most recent predictions for the first spring diatom bloom in the Strait of Georgia are available at 
         <a href="https://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html">https://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html</a>.
       </p>
 
       <h3>References</h3>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote1" href="#footnote1-back-link" title="Link to reference">[1]</a>
         Schweigert, J.F., M. Thompson, C. Fort, D.E. Hay, T.W. Therriault, and L.N. Brown. (2013).
         Factors linking Pacific herring (<em>Clupea pallasi</em>) productivity and the spring plankton bloom in the Strait of Georgia, British Columbia, Canada.
@@ -101,7 +101,7 @@
           http://dx.doi.org/10.1016/j.pocean.2013.05.017
         </a>
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote2" href="#footnote2-back-link" title="Link to reference">[2]</a>
         Tommasi, D., B.P.V. Hunt, E.A. Pakhomov, and D.L. Mackas. (2013).
         Mesozooplankton community seasonal succession and its drivers: Insights from a British Columbia, Canada, fjord.
@@ -110,7 +110,7 @@
           http://dx.doi.org/10.1016/j.jmarsys.2013.01.005
         </a>
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote3" href="#footnote3-back-link" title="Link to reference">[3]</a>
         Allen, S. E. and M. A. Wolfe. (2013).
         Hindcast of the Timing of the Spring Phytoplankton Bloom in the Strait of Georgia, 1968-2010.
@@ -119,21 +119,21 @@
           http://dx.doi.org/10.1016/j.pocean.2013.05.026
         </a>
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote4" href="#footnote4-back-link" title="Link to reference">[4]</a>
         Environment Canada, (${ec_database_year}). Climate database.
         <a href="http://climate.weather.gc.ca/index_e.html" title="Link to database description">
           http://climate.weather.gc.ca/index_e.html
         </a>
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote5" href="#footnote5-back-link" title="Link to reference">[5]</a>
         Environment Canada, (${ec_database_year}). Hydrometric data.
         <a href="http://www.ec.gc.ca/rhc-wsc/" title="Link to database description">
           http://www.ec.gc.ca/rhc-wsc/
         </a>
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote6" href="#footnote6-back-link" title="Link to reference">[6]</a>
         Collins, A. K., S. E. Allen, and R. Pawlowicz. (2009).
         The role of wind in determining the timing of the spring bloom in the Strait of Georgia.
@@ -142,7 +142,7 @@
           http://dx.doi.org/10.1139/F09-071
         </a>
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote7" href="#footnote7-back-link" title="Link to reference">[7]</a>
         Sastri, A. R., and J. F. Dower. (2009).
         Interannual variability in chitobiase-based production rates of the crustacean zooplankton community in the Strait of Georgia, British Columbia, Canada.
@@ -151,7 +151,7 @@
           https://doi.org/10.3354/meps08111
         </a>
       </p>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         <a id="footnote8" href="#footnote8-back-link" title="Link to reference">[8]</a>
         Moore-Maley, Benjamin. (2014).
         The inorganic carbonate chemistry of the southern Strait of Georgia,
