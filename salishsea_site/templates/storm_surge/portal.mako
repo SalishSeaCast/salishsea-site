@@ -21,10 +21,10 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <h1>Storm Surge Information Portal</h1>
 
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         This is a collection of links to web resources that may help interested parties assess
         the risks and possible impacts of storm surge events in the Salish Sea region,
         with particular emphasis on the Southern Strait of Georgia.
@@ -32,7 +32,7 @@
 
       <h2>UBC SalishSeaCast Storm Surge</h2>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <a href=${request.route_url('storm_surge.forecast')}>
             <img class="img-responsive"
               src="${request.static_url('/results/nowcast-sys/figures/storm-surge/Website_thumbnail.png')}"
@@ -40,8 +40,8 @@
               alt="UBC SalishSeaCast Storm Surge Forecast Thumbnail Image">
           </a>
         </div>
-        <div class="col-md-8">
-          <p class="text-justify" style="width:78%">
+        <div class="col-md-7">
+          <p class="text-justify">
             <a href=${request.route_url('storm_surge.forecast')}>SalishSeaCast Forecast</a>
             gives our most recent forecast,
             usually for tomorrow.
@@ -59,7 +59,7 @@
 
       <h2>Storm Surge BC</h2>
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <a href="http://www.stormsurgebc.ca/">
             <img class="img-responsive"
               src="http://www.stormsurgebc.ca/files/images/alert.gif"
@@ -67,8 +67,8 @@
               alt="Storm Surge BC Alert Map">
           </a>
         </div>
-        <div class="col-md-10">
-          <p class="text-justify" style="width:82%">
+        <div class="col-md-9">
+          <p class="text-justify">
             <a href="http://stormsurgebc.ca/">Storm Surge BC</a>
             is the British Columbia Storm Surge Forecasting Program site.
             The program is a joint effort between the BC Ministry of Environment
@@ -90,7 +90,7 @@
       </div>
 
       <h2>Halibut Bank Weather Buoy</h2>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         The
         <a href="http://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146">
           Halibut Bank Weather Buoy
@@ -109,7 +109,7 @@
       </p>
 
       <h2>NOAA Storm Surge Forecast at Neah Bay, WA</h2>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         The US National Oceanic and Atmospheric Administration (NOAA) maintains storm surge advisory pages
         for various locations on the Pacific Coast.
         The
@@ -128,7 +128,7 @@
       </p>
 
       <h2>Sea Level Rise and Storm Surges on the BC Coast</h2>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         The BC provincial government maintains a
         <a href="http://www2.gov.bc.ca/gov/content/environment/climate-change/policy-legislation-programs/adaptation/sea-level-rise">
           web page about climate change adaptation
@@ -140,7 +140,7 @@
       </p>
 
       <h2>SalishSeaCast NEMO Model</h2>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         Work is presently under way to evaluate the
         <a href=${request.route_url('salishseacast.about')}>SalishSeaCast NEMO model's</a>
         calculations of tides and sea surface height by hindcasting storm surge events that occurred between 2002 and 2011.
@@ -152,7 +152,7 @@
       </p>
 
       <h2>Feedback</h2>
-      <p class="text-justify" style="width:86%">
+      <p class="text-justify">
         If you have comments or questions on the information provided on this page,
         or suggestions of other resources that should be linked here,
         please contact <a href="mailto:sallen@eoas.ubc.ca">Susan Allen</a>.
