@@ -59,7 +59,7 @@
       <p class="text-justify">
         Our model results include storm surge alerts and the region's atmospheric and marine conditions. They are available in a number of formats:
       </p>
-      <ul align="justify">
+      <ul>
         <li>
           Our Storm Surge forecast:
           <a href=${request.route_url('storm_surge.forecast')}>${request.route_url('storm_surge.forecast')}</a>
@@ -117,7 +117,7 @@
       </p>
 
       <h2>Project Resources</h2>
-      <ul align="justify">
+      <ul>
         <li>
           The main project documentation site is at
           <a href="https://salishsea-meopar-docs.readthedocs.io/en/latest/">
