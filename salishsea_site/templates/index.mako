@@ -28,7 +28,7 @@
       <h3>About the Project</h3>
       <a href=${request.route_url('salishseacast.about')}>
         <img class="img-responsive index"
-             src="${request.static_url('salishsea_site:static/img/index_page/about_project.svg')}"
+             src="${request.static_url('/results/nowcast-sys/figures/salishsea-site/static/img/index_page/about_project.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
       <p class="index">
@@ -39,7 +39,7 @@
       <h3>Storm Surge Forecast</h3>
       <a href=${request.route_url('storm_surge.forecast')}>
         <img class="img-responsive index"
-             src="${request.static_path('salishsea_site:static/img/index_page/storm_surge_forecast.svg')}"
+             src="${request.static_path('/results/nowcast-sys/figures/salishsea-site/static/img/index_page/storm_surge_forecast.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
       <p class="index">
@@ -50,7 +50,7 @@
       <h3>Diatom Bloom Forecast</h3>
       <a href=${request.route_url('bloomcast.spring_diatoms')}>
         <img class="img-responsive index"
-             src="${request.static_path('salishsea_site:static/img/index_page/diatom_bloom_forecast.svg')}"
+             src="${request.static_path('/results/nowcast-sys/figures/salishsea-site/static/img/index_page/diatom_bloom_forecast.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
       <p class="index">
@@ -64,7 +64,7 @@
       <h3>Storm Surge Nowcast</h3>
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
-             src="${request.static_path('salishsea_site:static/img/index_page/storm_surge_nowcast.svg')}"
+             src="${request.static_path('/results/nowcast-sys/figures/salishsea-site/static/img/index_page/storm_surge_nowcast.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
       <p class="index">
@@ -75,7 +75,7 @@
       <h3>Currents and Physics</h3>
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
-             src="${request.static_path('salishsea_site:static/img/index_page/curents_and_physics.svg')}"
+             src="${request.static_path('/results/nowcast-sys/figures/salishsea-site/static/img/index_page/curents_and_physics.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
       <p class="index">
@@ -86,7 +86,7 @@
       <h3>Biology</h3>
       <a href=${request.route_url('results.index')}>
         <img class="img-responsive index"
-             src="${request.static_path('salishsea_site:static/img/index_page/biology.svg')}"
+             src="${request.static_path('/results/nowcast-sys/figures/salishsea-site/static/img/index_page/biology.svg')}"
              alt="Salish Sea Oceanography Model Products">
       </a>
       <p class="index">
