@@ -101,7 +101,7 @@ publish_figures = [
     FigureMetadata(
         title='Storm Surge Alert Thresholds', svg_name='WaterLevel_Thresholds'
     ),
-    FigureMetadata(title='Sandheads Wind', svg_name='SH_wind'),
+    FigureMetadata(title='Sand Heads Wind', svg_name='SH_wind'),
     FigureMetadata(
         title='Winds from Atmospheric Forcing Averaged Over Run Duration',
         svg_name='Avg_wind_vectors'
@@ -143,7 +143,7 @@ biology_figures = [
 
 comparison_figures = [
     FigureMetadata(
-        title='Modeled and Observed Winds at Sandheads', svg_name='SH_wind'
+        title='Modeled and Observed Winds at Sand Heads', svg_name='SH_wind'
     ),
     FigureMetadata(
         title=(
