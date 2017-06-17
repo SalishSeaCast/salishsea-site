@@ -35,6 +35,16 @@ class FigureMetadata:
     #: So, if the file name is Vic_maxSSH_05nov16.svg, the svg_name value
     #: is Vic_maxSSH.
     svg_name = attr.ib()
+    #: Text to appear in list of choices for figure in group of figures.
+    #: Clicking on this text will swap this figure into the figure group
+    #: display elements.
+    link_text = attr.ib(default='')
+    #: Figure group description.
+    #: Used in the list of plots to link to the figure group section of the
+    #: page.
+    #: Also used as the heading text for the figure links list,
+    #: and as the basis for the figure group permalink slug.
+    group = attr.ib(default='')
 
     FIG_FILE_TMPL = (
         '/results/nowcast-sys/figures/{run_type}/{run_dmy}/'
@@ -178,20 +188,30 @@ comparison_figures = [
         ),
         svg_name='TW_SB_ferry_salinity'
     ),
+]
+onc_venus_comparison_figures = [
     FigureMetadata(
+        group='Salinity and Temperature at ONC VENUS nodes',
         title='Salinity and Temperature at ONC VENUS Central Node',
+        link_text='Central Node',
         svg_name='Compare_VENUS_Central'
     ),
     FigureMetadata(
+        group='Salinity and Temperature at ONC VENUS nodes',
         title='Salinity and Temperature at ONC VENUS Delta BBL Node',
+        link_text='BBL Node',
         svg_name='Compare_VENUS_Delta_BBL'
     ),
     FigureMetadata(
+        group='Salinity and Temperature at ONC VENUS nodes',
         title='Salinity and Temperature at ONC VENUS Delta DDL Node',
+        link_text='DDL Node',
         svg_name='Compare_VENUS_Delta_DDL'
     ),
     FigureMetadata(
+        group='Salinity and Temperature at ONC VENUS nodes',
         title='Salinity and Temperature at ONC VENUS East Node',
+        link_text='East Node',
         svg_name='Compare_VENUS_East'
     ),
 ]
@@ -477,17 +497,26 @@ def nowcast_comparison(request):
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
-        available_figures = [
+        ungrouped_figures = [
             fig for fig in comparison_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
+        onc_venus_figures = [
+            fig for fig in onc_venus_comparison_figures
+            if fig.available(request, 'nowcast', results_date, session)
+        ]
+    figure_links = [figure.title for figure in ungrouped_figures]
+    figure_links.append(onc_venus_figures[0].group)
+    available_figures = ungrouped_figures + onc_venus_comparison_figures
     if not available_figures:
         raise HTTPNotFound
     return {
         'results_date': results_date,
         'run_type': 'nowcast',
         'run_date': results_date,
-        'figures': available_figures,
+        'figure_links': figure_links,
+        'figures': ungrouped_figures,
+        'onc_venus_figures': onc_venus_figures,
     }
 
 
