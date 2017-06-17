@@ -68,7 +68,7 @@
   ${list_of_plots(figures)}
 
   %for figure in figures:
-    ${figure_row(figure, FIG_FILE_TMPL, run_type, run_date)}
+    ${figure_row(figure, run_type, run_date)}
     ${figure_nav_links()}
   %endfor
 

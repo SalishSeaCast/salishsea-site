@@ -242,7 +242,8 @@ class TestResultsIndex:
             'prelim forecast': m_exlude_missing_dates(),
             'forecast': m_exlude_missing_dates(),
             'nowcast publish': m_exlude_missing_dates(),
-            'nowcast research': m_exlude_missing_dates(),
+            'nowcast currents': m_exlude_missing_dates(),
+            'nowcast biology': m_exlude_missing_dates(),
             'nowcast comparison': m_exlude_missing_dates(),
         }
         assert data['grid_dates'] == expected
@@ -371,13 +372,6 @@ class TestNowcastResearch:
         data = salishseacast.nowcast_currents_physics(request)
         assert data['figures'] == salishseacast.currents_physics_figures
 
-    def test_fig_file_tmpl(self, m_available):
-        request = get_current_request()
-        request.matchdict = {'results_date': '06nov16'}
-        m_available.return_value = True
-        data = salishseacast.nowcast_currents_physics(request)
-        assert data['FIG_FILE_TMPL'] == salishseacast.FIG_FILE_TMPL
-
 
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
@@ -418,13 +412,6 @@ class TestNowcastComparison:
         m_available.return_value = True
         data = salishseacast.nowcast_comparison(request)
         assert data['figures'] == salishseacast.comparison_figures
-
-    def test_fig_file_tmpl(self, m_available):
-        request = get_current_request()
-        request.matchdict = {'results_date': '06nov16'}
-        m_available.return_value = True
-        data = salishseacast.nowcast_comparison(request)
-        assert data['FIG_FILE_TMPL'] == salishseacast.FIG_FILE_TMPL
 
 
 @pytest.mark.usefixtures('pconfig')
@@ -510,16 +497,6 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-03')
         )
         assert data['figures'] == [salishseacast.publish_figures[0]]
-
-    def test_fig_file_tmpl(self, m_available):
-        request = get_current_request()
-        m_available.return_value = True
-        data = salishseacast._data_for_publish_template(
-            request, 'forecast',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
-            arrow.get('2016-11-03')
-        )
-        assert data['FIG_FILE_TMPL'] == salishseacast.FIG_FILE_TMPL
 
 
 @pytest.mark.usefixtures('pconfig')
