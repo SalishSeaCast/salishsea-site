@@ -17,7 +17,7 @@
 %>
 
 
-<%def name="header_link(title)">\
+<%def name="header_link(title)">
   <a class="header-link" href="#${title | slug}"
      title="Link to this heading">
     <span class="fa fa-link fa-flip-horizontal" aria-hidden="true"></span>
@@ -25,7 +25,7 @@
 </%def>
 
 
-<%def name="list_of_plots(figures)">\
+<%def name="list_of_plots(figures)">
   <div class="row">
     <div class="col-md-12">
       <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots') | slug}</h2>
