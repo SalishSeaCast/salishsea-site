@@ -65,12 +65,54 @@
     </div>
   </div>
 
-  ${list_of_plots(figures)}
+  <div class="row">
+    <div class="col-md-12">
+      <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots') | slug}</h2>
+      <ul>
+        %for title in figure_links:
+          <li><a href="#${title | slug}">${title}</a></li>
+        %endfor
+      </ul>
+    </div>
+  </div>
 
   %for figure in figures:
     ${figure_row(figure, run_type, run_date)}
     ${figure_nav_links()}
   %endfor
 
+  <div class="row" id="${onc_venus_figures[0].group | slug}">
+    <div class="col-md-8">
+      <h3 id="fig-title">${onc_venus_figures[0].title}  ${header_link(onc_venus_figures[0].group)}</h3>
+      <img id="fig" class="img-responsive"
+       src="${request.static_url(onc_venus_figures[0].path(run_type, run_date))}"
+       alt="${onc_venus_figures[0].title} image">
+    </div>
+    <div class="col-md-4">
+      <p>${onc_venus_figures[0].group}:</p>
+      <ul>
+        %for figure in onc_venus_figures:
+          <li>
+            <a class="fig-swap-link"
+              onclick="showFigure('${figure.title}', '${request.static_url(figure.path(run_type, run_date))}')">
+              ${figure.link_text}
+            </a>
+          </li>
+        %endfor
+      </ul>
+    </div>
+  </div>
+  ${figure_nav_links()}
+
   <%include file="data_sources.mako"/>
 </div>
+
+
+  <%block name="page_js">
+  <script>
+    function showFigure(title, url) {
+      document.getElementById('fig-title').innerHTML = title;
+      document.getElementById('fig').src = url;
+    }
+  </script>
+</%block>

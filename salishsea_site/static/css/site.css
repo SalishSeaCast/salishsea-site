@@ -26,6 +26,10 @@ p.index {
 a.header-link {
     visibility: hidden;
 }
+a.fig-swap-link {
+    cursor: pointer;
+}
+
 h1:hover > a.header-link,
 h2:hover > a.header-link,
 h3:hover > a.header-link,
