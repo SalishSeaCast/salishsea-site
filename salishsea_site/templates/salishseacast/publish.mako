@@ -28,8 +28,7 @@
 
       <h3 id="${figures[0].title | slug}"> ${figures[0].title} ${header_link(figures[0].title) | slug} </h3>
       <img class="img-responsive"
-        src="${request.static_url(
-                FIG_FILE_TMPL.format(run_type=run_type, svg_name=figures[0].svg_name, run_dmy=run_date.format('DDMMMYY').lower()))}"
+        src="${request.static_url(figures[0].path(run_type, run_date))}"
         alt="${figures[0].title} image">
     </div>
   </div>
@@ -62,7 +61,7 @@
   ${list_of_plots(figures)}
 
   %for figure in figures[1:]:
-    ${figure_row(figure, FIG_FILE_TMPL, run_type, run_date)}
+    ${figure_row(figure, run_type, run_date)}
     ${figure_nav_links()}
   %endfor
 

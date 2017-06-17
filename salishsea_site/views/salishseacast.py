@@ -21,15 +21,10 @@ from pathlib import Path
 import arrow
 import attr
 import requests
-import sys
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
 
 logger = logging.getLogger(__name__)
-
-FIG_FILE_TMPL = (
-    '/results/nowcast-sys/figures/{run_type}/{run_dmy}/{svg_name}_{run_dmy}.svg'
-)
 
 
 @attr.s
@@ -41,6 +36,11 @@ class FigureMetadata:
     #: is Vic_maxSSH.
     svg_name = attr.ib()
 
+    FIG_FILE_TMPL = (
+        '/results/nowcast-sys/figures/{run_type}/{run_dmy}/'
+        '{svg_name}_{run_dmy}.svg'
+    )
+
     def available(self, request, run_type, run_date, session):
         """Return a boolean indicating whether or not the figure is available
         on the static file server that provides figure files.
@@ -51,7 +51,7 @@ class FigureMetadata:
         :param str run_type: Run type for which the figure was generated.
 
         :param run_date: Run date for which the figure was generated.
-        :type run_date:
+        :type run_date: :py:class:`arrow.Arrow`
 
         :param session: Requests session object to re-use server connection,
                         if possible.
@@ -60,18 +60,30 @@ class FigureMetadata:
         :return: Figure is availability on the static figure file server.
         :rtype: boolean
         """
-        path = FIG_FILE_TMPL.format(
-            run_type=run_type,
-            svg_name=self.svg_name,
-            run_dmy=run_date.format('DDMMMYY').lower()
-        )
-        figure_url = request.static_url(path)
+        figure_url = request.static_url(self.path(run_type, run_date))
         try:
             return session.head(figure_url).status_code == 200
         except requests.ConnectionError:
             # Development environment
             return session.head(figure_url.replace('4567', '6543')
                                 ).status_code == 200
+
+    def path(self, run_type, run_date):
+        """Return the figure file path.
+
+        :param str run_type: Run type for which the figure was generated.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date: :py:class:`arrow.Arrow`
+
+        :return: Figure file path.
+        :rtype: str
+        """
+        return self.FIG_FILE_TMPL.format(
+            run_type=run_type,
+            svg_name=self.svg_name,
+            run_dmy=run_date.format('DDMMMYY').lower()
+        )
 
 
 publish_figures = [
@@ -425,7 +437,6 @@ def nowcast_currents_physics(request):
         'run_type': 'nowcast',
         'run_date': results_date,
         'figures': available_figures,
-        'FIG_FILE_TMPL': FIG_FILE_TMPL,
     }
 
 
@@ -449,7 +460,6 @@ def nowcast_biology(request):
         'run_type': 'nowcast-green',
         'run_date': results_date,
         'figures': available_figures,
-        'FIG_FILE_TMPL': FIG_FILE_TMPL,
     }
 
 
@@ -478,7 +488,6 @@ def nowcast_comparison(request):
         'run_type': 'nowcast',
         'run_date': results_date,
         'figures': available_figures,
-        'FIG_FILE_TMPL': FIG_FILE_TMPL,
     }
 
 
@@ -509,7 +518,6 @@ def _data_for_publish_template(
         'run_type': run_type,
         'run_date': run_date,
         'figures': available_figures,
-        'FIG_FILE_TMPL': FIG_FILE_TMPL,
     }
 
 
