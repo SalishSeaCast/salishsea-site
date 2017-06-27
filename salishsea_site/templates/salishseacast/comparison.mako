@@ -108,7 +108,7 @@
 </div>
 
 
-  <%block name="page_js">
+<%block name="page_js">
   <script>
     function showFigure(title, url) {
       document.getElementById('fig-title').innerHTML = title;
