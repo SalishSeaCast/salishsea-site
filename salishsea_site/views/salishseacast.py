@@ -163,6 +163,33 @@ biology_figures = [
     ),
 ]
 
+timeseries_figures = [
+    FigureMetadata(
+        group='nowcast-green Time Series',
+        title='Temperature and Salinity',
+        link_text='Temperature and Salinity',
+        svg_name='temperature_salinity_timeseries',
+    ),
+    FigureMetadata(
+        group='nowcast-green Time Series',
+        title='Nitrate and Diatom Concentrations',
+        link_text='Nitrate and Diatom Concentrations',
+        svg_name='nitrate_diatoms_timeseries',
+    ),
+    FigureMetadata(
+        group='nowcast-green Time Series',
+        title='Mesozooplankton and Microzooplankton Concentrations',
+        link_text='Mesozooplankton and Microzooplankton Concentrations',
+        svg_name='mesozoo_microzoo_timeseries',
+    ),
+    FigureMetadata(
+        group='nowcast-green Time Series',
+        title='Mesodinium rubrum and Flagellates Concentrations',
+        link_text='Mesodinium rubrum and Flagellates Concentrations',
+        svg_name='mesodinium_flagellates_timeseries',
+    ),
+]
+
 comparison_figures = [
     FigureMetadata(
         title='Modeled and Observed Winds at Sand Heads', svg_name='SH_wind'
@@ -191,25 +218,25 @@ comparison_figures = [
 ]
 onc_venus_comparison_figures = [
     FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS nodes',
+        group='Salinity and Temperature at ONC VENUS Nodes',
         title='Salinity and Temperature at ONC VENUS Central Node',
         link_text='Central Node',
         svg_name='Compare_VENUS_Central'
     ),
     FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS nodes',
+        group='Salinity and Temperature at ONC VENUS Nodes',
         title='Salinity and Temperature at ONC VENUS Delta BBL Node',
         link_text='BBL Node',
         svg_name='Compare_VENUS_Delta_BBL'
     ),
     FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS nodes',
+        group='Salinity and Temperature at ONC VENUS Nodes',
         title='Salinity and Temperature at ONC VENUS Delta DDL Node',
         link_text='DDL Node',
         svg_name='Compare_VENUS_Delta_DDL'
     ),
     FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS nodes',
+        group='Salinity and Temperature at ONC VENUS Nodes',
         title='Salinity and Temperature at ONC VENUS East Node',
         link_text='East Node',
         svg_name='Compare_VENUS_East'
@@ -328,6 +355,10 @@ def results_index(request):
         ('nowcast publish', 'nowcast', publish_figures, 'publish'),
         ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
         ('nowcast biology', 'nowcast-green', biology_figures, 'biology'),
+        (
+            'nowcast timeseries', 'nowcast-green', timeseries_figures,
+            'timeseries'
+        ),
         ('nowcast comparison', 'nowcast', comparison_figures, 'comparison'),
     )
     with requests.Session() as session:
@@ -484,6 +515,30 @@ def nowcast_biology(request):
 
 
 @view_config(
+    route_name='results.nowcast.timeseries',
+    renderer='salishseacast/timeseries.mako'
+)
+def nowcast_timeseries(request):
+    """Render model research timeseries evaluation results figures page.
+    """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    with requests.Session() as session:
+        available_figures = [
+            fig for fig in timeseries_figures
+            if fig.available(request, 'nowcast-green', results_date, session)
+        ]
+    if not available_figures:
+        raise HTTPNotFound
+    return {
+        'results_date': results_date,
+        'run_type': 'nowcast-green',
+        'run_date': results_date,
+        'figure_links': [available_figures[0].group],
+        'figures': available_figures,
+    }
+
+
+@view_config(
     route_name='results.nowcast.comparison',
     renderer='salishseacast/comparison.mako'
 )
@@ -505,11 +560,12 @@ def nowcast_comparison(request):
             fig for fig in onc_venus_comparison_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
-    figure_links = [figure.title for figure in ungrouped_figures]
-    figure_links.append(onc_venus_figures[0].group)
-    available_figures = ungrouped_figures + onc_venus_comparison_figures
+    available_figures = ungrouped_figures + onc_venus_figures
     if not available_figures:
         raise HTTPNotFound
+    figure_links = [figure.title for figure in ungrouped_figures]
+    if onc_venus_figures:
+        figure_links.append(onc_venus_figures[0].group)
     return {
         'results_date': results_date,
         'run_type': 'nowcast',

@@ -96,6 +96,10 @@ def _salishseacast_routes(config):
         'nemo/results/nowcast/biology/{results_date}'
     )
     config.add_route(
+        'results.nowcast.timeseries',
+        'nemo/results/nowcast/timeseries/{results_date}'
+    )
+    config.add_route(
         'results.nowcast.comparison',
         'nemo/results/nowcast/comparison/{results_date}'
     )
