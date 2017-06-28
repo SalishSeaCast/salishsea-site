@@ -47,6 +47,7 @@
           </tr>
           ${grid_row("Currents and Physics", grid_dates['nowcast currents'], "nowcast", "currents")}
           ${grid_row("Biology", grid_dates['nowcast biology'], "nowcast", "biology")}
+          ${grid_row("Time Series", grid_dates['nowcast timeseries'], "nowcast", "timeseries")}
           ${grid_row("Model vs. Observations", grid_dates['nowcast comparison'], "nowcast", "comparison")}
         </table>
       </div>

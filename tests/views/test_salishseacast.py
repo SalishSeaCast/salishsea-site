@@ -244,6 +244,7 @@ class TestResultsIndex:
             'nowcast publish': m_exlude_missing_dates(),
             'nowcast currents': m_exlude_missing_dates(),
             'nowcast biology': m_exlude_missing_dates(),
+            'nowcast timeseries': m_exlude_missing_dates(),
             'nowcast comparison': m_exlude_missing_dates(),
         }
         assert data['grid_dates'] == expected
@@ -253,7 +254,9 @@ class TestResultsIndex:
             (salishseacast.publish_figures, 'publish', 'nowcast'),
             (salishseacast.publish_figures, 'publish', 'forecast'),
             (salishseacast.publish_figures, 'publish', 'forecast2'),
-            (salishseacast.currents_physics_figures, 'research', 'nowcast'),
+            (salishseacast.currents_physics_figures, 'currents', 'nowcast'),
+            (salishseacast.biology_figures, 'biology', 'nowcast-green'),
+            (salishseacast.timeseries_figures, 'timeseries', 'nowcast-green'),
             (salishseacast.comparison_figures, 'comparison', 'nowcast'),
         ]
     )
@@ -334,8 +337,8 @@ class TestForecast2Publish:
 
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
-class TestNowcastResearch:
-    """Unit tests for nowcast_research view.
+class TestCurrentsPhysics:
+    """Unit tests for nowcast_currents_physics view.
     """
 
     def test_no_figures_raises_httpnotfound(self, m_available):
@@ -375,6 +378,96 @@ class TestNowcastResearch:
 
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast.FigureMetadata.available')
+class TestBiology:
+    """Unit tests for nowcast_biology view.
+    """
+
+    def test_no_figures_raises_httpnotfound(self, m_available):
+        request = get_current_request()
+        m_available.return_value = False
+        with pytest.raises(HTTPNotFound):
+            salishseacast.nowcast_biology(request)
+
+    def test_results_date(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '07may17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_biology(request)
+        assert data['results_date'] == arrow.get('2017-05-07')
+
+    def test_run_type(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '07may17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_biology(request)
+        assert data['run_type'] == 'nowcast-green'
+
+    def test_run_date(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '07may17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_biology(request)
+        assert data['run_date'] == arrow.get('2017-05-07')
+
+    def test_figures(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '07may17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_biology(request)
+        assert data['figures'] == salishseacast.biology_figures
+
+
+@pytest.mark.usefixtures('pconfig')
+@patch('salishsea_site.views.salishseacast.FigureMetadata.available')
+class TestTimeseries:
+    """Unit tests for nowcast_timeseries view.
+    """
+
+    def test_no_figures_raises_httpnotfound(self, m_available):
+        request = get_current_request()
+        m_available.return_value = False
+        with pytest.raises(HTTPNotFound):
+            salishseacast.nowcast_timeseries(request)
+
+    def test_results_date(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '27jun17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_timeseries(request)
+        assert data['results_date'] == arrow.get('2017-06-27')
+
+    def test_run_type(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '27jun17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_timeseries(request)
+        assert data['run_type'] == 'nowcast-green'
+
+    def test_run_date(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '27jun17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_timeseries(request)
+        assert data['run_date'] == arrow.get('2017-06-27')
+
+    def test_figure_links(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '27jun17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_timeseries(request)
+        expected = [salishseacast.timeseries_figures[0].group]
+        assert data['figure_links'] == expected
+
+    def test_figures(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '27jun17'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_timeseries(request)
+        assert data['figures'] == salishseacast.timeseries_figures
+
+
+@pytest.mark.usefixtures('pconfig')
+@patch('salishsea_site.views.salishseacast.FigureMetadata.available')
 class TestNowcastComparison:
     """Unit tests for nowcast_comparison view.
     """
@@ -406,12 +499,29 @@ class TestNowcastComparison:
         data = salishseacast.nowcast_comparison(request)
         assert data['run_date'] == arrow.get('2016-11-06')
 
+    def test_figure_links(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '06nov16'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_comparison(request)
+        expected = [fig.title for fig in salishseacast.comparison_figures]
+        expected.append(salishseacast.onc_venus_comparison_figures[0].group)
+        assert data['figure_links'] == expected
+
     def test_figures(self, m_available):
         request = get_current_request()
         request.matchdict = {'results_date': '06nov16'}
         m_available.return_value = True
         data = salishseacast.nowcast_comparison(request)
         assert data['figures'] == salishseacast.comparison_figures
+
+    def test_onc_venus_figures(self, m_available):
+        request = get_current_request()
+        request.matchdict = {'results_date': '06nov16'}
+        m_available.return_value = True
+        data = salishseacast.nowcast_comparison(request)
+        expected = salishseacast.onc_venus_comparison_figures
+        assert data['onc_venus_figures'] == expected
 
 
 @pytest.mark.usefixtures('pconfig')
