@@ -51,6 +51,37 @@
 </%def>
 
 
+<%def name="figure_group(figures, run_type, run_date)">
+  <%doc>
+    Render a figrue group block.
+
+    The image title and source are updated via onclick events on a list of
+    figure links that are rendered beside the image.
+  </%doc>
+  <div class="row" id="${figures[0].group | slug}">
+    <div class="col-md-8">
+      <h3 id="fig-title">${figures[0].title}  ${header_link(figures[0].group)}</h3>
+      <img id="fig" class="img-responsive"
+       src="${request.static_url(figures[0].path(run_type, run_date))}"
+       alt="${figures[0].title} image">
+    </div>
+    <div class="col-md-4">
+      <p>${figures[0].group}:</p>
+      <ul>
+        %for figure in figures:
+          <li>
+            <a class="fig-swap-link"
+              onclick="showFigure('${figure.title}', '${request.static_url(figure.path(run_type, run_date))}')">
+              ${figure.link_text}
+            </a>
+          </li>
+        %endfor
+      </ul>
+    </div>
+  </div>
+</%def>
+
+
 <%def name="figure_nav_links()">
   <div class="row">
     <div class="col-md-2 col-md-offset-3">
