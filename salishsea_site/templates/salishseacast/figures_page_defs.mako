@@ -25,13 +25,13 @@
 </%def>
 
 
-<%def name="list_of_plots(figures)">
+<%def name="list_of_plots(figure_links)">
   <div class="row">
     <div class="col-md-12">
       <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots') | slug}</h2>
       <ul>
-        %for figure in figures:
-          <li><a href="#${figure.title | slug}">${figure.title}</a></li>
+        %for title in figure_links:
+          <li><a href="#${title | slug}">${title}</a></li>
         %endfor
       </ul>
     </div>
