@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_group, figure_nav_links"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_group, show_figure, figure_nav_links"/>
 
 <%block name="title">
   Salish Sea Model and Observation Comparisons – ${results_date.format('DD-MMM-YYYY')}
@@ -89,10 +89,5 @@
 
 
 <%block name="page_js">
-  <script>
-    function showFigure(title, url) {
-      document.getElementById('fig-title').innerHTML = title;
-      document.getElementById('fig').src = url;
-    }
-  </script>
+  ${show_figure()}
 </%block>
