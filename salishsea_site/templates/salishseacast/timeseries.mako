@@ -12,12 +12,8 @@
 ## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
-<%!
-  from salishsea_site.mako_filters import slug
-%>
-
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
+<%namespace file="figures_page_defs.mako" import="figure_group"/>
 
 <%block name="title">Salish Sea Model Time Series – ${results_date.format('DD-MMM-YYYY')}</%block>
 
@@ -65,39 +61,7 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots') | slug}</h2>
-      <ul>
-        %for title in figure_links:
-          <li><a href="#${title | slug}">${title}</a></li>
-        %endfor
-      </ul>
-    </div>
-  </div>
-
-  <div class="row" id="${figures[0].group | slug}">
-  <div class="col-md-8">
-    <h3 id="fig-title">${figures[0].title}  ${header_link(figures[0].group)}</h3>
-    <img id="fig" class="img-responsive"
-     src="${request.static_url(figures[0].path(run_type, run_date))}"
-     alt="${figures[0].title} image">
-  </div>
-  <div class="col-md-4">
-    <p>${figures[0].group}:</p>
-    <ul>
-      %for figure in figures:
-        <li>
-          <a class="fig-swap-link"
-            onclick="showFigure('${figure.title}', '${request.static_url(figure.path(run_type, run_date))}')">
-            ${figure.link_text}
-          </a>
-        </li>
-      %endfor
-    </ul>
-  </div>
-</div>
-${figure_nav_links()}
+  ${figure_group(figures, run_type, run_date)}
 
   <%include file="data_sources.mako"/>
 </div>
