@@ -81,8 +81,10 @@
     ${figure_nav_links()}
   %endfor
 
-  ${figure_group(onc_venus_figures, run_type, run_date)}
-  ${figure_nav_links()}
+  %if onc_venus_figures:
+    ${figure_group(onc_venus_figures, run_type, run_date)}
+    ${figure_nav_links()}
+  %endif
 
   <%include file="data_sources.mako"/>
 </div>
