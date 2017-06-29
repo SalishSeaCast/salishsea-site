@@ -57,6 +57,13 @@
 
     The image title and source are updated via onclick events on a list of
     figure links that are rendered beside the image.
+
+    Page templates that use this def must also call the show_figure() in their
+    page_js block; e.g.
+
+      <%block name="page_js">
+        ${show_figure()}
+      </%block>
   </%doc>
   <div class="row" id="${figures[0].group | slug}">
     <div class="col-md-8">
@@ -79,6 +86,16 @@
       </ul>
     </div>
   </div>
+</%def>
+
+
+<%def name="show_figure()">
+  <script>
+    function showFigure(title, url) {
+      document.getElementById('fig-title').innerHTML = title;
+      document.getElementById('fig').src = url;
+    }
+  </script>
 </%def>
 
 
