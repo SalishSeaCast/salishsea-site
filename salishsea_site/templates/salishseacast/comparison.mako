@@ -65,16 +65,7 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2 id="${'List of Plots' | slug}">Plots ${header_link('List of Plots') | slug}</h2>
-      <ul>
-        %for title in figure_links:
-          <li><a href="#${title | slug}">${title}</a></li>
-        %endfor
-      </ul>
-    </div>
-  </div>
+  ${list_of_plots(figure_links)}
 
   %for figure in figures:
     ${figure_row(figure, run_type, run_date)}

@@ -483,10 +483,12 @@ def nowcast_currents_physics(request):
         ]
     if not available_figures:
         raise HTTPNotFound
+    figure_links = [figure.title for figure in available_figures]
     return {
         'results_date': results_date,
         'run_type': 'nowcast',
         'run_date': results_date,
+        'figure_links': figure_links,
         'figures': available_figures,
     }
 
@@ -506,10 +508,12 @@ def nowcast_biology(request):
         ]
     if not available_figures:
         raise HTTPNotFound
+    figure_links = [figure.title for figure in available_figures]
     return {
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
+        'figure_links': figure_links,
         'figures': available_figures,
     }
 
@@ -533,7 +537,6 @@ def nowcast_timeseries(request):
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
-        'figure_links': [available_figures[0].group],
         'figures': available_figures,
     }
 
@@ -592,6 +595,7 @@ def _data_for_publish_template(
             fig for fig in figures
             if fig.available(request, run_type, run_date, session)
         ]
+    figure_links = [figure.title for figure in available_figures]
     run_type_titles = {
         'nowcast': 'Nowcast',
         'forecast': 'Forecast',
@@ -602,6 +606,7 @@ def _data_for_publish_template(
         'run_type_title': run_type_titles[run_type],
         'run_type': run_type,
         'run_date': run_date,
+        'figure_links': figure_links,
         'figures': available_figures,
     }
 
