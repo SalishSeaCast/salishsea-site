@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_group, figure_nav_links"/>
 
 <%block name="title">
   Salish Sea Model and Observation Comparisons – ${results_date.format('DD-MMM-YYYY')}
@@ -81,27 +81,7 @@
     ${figure_nav_links()}
   %endfor
 
-  <div class="row" id="${onc_venus_figures[0].group | slug}">
-    <div class="col-md-8">
-      <h3 id="fig-title">${onc_venus_figures[0].title}  ${header_link(onc_venus_figures[0].group)}</h3>
-      <img id="fig" class="img-responsive"
-       src="${request.static_url(onc_venus_figures[0].path(run_type, run_date))}"
-       alt="${onc_venus_figures[0].title} image">
-    </div>
-    <div class="col-md-4">
-      <p>${onc_venus_figures[0].group}:</p>
-      <ul>
-        %for figure in onc_venus_figures:
-          <li>
-            <a class="fig-swap-link"
-              onclick="showFigure('${figure.title}', '${request.static_url(figure.path(run_type, run_date))}')">
-              ${figure.link_text}
-            </a>
-          </li>
-        %endfor
-      </ul>
-    </div>
-  </div>
+  ${figure_group(onc_venus_figures, run_type, run_date)}
   ${figure_nav_links()}
 
   <%include file="data_sources.mako"/>
