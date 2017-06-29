@@ -13,7 +13,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="figure_group"/>
+<%namespace file="figures_page_defs.mako" import="figure_group, show_figure"/>
 
 <%block name="title">Salish Sea Model Time Series – ${results_date.format('DD-MMM-YYYY')}</%block>
 
@@ -68,10 +68,5 @@
 
 
 <%block name="page_js">
-  <script>
-    function showFigure(title, url) {
-      document.getElementById('fig-title').innerHTML = title;
-      document.getElementById('fig').src = url;
-    }
-  </script>
+  ${show_figure()}
 </%block>
