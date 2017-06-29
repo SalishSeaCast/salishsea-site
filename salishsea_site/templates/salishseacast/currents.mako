@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  ${list_of_plots(figures)}
+  ${list_of_plots(figure_links)}
 
   %for figure in figures:
     ${figure_row(figure, run_type, run_date)}
