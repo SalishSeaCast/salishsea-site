@@ -35,21 +35,18 @@ class FigureMetadata:
     #: So, if the file name is Vic_maxSSH_05nov16.svg, the svg_name value
     #: is Vic_maxSSH.
     svg_name = attr.ib()
-    #: Text to appear in list of choices for figure in group of figures.
-    #: Clicking on this text will swap this figure into the figure group
-    #: display elements.
-    link_text = attr.ib(default='')
     #: Figure group description.
     #: Used in the list of plots to link to the figure group section of the
     #: page.
     #: Also used as the heading text for the figure links list,
     #: and as the basis for the figure group permalink slug.
     group = attr.ib(default='')
+    #: Text to appear in list of choices for figure in group of figures.
+    #: Clicking on this text will swap this figure into the figure group
+    #: display elements.
+    link_text = attr.ib(default='')
 
-    FIG_FILE_TMPL = (
-        '/results/nowcast-sys/figures/{run_type}/{run_dmy}/'
-        '{svg_name}_{run_dmy}.svg'
-    )
+    FIG_DIR_TMPL = '/results/nowcast-sys/figures/{run_type}/{run_dmy}/'
 
     def available(self, request, run_type, run_date, session):
         """Return a boolean indicating whether or not the figure is available
@@ -78,6 +75,11 @@ class FigureMetadata:
             return session.head(figure_url.replace('4567', '6543')
                                 ).status_code == 200
 
+    def filename(self, run_dmy):
+        return '{svg_name}_{run_dmy}.svg'.format(
+            svg_name=self.svg_name, run_dmy=run_dmy
+        )
+
     def path(self, run_type, run_date):
         """Return the figure file path.
 
@@ -89,11 +91,11 @@ class FigureMetadata:
         :return: Figure file path.
         :rtype: str
         """
-        return self.FIG_FILE_TMPL.format(
-            run_type=run_type,
-            svg_name=self.svg_name,
-            run_dmy=run_date.format('DDMMMYY').lower()
+        run_dmy = run_date.format('DDMMMYY').lower()
+        fig_dir = self.FIG_DIR_TMPL.format(
+            run_type=run_type, svg_name=self.svg_name, run_dmy=run_dmy
         )
+        return os.path.join(fig_dir, self.filename(run_dmy))
 
 
 publish_figures = [
