@@ -65,6 +65,7 @@ def _erddap_url(config):
 
 def _site_routes(config):
     config.add_route('site.index', '/')
+    config.add_route('robots.txt', '/robots.txt')
     # Legacy route
     config.add_route('site.index.html', '/index.html')
 
