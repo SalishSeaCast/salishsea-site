@@ -76,6 +76,14 @@ class FigureMetadata:
                                 ).status_code == 200
 
     def filename(self, run_dmy):
+        """Return the figure file name.
+
+        :param str run_dmy: Run date for which the figure was generated,
+                            formatted like `06jul17`.
+
+        :returns: Figure file name.
+        :rtype: str
+        """
         return '{svg_name}_{run_dmy}.svg'.format(
             svg_name=self.svg_name, run_dmy=run_dmy
         )
@@ -96,6 +104,90 @@ class FigureMetadata:
             run_type=run_type, svg_name=self.svg_name, run_dmy=run_dmy
         )
         return os.path.join(fig_dir, self.filename(run_dmy))
+
+
+@attr.s
+class ImageLoop:
+    #: :py:class:`~salishsea_site.views.salishseacast.FigureMetaData` instance
+    #: that describes the image loop figures.
+    metadata = attr.ib()
+    #: Typical number of images to be displayed in the loop.
+    nominal_image_count = attr.ib(default=24)
+
+    @property
+    def title(self):
+        return self.metadata.title
+
+    def available(self, request, run_type, run_date, session):
+        """Return a list of run hours for which image loop figures are
+        available on the static file server that provides figure files.
+
+        :param request: HTTP request.
+        :type request: :py:class:`pyramid.request.Request`
+
+        :param str run_type: Run type for which the figure was generated.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date: :py:class:`arrow.Arrow`
+
+        :param session: Requests session object to re-use server connection,
+                        if possible.
+        :type session: :py:class:`requests.Session`
+
+        :return: Run hours for which figures are available on the
+                 static figure file server.
+        :rtype: list of ints
+        """
+        available_hrs = []
+        for run_hr in range(self.nominal_image_count):
+            path = self.path(run_type, run_date, run_hr)
+            try:
+                if session.head(request.static_url(path)).status_code == 200:
+                    available_hrs.append(run_hr)
+            except requests.ConnectionError:
+                # Development environment
+                url = request.static_url(path).replace('4567', '6543')
+                if session.head(url).status_code == 200:
+                    available_hrs.append(run_hr)
+        return available_hrs
+
+    def filename(self, run_date, run_hr):
+        """Return the figure file name.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date: :py:class:`arrow.Arrow`
+
+        :param int run_hr: Run hour for which the figure was generated.
+
+        :returns: Figure file name.
+        :rtype: str
+        """
+        return '{svg_name}_{run_yyyymmdd}_{run_hr:02d}3000_UTC.png'.format(
+            svg_name=self.metadata.svg_name,
+            run_yyyymmdd=run_date.format('YYYYMMDD'),
+            run_hr=run_hr,
+        )
+
+    def path(self, run_type, run_date, run_hr):
+        """Return the figure file path.
+
+        :param str run_type: Run type for which the figure was generated.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date: :py:class:`arrow.Arrow`
+
+        :param int run_hr: Run hour for which the figure was generated.
+
+        :return: Figure file path.
+        :rtype: str
+        """
+        run_dmy = run_date.format('DDMMMYY').lower()
+        fig_dir = self.metadata.FIG_DIR_TMPL.format(
+            run_type=run_type,
+            svg_name=self.metadata.svg_name,
+            run_dmy=run_dmy
+        )
+        return os.path.join(fig_dir, self.filename(run_date, run_hr))
 
 
 publish_figures = [
@@ -159,10 +251,12 @@ currents_physics_figures = [
 ]
 
 biology_figures = [
-    FigureMetadata(
-        title='Nitrate Fields Along Thalweg and on Surface',
-        svg_name='nitrate_thalweg_and_surface',
-    ),
+    ImageLoop(
+        metadata=FigureMetadata(
+            title='Nitrate Fields Along Thalweg and on Surface',
+            svg_name='nitrate_thalweg_and_surface',
+        )
+    )
 ]
 
 timeseries_figures = [
@@ -504,19 +598,19 @@ def nowcast_biology(request):
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
-        available_figures = [
-            fig for fig in biology_figures
-            if fig.available(request, 'nowcast-green', results_date, session)
-        ]
-    if not available_figures:
+        available_hrs = (
+            biology_figures[0].available(
+                request, 'nowcast-green', results_date, session
+            )
+        )
+    if not available_hrs:
         raise HTTPNotFound
-    figure_links = [figure.title for figure in available_figures]
     return {
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
-        'figure_links': figure_links,
-        'figures': available_figures,
+        'image_loop': biology_figures[0],
+        'image_loop_hrs': available_hrs,
     }
 
 

@@ -43,7 +43,7 @@
   <![endif]-->
 </head>
 
-<body id="top">
+<body id="top" onload="init()">
   <%namespace name="nav" file="nav.mako"/>
   ${nav.navbar()}
 
@@ -78,6 +78,10 @@
     <script src="https://use.fontawesome.com/69836a17ac.js"></script>
   </%block>
 
-  <%block name="page_js"></%block>
+  <%block name="page_js">
+    <script>
+      function init() { }
+    </script>
+  </%block>
 </body>
 </html>
