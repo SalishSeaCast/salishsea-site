@@ -65,12 +65,79 @@
     </div>
   </div>
 
-  ${list_of_plots(figure_links)}
+  <div class="image-loop">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 id="${image_loop.title | slug}"> ${image_loop.title} ${header_link(image_loop.title) | slug}</h3>
 
-  %for figure in figures:
-    ${figure_row(figure, run_type, run_date)}
-    ${figure_nav_links()}
-  %endfor
+        <button class="btn btn-default" onclick="il.start()" type="button" title="Begin animation">Play</button>
+        <button class="btn btn-default" onclick="il.stop()" type="button" title="Stop animation">Stop</button>
+        <button class="btn btn-default" onclick="il.goto('beginning')" type="button" title="Go to the first image">
+          <i class="fa fa-fast-backward" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-default" onclick="il.goto('left')" type="button" title="Go to the previous image">
+          <i class="fa fa-backward" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-default" onclick="il.goto('right')" type="button" title="Go to the next image">
+          <i class="fa fa-forward" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-default" onclick="il.goto('end')" type="button" title="Go to the last image">
+          <i class="fa fa-fast-forward" aria-hidden="true"></i>
+        </button>
+        <span class="inline">Direction:
+          <button class="btn btn-default" id="btnDirection"
+                  type="button" title="Animation's current direction. Click to change."
+                  onclick="this.innerHTML=il.toggleDirection()">forward</button>
+        </span>
+        <span class="inline">Speed:
+          <button class="btn btn-default" id="increaseSpeed"
+                  type="button" title="Increase animation speed"
+                  onclick="il.changeSpeed(-100)" >
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-default"
+                  type="button" title="Reduce animation speed"
+                  onclick="il.changeSpeed(+100)">
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </span>
+        <!--We don't show these selectors, but ImageLoop.js uses them -->
+        <select class="hidden" id="indexStart"><option></option></select>
+        <select class="hidden" id="indexEnd"><option></option></select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div id="datetime" title="Current image date/time"></div>
+      </div>
+      <div class="col-md-8">
+        <div id="slider"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="il"></div>
+      </div>
+    </div>
+  </div>
 
   <%include file="data_sources.mako"/>
 </div>
+
+
+<%block name="page_js">
+  <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+  <script>
+    var datetime = null;
+    var sl = null;
+    var il = null;
+    var imgType = "dateTimes";
+    var images = [
+        %for run_hr in image_loop_hrs:
+          "${request.static_url(image_loop.path(run_type, run_date, run_hr))}",
+        %endfor
+    ];
+  </script>
+</%block>
