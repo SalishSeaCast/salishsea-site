@@ -72,7 +72,7 @@ function init() {
 
    il.setStartEnd(start.selectedIndex, end.selectedIndex);
    if( imgType == "dateTimes" ) {
-      document.getElementById('datetime').innerHTML = "Valid date-time : "+dateTimes[il.index];
+      document.getElementById('datetime').innerHTML = "Date/time: "+dateTimes[il.index];
    } else {
       document.getElementById('datetime').innerHTML = "Image #"+dateTimes[il.index]+' : '+images[il.index];
    }
@@ -113,7 +113,7 @@ function ImageLoop( images, speed, width, height ) {
       im.src = images[index];
       this.index = index;
       if( imgType == "dateTimes" ) {
-         document.getElementById('datetime').innerHTML = "Valid date-time : "+dateTimes[index];
+         document.getElementById('datetime').innerHTML = "Date/time: "+dateTimes[index];
       } else {
          document.getElementById('datetime').innerHTML = "Image #"+dateTimes[index]+' : '+images[index];
       }
