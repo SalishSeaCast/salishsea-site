@@ -24,4 +24,13 @@ logger = logging.getLogger(__name__)
 @view_config(route_name='site.index', renderer='index.mako')
 @view_config(route_name='site.index.html', renderer='index.mako')
 def index(request):
+    """Render site index page.
+    """
+    return {}
+
+
+@view_config(route_name='robots.txt', renderer='robots.mako')
+def robots(request):
+    """Render robots.txt page.
+    """
     return {}
