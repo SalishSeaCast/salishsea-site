@@ -39,6 +39,10 @@ h6:hover > a.header-link {
     visibility: visible;
 }
 
+.image-loop .row {
+    margin-top: 10px;
+}
+
 table a:not(.btn), .table a:not(.btn) {
     text-decoration: none;
 }
