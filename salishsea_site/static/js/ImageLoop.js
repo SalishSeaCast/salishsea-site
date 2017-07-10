@@ -32,8 +32,8 @@ function updateStartEnd() {
 // Called on form load only
 function init() {
    // Set our global object 'il' to be an image loop
-   // varname = new ImageLoop(imagesArray, intervalInMilliseconds, width, height);
-   il = new ImageLoop(images, 500, 1018, 676);
+   // varname = new ImageLoop(imagesArray, intervalInMilliseconds);
+   il = new ImageLoop(images, 500);
 
    // Make a list of dates of all images (used by indexStart and indexEnd)
    // and add it as options for start/end index
@@ -79,11 +79,9 @@ function init() {
 }
 
 // Object that manages the animation
-function ImageLoop( images, speed, width, height ) {
+function ImageLoop( images, speed ) {
    this.images    = images;
    this.speed     = speed;
-   this.width     = width;
-   this.height    = height;
    this.interval  = false;
    this.play      = false;
    this.index     = 0;
@@ -199,7 +197,7 @@ function ImageLoop( images, speed, width, height ) {
 
    // Setup
    var d = document.getElementById("il"); 
-   d.innerHTML = "<img src='" + this.images[this.index] + "' id='imageloop' width='" + this.width + "' height='" + this.height + "' />";
+   d.innerHTML = "<img src='" + this.images[this.index] + "' id='imageloop' class='img-responsive' />";
 
    // Add Functions
    this.preloadImages = preloadImages;
