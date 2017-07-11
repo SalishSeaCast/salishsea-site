@@ -35,12 +35,6 @@ class FigureMetadata:
     #: So, if the file name is Vic_maxSSH_05nov16.svg, the svg_name value
     #: is Vic_maxSSH.
     svg_name = attr.ib()
-    #: Figure group description.
-    #: Used in the list of plots to link to the figure group section of the
-    #: page.
-    #: Also used as the heading text for the figure links list,
-    #: and as the basis for the figure group permalink slug.
-    group = attr.ib(default='')
     #: Text to appear in list of choices for figure in group of figures.
     #: Clicking on this text will swap this figure into the figure group
     #: display elements.
@@ -104,6 +98,45 @@ class FigureMetadata:
             run_type=run_type, svg_name=self.svg_name, run_dmy=run_dmy
         )
         return os.path.join(fig_dir, self.filename(run_dmy))
+
+
+@attr.s
+class FigureGroup:
+    #: Figure group description.
+    #: Used in the list of plots to link to the figure group section of the
+    #: page.
+    #: Also used as the heading text for the figure links list,
+    #: and as the basis for the figure group permalink slug.
+    description = attr.ib()
+    #:
+    figures = attr.ib(default=[])
+
+    def __iter__(self):
+        return (figure for figure in self.figures)
+
+    def available(self, request, run_type, run_date, session):
+        """Return a boolean indicating whether or not the figure is available
+        on the static file server that provides figure files.
+
+        :param request: HTTP request.
+        :type request: :py:class:`pyramid.request.Request`
+
+        :param str run_type: Run type for which the figure was generated.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date: :py:class:`arrow.Arrow`
+
+        :param session: Requests session object to re-use server connection,
+                        if possible.
+        :type session: :py:class:`requests.Session`
+
+        :return: Figure is availability on the static figure file server.
+        :rtype: list
+        """
+        return [
+            figure.available(request, run_type, run_date, session)
+            for figure in self.figures
+        ]
 
 
 @attr.s
@@ -259,32 +292,31 @@ biology_figures = [
     )
 ]
 
-timeseries_figures = [
-    FigureMetadata(
-        group='nowcast-green Time Series',
-        title='Temperature and Salinity',
-        link_text='Temperature and Salinity',
-        svg_name='temperature_salinity_timeseries',
-    ),
-    FigureMetadata(
-        group='nowcast-green Time Series',
-        title='Nitrate and Diatom Concentrations',
-        link_text='Nitrate and Diatom Concentrations',
-        svg_name='nitrate_diatoms_timeseries',
-    ),
-    FigureMetadata(
-        group='nowcast-green Time Series',
-        title='Mesozooplankton and Microzooplankton Concentrations',
-        link_text='Mesozooplankton and Microzooplankton Concentrations',
-        svg_name='mesozoo_microzoo_timeseries',
-    ),
-    FigureMetadata(
-        group='nowcast-green Time Series',
-        title='Mesodinium rubrum and Flagellates Concentrations',
-        link_text='Mesodinium rubrum and Flagellates Concentrations',
-        svg_name='mesodinium_flagellates_timeseries',
-    ),
-]
+timeseries_figure_group = FigureGroup(
+    description='nowcast-green Time Series',
+    figures=[
+        FigureMetadata(
+            title='Temperature and Salinity',
+            link_text='Temperature and Salinity',
+            svg_name='temperature_salinity_timeseries',
+        ),
+        FigureMetadata(
+            title='Nitrate and Diatom Concentrations',
+            link_text='Nitrate and Diatom Concentrations',
+            svg_name='nitrate_diatoms_timeseries',
+        ),
+        FigureMetadata(
+            title='Mesozooplankton and Microzooplankton Concentrations',
+            link_text='Mesozooplankton and Microzooplankton Concentrations',
+            svg_name='mesozoo_microzoo_timeseries',
+        ),
+        FigureMetadata(
+            title='Mesodinium rubrum and Flagellates Concentrations',
+            link_text='Mesodinium rubrum and Flagellates Concentrations',
+            svg_name='mesodinium_flagellates_timeseries',
+        ),
+    ]
+)
 
 comparison_figures = [
     FigureMetadata(
@@ -312,32 +344,31 @@ comparison_figures = [
         svg_name='TW_SB_ferry_salinity'
     ),
 ]
-onc_venus_comparison_figures = [
-    FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS Nodes',
-        title='Salinity and Temperature at ONC VENUS Central Node',
-        link_text='Central Node',
-        svg_name='Compare_VENUS_Central'
-    ),
-    FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS Nodes',
-        title='Salinity and Temperature at ONC VENUS Delta BBL Node',
-        link_text='BBL Node',
-        svg_name='Compare_VENUS_Delta_BBL'
-    ),
-    FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS Nodes',
-        title='Salinity and Temperature at ONC VENUS Delta DDL Node',
-        link_text='DDL Node',
-        svg_name='Compare_VENUS_Delta_DDL'
-    ),
-    FigureMetadata(
-        group='Salinity and Temperature at ONC VENUS Nodes',
-        title='Salinity and Temperature at ONC VENUS East Node',
-        link_text='East Node',
-        svg_name='Compare_VENUS_East'
-    ),
-]
+onc_venus_comparison_figure_group = FigureGroup(
+    description='Salinity and Temperature at ONC VENUS Nodes',
+    figures=[
+        FigureMetadata(
+            title='Salinity and Temperature at ONC VENUS Central Node',
+            link_text='Central Node',
+            svg_name='Compare_VENUS_Central'
+        ),
+        FigureMetadata(
+            title='Salinity and Temperature at ONC VENUS Delta BBL Node',
+            link_text='BBL Node',
+            svg_name='Compare_VENUS_Delta_BBL'
+        ),
+        FigureMetadata(
+            title='Salinity and Temperature at ONC VENUS Delta DDL Node',
+            link_text='DDL Node',
+            svg_name='Compare_VENUS_Delta_DDL'
+        ),
+        FigureMetadata(
+            title='Salinity and Temperature at ONC VENUS East Node',
+            link_text='East Node',
+            svg_name='Compare_VENUS_East'
+        ),
+    ]
+)
 
 
 @view_config(
@@ -452,7 +483,7 @@ def results_index(request):
         ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
         ('nowcast biology', 'nowcast-green', biology_figures, 'biology'),
         (
-            'nowcast timeseries', 'nowcast-green', timeseries_figures,
+            'nowcast timeseries', 'nowcast-green', timeseries_figure_group,
             'timeseries'
         ),
         ('nowcast comparison', 'nowcast', comparison_figures, 'comparison'),
@@ -623,17 +654,18 @@ def nowcast_timeseries(request):
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
-        available_figures = [
-            fig for fig in timeseries_figures
-            if fig.available(request, 'nowcast-green', results_date, session)
-        ]
+        available_figures = (
+            timeseries_figure_group.available(
+                request, 'nowcast-green', results_date, session
+            )
+        )
     if not available_figures:
         raise HTTPNotFound
     return {
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
-        'figures': available_figures,
+        'figures': timeseries_figure_group,
     }
 
 
@@ -655,23 +687,23 @@ def nowcast_comparison(request):
             fig for fig in comparison_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
-        onc_venus_figures = [
-            fig for fig in onc_venus_comparison_figures
-            if fig.available(request, 'nowcast', results_date, session)
-        ]
-    available_figures = ungrouped_figures + onc_venus_figures
-    if not available_figures:
+        onc_venus_figures_available = any(
+            onc_venus_comparison_figure_group.
+            available(request, 'nowcast', results_date, session)
+        )
+    if not ungrouped_figures and not onc_venus_figures_available:
         raise HTTPNotFound
     figure_links = [figure.title for figure in ungrouped_figures]
-    if onc_venus_figures:
-        figure_links.append(onc_venus_figures[0].group)
+    if onc_venus_figures_available:
+        figure_links.append(onc_venus_comparison_figure_group.description)
     return {
         'results_date': results_date,
         'run_type': 'nowcast',
         'run_date': results_date,
         'figure_links': figure_links,
         'figures': ungrouped_figures,
-        'onc_venus_figures': onc_venus_figures,
+        'onc_venus_figures_available': onc_venus_figures_available,
+        'onc_venus_figures': onc_venus_comparison_figure_group,
     }
 
 
