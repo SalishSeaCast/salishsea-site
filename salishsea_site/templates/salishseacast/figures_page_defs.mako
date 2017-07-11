@@ -51,7 +51,7 @@
 </%def>
 
 
-<%def name="figure_group(figures, run_type, run_date)">
+<%def name="figure_group(figure_group, run_type, run_date)">
   <%doc>
     Render a figrue group block.
 
@@ -65,17 +65,17 @@
         ${show_figure()}
       </%block>
   </%doc>
-  <div class="row" id="${figures[0].group | slug}">
+  <div class="row" id="${figure_group.description | slug}">
     <div class="col-md-8">
-      <h3 id="fig-title">${figures[0].title}  ${header_link(figures[0].group)}</h3>
+      <h3 id="fig-title">${figure_group.figures[0].title}  ${header_link(figure_group.description)}</h3>
       <img id="fig" class="img-responsive"
-       src="${request.static_url(figures[0].path(run_type, run_date))}"
-       alt="${figures[0].title} image">
+       src="${request.static_url(figure_group.figures[0].path(run_type, run_date))}"
+       alt="${figure_group.figures[0].title} image">
     </div>
     <div class="col-md-4">
-      <p>${figures[0].group}:</p>
+      <p>${figure_group.description}:</p>
       <ul>
-        %for figure in figures:
+        %for figure in figure_group.figures:
           <li>
             <a class="fig-swap-link"
               onclick="showFigure('${figure.title}', '${request.static_url(figure.path(run_type, run_date))}')">
