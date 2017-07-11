@@ -255,7 +255,7 @@ class TestResultsIndex:
             (salishseacast.publish_figures, 'publish', 'forecast'),
             (salishseacast.publish_figures, 'publish', 'forecast2'),
             (salishseacast.currents_physics_figures, 'currents', 'nowcast'),
-            (salishseacast.biology_figures, 'biology', 'nowcast-green'),
+            (salishseacast.nitrate_image_loop, 'biology', 'nowcast-green'),
             (
                 salishseacast.timeseries_figure_group, 'timeseries',
                 'nowcast-green'
@@ -417,7 +417,7 @@ class TestBiology:
         request.matchdict = {'results_date': '07may17'}
         m_available.return_value = [0]
         data = salishseacast.nowcast_biology(request)
-        assert data['image_loop'] == salishseacast.biology_figures[0]
+        assert data['image_loop'] == salishseacast.nitrate_image_loop
 
     def test_image_loop_hrs(self, m_available):
         request = get_current_request()
