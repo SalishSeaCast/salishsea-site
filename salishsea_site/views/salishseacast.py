@@ -151,6 +151,9 @@ class ImageLoop:
     def title(self):
         return self.metadata.title
 
+    def __iter__(self):
+        return (self for i in range(1))
+
     def available(self, request, run_type, run_date, session):
         """Return a list of run hours for which image loop figures are
         available on the static file server that provides figure files.
@@ -283,14 +286,12 @@ currents_physics_figures = [
     ),
 ]
 
-biology_figures = [
-    ImageLoop(
-        metadata=FigureMetadata(
-            title='Nitrate Fields Along Thalweg and on Surface',
-            svg_name='nitrate_thalweg_and_surface',
-        )
+nitrate_image_loop = ImageLoop(
+    metadata=FigureMetadata(
+        title='Nitrate Fields Along Thalweg and on Surface',
+        svg_name='nitrate_thalweg_and_surface',
     )
-]
+)
 
 timeseries_figure_group = FigureGroup(
     description='nowcast-green Time Series',
@@ -481,7 +482,7 @@ def results_index(request):
         ('forecast', 'forecast', publish_figures, 'publish'),
         ('nowcast publish', 'nowcast', publish_figures, 'publish'),
         ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
-        ('nowcast biology', 'nowcast-green', biology_figures, 'biology'),
+        ('nowcast biology', 'nowcast-green', nitrate_image_loop, 'biology'),
         (
             'nowcast timeseries', 'nowcast-green', timeseries_figure_group,
             'timeseries'
@@ -630,7 +631,7 @@ def nowcast_biology(request):
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
         available_hrs = (
-            biology_figures[0].available(
+            nitrate_image_loop.available(
                 request, 'nowcast-green', results_date, session
             )
         )
@@ -640,7 +641,7 @@ def nowcast_biology(request):
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
-        'image_loop': biology_figures[0],
+        'image_loop': nitrate_image_loop,
         'image_loop_hrs': available_hrs,
     }
 
