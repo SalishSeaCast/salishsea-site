@@ -66,24 +66,34 @@
       </%block>
   </%doc>
   <div class="row" id="${figure_group.description | slug}">
-    <div class="col-md-8">
-      <h3 id="fig-title">${figure_group.figures[0].title}  ${header_link(figure_group.description)}</h3>
-      <img id="fig" class="img-responsive"
+    <div class="col-md-12">
+      <h3>${figure_group.description}: ${header_link(figure_group.description) | slug}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <select class="form-control" name="${figure_group.description | slug}" onchange="showFigure(event, '${figure_group.description | slug}-img')">
+        <option
+          selected
+            data-url="${request.static_url(figure_group.figures[0].path(run_type, run_date))}"
+            value="${figure_group.figures[0].title}|${request.static_url(figure_group.figures[0].path(run_type, run_date))}">
+          ${figure_group.figures[0].link_text}
+        </option>
+        %for figure in figure_group.figures[1:]:
+          <option
+              data-url="${request.static_url(figure.path(run_type, run_date))}"
+              value="${figure.title}|${request.static_url(figure.path(run_type, run_date))}">
+            ${figure.link_text}
+          </option>
+        %endfor
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <img id="${figure_group.description | slug}-img" class="img-responsive"
        src="${request.static_url(figure_group.figures[0].path(run_type, run_date))}"
        alt="${figure_group.figures[0].title} image">
-    </div>
-    <div class="col-md-4">
-      <p>${figure_group.description}:</p>
-      <ul>
-        %for figure in figure_group.figures:
-          <li>
-            <a class="fig-swap-link"
-              onclick="showFigure('${figure.title}', '${request.static_url(figure.path(run_type, run_date))}')">
-              ${figure.link_text}
-            </a>
-          </li>
-        %endfor
-      </ul>
     </div>
   </div>
 </%def>
@@ -91,9 +101,10 @@
 
 <%def name="show_figure()">
   <script>
-    function showFigure(title, url) {
-      document.getElementById('fig-title').innerHTML = title;
-      document.getElementById('fig').src = url;
+    function showFigure(event, imgId) {
+      var parts = event.target.value.split('|');
+      document.getElementById(imgId).alt=parts[0];
+      document.getElementById(imgId).src=parts[1];
     }
   </script>
 </%def>
