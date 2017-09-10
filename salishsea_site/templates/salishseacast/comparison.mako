@@ -82,5 +82,8 @@
 
 
 <%block name="page_js">
+  <script>
+    function init() { }
+  </script>
   ${show_figure()}
 </%block>
