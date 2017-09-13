@@ -250,9 +250,6 @@ publish_figures = [
         title='Sea Surface Height at Selected NOAA Stations',
         svg_name='NOAA_ssh'
     ),
-    FigureMetadata(
-        title='Storm Surge Alert Thresholds', svg_name='WaterLevel_Thresholds'
-    ),
     FigureMetadata(title='Sand Heads Wind', svg_name='SH_wind'),
     FigureMetadata(
         title='Winds from Atmospheric Forcing Averaged Over Run Duration',
