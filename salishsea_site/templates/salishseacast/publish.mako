@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_group, show_figure, figure_nav_links"/>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – Salish Sea Storm Surge ${run_type_title}</%block>
 
@@ -65,5 +65,28 @@
     ${figure_nav_links()}
   %endfor
 
+  %if tides_max_ssh_figures_available:
+    ${figure_group(tides_max_ssh_figures, run_type, run_date)}
+    ${figure_nav_links()}
+  %endif
+
+  %if noaa_ssh_figure_available:
+    ${figure_row(noaa_ssh_figure, run_type, run_date)}
+    ${figure_nav_links()}
+  %endif
+
+  %if wind_figures_available:
+    ${figure_group(wind_figures, run_type, run_date)}
+    ${figure_nav_links()}
+  %endif
+
   <%include file="data_sources.mako"/>
 </div>
+
+
+<%block name="page_js">
+  <script>
+    function init() { }
+  </script>
+  ${show_figure()}
+</%block>
