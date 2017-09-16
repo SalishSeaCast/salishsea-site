@@ -1,7 +1,7 @@
-function initImageLoop(images) {
+function initImageLoop( images, imgType ) {
    // Set our global object 'il' to be an image loop
    // varname = new ImageLoop(imagesArray, intervalInMilliseconds);
-   il = new ImageLoop(images, 500);
+   il = new ImageLoop(images, 500, imgType);
 
    // Make a list of dates of all images
    var regexDateTime=/_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})(_UTC)?\./;
@@ -33,7 +33,7 @@ function initImageLoop(images) {
 }
 
 // Object that manages the animation
-function ImageLoop( images, speed ) {
+function ImageLoop( images, speed, imgType ) {
    this.images    = images;
    this.speed     = speed;
    this.interval  = false;

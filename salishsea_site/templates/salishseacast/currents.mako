@@ -86,7 +86,6 @@
     var datetime = null;
     var sl = null;
     var il = null;
-    var imgType = "dateTimes";
 
     function init() {
       var images = [
@@ -94,7 +93,7 @@
           "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      initImageLoop(images);
+      initImageLoop(images, "dateTimes");
     }
   </script>
 </%block>
