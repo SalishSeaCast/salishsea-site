@@ -53,10 +53,10 @@
 
 <%def name="figure_group(figure_group, run_type, run_date)">
   <%doc>
-    Render a figrue group block.
+    Render a figure group block.
 
-    The image title and source are updated via onclick events on a list of
-    figure links that are rendered beside the image.
+    The image title and source are updated via onchange events on selector
+    rendered above the image that provides a list of figure links.
 
     Page templates that use this def must also call the show_figure() in their
     page_js block; e.g.
@@ -107,6 +107,86 @@
       document.getElementById(imgId).src=parts[1];
     }
   </script>
+</%def>
+
+
+<%def name="image_loop(image_loop)">
+  <%doc>
+    Render an image loop block.
+
+    Page templates that use this def must also include a page_js block like:
+
+      <%block name="page_js">
+        <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+
+      </%block>
+  </%doc>
+  <div class="image-loop">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 id="${image_loop.title | slug}"> ${image_loop.title} ${header_link(image_loop.title) | slug}</h3>
+
+        <button class="btn btn-default" onclick="il.start()" type="button" title="Begin animation">Play</button>
+        <button class="btn btn-default" onclick="il.stop()" type="button" title="Stop animation">Stop</button>
+        <button class="btn btn-default"
+                type="button" title="Go to the first image" aria-label="Go to the first image"
+                onclick="il.goto('beginning')" >
+          <i class="fa fa-fast-backward" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-default"
+                type="button" title="Go to the previous image" aria-label="Go to the previous image"
+                onclick="il.goto('left')" >
+          <i class="fa fa-backward" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-default"
+                type="button" title="Go to the next image" aria-label="Go to the next image"
+                onclick="il.goto('right')" >
+          <i class="fa fa-forward" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-default"
+                type="button" title="Go to the last image" aria-label="Go to the last image"
+                onclick="il.goto('end')" >
+          <i class="fa fa-fast-forward" aria-hidden="true"></i>
+        </button>
+        <span class="inline">Direction:
+          <button class="btn btn-default" id="btnDirection"
+                  type="button" title="Animation's current direction. Click to change."
+                  aria-label="Animation's current direction. Click to change."
+                  onclick="this.innerHTML=il.toggleDirection()">forward</button>
+        </span>
+        <span class="inline">Speed:
+          <button class="btn btn-default" id="increaseSpeed"
+                  type="button" title="Increase animation speed" aria-label="Increase animation speed"
+                  onclick="il.changeSpeed(-100)" >
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-default"
+                  type="button" title="Reduce animation speed" aria-label="Reduce animation speed"
+                  onclick="il.changeSpeed(+100)">
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </span>
+        <!--We don't show these selectors, but ImageLoop.js uses them -->
+        <select class="hidden" id="indexStart"><option></option></select>
+        <select class="hidden" id="indexEnd"><option></option></select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div id="datetime" title="Current image date/time"></div>
+      </div>
+      <div class="col-md-8">
+        <div id="slider"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="il"></div>
+      </div>
+    </div>
+  </div>
 </%def>
 
 
