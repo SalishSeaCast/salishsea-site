@@ -166,9 +166,6 @@
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
         </span>
-        <!--We don't show these selectors, but ImageLoop.js uses them -->
-        <select class="hidden" id="indexStart"><option></option></select>
-        <select class="hidden" id="indexEnd"><option></option></select>
       </div>
     </div>
 

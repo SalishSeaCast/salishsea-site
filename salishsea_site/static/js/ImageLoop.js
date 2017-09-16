@@ -1,45 +1,10 @@
-// Make sure the start and end date are consistent with one another
-function updateStartEnd() {
-   var start = document.getElementById('indexStart');
-   var end   = document.getElementById('indexEnd');
-   var from  = start.selectedIndex;
-   var to    = end.selectedIndex;
-
-   // Ultimate check because some browsers don't disable options...
-   if( from > to ) {
-      alert("The starting date must be prior to the end date.");
-      start.selectedIndex = il.idxStart;
-      end.selectedIndex = il.idxEnd; 
-      return;
-   }
-
-   // Disable all unwanted options
-   for(var i=0; i<dateTimes.length; ++i) {
-      // Prevent user from selecting a starting date after the end date.
-      start.options[i].disabled = (i > to) ? true : false;
-
-      // Prevent user from selecting an end date prior to the starting date.
-      end.options[i].disabled = (i < from) ? true : false;
-   }
-
-   il.setStartEnd(from, to);
-   if( sl ) {
-      sl.setIndex('borneMin', from);
-      sl.setIndex('borneMax', to);
-   }
-}
-
-
 function initImageLoop(images) {
    // Set our global object 'il' to be an image loop
    // varname = new ImageLoop(imagesArray, intervalInMilliseconds);
    il = new ImageLoop(images, 500);
 
-   // Make a list of dates of all images (used by indexStart and indexEnd)
-   // and add it as options for start/end index
+   // Make a list of dates of all images
    var regexDateTime=/_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})(_UTC)?\./;
-   var start = document.getElementById('indexStart').options;
-   var end   = document.getElementById('indexEnd').options;
    dateTimes = new Array(images.length);
    var opt = null;
    for( var i=0; i<images.length; ++i) {
@@ -56,21 +21,10 @@ function initImageLoop(images) {
       } else {
          dateTimes[i] = i+1;
       }
-
-      var opt = document.createElement('option');
-      opt.text = dateTimes[i];
-      start[i] = opt;
-
-      opt = document.createElement('option');
-      opt.text = dateTimes[i];
-      end[i] = opt;
    }
-   start.selectedIndex = 0;
-   end.selectedIndex = dateTimes.length - 1;
 
    sl = new Slider('slider', images.length-1);
 
-   il.setStartEnd(start.selectedIndex, end.selectedIndex);
    if( imgType == "dateTimes" ) {
       document.getElementById('datetime').innerHTML = "Date/time: "+dateTimes[il.index];
    } else {
@@ -179,16 +133,6 @@ function ImageLoop( images, speed ) {
       this.setIndex(idx);
    }
 
-   function setStartEnd(Start, End) {
-      this.idxStart  = (Start>=0 && Start<this.images.length) ? Start : 0;
-      this.idxEnd    = (End>=0 && End<this.images.length) ? End : this.images.length-1;
-
-      if( this.index < this.idxStart ) {
-         this.setIndex(this.idxStart);
-      } else if( this.index > this.idxEnd ) {
-         this.setIndex(this.idxEnd);
-      }
-   }
 
    function toggleDirection() {
       this.direction = (this.direction == "forward") ? "backward" : "forward";
@@ -208,7 +152,6 @@ function ImageLoop( images, speed ) {
    this.stop = stop;
    this.changeSpeed = changeSpeed;
    this.goto = goto;
-   this.setStartEnd = setStartEnd;
    this.toggleDirection = toggleDirection;
 }
 
@@ -268,19 +211,7 @@ function Slider(container, maxIdx) {
 
       if( idx != this.idxs[item] ) {
          this.idxs[item] = idx;
-         switch(item) {
-            case 'handle' :
-               il.setIndex(idx);
-               break;
-            case 'borneMin' :
-               document.getElementById('indexStart').selectedIndex = idx;
-               updateStartEnd();
-               break;
-            case 'borneMax' :
-               document.getElementById('indexEnd').selectedIndex = idx;
-               updateStartEnd();
-               break;
-         }
+         il.setIndex(idx);
       }
    }
 
