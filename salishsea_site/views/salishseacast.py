@@ -295,9 +295,6 @@ publish_wind_figure_group = FigureGroup(
 
 currents_physics_figures = [
     FigureMetadata(
-        title='Salinity Field Along Thalweg', svg_name='Salinity_on_thalweg'
-    ),
-    FigureMetadata(
         title='Temperature Field Along Thalweg',
         svg_name='Temperature_on_thalweg'
     ),
@@ -314,6 +311,13 @@ currents_physics_figures = [
         svg_name='Currents_at_VENUS_Central'
     ),
 ]
+
+salinity_image_loop = ImageLoop(
+    metadata=FigureMetadata(
+        title='Salinity Fields Along Thalweg and on Surface',
+        svg_name='salinity_thalweg_and_surface',
+    )
+)
 
 nitrate_image_loop = ImageLoop(
     metadata=FigureMetadata(
@@ -654,15 +658,23 @@ def nowcast_currents_physics(request):
             fig for fig in currents_physics_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
-    if not available_figures:
+        available_hrs = (
+            salinity_image_loop.available(
+                request, 'nowcast', results_date, session
+            )
+        )
+    if not available_figures and not available_hrs:
         raise HTTPNotFound
-    figure_links = [figure.title for figure in available_figures]
+    figure_links = [salinity_image_loop.title] if available_hrs else []
+    figure_links.extend(figure.title for figure in available_figures)
     return {
         'results_date': results_date,
         'run_type': 'nowcast',
         'run_date': results_date,
         'figure_links': figure_links,
         'figures': available_figures,
+        'salinity_image_loop': salinity_image_loop,
+        'image_loop_hrs': available_hrs,
     }
 
 

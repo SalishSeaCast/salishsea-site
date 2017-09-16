@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, figure_nav_links"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, image_loop, figure_nav_links"/>
 
 <%block name="title">Salish Sea Model Currents & Physics – ${results_date.format('DD-MMM-YYYY')}</%block>
 
@@ -67,6 +67,10 @@
 
   ${list_of_plots(figure_links)}
 
+  %if image_loop_hrs:
+    ${image_loop(salinity_image_loop)}
+  %endif
+
   %for figure in figures:
     ${figure_row(figure, run_type, run_date)}
     ${figure_nav_links()}
@@ -74,3 +78,24 @@
 
   <%include file="data_sources.mako"/>
 </div>
+
+
+<%def name="show_image_loop()">
+  <script>
+    var datetime = null;
+    var sl = null;
+    var il = null;
+    var imgType = "dateTimes";
+    var images = [
+      %for run_hr in image_loop_hrs:
+        "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
+      %endfor
+    ];
+  </script>
+</%def>
+
+
+<%block name="page_js">
+  <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+  ${show_image_loop()}
+</%block>
