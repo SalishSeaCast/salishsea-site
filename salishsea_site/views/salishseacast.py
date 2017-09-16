@@ -686,7 +686,7 @@ def nowcast_biology(request):
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
-        'image_loop': nitrate_image_loop,
+        'nitrate_image_loop': nitrate_image_loop,
         'image_loop_hrs': available_hrs,
     }
 
