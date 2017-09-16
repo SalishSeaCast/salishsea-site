@@ -383,6 +383,11 @@ onc_venus_comparison_figure_group = FigureGroup(
             svg_name='Compare_VENUS_Central'
         ),
         FigureMetadata(
+            title='Salinity and Temperature at ONC VENUS East Node',
+            link_text='East Node',
+            svg_name='Compare_VENUS_East'
+        ),
+        FigureMetadata(
             title='Salinity and Temperature at ONC VENUS Delta BBL Node',
             link_text='BBL Node',
             svg_name='Compare_VENUS_Delta_BBL'
@@ -391,11 +396,6 @@ onc_venus_comparison_figure_group = FigureGroup(
             title='Salinity and Temperature at ONC VENUS Delta DDL Node',
             link_text='DDL Node',
             svg_name='Compare_VENUS_Delta_DDL'
-        ),
-        FigureMetadata(
-            title='Salinity and Temperature at ONC VENUS East Node',
-            link_text='East Node',
-            svg_name='Compare_VENUS_East'
         ),
     ]
 )
