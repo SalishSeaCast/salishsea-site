@@ -29,8 +29,8 @@ function updateStartEnd() {
    }
 }
 
-// Called on form load only
-function init() {
+
+function initImageLoop(images) {
    // Set our global object 'il' to be an image loop
    // varname = new ImageLoop(imagesArray, intervalInMilliseconds);
    il = new ImageLoop(images, 500);

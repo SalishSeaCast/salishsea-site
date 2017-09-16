@@ -80,22 +80,21 @@
 </div>
 
 
-<%def name="show_image_loop()">
+<%block name="page_js">
+  <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
   <script>
     var datetime = null;
     var sl = null;
     var il = null;
     var imgType = "dateTimes";
-    var images = [
-      %for run_hr in image_loop_hrs:
-        "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
-      %endfor
-    ];
+
+    function init() {
+      var images = [
+        %for run_hr in image_loop_hrs:
+          "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
+        %endfor
+      ];
+      initImageLoop(images);
+    }
   </script>
-</%def>
-
-
-<%block name="page_js">
-  <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
-  ${show_image_loop()}
 </%block>
