@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  ${image_loop(nitrate_image_loop, 'nitrate_datetime')}
+  ${image_loop(nitrate_image_loop, 'nitrate_datetime', 'nitrate_slider')}
 
   <%include file="data_sources.mako"/>
 </div>
@@ -74,7 +74,6 @@
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
   <script>
-    var datetime = null;
     var sl = null;
     var il = null;
 
@@ -84,7 +83,7 @@
           "${request.static_url(nitrate_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      initImageLoop(images, "nitrate_datetime", "dateTimes");
+      initImageLoop(images, "nitrate_datetime", "nitrate_slider", "dateTimes");
     }
   </script>
 </%block>
