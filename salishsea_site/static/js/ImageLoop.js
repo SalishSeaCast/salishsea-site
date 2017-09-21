@@ -1,4 +1,4 @@
-function initImageLoop( images, datetimeId, imgType ) {
+function initImageLoop( images, datetimeId, sliderId, imgType ) {
    // Set our global object 'il' to be an image loop
    // varname = new ImageLoop(imagesArray, intervalInMilliseconds);
    il = new ImageLoop(images, datetimeId, 500, imgType);
@@ -23,7 +23,7 @@ function initImageLoop( images, datetimeId, imgType ) {
       }
    }
 
-   sl = new Slider('slider', images.length-1);
+   sl = new Slider(sliderId, images.length-1);
 
    if( imgType == "dateTimes" ) {
       document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[il.index];

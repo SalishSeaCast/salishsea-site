@@ -68,7 +68,7 @@
   ${list_of_plots(figure_links)}
 
   %if image_loop_hrs:
-    ${image_loop(salinity_image_loop, 'salinity_datetime')}
+    ${image_loop(salinity_image_loop, 'salinity_datetime', 'salinity_slider')}
   %endif
 
   %for figure in figures:
@@ -92,7 +92,7 @@
           "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      initImageLoop(images, "salinity_datetime", "dateTimes");
+      initImageLoop(images, "salinity_datetime", "salinity_slider", "dateTimes");
     }
   </script>
 </%block>
