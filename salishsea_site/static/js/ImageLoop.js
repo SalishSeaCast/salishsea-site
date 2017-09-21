@@ -1,7 +1,7 @@
-function initImageLoop( images, imgType ) {
+function initImageLoop( images, datetimeId, imgType ) {
    // Set our global object 'il' to be an image loop
    // varname = new ImageLoop(imagesArray, intervalInMilliseconds);
-   il = new ImageLoop(images, 500, imgType);
+   il = new ImageLoop(images, datetimeId, 500, imgType);
 
    // Make a list of dates of all images
    var regexDateTime=/_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})(_UTC)?\./;
@@ -26,14 +26,14 @@ function initImageLoop( images, imgType ) {
    sl = new Slider('slider', images.length-1);
 
    if( imgType == "dateTimes" ) {
-      document.getElementById('datetime').innerHTML = "Date/time: "+dateTimes[il.index];
+      document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[il.index];
    } else {
-      document.getElementById('datetime').innerHTML = "Image #"+dateTimes[il.index]+' : '+images[il.index];
+      document.getElementById(datetimeId).innerHTML = "Image #"+dateTimes[il.index]+' : '+images[il.index];
    }
 }
 
 // Object that manages the animation
-function ImageLoop( images, speed, imgType ) {
+function ImageLoop( images, datetimeId, speed, imgType ) {
    this.images    = images;
    this.speed     = speed;
    this.interval  = false;
@@ -65,9 +65,9 @@ function ImageLoop( images, speed, imgType ) {
       im.src = images[index];
       this.index = index;
       if( imgType == "dateTimes" ) {
-         document.getElementById('datetime').innerHTML = "Date/time: "+dateTimes[index];
+         document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[index];
       } else {
-         document.getElementById('datetime').innerHTML = "Image #"+dateTimes[index]+' : '+images[index];
+         document.getElementById(datetimeId).innerHTML = "Image #"+dateTimes[index]+' : '+images[index];
       }
       if( sl ) {
          sl.setIndex('handle', index);
