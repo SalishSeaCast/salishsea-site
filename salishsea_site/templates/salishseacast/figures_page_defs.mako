@@ -110,7 +110,7 @@
 </%def>
 
 
-<%def name="image_loop(image_loop)">
+<%def name="image_loop(image_loop, datetime_id)">
   <%doc>
     Render an image loop block.
 
@@ -171,7 +171,7 @@
 
     <div class="row">
       <div class="col-md-4">
-        <div id="datetime" title="Current image date/time"></div>
+        <div id="${datetime_id}" title="Current image date/time"></div>
       </div>
       <div class="col-md-8">
         <div id="slider"></div>
