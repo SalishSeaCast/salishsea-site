@@ -52,7 +52,7 @@ function ImageLoop( images, imageLoopId, datetimeId, speed, imgType ) {
    }
    preloadImages();
 
-   thisObj = this;
+   var thisObj = this;
    function onInterval() {
       if( thisObj.direction == "forward" ) {
          thisObj.next();
