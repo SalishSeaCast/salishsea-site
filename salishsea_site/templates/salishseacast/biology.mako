@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  ${image_loop(nitrate_image_loop, 'nitrate_datetime', 'nitrate_slider')}
+  ${image_loop(nitrate_image_loop, "nitrate_image_loop_id", 'nitrate_datetime_id', 'nitrate_slider_id')}
 
   <%include file="data_sources.mako"/>
 </div>
@@ -83,7 +83,7 @@
           "${request.static_url(nitrate_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      initImageLoop(images, "nitrate_datetime", "nitrate_slider", "dateTimes");
+      initImageLoop(images, "nitrate_image_loop_id", "nitrate_datetime_id", "nitrate_slider_id", "dateTimes");
     }
   </script>
 </%block>
