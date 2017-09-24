@@ -68,7 +68,7 @@
   ${list_of_plots(figure_links)}
 
   %if image_loop_hrs:
-    ${image_loop(salinity_image_loop, "salinity_image_loop_id", 'salinity_datetime_id', 'salinity_slider_id')}
+    ${image_loop(salinity_image_loop, "salinityImageLoop", "salinity_image_loop_id", 'salinity_datetime_id', 'salinity_slider_id')}
   %endif
 
   %for figure in figures:
@@ -84,7 +84,6 @@
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
   <script>
     var sl = null;
-    var il = null;
 
     function init() {
       var images = [
@@ -92,7 +91,7 @@
           "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      initImageLoop(images, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id", "dateTimes");
+      salinityImageLoop = initImageLoop(images, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id", "dateTimes");
     }
   </script>
 </%block>

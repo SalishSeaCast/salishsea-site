@@ -110,7 +110,7 @@
 </%def>
 
 
-<%def name="image_loop(image_loop, image_loop_id, datetime_id, slider_id)">
+<%def name="image_loop(image_loop, il, image_loop_id, datetime_id, slider_id)">
   <%doc>
     Render an image loop block.
 
@@ -126,43 +126,43 @@
       <div class="col-md-12">
         <h3 id="${image_loop.title | slug}"> ${image_loop.title} ${header_link(image_loop.title) | slug}</h3>
 
-        <button class="btn btn-default" onclick="il.start()" type="button" title="Begin animation">Play</button>
-        <button class="btn btn-default" onclick="il.stop()" type="button" title="Stop animation">Stop</button>
+        <button class="btn btn-default" onclick="${il}.start()" type="button" title="Begin animation">Play</button>
+        <button class="btn btn-default" onclick="${il}.stop()" type="button" title="Stop animation">Stop</button>
         <button class="btn btn-default"
                 type="button" title="Go to the first image" aria-label="Go to the first image"
-                onclick="il.goto('beginning')" >
+                onclick="${il}.goto('beginning')" >
           <i class="fa fa-fast-backward" aria-hidden="true"></i>
         </button>
         <button class="btn btn-default"
                 type="button" title="Go to the previous image" aria-label="Go to the previous image"
-                onclick="il.goto('left')" >
+                onclick="${il}.goto('left')" >
           <i class="fa fa-backward" aria-hidden="true"></i>
         </button>
         <button class="btn btn-default"
                 type="button" title="Go to the next image" aria-label="Go to the next image"
-                onclick="il.goto('right')" >
+                onclick="${il}.goto('right')" >
           <i class="fa fa-forward" aria-hidden="true"></i>
         </button>
         <button class="btn btn-default"
                 type="button" title="Go to the last image" aria-label="Go to the last image"
-                onclick="il.goto('end')" >
+                onclick="${il}.goto('end')" >
           <i class="fa fa-fast-forward" aria-hidden="true"></i>
         </button>
         <span class="inline">Direction:
           <button class="btn btn-default" id="btnDirection"
                   type="button" title="Animation's current direction. Click to change."
                   aria-label="Animation's current direction. Click to change."
-                  onclick="this.innerHTML=il.toggleDirection()">forward</button>
+                  onclick="this.innerHTML=${il}.toggleDirection()">forward</button>
         </span>
         <span class="inline">Speed:
           <button class="btn btn-default" id="increaseSpeed"
                   type="button" title="Increase animation speed" aria-label="Increase animation speed"
-                  onclick="il.changeSpeed(-100)" >
+                  onclick="${il}.changeSpeed(-100)" >
             <i class="fa fa-chevron-up" aria-hidden="true"></i>
           </button>
           <button class="btn btn-default"
                   type="button" title="Reduce animation speed" aria-label="Reduce animation speed"
-                  onclick="il.changeSpeed(+100)">
+                  onclick="${il}.changeSpeed(+100)">
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
         </span>
