@@ -83,15 +83,13 @@
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
   <script>
-    var sl = null;
-
     function init() {
-      var images = [
+      var salinityImages = [
         %for run_hr in image_loop_hrs:
           "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      salinityImageLoop = initImageLoop(images, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id", "dateTimes");
+      salinityImageLoop = initImageLoop(salinityImages, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id", "dateTimes");
     }
   </script>
 </%block>
