@@ -293,11 +293,21 @@ publish_wind_figure_group = FigureGroup(
     ]
 )
 
+salinity_image_loop = ImageLoop(
+    metadata=FigureMetadata(
+        title='Salinity Fields Along Thalweg and on Surface',
+        svg_name='salinity_thalweg_and_surface',
+    )
+)
+
+temperature_image_loop = ImageLoop(
+    metadata=FigureMetadata(
+        title='Temperature Fields Along Thalweg and on Surface',
+        svg_name='temperature_thalweg_and_surface',
+    )
+)
+
 currents_physics_figures = [
-    FigureMetadata(
-        title='Temperature Field Along Thalweg',
-        svg_name='Temperature_on_thalweg'
-    ),
     FigureMetadata(
         title='Surface Salinity, Temperature and Currents',
         svg_name='T_S_Currents_on_surface'
@@ -311,13 +321,6 @@ currents_physics_figures = [
         svg_name='Currents_at_VENUS_Central'
     ),
 ]
-
-salinity_image_loop = ImageLoop(
-    metadata=FigureMetadata(
-        title='Salinity Fields Along Thalweg and on Surface',
-        svg_name='salinity_thalweg_and_surface',
-    )
-)
 
 nitrate_image_loop = ImageLoop(
     metadata=FigureMetadata(
@@ -658,14 +661,25 @@ def nowcast_currents_physics(request):
             fig for fig in currents_physics_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
-        available_hrs = (
+        salinity_available_hrs = (
             salinity_image_loop.available(
                 request, 'nowcast', results_date, session
             )
         )
-    if not available_figures and not available_hrs:
+        temperature_available_hrs = (
+            temperature_image_loop.available(
+                request, 'nowcast', results_date, session
+            )
+        )
+    all_available_figures = (
+        available_figures + salinity_available_hrs + temperature_available_hrs
+    )
+    if not any(all_available_figures):
         raise HTTPNotFound
-    figure_links = [salinity_image_loop.title] if available_hrs else []
+    figure_links = [salinity_image_loop.title
+                    ] if salinity_available_hrs else []
+    if temperature_available_hrs:
+        figure_links.append(temperature_image_loop.title)
     figure_links.extend(figure.title for figure in available_figures)
     return {
         'results_date': results_date,
@@ -674,7 +688,9 @@ def nowcast_currents_physics(request):
         'figure_links': figure_links,
         'figures': available_figures,
         'salinity_image_loop': salinity_image_loop,
-        'image_loop_hrs': available_hrs,
+        'salinity_image_loop_hrs': salinity_available_hrs,
+        'temperature_image_loop': temperature_image_loop,
+        'temperature_image_loop_hrs': temperature_available_hrs,
     }
 
 

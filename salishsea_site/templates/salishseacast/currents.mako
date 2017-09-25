@@ -67,8 +67,12 @@
 
   ${list_of_plots(figure_links)}
 
-  %if image_loop_hrs:
+  %if salinity_image_loop_hrs:
     ${image_loop(salinity_image_loop, "salinityImageLoop", "salinity_image_loop_id", 'salinity_datetime_id', 'salinity_slider_id')}
+  %endif
+
+  %if temperature_image_loop_hrs:
+    ${image_loop(temperature_image_loop, "temperatureImageLoop", "temperature_image_loop_id", 'temperature_datetime_id', 'temperature_slider_id')}
   %endif
 
   %for figure in figures:
@@ -85,11 +89,17 @@
   <script>
     function init() {
       var salinityImages = [
-        %for run_hr in image_loop_hrs:
+        %for run_hr in salinity_image_loop_hrs:
           "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
       salinityImageLoop = initImageLoop(salinityImages, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id", "dateTimes");
+      var temperatureImages = [
+        %for run_hr in temperature_image_loop_hrs:
+          "${request.static_url(temperature_image_loop.path(run_type, run_date, run_hr))}",
+        %endfor
+      ];
+      temperatureImageLoop = initImageLoop(temperatureImages, "temperature_image_loop_id", "temperature_datetime_id", "temperature_slider_id", "dateTimes");
     }
   </script>
 </%block>
