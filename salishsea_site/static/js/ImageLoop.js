@@ -1,11 +1,7 @@
 function initImageLoop( images, imageLoopId, datetimeId, sliderId, imgType ) {
-   // Set our global object 'il' to be an image loop
-   // varname = new ImageLoop(imagesArray, intervalInMilliseconds);
-   var il = new ImageLoop(images, imageLoopId, datetimeId, 500, imgType);
-
    // Make a list of dates of all images
    var regexDateTime=/_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})(_UTC)?\./;
-   dateTimes = new Array(images.length);
+   var dateTimes = new Array(images.length);
    var opt = null;
    for( var i=0; i<images.length; ++i) {
       if( imgType == "dateTimes" ) {
@@ -23,7 +19,7 @@ function initImageLoop( images, imageLoopId, datetimeId, sliderId, imgType ) {
       }
    }
 
-   sl = new Slider(sliderId, il, images.length-1);
+   var il = new ImageLoop(images, imageLoopId, dateTimes, datetimeId, sliderId, 500, imgType);
 
    if( imgType == "dateTimes" ) {
       document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[il.index];
@@ -34,8 +30,9 @@ function initImageLoop( images, imageLoopId, datetimeId, sliderId, imgType ) {
 }
 
 // Object that manages the animation
-function ImageLoop( images, imageLoopId, datetimeId, speed, imgType ) {
+function ImageLoop( images, imageLoopId, dateTimes, datetimeId, sliderId, speed, imgType ) {
    this.images    = images;
+   this.dateTimes = dateTimes;
    this.speed     = speed;
    this.interval  = false;
    this.play      = false;
@@ -66,12 +63,12 @@ function ImageLoop( images, imageLoopId, datetimeId, speed, imgType ) {
       im.src = images[index];
       this.index = index;
       if( imgType == "dateTimes" ) {
-         document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[index];
+         document.getElementById(datetimeId).innerHTML = "Date/time: " + this.dateTimes[index];
       } else {
-         document.getElementById(datetimeId).innerHTML = "Image #"+dateTimes[index]+' : '+images[index];
+         document.getElementById(datetimeId).innerHTML = "Image #" + this.dateTimes[index]+' : '+images[index];
       }
-      if( sl ) {
-         sl.setIndex('handle', index);
+      if( this.sl ) {
+         this.sl.setIndex('handle', index);
       }
    }
 
@@ -154,6 +151,7 @@ function ImageLoop( images, imageLoopId, datetimeId, speed, imgType ) {
    this.changeSpeed = changeSpeed;
    this.goto = goto;
    this.toggleDirection = toggleDirection;
+   this.sl = new Slider(sliderId, this, images.length-1);
 }
 
 // Slider Object
@@ -165,6 +163,7 @@ function Slider(container, il, maxIdx) {
    this.handleBorder   = 2;
    this.trackThickness = 3;
 
+   this.il = il;
    this.sliderMinIdx   = 0;
    this.sliderMaxIdx   = maxIdx;
    this.targetInitPos  = -1;
@@ -212,7 +211,7 @@ function Slider(container, il, maxIdx) {
 
       if( idx != this.idxs[item] ) {
          this.idxs[item] = idx;
-         il.setIndex(idx);
+         this.il.setIndex(idx);
       }
    }
 
@@ -284,7 +283,7 @@ function Slider(container, il, maxIdx) {
 
             // snap the target back to nearest tick
             this.setIndex(this.target, this.pos2idx(newPos));
-            
+
             this.target = "";
          }
       }

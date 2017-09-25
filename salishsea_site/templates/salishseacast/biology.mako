@@ -74,15 +74,13 @@
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
   <script>
-    var sl = null;
-
     function init() {
-      var images = [
+      var nitrateImages = [
         %for run_hr in image_loop_hrs:
           "${request.static_url(nitrate_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      nitrateImageLoop = initImageLoop(images, "nitrate_image_loop_id", "nitrate_datetime_id", "nitrate_slider_id", "dateTimes");
+      nitrateImageLoop = initImageLoop(nitrateImages, "nitrate_image_loop_id", "nitrate_datetime_id", "nitrate_slider_id", "dateTimes");
     }
   </script>
 </%block>
