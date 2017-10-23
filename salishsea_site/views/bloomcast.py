@@ -51,11 +51,8 @@ def spring_diatoms(request):
         bloom_date_log = [
             line.split() for line in f if not line.startswith('#')
         ]
-    forecast_date = (
-        arrow.get(latest_bloomcast['data_date']).replace(
-            days=+1
-        ).format('YYYY-MM-DD')
-    )
+    data_date = arrow.get(latest_bloomcast['data_date'])
+    forecast_date = data_date.replace(days=+1).format('YYYY-MM-DD')
     latest_bloomcast.update({
         'forecast_date': forecast_date,
         'plots_path': plots_path,
