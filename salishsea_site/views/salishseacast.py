@@ -66,8 +66,8 @@ class FigureMetadata:
             return session.head(figure_url).status_code == 200
         except requests.ConnectionError:
             # Development environment
-            return session.head(figure_url.replace('4567', '6543')
-                                ).status_code == 200
+            dev_figure_url = figure_url.replace('4567', '6543')
+            return session.head(dev_figure_url).status_code == 200
 
     def filename(self, run_dmy):
         """Return the figure file name.
@@ -757,8 +757,9 @@ def nowcast_comparison(request):
             if fig.available(request, 'nowcast', results_date, session)
         ]
         onc_venus_figures_available = any(
-            onc_venus_comparison_figure_group.
-            available(request, 'nowcast', results_date, session)
+            onc_venus_comparison_figure_group.available(
+                request, 'nowcast', results_date, session
+            )
         )
     if not ungrouped_figures and not onc_venus_figures_available:
         raise HTTPNotFound
@@ -802,8 +803,9 @@ def _data_for_publish_template(
             if fig.available(request, run_type, run_date, session)
         ]
         tides_max_ssh_figures_available = any(
-            tides_max_ssh_figure_group.
-            available(request, run_type, run_date, session)
+            tides_max_ssh_figure_group.available(
+                request, run_type, run_date, session
+            )
         )
         wind_figures_available = any(
             wind_figure_group.available(request, run_type, run_date, session)
