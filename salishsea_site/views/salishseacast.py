@@ -241,6 +241,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
     description='Tide Gauge Station Sea Surface Heights',
     figures=[
         FigureMetadata(
+            title='Neah Bay Sea Surface Height',
+            link_text='Neah Bay',
+            svg_name='NB_maxSSH'
+        ),
+        FigureMetadata(
             title='Victoria Sea Surface Height',
             link_text='Victoria',
             svg_name='Vic_maxSSH'
