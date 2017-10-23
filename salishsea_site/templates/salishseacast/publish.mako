@@ -70,11 +70,6 @@
     ${figure_nav_links()}
   %endif
 
-  %if noaa_ssh_figure_available:
-    ${figure_row(noaa_ssh_figure, run_type, run_date)}
-    ${figure_nav_links()}
-  %endif
-
   %if wind_figures_available:
     ${figure_group(wind_figures, run_type, run_date)}
     ${figure_nav_links()}
