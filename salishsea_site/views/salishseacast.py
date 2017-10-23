@@ -273,10 +273,6 @@ publish_tides_max_ssh_figure_group = FigureGroup(
     ]
 )
 
-publish_noaa_ssh_figure = FigureMetadata(
-    title='Sea Surface Height at Selected NOAA Stations', svg_name='NOAA_ssh'
-)
-
 publish_wind_figure_group = FigureGroup(
     description='Modelled and Observed Winds',
     figures=[
@@ -447,7 +443,6 @@ def storm_surge_forecast(request):
                 fcst_date,
                 publish_figures,
                 publish_tides_max_ssh_figure_group,
-                publish_noaa_ssh_figure,
                 publish_wind_figure_group,
                 fcst_date.replace(days=-1)
             )
@@ -458,7 +453,6 @@ def storm_surge_forecast(request):
                 fcst_date,
                 publish_figures,
                 publish_tides_max_ssh_figure_group,
-                publish_noaa_ssh_figure,
                 publish_wind_figure_group,
                 fcst_date.replace(days=-2)
             )
@@ -469,7 +463,6 @@ def storm_surge_forecast(request):
             fcst_date.replace(days=-1),
             publish_figures,
             publish_tides_max_ssh_figure_group,
-            publish_noaa_ssh_figure,
             publish_wind_figure_group,
             fcst_date.replace(days=-2)
         )
@@ -595,7 +588,6 @@ def nowcast_publish(request):
         results_date,
         publish_figures,
         publish_tides_max_ssh_figure_group,
-        publish_noaa_ssh_figure,
         publish_wind_figure_group,
         run_date=results_date
     )
@@ -617,8 +609,7 @@ def forecast_publish(request):
     run_date = results_date.replace(days=-1)
     return _data_for_publish_template(
         request, 'forecast', results_date, publish_figures,
-        publish_tides_max_ssh_figure_group, publish_noaa_ssh_figure,
-        publish_wind_figure_group, run_date
+        publish_tides_max_ssh_figure_group, publish_wind_figure_group, run_date
     )
 
 
@@ -638,8 +629,7 @@ def forecast2_publish(request):
     run_date = results_date.replace(days=-2)
     return _data_for_publish_template(
         request, 'forecast2', results_date, publish_figures,
-        publish_tides_max_ssh_figure_group, publish_noaa_ssh_figure,
-        publish_wind_figure_group, run_date
+        publish_tides_max_ssh_figure_group, publish_wind_figure_group, run_date
     )
 
 
@@ -788,7 +778,7 @@ def nowcast_comparison(request):
 
 def _data_for_publish_template(
     request, run_type, results_date, figures, tides_max_ssh_figure_group,
-    noaa_ssh_figure, wind_figure_group, run_date
+    wind_figure_group, run_date
 ):
     """Calculate template variable values for a storm surge forecast figures
     page.
@@ -815,9 +805,6 @@ def _data_for_publish_template(
             tides_max_ssh_figure_group.
             available(request, run_type, run_date, session)
         )
-        noaa_ssh_figure_available = [
-            noaa_ssh_figure.available(request, run_type, run_date, session)
-        ]
         wind_figures_available = any(
             wind_figure_group.available(request, run_type, run_date, session)
         )
@@ -835,10 +822,6 @@ def _data_for_publish_template(
         template_data['tides_max_ssh_figures_available'
                       ] = tides_max_ssh_figures_available
         template_data['tides_max_ssh_figures'] = tides_max_ssh_figure_group
-    if noaa_ssh_figure_available:
-        figure_links.append(noaa_ssh_figure.title)
-        template_data['noaa_ssh_figure_available'] = noaa_ssh_figure_available
-        template_data['noaa_ssh_figure'] = noaa_ssh_figure
     if wind_figures_available:
         figure_links.append(wind_figure_group.description)
         template_data['wind_figures_available'] = wind_figures_available
