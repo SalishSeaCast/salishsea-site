@@ -310,8 +310,8 @@ temperature_image_loop = ImageLoop(
 
 currents_physics_figures = [
     FigureMetadata(
-        title='Surface Salinity, Temperature and Currents',
-        svg_name='T_S_Currents_on_surface'
+        title='Surface Currents and Velocity Cross-sections',
+        svg_name='Currents_sections_and_surface'
     ),
     FigureMetadata(
         title='Model Currents at ONC VENUS East Node',
