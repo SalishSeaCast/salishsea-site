@@ -70,8 +70,8 @@
     ${figure_nav_links()}
   %endif
 
-  %if wind_figures_available:
-    ${figure_group(wind_figures, run_type, run_date)}
+  %if wind_figure_available:
+    ${figure_row(sand_heads_wind_figure, run_type, run_date)}
     ${figure_nav_links()}
   %endif
 

@@ -273,25 +273,10 @@ publish_tides_max_ssh_figure_group = FigureGroup(
     ]
 )
 
-publish_wind_figure_group = FigureGroup(
-    description='Modelled and Observed Winds',
-    figures=[
-        FigureMetadata(
-            title='Sand Heads Wind',
-            link_text='Sand Heads',
-            svg_name='SH_wind'
-        ),
-        FigureMetadata(
-            title='Winds from Atmospheric Forcing Averaged Over Run Duration',
-            link_text='Averaged Over Run Duration',
-            svg_name='Avg_wind_vectors'
-        ),
-        FigureMetadata(
-            title='Instantaneous Winds from Atmospheric Forcing',
-            link_text='Instantaneous at Pt. Atkinson High Water Time',
-            svg_name='Wind_vectors_at_max'
-        ),
-    ]
+publish_sand_heads_wind_figure = FigureMetadata(
+    title='Sand Heads Winds - Modelled and Observed',
+    link_text='Sand Heads',
+    svg_name='SH_wind'
 )
 
 salinity_image_loop = ImageLoop(
@@ -443,7 +428,7 @@ def storm_surge_forecast(request):
                 fcst_date,
                 publish_figures,
                 publish_tides_max_ssh_figure_group,
-                publish_wind_figure_group,
+                publish_sand_heads_wind_figure,
                 fcst_date.replace(days=-1)
             )
         except HTTPNotFound:
@@ -453,7 +438,7 @@ def storm_surge_forecast(request):
                 fcst_date,
                 publish_figures,
                 publish_tides_max_ssh_figure_group,
-                publish_wind_figure_group,
+                publish_sand_heads_wind_figure,
                 fcst_date.replace(days=-2)
             )
     except HTTPNotFound:
@@ -463,7 +448,7 @@ def storm_surge_forecast(request):
             fcst_date.replace(days=-1),
             publish_figures,
             publish_tides_max_ssh_figure_group,
-            publish_wind_figure_group,
+            publish_sand_heads_wind_figure,
             fcst_date.replace(days=-2)
         )
 
@@ -588,7 +573,7 @@ def nowcast_publish(request):
         results_date,
         publish_figures,
         publish_tides_max_ssh_figure_group,
-        publish_wind_figure_group,
+        publish_sand_heads_wind_figure,
         run_date=results_date
     )
 
@@ -609,7 +594,8 @@ def forecast_publish(request):
     run_date = results_date.replace(days=-1)
     return _data_for_publish_template(
         request, 'forecast', results_date, publish_figures,
-        publish_tides_max_ssh_figure_group, publish_wind_figure_group, run_date
+        publish_tides_max_ssh_figure_group, publish_sand_heads_wind_figure,
+        run_date
     )
 
 
@@ -629,7 +615,8 @@ def forecast2_publish(request):
     run_date = results_date.replace(days=-2)
     return _data_for_publish_template(
         request, 'forecast2', results_date, publish_figures,
-        publish_tides_max_ssh_figure_group, publish_wind_figure_group, run_date
+        publish_tides_max_ssh_figure_group, publish_sand_heads_wind_figure,
+        run_date
     )
 
 
@@ -779,13 +766,10 @@ def nowcast_comparison(request):
 
 def _data_for_publish_template(
     request, run_type, results_date, figures, tides_max_ssh_figure_group,
-    wind_figure_group, run_date
+    sand_heads_wind_figure, run_date
 ):
     """Calculate template variable values for a storm surge forecast figures
     page.
-    :param publish_noaa_ssh_figure:
-    :param wind_figure_group:
-    :param tides_max_ssh_figure_group:
     """
     run_type_titles = {
         'nowcast': 'Nowcast',
@@ -807,8 +791,8 @@ def _data_for_publish_template(
                 request, run_type, run_date, session
             )
         )
-        wind_figures_available = any(
-            wind_figure_group.available(request, run_type, run_date, session)
+        wind_figure_available = sand_heads_wind_figure.available(
+            request, run_type, run_date, session
         )
     figure_links = [figure.title for figure in available_figures]
     template_data = {
@@ -824,10 +808,10 @@ def _data_for_publish_template(
         template_data['tides_max_ssh_figures_available'
                       ] = tides_max_ssh_figures_available
         template_data['tides_max_ssh_figures'] = tides_max_ssh_figure_group
-    if wind_figures_available:
-        figure_links.append(wind_figure_group.description)
-        template_data['wind_figures_available'] = wind_figures_available
-        template_data['wind_figures'] = wind_figure_group
+    if sand_heads_wind_figure:
+        figure_links.append(sand_heads_wind_figure.title)
+        template_data['wind_figure_available'] = wind_figure_available
+        template_data['sand_heads_wind_figure'] = sand_heads_wind_figure
     return template_data
 
 
