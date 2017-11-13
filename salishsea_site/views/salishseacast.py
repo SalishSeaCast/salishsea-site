@@ -320,22 +320,24 @@ timeseries_figure_group = FigureGroup(
     figures=[
         FigureMetadata(
             title='Temperature and Salinity',
-            link_text='Temperature and Salinity',
+            link_text='Surface Temperature and Salinity',
             svg_name='temperature_salinity_timeseries',
         ),
         FigureMetadata(
             title='Nitrate and Diatom Concentrations',
-            link_text='Nitrate and Diatom Concentrations',
+            link_text='Surface Nitrate and Diatom Concentrations',
             svg_name='nitrate_diatoms_timeseries',
         ),
         FigureMetadata(
             title='Mesodinium rubrum and Flagellates Concentrations',
-            link_text='Mesodinium rubrum and Flagellates Concentrations',
+            link_text=
+            'Surface Mesodinium rubrum and Flagellates Concentrations',
             svg_name='mesodinium_flagellates_timeseries',
         ),
         FigureMetadata(
             title='Mesozooplankton and Microzooplankton Concentrations',
-            link_text='Mesozooplankton and Microzooplankton Concentrations',
+            link_text=
+            'Surface Mesozooplankton and Microzooplankton Concentrations',
             svg_name='mesozoo_microzoo_timeseries',
         ),
     ]

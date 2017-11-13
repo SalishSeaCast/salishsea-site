@@ -71,7 +71,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <select class="form-control" name="${figure_group.description | slug}" onchange="showFigure(event, '${figure_group.description | slug}-img')">
         <option
           selected
