@@ -744,8 +744,9 @@ def nowcast_comparison(request):
             if fig.available(request, 'nowcast', results_date, session)
         ]
         onc_venus_figures_available = any(
-            onc_venus_comparison_figure_group.
-            available(request, 'nowcast', results_date, session)
+            onc_venus_comparison_figure_group.available(
+                request, 'nowcast', results_date, session
+            )
         )
     if not ungrouped_figures and not onc_venus_figures_available:
         raise HTTPNotFound
@@ -786,8 +787,9 @@ def _data_for_publish_template(
             if fig.available(request, run_type, run_date, session)
         ]
         tides_max_ssh_figures_available = any(
-            tides_max_ssh_figure_group.
-            available(request, run_type, run_date, session)
+            tides_max_ssh_figure_group.available(
+                request, run_type, run_date, session
+            )
         )
         wind_figure_available = sand_heads_wind_figure.available(
             request, run_type, run_date, session
