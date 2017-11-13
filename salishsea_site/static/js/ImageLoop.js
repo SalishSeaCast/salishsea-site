@@ -1,36 +1,24 @@
-function initImageLoop( images, imageLoopId, datetimeId, sliderId, imgType ) {
+function initImageLoop( images, imageLoopId, datetimeId, sliderId ) {
    // Make a list of dates of all images
    var regexDateTime=/_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})(_UTC)?\./;
    var dateTimes = new Array(images.length);
-   var opt = null;
    for( var i=0; i<images.length; ++i) {
-      if( imgType == "dateTimes" ) {
-         var res = regexDateTime.exec(images[i]);
-         if( res != null ) {
-            dateTimes[i] = res[1]+'-'+res[2]+'-'+res[3]+' '+res[4]+':'+res[5]+':'+res[6]+' UTC';
-         } else {
-            if( i == 0 ) {
-               imgType = "unknown";
-            }
-            dateTimes[i] = i+1;
-         }
+      var res = regexDateTime.exec(images[i]);
+      if( res != null ) {
+         dateTimes[i] = res[1]+'-'+res[2]+'-'+res[3]+' '+res[4]+':'+res[5]+':'+res[6]+' UTC';
       } else {
          dateTimes[i] = i+1;
       }
    }
 
-   var il = new ImageLoop(images, imageLoopId, dateTimes, datetimeId, sliderId, 500, imgType);
+   var il = new ImageLoop(images, imageLoopId, dateTimes, datetimeId, sliderId, 500);
 
-   if( imgType == "dateTimes" ) {
-      document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[il.index];
-   } else {
-      document.getElementById(datetimeId).innerHTML = "Image #"+dateTimes[il.index]+' : '+images[il.index];
-   }
+   document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[il.index];
    return il;
 }
 
 // Object that manages the animation
-function ImageLoop( images, imageLoopId, dateTimes, datetimeId, sliderId, speed, imgType ) {
+function ImageLoop( images, imageLoopId, dateTimes, datetimeId, sliderId, speed ) {
    this.images    = images;
    this.dateTimes = dateTimes;
    this.speed     = speed;
@@ -62,11 +50,7 @@ function ImageLoop( images, imageLoopId, dateTimes, datetimeId, sliderId, speed,
       var im = document.getElementById(imageLoopId);
       im.src = images[index];
       this.index = index;
-      if( imgType == "dateTimes" ) {
-         document.getElementById(datetimeId).innerHTML = "Date/time: " + this.dateTimes[index];
-      } else {
-         document.getElementById(datetimeId).innerHTML = "Image #" + this.dateTimes[index]+' : '+images[index];
-      }
+      document.getElementById(datetimeId).innerHTML = "Date/time: " + this.dateTimes[index];
       if( this.sl ) {
          this.sl.setIndex('handle', index);
       }

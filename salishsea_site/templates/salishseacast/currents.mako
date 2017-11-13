@@ -93,13 +93,13 @@
           "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      salinityImageLoop = initImageLoop(salinityImages, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id", "dateTimes");
+      salinityImageLoop = initImageLoop(salinityImages, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id");
       var temperatureImages = [
         %for run_hr in temperature_image_loop_hrs:
           "${request.static_url(temperature_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      temperatureImageLoop = initImageLoop(temperatureImages, "temperature_image_loop_id", "temperature_datetime_id", "temperature_slider_id", "dateTimes");
+      temperatureImageLoop = initImageLoop(temperatureImages, "temperature_image_loop_id", "temperature_datetime_id", "temperature_slider_id");
     }
   </script>
 </%block>
