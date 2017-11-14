@@ -91,12 +91,8 @@
           %endfor
         ];
       %endfor
-      salinityImageLoop = initImageLoop(
-        imageLists[0], "${image_loops.loops[0].model_var}",
-        "${f'{image_loops.loops[0].model_var}_datetime_id'}", "${f'{image_loops.loops[0].model_var}_slider_id'}");
-      temperatureImageLoop = initImageLoop(
-        imageLists[1], "${image_loops.loops[1].model_var}",
-        "${f'{image_loops.loops[1].model_var}_datetime_id'}", "${f'{image_loops.loops[1].model_var}_slider_id'}");
+      salinityImageLoop = initImageLoop(imageLists[0], "${image_loops.loops[0].model_var}");
+      temperatureImageLoop = initImageLoop(imageLists[1], "${image_loops.loops[1].model_var}");
     }
     // Set initially visible image loop
     showImageLoop({target: {value: "${image_loops.loops[0].model_var}"}})
