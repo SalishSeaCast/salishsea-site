@@ -72,16 +72,15 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <select class="form-control" name="${figure_group.description | slug}" onchange="showFigure(event, '${figure_group.description | slug}-img')">
+      <select class="form-control" name="${figure_group.description | slug}"
+              onchange="showFigure(event, '${figure_group.description | slug}-img')">
         <option
           selected
-            data-url="${request.static_url(figure_group.figures[0].path(run_type, run_date))}"
             value="${figure_group.figures[0].title}|${request.static_url(figure_group.figures[0].path(run_type, run_date))}">
           ${figure_group.figures[0].link_text}
         </option>
         %for figure in figure_group.figures[1:]:
           <option
-              data-url="${request.static_url(figure.path(run_type, run_date))}"
               value="${figure.title}|${request.static_url(figure.path(run_type, run_date))}">
             ${figure.link_text}
           </option>
@@ -110,7 +109,7 @@
 </%def>
 
 
-<%def name="image_loop(image_loop, il, image_loop_id, datetime_id, slider_id)">
+<%def name="image_loop(image_loop, jsImageLoop, model_var, datetime_id, slider_id)">
   <%doc>
     Render an image loop block.
 
@@ -121,48 +120,46 @@
 
       </%block>
   </%doc>
-  <div class="image-loop">
+  <div id="${model_var}_image_loop_container" class="image-loop hidden">
     <div class="row">
       <div class="col-md-12">
-        <h3 id="${image_loop.title | slug}"> ${image_loop.title} ${header_link(image_loop.title) | slug}</h3>
-
-        <button class="btn btn-default" onclick="${il}.start()" type="button" title="Begin animation">Play</button>
-        <button class="btn btn-default" onclick="${il}.stop()" type="button" title="Stop animation">Stop</button>
+        <button class="btn btn-default" onclick="${jsImageLoop}.start()" type="button" title="Begin animation">Play</button>
+        <button class="btn btn-default" onclick="${jsImageLoop}.stop()" type="button" title="Stop animation">Stop</button>
         <button class="btn btn-default"
                 type="button" title="Go to the first image" aria-label="Go to the first image"
-                onclick="${il}.goto('beginning')" >
+                onclick="${jsImageLoop}.goto('beginning')" >
           <i class="fa fa-fast-backward" aria-hidden="true"></i>
         </button>
         <button class="btn btn-default"
                 type="button" title="Go to the previous image" aria-label="Go to the previous image"
-                onclick="${il}.goto('left')" >
+                onclick="${jsImageLoop}.goto('left')" >
           <i class="fa fa-backward" aria-hidden="true"></i>
         </button>
         <button class="btn btn-default"
                 type="button" title="Go to the next image" aria-label="Go to the next image"
-                onclick="${il}.goto('right')" >
+                onclick="${jsImageLoop}.goto('right')" >
           <i class="fa fa-forward" aria-hidden="true"></i>
         </button>
         <button class="btn btn-default"
                 type="button" title="Go to the last image" aria-label="Go to the last image"
-                onclick="${il}.goto('end')" >
+                onclick="${jsImageLoop}.goto('end')" >
           <i class="fa fa-fast-forward" aria-hidden="true"></i>
         </button>
         <span class="inline">Direction:
           <button class="btn btn-default" id="btnDirection"
                   type="button" title="Animation's current direction. Click to change."
                   aria-label="Animation's current direction. Click to change."
-                  onclick="this.innerHTML=${il}.toggleDirection()">forward</button>
+                  onclick="this.innerHTML=${jsImageLoop}.toggleDirection()">forward</button>
         </span>
         <span class="inline">Speed:
           <button class="btn btn-default" id="increaseSpeed"
                   type="button" title="Increase animation speed" aria-label="Increase animation speed"
-                  onclick="${il}.changeSpeed(-100)" >
+                  onclick="${jsImageLoop}.changeSpeed(-100)" >
             <i class="fa fa-chevron-up" aria-hidden="true"></i>
           </button>
           <button class="btn btn-default"
                   type="button" title="Reduce animation speed" aria-label="Reduce animation speed"
-                  onclick="${il}.changeSpeed(+100)">
+                  onclick="${jsImageLoop}.changeSpeed(+100)">
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
         </span>
@@ -180,8 +177,57 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div id="${image_loop_id}_container"></div>
+        <div id="${model_var}_image_loop_canvas"></div>
       </div>
+    </div>
+  </div>
+</%def>
+
+
+<%def name="show_image_loop()">
+  <script>
+    function showImageLoop(event) {
+      // Hide all of the div.image-loop elements
+      var imageLoops = document.getElementsByClassName('image-loop');
+      for (var i=0; i < imageLoops.length; i++) {
+        imageLoops[i].classList.remove('show');
+        imageLoops[i].classList.add('hidden')
+      }
+      // Show the selected div.image-loop element
+      var imageLoopToShow = document.getElementById(event.target.value + "_image_loop_container");
+      imageLoopToShow.classList.remove('hidden');
+      imageLoopToShow.classList.add('show')
+    }
+  </script>
+</%def>
+
+
+<%def name="image_loop_group(group)">
+  <div class="row" id="${group.description | slug}">
+    <div class="col-md-12">
+      <h3>${group.description}: ${header_link(group.description) | slug}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <select class="form-control" name="${group.description | slug}"
+              onchange="showImageLoop(event)">
+        <option selected value="${group.loops[0].model_var}">${group.loops[0].link_text}</option>
+        %for img_loop in group.loops[1:]:
+          <option value="${img_loop.model_var}">${img_loop.link_text}</option>
+        %endfor
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      %for img_loop in group.loops:
+        %if img_loop.hrs:
+          ${image_loop(
+              img_loop, f"{img_loop.model_var}ImageLoop", f"{img_loop.model_var}",
+              f"{img_loop.model_var}_datetime_id", f"{img_loop.model_var}_slider_id")}
+        %endif
+      %endfor
     </div>
   </div>
 </%def>

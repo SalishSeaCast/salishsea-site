@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, image_loop, figure_nav_links"/>
+<%namespace file="figures_page_defs.mako" import="header_link, list_of_plots, figure_row, image_loop_group, show_image_loop, figure_nav_links"/>
 
 <%block name="title">Salish Sea Model Currents & Physics – ${results_date.format('DD-MMM-YYYY')}</%block>
 
@@ -67,13 +67,7 @@
 
   ${list_of_plots(figure_links)}
 
-  %if salinity_image_loop_hrs:
-    ${image_loop(salinity_image_loop, "salinityImageLoop", "salinity_image_loop_id", 'salinity_datetime_id', 'salinity_slider_id')}
-  %endif
-
-  %if temperature_image_loop_hrs:
-    ${image_loop(temperature_image_loop, "temperatureImageLoop", "temperature_image_loop_id", 'temperature_datetime_id', 'temperature_slider_id')}
-  %endif
+  ${image_loop_group(image_loops)}
 
   %for figure in figures:
     ${figure_row(figure, run_type, run_date)}
@@ -86,20 +80,25 @@
 
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+  ${show_image_loop()}
   <script>
     function init() {
-      var salinityImages = [
-        %for run_hr in salinity_image_loop_hrs:
-          "${request.static_url(salinity_image_loop.path(run_type, run_date, run_hr))}",
-        %endfor
-      ];
-      salinityImageLoop = initImageLoop(salinityImages, "salinity_image_loop_id", "salinity_datetime_id", "salinity_slider_id");
-      var temperatureImages = [
-        %for run_hr in temperature_image_loop_hrs:
-          "${request.static_url(temperature_image_loop.path(run_type, run_date, run_hr))}",
-        %endfor
-      ];
-      temperatureImageLoop = initImageLoop(temperatureImages, "temperature_image_loop_id", "temperature_datetime_id", "temperature_slider_id");
+      var imageLists = new Array();
+      %for i, img_loop in enumerate(image_loops.loops):
+        imageLists[${i}] = [
+          %for run_hr in img_loop.hrs:
+            "${request.static_url(img_loop.path(run_type, run_date, run_hr))}",
+          %endfor
+        ];
+      %endfor
+      salinityImageLoop = initImageLoop(
+        imageLists[0], "${image_loops.loops[0].model_var}",
+        "${f'{image_loops.loops[0].model_var}_datetime_id'}", "${f'{image_loops.loops[0].model_var}_slider_id'}");
+      temperatureImageLoop = initImageLoop(
+        imageLists[1], "${image_loops.loops[1].model_var}",
+        "${f'{image_loops.loops[1].model_var}_datetime_id'}", "${f'{image_loops.loops[1].model_var}_slider_id'}");
     }
+    // Set initially visible image loop
+    showImageLoop({target: {value: "${image_loops.loops[0].model_var}"}})
   </script>
 </%block>
