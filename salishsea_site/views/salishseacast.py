@@ -105,10 +105,11 @@ class FigureGroup:
     #: Figure group description.
     #: Used in the list of plots to link to the figure group section of the
     #: page.
-    #: Also used as the heading text for the figure links list,
+    #: Also used as the heading text for the figure selector,
     #: and as the basis for the figure group permalink slug.
     description = attr.ib()
-    #:
+    #: List of :py:class:`~salishsea_site.views.salishseacast.FigureMetadata`
+    #: instances that make up the figure group.
     figures = attr.ib(default=[])
 
     def __iter__(self):
@@ -140,16 +141,35 @@ class FigureGroup:
 
 
 @attr.s
+class ImageLoopGroup:
+    #: Image loop group description.
+    #: Used in the list of plots to link to the image loop group section of the
+    #: page.
+    #: Also used as the heading text for the image loop selector,
+    #: and as the basis for the image loop group permalink slug.
+    description = attr.ib()
+    #: List of :py:class:`~salishsea_site.views.salishseacast.ImageLoop`
+    #: instances that make up the image loop group.
+    loops = attr.ib(default=[])
+
+
+@attr.s
 class ImageLoop:
     #: :py:class:`~salishsea_site.views.salishseacast.FigureMetaData` instance
     #: that describes the image loop figures.
     metadata = attr.ib()
+    #:
+    model_var = attr.ib()
     #: Typical number of images to be displayed in the loop.
     nominal_image_count = attr.ib(default=24)
 
     @property
     def title(self):
         return self.metadata.title
+
+    @property
+    def link_text(self):
+        return self.metadata.link_text
 
     def __iter__(self):
         return (self for i in range(1))
@@ -280,6 +300,7 @@ publish_sand_heads_wind_figure = FigureMetadata(
 )
 
 salinity_image_loop = ImageLoop(
+    model_var='salinity',
     metadata=FigureMetadata(
         title='Salinity Fields Along Thalweg and on Surface',
         svg_name='salinity_thalweg_and_surface',
@@ -287,10 +308,33 @@ salinity_image_loop = ImageLoop(
 )
 
 temperature_image_loop = ImageLoop(
+    model_var='temperature',
     metadata=FigureMetadata(
         title='Temperature Fields Along Thalweg and on Surface',
         svg_name='temperature_thalweg_and_surface',
     )
+)
+
+currents_physics_image_loops = ImageLoopGroup(
+    description='Tracer Fields Along Thalweg and on Surface',
+    loops=[
+        ImageLoop(
+            model_var='salinity',
+            metadata=FigureMetadata(
+                title='Salinity Fields Along Thalweg and on Surface',
+                link_text='Salinity',
+                svg_name='salinity_thalweg_and_surface',
+            ),
+        ),
+        ImageLoop(
+            model_var='temperature',
+            metadata=FigureMetadata(
+                title='Temperature Fields Along Thalweg and on Surface',
+                link_text='Temperature',
+                svg_name='temperature_thalweg_and_surface',
+            )
+        ),
+    ]
 )
 
 currents_physics_figures = [
@@ -309,8 +353,10 @@ currents_physics_figures = [
 ]
 
 nitrate_image_loop = ImageLoop(
+    model_var='nitrate',
     metadata=FigureMetadata(
         title='Nitrate Fields Along Thalweg and on Surface',
+        link_text='Nitrate',
         svg_name='nitrate_thalweg_and_surface',
     )
 )
@@ -645,6 +691,10 @@ def nowcast_currents_physics(request):
             fig for fig in currents_physics_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
+        for image_loop in currents_physics_image_loops.loops:
+            image_loop.hrs = image_loop.available(
+                request, 'nowcast', results_date, session
+            )
         salinity_available_hrs = (
             salinity_image_loop.available(
                 request, 'nowcast', results_date, session
@@ -675,6 +725,7 @@ def nowcast_currents_physics(request):
         'salinity_image_loop_hrs': salinity_available_hrs,
         'temperature_image_loop': temperature_image_loop,
         'temperature_image_loop_hrs': temperature_available_hrs,
+        'image_loops': currents_physics_image_loops,
     }
 
 
