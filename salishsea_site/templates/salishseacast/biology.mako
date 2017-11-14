@@ -82,7 +82,7 @@
           "${request.static_url(nitrate_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      nitrateImageLoop = initImageLoop(nitrateImages, "nitrate", "nitrate_datetime_id", "nitrate_slider_id");
+      nitrateImageLoop = initImageLoop(nitrateImages, "nitrate");
     }
     // Set initially visible image loop
     showImageLoop({target: {value: "nitrate"}})
