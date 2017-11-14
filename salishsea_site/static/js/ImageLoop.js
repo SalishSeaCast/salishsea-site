@@ -1,4 +1,4 @@
-function initImageLoop( images, imageLoopId, datetimeId, sliderId ) {
+function initImageLoop( images, modelVar, datetimeId, sliderId ) {
    // Make a list of dates of all images
    var regexDateTime=/_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})(_UTC)?\./;
    var dateTimes = new Array(images.length);
@@ -11,14 +11,14 @@ function initImageLoop( images, imageLoopId, datetimeId, sliderId ) {
       }
    }
 
-   var il = new ImageLoop(images, imageLoopId, dateTimes, datetimeId, sliderId, 500);
+   var il = new ImageLoop(images, modelVar, dateTimes, datetimeId, sliderId, 500);
 
    document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[il.index];
    return il;
 }
 
 // Object that manages the animation
-function ImageLoop( images, imageLoopId, dateTimes, datetimeId, sliderId, speed ) {
+function ImageLoop( images, modelVar, dateTimes, datetimeId, sliderId, speed ) {
    this.images    = images;
    this.dateTimes = dateTimes;
    this.speed     = speed;
@@ -47,7 +47,7 @@ function ImageLoop( images, imageLoopId, dateTimes, datetimeId, sliderId, speed 
    }
 
    function setIndex(index) {
-      var im = document.getElementById(imageLoopId);
+      var im = document.getElementById(modelVar);
       im.src = images[index];
       this.index = index;
       document.getElementById(datetimeId).innerHTML = "Date/time: " + this.dateTimes[index];
@@ -122,8 +122,8 @@ function ImageLoop( images, imageLoopId, dateTimes, datetimeId, sliderId, speed 
    }
 
    // Setup
-   var d = document.getElementById(imageLoopId+"_container");
-   d.innerHTML = "<img src='" + this.images[this.index] + "' id='" + imageLoopId + "' class='img-responsive' />";
+   var d = document.getElementById(modelVar+"_image_loop_canvas");
+   d.innerHTML = "<img src='" + this.images[this.index] + "' id='" + modelVar + "' class='img-responsive' />";
 
    // Add Functions
    this.preloadImages = preloadImages;

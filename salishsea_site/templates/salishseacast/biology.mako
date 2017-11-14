@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="image_loop"/>
+<%namespace file="figures_page_defs.mako" import="header_link, image_loop, show_image_loop"/>
 
 <%block name="title">Salish Sea Model Biology – ${results_date.format('DD-MMM-YYYY')}</%block>
 
@@ -65,7 +65,8 @@
     </div>
   </div>
 
-  ${image_loop(nitrate_image_loop, "nitrateImageLoop", "nitrate_image_loop_id", 'nitrate_datetime_id', 'nitrate_slider_id')}
+  <h3 id="${nitrate_image_loop.title | slug}"> ${nitrate_image_loop.title} ${header_link(nitrate_image_loop.title) | slug}</h3>
+  ${image_loop(nitrate_image_loop, "nitrateImageLoop", "nitrate", 'nitrate_datetime_id', 'nitrate_slider_id')}
 
   <%include file="data_sources.mako"/>
 </div>
@@ -73,6 +74,7 @@
 
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+  ${show_image_loop()}
   <script>
     function init() {
       var nitrateImages = [
@@ -80,7 +82,9 @@
           "${request.static_url(nitrate_image_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      nitrateImageLoop = initImageLoop(nitrateImages, "nitrate_image_loop_id", "nitrate_datetime_id", "nitrate_slider_id", "dateTimes");
+      nitrateImageLoop = initImageLoop(nitrateImages, "nitrate", "nitrate_datetime_id", "nitrate_slider_id");
     }
+    // Set initially visible image loop
+    showImageLoop({target: {value: "nitrate"}})
   </script>
 </%block>
