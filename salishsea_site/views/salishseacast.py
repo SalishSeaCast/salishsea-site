@@ -246,7 +246,7 @@ class ImageLoopGroup:
     loops = attr.ib(default=[])
 
     def __iter__(self):
-        return (self for i in range(1))
+        return (loop for loop in self.loops)
 
     def available(self, request, run_type, run_date, session):
         """Return a list of run hours for which image loop figures are
