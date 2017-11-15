@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, init_image_loop, image_loop"/>
+<%namespace file="figures_page_defs.mako" import="header_link, init_image_loop_group, image_loop_group"/>
 
 <%block name="title">Salish Sea Model Biology – ${results_date.format('DD-MMM-YYYY')}</%block>
 
@@ -65,8 +65,7 @@
     </div>
   </div>
 
-  <h3 id="${nitrate_loop.title | slug}"> ${nitrate_loop.title} ${header_link(nitrate_loop.title) | slug}</h3>
-  ${image_loop(nitrate_loop, "jsImageLoop", "nitrate", 'nitrate_datetime_id', 'nitrate_slider_id')}
+  ${image_loop_group(image_loops)}
 
   <%include file="data_sources.mako"/>
 </div>
@@ -74,5 +73,5 @@
 
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
-  ${init_image_loop(nitrate_loop, "nitrate")}
+  ${init_image_loop_group(image_loops)}
 </%block>
