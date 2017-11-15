@@ -141,24 +141,11 @@ class FigureGroup:
 
 
 @attr.s
-class ImageLoopGroup:
-    #: Image loop group description.
-    #: Used in the list of plots to link to the image loop group section of the
-    #: page.
-    #: Also used as the heading text for the image loop selector,
-    #: and as the basis for the image loop group permalink slug.
-    description = attr.ib()
-    #: List of :py:class:`~salishsea_site.views.salishseacast.ImageLoop`
-    #: instances that make up the image loop group.
-    loops = attr.ib(default=[])
-
-
-@attr.s
 class ImageLoop:
     #: :py:class:`~salishsea_site.views.salishseacast.FigureMetaData` instance
     #: that describes the image loop figures.
     metadata = attr.ib()
-    #:
+    #: Name of the model variable that the loop displays.
     model_var = attr.ib()
     #: Typical number of images to be displayed in the loop.
     nominal_image_count = attr.ib(default=24)
@@ -244,6 +231,46 @@ class ImageLoop:
             run_dmy=run_dmy
         )
         return os.path.join(fig_dir, self.filename(run_date, run_hr))
+
+
+@attr.s
+class ImageLoopGroup:
+    #: Image loop group description.
+    #: Used in the list of plots to link to the image loop group section of the
+    #: page.
+    #: Also used as the heading text for the image loop selector,
+    #: and as the basis for the image loop group permalink slug.
+    description = attr.ib()
+    #: List of :py:class:`~salishsea_site.views.salishseacast.ImageLoop`
+    #: instances that make up the image loop group.
+    loops = attr.ib(default=[])
+
+    def __iter__(self):
+        return (self for i in range(1))
+
+    def available(self, request, run_type, run_date, session):
+        """Return a list of run hours for which image loop figures are
+        available on the static file server that provides figure files.
+
+        :param request: HTTP request.
+        :type request: :py:class:`pyramid.request.Request`
+
+        :param str run_type: Run type for which the figure was generated.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date: :py:class:`arrow.Arrow`
+
+        :param session: Requests session object to re-use server connection,
+                        if possible.
+        :type session: :py:class:`requests.Session`
+
+        :return: Figure is availability on the static figure file server.
+        :rtype: list
+        """
+        return [
+            loop.available(request, run_type, run_date, session)
+            for loop in self.loops
+        ]
 
 
 publish_figures = [
@@ -336,13 +363,125 @@ currents_physics_figures = [
     ),
 ]
 
-nitrate_image_loop = ImageLoop(
-    model_var='nitrate',
-    metadata=FigureMetadata(
-        title='Nitrate Fields Along Thalweg and on Surface',
-        link_text='Nitrate',
-        svg_name='nitrate_thalweg_and_surface',
-    )
+biology_image_loops = ImageLoopGroup(
+    description='Tracer Fields Along Thalweg and Near Surface',
+    loops=[
+        ImageLoop(
+            model_var='salinity',
+            metadata=FigureMetadata(
+                title='Salinity Fields Along Thalweg and at Surface',
+                link_text='Surface Salinity',
+                svg_name='salinity_thalweg_and_surface',
+            ),
+        ),
+        ImageLoop(
+            model_var='temperature',
+            metadata=FigureMetadata(
+                title='Temperature Fields Along Thalweg and at Surface',
+                link_text='Surface Temperature',
+                svg_name='temperature_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='nitrate',
+            metadata=FigureMetadata(
+                title='Nitrate Fields Along Thalweg and at Surface',
+                link_text='Surface Nitrate',
+                svg_name='nitrate_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='ammonium',
+            metadata=FigureMetadata(
+                title='Ammonium Fields Along Thalweg and at Surface',
+                link_text='Surface Ammonium',
+                svg_name='ammonium_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='silicon',
+            metadata=FigureMetadata(
+                title='Silicon Fields Along Thalweg and at Surface',
+                link_text='Surface Silicon',
+                svg_name='silicon_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='dissolved_organic_nitrogen',
+            metadata=FigureMetadata(
+                title='Dissolved Organic Nitrogen Fields Along Thalweg and at '
+                'Surface',
+                link_text='Surface Dissolved Organic Nitrogen',
+                svg_name='dissolved_organic_nitrogen_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='particulate_organic_nitrogen',
+            metadata=FigureMetadata(
+                title='Particulate Organic Nitrogen Fields Along Thalweg and at '
+                'Surface',
+                link_text='Surface Particulate Organic Nitrogen',
+                svg_name='particulate_organic_nitrogen_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='biogenic_silicon',
+            metadata=FigureMetadata(
+                title='Biogenic Silicon Fields Along Thalweg and at Surface',
+                link_text='Surface Biogenic Silicon',
+                svg_name='biogenic_silicon_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='diatoms',
+            metadata=FigureMetadata(
+                title='Diatoms Fields Along Thalweg and Near Surface',
+                link_text='Depth Integrated Diatoms',
+                svg_name='diatoms_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='ciliates',
+            metadata=FigureMetadata(
+                title='Ciliates Fields Along Thalweg and Near Surface',
+                link_text='Depth Integrated Ciliates',
+                svg_name='ciliates_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='flagellates',
+            metadata=FigureMetadata(
+                title='Flagellates Fields Along Thalweg and Near Surface',
+                link_text='Depth Integrated Flagellates',
+                svg_name='flagellates_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='microzooplankton',
+            metadata=FigureMetadata(
+                title='Microzooplankton Fields Along Thalweg and Near Surface',
+                link_text='Depth Integrated Microzooplankton',
+                svg_name='microzooplankton_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='mesozooplankton',
+            metadata=FigureMetadata(
+                title='Mesozooplankton Fields Along Thalweg and Near Surface',
+                link_text='Depth Integrated Mesozooplankton',
+                svg_name='mesozooplankton_thalweg_and_surface',
+            )
+        ),
+        ImageLoop(
+            model_var='Fraser_tracer',
+            metadata=FigureMetadata(
+                title=
+                'Fraser River Turbidity Fields Along Thalweg and at Surface',
+                link_text='Surface Fraser River Turbidity',
+                svg_name='Fraser_tracer_thalweg_and_surface',
+            )
+        ),
+    ]
 )
 
 timeseries_figure_group = FigureGroup(
@@ -542,7 +681,7 @@ def results_index(request):
         ('forecast', 'forecast', publish_figures, 'publish'),
         ('nowcast publish', 'nowcast', publish_figures, 'publish'),
         ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
-        ('nowcast biology', 'nowcast-green', nitrate_image_loop, 'biology'),
+        ('nowcast biology', 'nowcast-green', biology_image_loops, 'biology'),
         (
             'nowcast timeseries', 'nowcast-green', timeseries_figure_group,
             'timeseries'
@@ -705,18 +844,21 @@ def nowcast_biology(request):
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
-        nitrate_image_loop.hrs = (
-            nitrate_image_loop.available(
+        available_loop_images = []
+        for image_loop in biology_image_loops.loops:
+            image_loop.hrs = image_loop.available(
                 request, 'nowcast-green', results_date, session
             )
-        )
-    if not nitrate_image_loop.hrs:
+            available_loop_images.extend(image_loop.hrs)
+    if not any(available_loop_images):
         raise HTTPNotFound
+    figure_links = ([biology_image_loops.description]
+                    if available_loop_images else [])
     return {
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
-        'nitrate_loop': nitrate_image_loop,
+        'image_loops': biology_image_loops,
     }
 
 
