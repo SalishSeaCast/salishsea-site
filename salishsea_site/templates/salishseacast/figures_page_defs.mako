@@ -219,7 +219,42 @@
 </%def>
 
 
+<%def name="init_image_loop_group(image_loops)">
+  ${show_image_loop()}
+  <script>
+    function init() {
+      var imageLists = new Array();
+      jsImageLoops = new Array();
+      %for i, img_loop in enumerate(image_loops.loops):
+        imageLists[${i}] = [
+          %for run_hr in img_loop.hrs:
+            "${request.static_url(img_loop.path(run_type, run_date, run_hr))}",
+          %endfor
+        ];
+        jsImageLoops[${i}] = initImageLoop(imageLists[${i}], "${image_loops.loops[i].model_var}");
+      %endfor
+    }
+    // Set initially visible image loop
+    showImageLoop({target: {value: "${image_loops.loops[0].model_var}"}})
+  </script>
+</%def>
+
+
 <%def name="image_loop_group(group)">
+  <%doc>
+    Render a image loop group block.
+
+    The onchange event on the selector above the collection of image loop
+    blocks sets the visibility of the desired image loop.
+
+    Page templates that use this def must also call the show_image_loop()
+    in their page_js block; e.g.
+
+      <%block name="page_js">
+        <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+        ${init_image_loop_group(image_loops)}
+      </%block>
+  </%doc>
   <div class="row" id="${group.description | slug}">
     <div class="col-md-12">
       <h3>${group.description}: ${header_link(group.description) | slug}</h3>
