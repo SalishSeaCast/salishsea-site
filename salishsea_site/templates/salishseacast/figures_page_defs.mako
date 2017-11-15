@@ -109,6 +109,23 @@
 </%def>
 
 
+<%def name="init_image_loop(img_loop, model_var)">
+  ${show_image_loop()}
+  <script>
+    function init() {
+      var imageList = [
+        %for run_hr in img_loop.hrs:
+          "${request.static_url(img_loop.path(run_type, run_date, run_hr))}",
+        %endfor
+      ];
+      jsImageLoop = initImageLoop(imageList, "${model_var}");
+    }
+    // Set initially visible image loop
+    showImageLoop({target: {value: "${model_var}"}})
+  </script>
+</%def>
+
+
 <%def name="image_loop(image_loop, jsImageLoop, model_var, datetime_id, slider_id)">
   <%doc>
     Render an image loop block.
@@ -117,8 +134,7 @@
 
       <%block name="page_js">
         <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
-        ${show_image_loop()}
-
+        ${init_image_loop(nitrate_loop, "nitrate")}
       </%block>
   </%doc>
   <div id="${model_var}_image_loop_container" class="image-loop hidden">
