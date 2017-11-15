@@ -84,15 +84,15 @@
   <script>
     function init() {
       var imageLists = new Array();
+      jsImageLoops = new Array();
       %for i, img_loop in enumerate(image_loops.loops):
         imageLists[${i}] = [
           %for run_hr in img_loop.hrs:
             "${request.static_url(img_loop.path(run_type, run_date, run_hr))}",
           %endfor
         ];
+        jsImageLoops[${i}] = initImageLoop(imageLists[${i}], "${image_loops.loops[i].model_var}");
       %endfor
-      salinityImageLoop = initImageLoop(imageLists[0], "${image_loops.loops[0].model_var}");
-      temperatureImageLoop = initImageLoop(imageLists[1], "${image_loops.loops[1].model_var}");
     }
     // Set initially visible image loop
     showImageLoop({target: {value: "${image_loops.loops[0].model_var}"}})

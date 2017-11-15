@@ -65,8 +65,8 @@
     </div>
   </div>
 
-  <h3 id="${nitrate_image_loop.title | slug}"> ${nitrate_image_loop.title} ${header_link(nitrate_image_loop.title) | slug}</h3>
-  ${image_loop(nitrate_image_loop, "nitrateImageLoop", "nitrate", 'nitrate_datetime_id', 'nitrate_slider_id')}
+  <h3 id="${nitrate_loop.title | slug}"> ${nitrate_loop.title} ${header_link(nitrate_loop.title) | slug}</h3>
+  ${image_loop(nitrate_loop, "jsImageLoop", "nitrate", 'nitrate_datetime_id', 'nitrate_slider_id')}
 
   <%include file="data_sources.mako"/>
 </div>
@@ -77,12 +77,12 @@
   ${show_image_loop()}
   <script>
     function init() {
-      var nitrateImages = [
-        %for run_hr in image_loop_hrs:
-          "${request.static_url(nitrate_image_loop.path(run_type, run_date, run_hr))}",
+      var imageList = [
+        %for run_hr in nitrate_loop.hrs:
+          "${request.static_url(nitrate_loop.path(run_type, run_date, run_hr))}",
         %endfor
       ];
-      nitrateImageLoop = initImageLoop(nitrateImages, "nitrate");
+      jsImageLoop = initImageLoop(imageList, "nitrate");
     }
     // Set initially visible image loop
     showImageLoop({target: {value: "nitrate"}})
