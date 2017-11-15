@@ -117,6 +117,7 @@
 
       <%block name="page_js">
         <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+        ${show_image_loop()}
 
       </%block>
   </%doc>
@@ -221,10 +222,10 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      %for img_loop in group.loops:
+      %for i, img_loop in enumerate(group.loops):
         %if img_loop.hrs:
           ${image_loop(
-              img_loop, f"{img_loop.model_var}ImageLoop", f"{img_loop.model_var}",
+              img_loop, f"jsImageLoops[{i}]", f"{img_loop.model_var}",
               f"{img_loop.model_var}_datetime_id", f"{img_loop.model_var}_slider_id")}
         %endif
       %endfor
