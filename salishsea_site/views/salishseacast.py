@@ -298,6 +298,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='Vic_maxSSH'
         ),
         FigureMetadata(
+            title='Friday Harbor Sea Surface Height',
+            link_text='Friday Harbor',
+            svg_name='FH_maxSSH'
+        ),
+        FigureMetadata(
             title='Cherry Point Sea Surface Height',
             link_text='Cherry Point',
             svg_name='CP_maxSSH'
