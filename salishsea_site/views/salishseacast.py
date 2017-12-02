@@ -308,6 +308,16 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='CP_maxSSH'
         ),
         FigureMetadata(
+            title='Boundary Bay Sea Surface Height',
+            link_text='Boundary Bay',
+            svg_name='BB_maxSSH'
+        ),
+        FigureMetadata(
+            title='Sand Heads Sea Surface Height',
+            link_text='Sand Heads',
+            svg_name='SH_maxSSH'
+        ),
+        FigureMetadata(
             title='Point Atkinson Sea Surface Height',
             link_text='Point Atkinson',
             svg_name='PA_maxSSH'
