@@ -214,7 +214,7 @@ You can run the app in a development server on you local machine with the comman
 .. code-block:: bash
 
     (salishsea-site)$ cd salishsea-site
-    (salishsea-site)$ pserve --reload developement.ini
+    (salishsea-site)$ pserve --reload development.ini
 
 With the dev server running you can view the site by navigating to :kbd:`http://localhost:6543/` in your browser.
 
