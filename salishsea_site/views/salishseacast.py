@@ -315,6 +315,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='FH_maxSSH'
         ),
         FigureMetadata(
+            title='Halfmoon Bay Surface Height',
+            link_text='Halfmoon Bay',
+            svg_name='HB_maxSSH'
+        ),
+        FigureMetadata(
             title='Nanaimo Sea Surface Height',
             link_text='Nanaimo',
             svg_name='Nan_maxSSH'
