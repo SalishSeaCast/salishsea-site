@@ -11,6 +11,10 @@
 
 name: salishsea-site
 
+channels:
+  - conda-forge
+  - defaults
+
 dependencies:
   - pip
   - python=3
