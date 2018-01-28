@@ -287,6 +287,12 @@ publish_figures = [
 publish_tides_max_ssh_figure_group = FigureGroup(
     description='Tide Gauge Station Sea Surface Heights',
     figures=[
+        # Keep Point Atkinson at the top of the list
+        FigureMetadata(
+            title='Point Atkinson Sea Surface Height',
+            link_text='Point Atkinson',
+            svg_name='PA_maxSSH'
+        ),
         FigureMetadata(
             title='Neah Bay Sea Surface Height',
             link_text='Neah Bay',
@@ -316,11 +322,6 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             title='Sand Heads Sea Surface Height',
             link_text='Sand Heads',
             svg_name='SH_maxSSH'
-        ),
-        FigureMetadata(
-            title='Point Atkinson Sea Surface Height',
-            link_text='Point Atkinson',
-            svg_name='PA_maxSSH'
         ),
         FigureMetadata(
             title='Nanaimo Sea Surface Height',
