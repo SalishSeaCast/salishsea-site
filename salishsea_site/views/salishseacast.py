@@ -345,6 +345,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='SH_maxSSH'
         ),
         FigureMetadata(
+            title='Squamish Sea Surface Height',
+            link_text='Squamish',
+            svg_name='Sqam_maxSSH'
+        ),
+        FigureMetadata(
             title='Victoria Sea Surface Height',
             link_text='Victoria',
             svg_name='Vic_maxSSH'
