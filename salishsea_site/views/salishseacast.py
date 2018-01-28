@@ -330,6 +330,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='NB_maxSSH'
         ),
         FigureMetadata(
+            title='New Westminster Sea Surface Height',
+            link_text='New Westminster',
+            svg_name='NW_maxSSH'
+        ),
+        FigureMetadata(
             title='Patricia Bay Sea Surface Height',
             link_text='Patricia Bay',
             svg_name='PB_maxSSH'
@@ -345,6 +350,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='SH_maxSSH'
         ),
         FigureMetadata(
+            title='Sandy Cove Sea Surface Height',
+            link_text='Sandy Cove',
+            svg_name='SC_maxSSH'
+        ),
+        FigureMetadata(
             title='Squamish Sea Surface Height',
             link_text='Squamish',
             svg_name='Sqam_maxSSH'
@@ -353,6 +363,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             title='Victoria Sea Surface Height',
             link_text='Victoria',
             svg_name='Vic_maxSSH'
+        ),
+        FigureMetadata(
+            title='Woodwards Landing Sea Surface Height',
+            link_text='Woodwards Landing',
+            svg_name='WL_maxSSH'
         ),
     ]
 )
