@@ -293,20 +293,16 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             link_text='Point Atkinson',
             svg_name='PA_maxSSH'
         ),
+        # Keep the rest of the list in alphabetical order by place name
         FigureMetadata(
-            title='Neah Bay Sea Surface Height',
-            link_text='Neah Bay',
-            svg_name='NB_maxSSH'
+            title='Boundary Bay Sea Surface Height',
+            link_text='Boundary Bay',
+            svg_name='BB_maxSSH'
         ),
         FigureMetadata(
-            title='Victoria Sea Surface Height',
-            link_text='Victoria',
-            svg_name='Vic_maxSSH'
-        ),
-        FigureMetadata(
-            title='Friday Harbor Sea Surface Height',
-            link_text='Friday Harbor',
-            svg_name='FH_maxSSH'
+            title='Campbell River Sea Surface Height',
+            link_text='Campbell River',
+            svg_name='CR_maxSSH'
         ),
         FigureMetadata(
             title='Cherry Point Sea Surface Height',
@@ -314,14 +310,9 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='CP_maxSSH'
         ),
         FigureMetadata(
-            title='Boundary Bay Sea Surface Height',
-            link_text='Boundary Bay',
-            svg_name='BB_maxSSH'
-        ),
-        FigureMetadata(
-            title='Sand Heads Sea Surface Height',
-            link_text='Sand Heads',
-            svg_name='SH_maxSSH'
+            title='Friday Harbor Sea Surface Height',
+            link_text='Friday Harbor',
+            svg_name='FH_maxSSH'
         ),
         FigureMetadata(
             title='Nanaimo Sea Surface Height',
@@ -329,9 +320,19 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='Nan_maxSSH'
         ),
         FigureMetadata(
-            title='Campbell River Sea Surface Height',
-            link_text='Campbell River',
-            svg_name='CR_maxSSH'
+            title='Neah Bay Sea Surface Height',
+            link_text='Neah Bay',
+            svg_name='NB_maxSSH'
+        ),
+        FigureMetadata(
+            title='Sand Heads Sea Surface Height',
+            link_text='Sand Heads',
+            svg_name='SH_maxSSH'
+        ),
+        FigureMetadata(
+            title='Victoria Sea Surface Height',
+            link_text='Victoria',
+            svg_name='Vic_maxSSH'
         ),
     ]
 )
