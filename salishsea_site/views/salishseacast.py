@@ -335,6 +335,11 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             svg_name='PB_maxSSH'
         ),
         FigureMetadata(
+            title='Port Renfrew Sea Surface Height',
+            link_text='Port Renfrew',
+            svg_name='PR_maxSSH'
+        ),
+        FigureMetadata(
             title='Sand Heads Sea Surface Height',
             link_text='Sand Heads',
             svg_name='SH_maxSSH'
