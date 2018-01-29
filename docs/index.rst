@@ -1,4 +1,4 @@
-.. Copyright 2014-2017 The Salish Sea MEOPAR contributors
+.. Copyright 2014-2018 The Salish Sea MEOPAR contributors
 .. and The University of British Columbia
 ..
 .. Licensed under the Apache License, Version 2.0 (the "License");
@@ -363,7 +363,7 @@ License
 =======
 
 The salishsea.eos.ubc.ca site content, code, and documentation are
-copyright 2014-2017 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
+Copyright 2014-2018 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
 in the Department of Earth, Ocean, and Atmospheric Sciences
 at The University of British Columbia.
 Please see https://salishsea.eos.ubc.ca/contributors for details.
