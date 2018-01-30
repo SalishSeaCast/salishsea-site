@@ -61,7 +61,7 @@
     </div>
   </div>
 
-  ${figure_group(figures, run_type, run_date)}
+  ${figure_group(figures, available_figures, run_type, run_date)}
 
   <%include file="data_sources.mako"/>
 </div>

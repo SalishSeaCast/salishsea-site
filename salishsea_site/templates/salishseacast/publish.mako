@@ -65,8 +65,8 @@
     ${figure_nav_links()}
   %endfor
 
-  %if tides_max_ssh_figures_available:
-    ${figure_group(tides_max_ssh_figures, run_type, run_date)}
+  %if any(tides_max_ssh_figures_available):
+    ${figure_group(tides_max_ssh_figures, tides_max_ssh_figures_available, run_type, run_date)}
     ${figure_nav_links()}
   %endif
 

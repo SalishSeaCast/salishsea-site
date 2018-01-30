@@ -51,7 +51,7 @@
 </%def>
 
 
-<%def name="figure_group(figure_group, run_type, run_date)">
+<%def name="figure_group(figure_group, figures_available, run_type, run_date)">
   <%doc>
     Render a figure group block.
 
@@ -74,16 +74,23 @@
     <div class="col-md-6">
       <select class="form-control" name="${figure_group.description | slug}"
               onchange="showFigure(event, '${figure_group.description | slug}-img')">
-        <option
-          selected
-            value="${figure_group.figures[0].title}|${request.static_url(figure_group.figures[0].path(run_type, run_date))}">
-          ${figure_group.figures[0].link_text}
-        </option>
-        %for figure in figure_group.figures[1:]:
-          <option
-              value="${figure.title}|${request.static_url(figure.path(run_type, run_date))}">
-            ${figure.link_text}
-          </option>
+        %for i, (figure, available) in enumerate(zip(figure_group.figures, figures_available)):
+          %if available:
+            <option
+              selected
+                value="${figure.title}|${request.static_url(figure.path(run_type, run_date))}">
+              ${figure.link_text}
+            </option>
+            <% break %>
+          %endif
+        %endfor
+        %for figure, available in zip(figure_group.figures[i+1:], figures_available[i+1:]):
+          %if available:
+            <option
+                value="${figure.title}|${request.static_url(figure.path(run_type, run_date))}">
+              ${figure.link_text}
+            </option>
+          %endif
         %endfor
       </select>
     </div>
@@ -91,8 +98,8 @@
   <div class="row">
     <div class="col-md-12">
       <img id="${figure_group.description | slug}-img" class="img-responsive"
-       src="${request.static_url(figure_group.figures[0].path(run_type, run_date))}"
-       alt="${figure_group.figures[0].title} image">
+       src="${request.static_url(figure_group.figures[i].path(run_type, run_date))}"
+       alt="${figure_group.figures[i].title} image">
     </div>
   </div>
 </%def>
