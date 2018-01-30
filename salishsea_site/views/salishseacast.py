@@ -163,6 +163,41 @@ class ImageLoop:
         return (self for i in range(1))
 
     def available(self, request, run_type, run_date, session):
+        """Return a boolean indicating whether or not any of the image loop
+        figures are available on the static file server that provides figure
+        files.
+
+        :param request: HTTP request.
+        :type request: :py:class:`pyramid.request.Request`
+
+        :param str run_type: Run type for which the figure was generated.
+
+        :param run_date: Run date for which the figure was generated.
+        :type run_date: :py:class:`arrow.Arrow`
+
+        :param session: Requests session object to re-use server connection,
+                        if possible.
+        :type session: :py:class:`requests.Session`
+
+        :return: Run hours for which figures are available on the
+                 static figure file server.
+        :rtype: list of ints
+        """
+        for run_hr in range(self.nominal_image_count):
+            figure_url = request.static_url(
+                self.path(run_type, run_date, run_hr)
+            )
+            try:
+                if session.head(figure_url).status_code == 200:
+                    return True
+            except requests.ConnectionError:
+                # Development environment
+                url = figure_url.replace('4567', '6543')
+                if session.head(url).status_code == 200:
+                    return True
+        return False
+
+    def hours(self, request, run_type, run_date, session):
         """Return a list of run hours for which image loop figures are
         available on the static file server that provides figure files.
 
@@ -250,8 +285,9 @@ class ImageLoopGroup:
         return (loop for loop in self.loops)
 
     def available(self, request, run_type, run_date, session):
-        """Return a list of run hours for which image loop figures are
-        available on the static file server that provides figure files.
+        """Return a list of booleans indicating whether or not any of the image loop
+        figures are available on the static file server that provides figure
+        files.
 
         :param request: HTTP request.
         :type request: :py:class:`pyramid.request.Request`
@@ -745,8 +781,8 @@ def results_index(request):
 def _exclude_missing_dates(
     request, dates, figures, figs_type, run_type, session
 ):
-    run_date_offsets = {'nowcast': 0, 'forecast': -1, 'forecast2': -2}
     if figs_type == 'publish':
+        run_date_offsets = {'forecast': -1, 'forecast2': -2}
         return ((
             d if figures[0].available(
                 request,
@@ -828,10 +864,14 @@ def nowcast_currents_physics(request):
         ]
         available_loop_images = []
         for image_loop in currents_physics_image_loops.loops:
-            image_loop.hrs = image_loop.available(
+            images_available = image_loop.available(
                 request, 'nowcast', results_date, session
             )
-            available_loop_images.extend(image_loop.hrs)
+            if images_available:
+                available_loop_images.append(images_available)
+                image_loop.hrs = image_loop.hours(
+                    request, 'nowcast', results_date, session
+                )
     if not any(available_figures + available_loop_images):
         raise HTTPNotFound
     figure_links = ([currents_physics_image_loops.description]
@@ -858,10 +898,14 @@ def nowcast_biology(request):
     with requests.Session() as session:
         available_loop_images = []
         for image_loop in biology_image_loops.loops:
-            image_loop.hrs = image_loop.available(
+            images_available = image_loop.available(
                 request, 'nowcast-green', results_date, session
             )
-            available_loop_images.extend(image_loop.hrs)
+            if images_available:
+                available_loop_images.append(images_available)
+                image_loop.hrs = image_loop.hours(
+                    request, 'nowcast-green', results_date, session
+                )
     if not any(available_loop_images):
         raise HTTPNotFound
     figure_links = ([biology_image_loops.description]
