@@ -73,7 +73,7 @@
   %endfor
 
   %if onc_venus_figures_available:
-    ${figure_group(onc_venus_figures, run_type, run_date)}
+    ${figure_group(onc_venus_figures, onc_venus_figures_available, run_type, run_date)}
     ${figure_nav_links()}
   %endif
 
