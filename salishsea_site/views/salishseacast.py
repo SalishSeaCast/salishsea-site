@@ -116,8 +116,9 @@ class FigureGroup:
         return (figure for figure in self.figures)
 
     def available(self, request, run_type, run_date, session):
-        """Return a boolean indicating whether or not the figure is available
-        on the static file server that provides figure files.
+        """Return a list of booleans indicating whether or not each of the
+        figures in the group is available on the static file server that
+        provides figure files.
 
         :param request: HTTP request.
         :type request: :py:class:`pyramid.request.Request`
@@ -131,7 +132,7 @@ class FigureGroup:
                         if possible.
         :type session: :py:class:`requests.Session`
 
-        :return: Figure is availability on the static figure file server.
+        :return: Figures that are availability on the static figure file server.
         :rtype: list
         """
         return [
@@ -882,18 +883,17 @@ def nowcast_timeseries(request):
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
-        available_figures = (
-            timeseries_figure_group.available(
-                request, 'nowcast-green', results_date, session
-            )
+        available_figures = timeseries_figure_group.available(
+            request, 'nowcast-green', results_date, session
         )
-    if not available_figures:
+    if not any(available_figures):
         raise HTTPNotFound
     return {
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
         'figures': timeseries_figure_group,
+        'available_figures': available_figures,
     }
 
 
@@ -915,15 +915,15 @@ def nowcast_comparison(request):
             fig for fig in comparison_figures
             if fig.available(request, 'nowcast', results_date, session)
         ]
-        onc_venus_figures_available = any(
+        onc_venus_figures_available = (
             onc_venus_comparison_figure_group.available(
                 request, 'nowcast', results_date, session
             )
         )
-    if not ungrouped_figures and not onc_venus_figures_available:
+    if not ungrouped_figures and not any(onc_venus_figures_available):
         raise HTTPNotFound
     figure_links = [figure.title for figure in ungrouped_figures]
-    if onc_venus_figures_available:
+    if any(onc_venus_figures_available):
         figure_links.append(onc_venus_comparison_figure_group.description)
     return {
         'results_date': results_date,
@@ -947,20 +947,19 @@ def _data_for_publish_template(
         'forecast': 'Forecast',
         'forecast2': 'Preliminary Forecast',
     }
+    available_figures, tides_max_ssh_figures_available = [], []
     with requests.Session() as session:
         storm_surge_alerts_fig_ready = publish_figures[0].available(
             request, run_type, run_date, session
         )
         if not storm_surge_alerts_fig_ready:
             raise HTTPNotFound
-        available_figures = [
+        available_figures.extend([
             fig for fig in figures
             if fig.available(request, run_type, run_date, session)
-        ]
-        tides_max_ssh_figures_available = any(
-            tides_max_ssh_figure_group.available(
-                request, run_type, run_date, session
-            )
+        ])
+        tides_max_ssh_figures_available = tides_max_ssh_figure_group.available(
+            request, run_type, run_date, session
         )
     figure_links = [figure.title for figure in available_figures]
     template_data = {
@@ -971,7 +970,7 @@ def _data_for_publish_template(
         'figure_links': figure_links,
         'figures': available_figures,
     }
-    if tides_max_ssh_figures_available:
+    if any(tides_max_ssh_figures_available):
         figure_links.append(tides_max_ssh_figure_group.description)
         template_data['tides_max_ssh_figures_available'
                       ] = tides_max_ssh_figures_available
