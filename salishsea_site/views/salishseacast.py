@@ -726,7 +726,6 @@ def results_index(request):
         # Calendar grid row key, run type, figures, figures type
         ('prelim forecast', 'forecast2', publish_figures, 'publish'),
         ('forecast', 'forecast', publish_figures, 'publish'),
-        ('nowcast publish', 'nowcast', publish_figures, 'publish'),
         ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
         ('nowcast biology', 'nowcast-green', biology_image_loops, 'biology'),
         (
@@ -770,30 +769,6 @@ def _exclude_missing_dates(
                 fig.available(request, run_type, d, session) for fig in figures
             ) else None
         ) for d in dates)
-
-
-@view_config(
-    route_name='results.nowcast.publish',
-    renderer='salishseacast/publish.mako'
-)
-# Legacy route
-@view_config(
-    route_name='results.nowcast.publish.html',
-    renderer='salishseacast/publish.mako'
-)
-def nowcast_publish(request):
-    """Render storm surge nowcast figures page.
-    """
-    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    return _data_for_publish_template(
-        request,
-        'nowcast',
-        results_date,
-        publish_figures,
-        publish_tides_max_ssh_figure_group,
-        publish_sand_heads_wind_figure,
-        run_date=results_date
-    )
 
 
 @view_config(
@@ -980,7 +955,6 @@ def _data_for_publish_template(
     page.
     """
     run_type_titles = {
-        'nowcast': 'Nowcast',
         'forecast': 'Forecast',
         'forecast2': 'Preliminary Forecast',
     }
