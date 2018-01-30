@@ -372,12 +372,6 @@ publish_tides_max_ssh_figure_group = FigureGroup(
     ]
 )
 
-publish_sand_heads_wind_figure = FigureMetadata(
-    title='Sand Heads Winds - Modelled and Observed',
-    link_text='Sand Heads',
-    svg_name='SH_wind'
-)
-
 currents_physics_image_loops = ImageLoopGroup(
     description='Tracer Fields Along Thalweg and on Surface',
     loops=[
@@ -646,7 +640,6 @@ def storm_surge_forecast(request):
                 fcst_date,
                 publish_figures,
                 publish_tides_max_ssh_figure_group,
-                publish_sand_heads_wind_figure,
                 fcst_date.replace(days=-1)
             )
         except HTTPNotFound:
@@ -656,7 +649,6 @@ def storm_surge_forecast(request):
                 fcst_date,
                 publish_figures,
                 publish_tides_max_ssh_figure_group,
-                publish_sand_heads_wind_figure,
                 fcst_date.replace(days=-2)
             )
     except HTTPNotFound:
@@ -666,7 +658,6 @@ def storm_surge_forecast(request):
             fcst_date.replace(days=-1),
             publish_figures,
             publish_tides_max_ssh_figure_group,
-            publish_sand_heads_wind_figure,
             fcst_date.replace(days=-2)
         )
 
@@ -787,8 +778,7 @@ def forecast_publish(request):
     run_date = results_date.replace(days=-1)
     return _data_for_publish_template(
         request, 'forecast', results_date, publish_figures,
-        publish_tides_max_ssh_figure_group, publish_sand_heads_wind_figure,
-        run_date
+        publish_tides_max_ssh_figure_group, run_date
     )
 
 
@@ -808,8 +798,7 @@ def forecast2_publish(request):
     run_date = results_date.replace(days=-2)
     return _data_for_publish_template(
         request, 'forecast2', results_date, publish_figures,
-        publish_tides_max_ssh_figure_group, publish_sand_heads_wind_figure,
-        run_date
+        publish_tides_max_ssh_figure_group, run_date
     )
 
 
@@ -949,7 +938,7 @@ def nowcast_comparison(request):
 
 def _data_for_publish_template(
     request, run_type, results_date, figures, tides_max_ssh_figure_group,
-    sand_heads_wind_figure, run_date
+    run_date
 ):
     """Calculate template variable values for a storm surge forecast figures
     page.
@@ -973,9 +962,6 @@ def _data_for_publish_template(
                 request, run_type, run_date, session
             )
         )
-        wind_figure_available = sand_heads_wind_figure.available(
-            request, run_type, run_date, session
-        )
     figure_links = [figure.title for figure in available_figures]
     template_data = {
         'results_date': results_date,
@@ -990,10 +976,6 @@ def _data_for_publish_template(
         template_data['tides_max_ssh_figures_available'
                       ] = tides_max_ssh_figures_available
         template_data['tides_max_ssh_figures'] = tides_max_ssh_figure_group
-    if wind_figure_available:
-        figure_links.append(sand_heads_wind_figure.title)
-        template_data['wind_figure_available'] = wind_figure_available
-        template_data['sand_heads_wind_figure'] = sand_heads_wind_figure
     return template_data
 
 
