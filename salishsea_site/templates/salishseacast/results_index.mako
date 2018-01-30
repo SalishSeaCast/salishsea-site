@@ -36,14 +36,22 @@
             ${month_heading(this_month_cols, last_date)}
           </tr>
           <tr>
-            <th>Sea Surface Height &amp; Weather</th>
+            <th class="results-index">Storm Surge &amp; Tides</th>
           </tr>
           ${grid_row("Preliminary Forecast", grid_dates['prelim forecast'], "forecast2", "publish")}
           ${grid_row("Forecast", grid_dates['forecast'], "forecast", "publish")}
-          ${grid_row("Nowcast", grid_dates['nowcast publish'], "nowcast", "publish")}
+        </table>
 
+        <table class="table table-striped">
           <tr>
-            <th>Tracers, Currents &amp; Comparison to Observations</th>
+            <td></td>
+            %if last_month_cols != 0:
+              ${month_heading(last_month_cols, first_date)}
+            %endif
+            ${month_heading(this_month_cols, last_date)}
+          </tr>
+          <tr>
+            <th class="results-index">Tracers, Currents &amp; Comparison to Observations</th>
           </tr>
           ${grid_row("Currents and Physics", grid_dates['nowcast currents'], "nowcast", "currents")}
           ${grid_row("Biology", grid_dates['nowcast biology'], "nowcast", "biology")}

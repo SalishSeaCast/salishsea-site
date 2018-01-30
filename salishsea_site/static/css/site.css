@@ -52,6 +52,9 @@ table a:not(.btn):hover, .table a:not(.btn):hover, table a:not(.btn):focus, .tab
     text-decoration-line: underline;
     text-decoration-style: solid;
 }
+th.results-index {
+    width: 285px;
+}
 
 kbd.link {
     color: #df691a;
