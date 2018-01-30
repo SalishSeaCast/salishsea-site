@@ -77,10 +77,6 @@ def _salishseacast_routes(config):
     config.add_route('salishseacast.about', 'nemo/')
     config.add_route('results.index', 'nemo/results/')
     config.add_route(
-        'results.nowcast.publish',
-        'nemo/results/nowcast/publish/{results_date}'
-    )
-    config.add_route(
         'results.forecast.publish',
         'nemo/results/forecast/publish/{results_date}'
     )
@@ -111,10 +107,6 @@ def _salishseacast_routes(config):
     config.add_route('storm_surge.forecast.html', 'storm-surge/forecast.html')
     config.add_route('results.index.html', 'nemo/results/index.html')
     config.add_route('nemo.index.html', 'nemo/index.html')
-    config.add_route(
-        'results.nowcast.publish.html',
-        'nemo/results/nowcast/publish_{results_date}.html'
-    )
     config.add_route(
         'results.forecast.publish.html',
         'nemo/results/forecast/publish_{results_date}.html'

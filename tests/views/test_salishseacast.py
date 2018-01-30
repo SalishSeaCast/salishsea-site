@@ -101,7 +101,7 @@ class TestStormSurgeForecast:
                 m_now().floor('day').replace(days=+1),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
-                salishseacast.publish_wind_figure_group,
+                salishseacast.publish_sand_heads_wind_figure,
                 m_now().floor('day')
             )
             assert m_dfpt.call_args_list[0] == expected
@@ -119,7 +119,7 @@ class TestStormSurgeForecast:
                 m_now().floor('day').replace(days=+1),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
-                salishseacast.publish_wind_figure_group,
+                salishseacast.publish_sand_heads_wind_figure,
                 m_now().floor('day').replace(days=-1)
             )
             assert m_dfpt.call_args_list[1] == expected
@@ -137,7 +137,7 @@ class TestStormSurgeForecast:
                 m_now().floor('day'),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
-                salishseacast.publish_wind_figure_group,
+                salishseacast.publish_sand_heads_wind_figure,
                 m_now().floor('day').replace(days=-1)
             )
             assert m_dfpt.call_args_list[2] == expected
@@ -247,7 +247,6 @@ class TestResultsIndex:
         expected = {
             'prelim forecast': m_exlude_missing_dates(),
             'forecast': m_exlude_missing_dates(),
-            'nowcast publish': m_exlude_missing_dates(),
             'nowcast currents': m_exlude_missing_dates(),
             'nowcast biology': m_exlude_missing_dates(),
             'nowcast timeseries': m_exlude_missing_dates(),
@@ -257,11 +256,10 @@ class TestResultsIndex:
 
     @pytest.mark.parametrize(
         'figures, figs_type, run_type', [
-            (salishseacast.publish_figures, 'publish', 'nowcast'),
             (salishseacast.publish_figures, 'publish', 'forecast'),
             (salishseacast.publish_figures, 'publish', 'forecast2'),
             (salishseacast.currents_physics_figures, 'currents', 'nowcast'),
-            (salishseacast.nitrate_image_loop, 'biology', 'nowcast-green'),
+            (salishseacast.biology_image_loops, 'biology', 'nowcast-green'),
             (
                 salishseacast.timeseries_figure_group, 'timeseries',
                 'nowcast-green'
@@ -293,27 +291,6 @@ class TestResultsIndex:
 
 @pytest.mark.usefixtures('pconfig')
 @patch('salishsea_site.views.salishseacast._data_for_publish_template')
-class TestNowcastPublish:
-    """Unit test for nowcast_publish view view.
-    """
-
-    def test_nowcast_publish(self, m_dfpt):
-        request = get_current_request()
-        request.matchdict = {'results_date': '04nov16'}
-        salishseacast.nowcast_publish(request)
-        m_dfpt.assert_called_once_with(
-            request,
-            'nowcast',
-            arrow.get('2016-11-04'),
-            salishseacast.publish_figures,
-            salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group,
-            run_date=arrow.get('2016-11-04')
-        )
-
-
-@pytest.mark.usefixtures('pconfig')
-@patch('salishsea_site.views.salishseacast._data_for_publish_template')
 class TestForecastPublish:
     """Unit test for forecast_publish view view.
     """
@@ -326,7 +303,8 @@ class TestForecastPublish:
             request, 'forecast',
             arrow.get('2016-11-04'), salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group, arrow.get('2016-11-03')
+            salishseacast.publish_sand_heads_wind_figure,
+            arrow.get('2016-11-03')
         )
 
 
@@ -344,7 +322,8 @@ class TestForecast2Publish:
             request, 'forecast2',
             arrow.get('2016-11-04'), salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group, arrow.get('2016-11-02')
+            salishseacast.publish_sand_heads_wind_figure,
+            arrow.get('2016-11-02')
         )
 
 
@@ -554,7 +533,7 @@ class TestDataForPublishTemplate:
                 arrow.get('2016-11-04'),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
-                salishseacast.publish_wind_figure_group,
+                salishseacast.publish_sand_heads_wind_figure,
                 arrow.get('2016-11-04'),
             )
 
@@ -567,7 +546,7 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'),
             salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group,
+            salishseacast.publish_sand_heads_wind_figure,
             arrow.get('2016-11-03'),
         )
         assert data['results_date'] == arrow.get('2016-11-04')
@@ -588,7 +567,7 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'),
             salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group,
+            salishseacast.publish_sand_heads_wind_figure,
             arrow.get('2016-11-04'),
         )
         assert data['run_type_title'] == expected
@@ -602,7 +581,7 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'),
             salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group,
+            salishseacast.publish_sand_heads_wind_figure,
             arrow.get('2016-11-03'),
         )
         assert data['run_type'] == 'forecast'
@@ -616,7 +595,7 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'),
             salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group,
+            salishseacast.publish_sand_heads_wind_figure,
             arrow.get('2016-11-03'),
         )
         assert data['run_date'] == arrow.get('2016-11-03')
@@ -630,7 +609,7 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'),
             salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group,
+            salishseacast.publish_sand_heads_wind_figure,
             arrow.get('2016-11-03'),
         )
         assert data['figures'] == salishseacast.publish_figures
@@ -645,7 +624,7 @@ class TestDataForPublishTemplate:
             arrow.get('2016-11-04'),
             salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
-            salishseacast.publish_wind_figure_group,
+            salishseacast.publish_sand_heads_wind_figure,
             arrow.get('2016-11-03'),
         )
         assert data['figures'] == [salishseacast.publish_figures[0]]
