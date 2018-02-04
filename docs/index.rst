@@ -114,7 +114,7 @@ Web App Package Development
 Python Versions
 ---------------
 
-The :kbd:`SalishSeaCmd` package is developed,
+The :kbd:`salishsea-site` package is developed,
 tested,
 and deployed using `Python`_ 3.6 or later.
 The package uses some Python language features that are not available in versions prior to 3.6,
@@ -128,7 +128,7 @@ in particular:
 .. _file system path protocol: https://docs.python.org/3/whatsnew/3.6.html#whatsnew36-pep519
 
 
-.. _SalishSeaCmdGettingTheCode:
+.. _SalishSeaSiteGettingTheCode:
 
 Getting the Code
 ----------------
@@ -171,7 +171,7 @@ and building the documentation with the commands:
     $ cd salishsea-site
     $ conda env create -f environment-dev.yaml
     $ source activate salishsea-site
-    (salishsea-site)$ pip install --editable salishsea_site
+    (salishsea-site)$ pip install --editable .
 
 The :kbd:`--editable` option in the :command:`pip install` commands above installs the :kbd:`salishsea-site` package via a symlink so that it is automatically updated as the repo evolves.
 
@@ -281,7 +281,7 @@ The output looks something like::
 The HTML rendering of the docs ends up in :file:`docs/_build/html/`.
 You can open the :file:`index.html` file in that directory tree in your browser to preview the results of the build before committing and pushing your changes to Bitbucket.
 
-Whenever you push changes to the :ref:`salishsea-site-repo` on Bitbucket the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
+Whenever you push changes to :ref:`salishsea-site-repo` on Bitbucket the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
 
 
 .. _SalishSeaSiteRunningTheUnitTests:
