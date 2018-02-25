@@ -42,7 +42,8 @@ class TestSpringDiatoms:
 
     def test_spring_diatoms(self, m_path):
         m_path().__truediv__().open().__enter__.side_effect = (
-            'run_start_date: 2016-09-19\n'  # latest_bloomcast.yaml
+            # latest_bloomcast.yaml
+            'run_start_date: 2016-09-19\n'
             'data_date: 2017-01-25\n'
             'prediction:\n'
             '  early: 2005\n'
@@ -51,7 +52,11 @@ class TestSpringDiatoms:
             'ts_plot_files:\n'
             '  mld_wind: mld_wind_timeseries.svg\n'
             'profiles_plot_file: profiles.svg\n',
-            ['2017-01-25  2017-03-20  2004'],  # bloom_date_evolution.log
+            # bloom_date_evolution.log
+            [
+                '2017-01-24  2017-03-21  2007',
+                '2017-01-25  2017-03-20  2004',
+            ],
         )
         request = get_current_request()
         data = bloomcast.spring_diatoms(request)
@@ -64,4 +69,8 @@ class TestSpringDiatoms:
         assert data['forecast_date'] == '2017-01-26'
         expected = m_path('/results/nowcast-sys/figures/bloomcast')
         assert data['plots_path'] == expected
-        assert data['bloom_date_log'] == [['2017-01-25', '2017-03-20', '2004']]
+        expected = [
+            ['2017-01-25', '2017-03-20', '2004'],
+            ['2017-01-24', '2017-03-21', '2007'],
+        ]
+        assert data['bloom_date_log'] == expected
