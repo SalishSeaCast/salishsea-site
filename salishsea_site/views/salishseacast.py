@@ -40,9 +40,12 @@ class FigureMetadata:
     #: display elements.
     link_text = attr.ib(default='')
 
-    FIG_DIR_TMPL = '/results/nowcast-sys/figures/{run_type}/{run_dmy}/'
+    FIG_DIR_TMPLS = {
+        'nemo': '/results/nowcast-sys/figures/{run_type}/{run_dmy}/',
+        'fvcom': '/results/nowcast-sys/figures/fvcom/{run_type}/{run_dmy}/',
+    }
 
-    def available(self, request, run_type, run_date, session):
+    def available(self, request, run_type, run_date, session, model='nemo'):
         """Return a boolean indicating whether or not the figure is available
         on the static file server that provides figure files.
 
@@ -58,10 +61,14 @@ class FigureMetadata:
                         if possible.
         :type session: :py:class:`requests.Session`
 
+        :param str model: Model name to use to select figures directory
+                          template for figure file path construction;
+                          'nemo' or 'fvcom'.
+
         :return: Figure is availability on the static figure file server.
         :rtype: boolean
         """
-        figure_url = request.static_url(self.path(run_type, run_date))
+        figure_url = request.static_url(self.path(run_type, run_date, model))
         try:
             return session.head(figure_url).status_code == 200
         except requests.ConnectionError:
@@ -82,7 +89,7 @@ class FigureMetadata:
             svg_name=self.svg_name, run_dmy=run_dmy
         )
 
-    def path(self, run_type, run_date):
+    def path(self, run_type, run_date, model='nemo'):
         """Return the figure file path.
 
         :param str run_type: Run type for which the figure was generated.
@@ -90,11 +97,15 @@ class FigureMetadata:
         :param run_date: Run date for which the figure was generated.
         :type run_date: :py:class:`arrow.Arrow`
 
+        :param str model: Model name to use to select figures directory
+                          template for figure file path construction;
+                          'nemo' or 'fvcom'.
+
         :return: Figure file path.
         :rtype: str
         """
         run_dmy = run_date.format('DDMMMYY').lower()
-        fig_dir = self.FIG_DIR_TMPL.format(
+        fig_dir = self.FIG_DIR_TMPLS[model].format(
             run_type=run_type, svg_name=self.svg_name, run_dmy=run_dmy
         )
         return os.path.join(fig_dir, self.filename(run_dmy))
@@ -115,7 +126,7 @@ class FigureGroup:
     def __iter__(self):
         return (figure for figure in self.figures)
 
-    def available(self, request, run_type, run_date, session):
+    def available(self, request, run_type, run_date, session, model='nemo'):
         """Return a list of booleans indicating whether or not each of the
         figures in the group is available on the static file server that
         provides figure files.
@@ -132,11 +143,15 @@ class FigureGroup:
                         if possible.
         :type session: :py:class:`requests.Session`
 
+        :param str model: Model name to use to select figures directory
+                          template for figure file path construction;
+                          'nemo' or 'fvcom'.
+
         :return: Figures that are availability on the static figure file server.
         :rtype: list
         """
         return [
-            figure.available(request, run_type, run_date, session)
+            figure.available(request, run_type, run_date, session, model)
             for figure in self.figures
         ]
 
@@ -162,7 +177,7 @@ class ImageLoop:
     def __iter__(self):
         return (self for i in range(1))
 
-    def available(self, request, run_type, run_date, session):
+    def available(self, request, run_type, run_date, session, model='nemo'):
         """Return a boolean indicating whether or not any of the image loop
         figures are available on the static file server that provides figure
         files.
@@ -185,7 +200,7 @@ class ImageLoop:
         """
         for run_hr in range(self.nominal_image_count):
             figure_url = request.static_url(
-                self.path(run_type, run_date, run_hr)
+                self.path(run_type, run_date, run_hr, model)
             )
             try:
                 if session.head(figure_url).status_code == 200:
@@ -197,7 +212,7 @@ class ImageLoop:
                     return True
         return False
 
-    def hours(self, request, run_type, run_date, session):
+    def hours(self, request, run_type, run_date, session, model='nemo'):
         """Return a list of run hours for which image loop figures are
         available on the static file server that provides figure files.
 
@@ -213,13 +228,17 @@ class ImageLoop:
                         if possible.
         :type session: :py:class:`requests.Session`
 
+        :param str model: Model name to use to select figures directory
+                          template for figure file path construction;
+                          'nemo' or 'fvcom'.
+
         :return: Run hours for which figures are available on the
                  static figure file server.
         :rtype: list of ints
         """
         available_hrs = []
         for run_hr in range(self.nominal_image_count):
-            path = self.path(run_type, run_date, run_hr)
+            path = self.path(run_type, run_date, run_hr, model)
             try:
                 if session.head(request.static_url(path)).status_code == 200:
                     available_hrs.append(run_hr)
@@ -247,7 +266,7 @@ class ImageLoop:
             run_hr=run_hr,
         )
 
-    def path(self, run_type, run_date, run_hr):
+    def path(self, run_type, run_date, run_hr, model='nemo'):
         """Return the figure file path.
 
         :param str run_type: Run type for which the figure was generated.
@@ -257,11 +276,15 @@ class ImageLoop:
 
         :param int run_hr: Run hour for which the figure was generated.
 
+        :param str model: Model name to use to select figures directory
+                          template for figure file path construction;
+                          'nemo' or 'fvcom'.
+
         :return: Figure file path.
         :rtype: str
         """
         run_dmy = run_date.format('DDMMMYY').lower()
-        fig_dir = self.metadata.FIG_DIR_TMPL.format(
+        fig_dir = self.metadata.FIG_DIR_TMPLS[model].format(
             run_type=run_type,
             svg_name=self.metadata.svg_name,
             run_dmy=run_dmy
@@ -284,7 +307,7 @@ class ImageLoopGroup:
     def __iter__(self):
         return (loop for loop in self.loops)
 
-    def available(self, request, run_type, run_date, session):
+    def available(self, request, run_type, run_date, session, model='nemo'):
         """Return a list of booleans indicating whether or not any of the image loop
         figures are available on the static file server that provides figure
         files.
@@ -301,11 +324,15 @@ class ImageLoopGroup:
                         if possible.
         :type session: :py:class:`requests.Session`
 
+        :param str model: Model name to use to select figures directory
+                          template for figure file path construction;
+                          'nemo' or 'fvcom'.
+
         :return: Figure is availability on the static figure file server.
         :rtype: list
         """
         return [
-            loop.available(request, run_type, run_date, session)
+            loop.available(request, run_type, run_date, session, model)
             for loop in self.loops
         ]
 
