@@ -297,8 +297,8 @@ class TestForecastPublish:
         request.matchdict = {'results_date': '04nov16'}
         salishseacast.forecast_publish(request)
         m_dfpt.assert_called_once_with(
-            request, 'forecast',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, 'forecast', arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-03')
         )
@@ -315,8 +315,8 @@ class TestForecast2Publish:
         request.matchdict = {'results_date': '04nov16'}
         salishseacast.forecast2_publish(request)
         m_dfpt.assert_called_once_with(
-            request, 'forecast2',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, 'forecast2', arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-02')
         )
@@ -523,8 +523,8 @@ class TestDataForPublishTemplate:
         m_available.return_value = False
         with pytest.raises(HTTPNotFound):
             salishseacast._data_for_publish_template(
-                request, 'nowcast',
-                arrow.get('2016-11-04'), salishseacast.publish_figures,
+                request, 'nowcast', arrow.get('2016-11-04'),
+                salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
                 arrow.get('2016-11-04')
             )
@@ -533,8 +533,8 @@ class TestDataForPublishTemplate:
         request = get_current_request()
         m_available.return_value = True
         data = salishseacast._data_for_publish_template(
-            request, 'forecast',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, 'forecast', arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-03')
         )
@@ -550,8 +550,8 @@ class TestDataForPublishTemplate:
         request = get_current_request()
         m_available.return_value = True
         data = salishseacast._data_for_publish_template(
-            request, run_type,
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, run_type, arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-04')
         )
@@ -561,8 +561,8 @@ class TestDataForPublishTemplate:
         request = get_current_request()
         m_available.return_value = True
         data = salishseacast._data_for_publish_template(
-            request, 'forecast',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, 'forecast', arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-03')
         )
@@ -572,8 +572,8 @@ class TestDataForPublishTemplate:
         request = get_current_request()
         m_available.return_value = True
         data = salishseacast._data_for_publish_template(
-            request, 'forecast',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, 'forecast', arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-03')
         )
@@ -583,8 +583,8 @@ class TestDataForPublishTemplate:
         request = get_current_request()
         m_available.return_value = True
         data = salishseacast._data_for_publish_template(
-            request, 'forecast',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, 'forecast', arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-03')
         )
@@ -595,8 +595,8 @@ class TestDataForPublishTemplate:
         m_available.side_effect = ([True, True] + [False] *
                                    (len(salishseacast.publish_figures) - 1))
         data = salishseacast._data_for_publish_template(
-            request, 'forecast',
-            arrow.get('2016-11-04'), salishseacast.publish_figures,
+            request, 'forecast', arrow.get('2016-11-04'),
+            salishseacast.publish_figures,
             salishseacast.publish_tides_max_ssh_figure_group,
             arrow.get('2016-11-03')
         )
