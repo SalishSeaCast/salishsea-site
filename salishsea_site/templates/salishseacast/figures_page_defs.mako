@@ -39,19 +39,19 @@
 </%def>
 
 
-<%def name="figure_row(figure, run_type, run_date)">
+<%def name="figure_row(figure, run_type, run_date, model='nemo')">
   <div class="row">
     <div class="col-md-12">
       <h3 id="${figure.title | slug}"> ${figure.title} ${header_link(figure.title) | slug}</h3>
       <img class="img-responsive"
-        src="${request.static_url(figure.path(run_type, run_date))}"
+        src="${request.static_url(figure.path(run_type, run_date, model))}"
         alt="${figure.title} image">
     </div>
   </div>
 </%def>
 
 
-<%def name="figure_group(figure_group, figures_available, run_type, run_date)">
+<%def name="figure_group(figure_group, figures_available, run_type, run_date, model='nemo')">
   <%doc>
     Render a figure group block.
 
@@ -78,7 +78,7 @@
           %if available:
             <option
               selected
-                value="${figure.title}|${request.static_url(figure.path(run_type, run_date))}">
+                value="${figure.title}|${request.static_url(figure.path(run_type, run_date, model))}">
               ${figure.link_text}
             </option>
             <% break %>
@@ -87,7 +87,7 @@
         %for figure, available in zip(figure_group.figures[i+1:], figures_available[i+1:]):
           %if available:
             <option
-                value="${figure.title}|${request.static_url(figure.path(run_type, run_date))}">
+                value="${figure.title}|${request.static_url(figure.path(run_type, run_date, model))}">
               ${figure.link_text}
             </option>
           %endif
@@ -98,7 +98,7 @@
   <div class="row">
     <div class="col-md-12">
       <img id="${figure_group.description | slug}-img" class="img-responsive"
-       src="${request.static_url(figure_group.figures[i].path(run_type, run_date))}"
+       src="${request.static_url(figure_group.figures[i].path(run_type, run_date, model))}"
        alt="${figure_group.figures[i].title} image">
     </div>
   </div>
@@ -116,13 +116,13 @@
 </%def>
 
 
-<%def name="init_image_loop(img_loop, model_var)">
+<%def name="init_image_loop(img_loop, model_var, model='nemo')">
   ${show_image_loop()}
   <script>
     function init() {
       var imageList = [
         %for run_hr in img_loop.hrs:
-          "${request.static_url(img_loop.path(run_type, run_date, run_hr))}",
+          "${request.static_url(img_loop.path(run_type, run_date, run_hr, model))}",
         %endfor
       ];
       jsImageLoop = initImageLoop(imageList, "${model_var}");
@@ -226,7 +226,7 @@
 </%def>
 
 
-<%def name="init_image_loop_group(image_loops)">
+<%def name="init_image_loop_group(image_loops, model='nemo')">
   ${show_image_loop()}
   <script>
     function init() {
@@ -235,7 +235,7 @@
       %for i, img_loop in enumerate(image_loops.loops):
         imageLists[${i}] = [
           %for run_hr in img_loop.hrs:
-            "${request.static_url(img_loop.path(run_type, run_date, run_hr))}",
+            "${request.static_url(img_loop.path(run_type, run_date, run_hr), model)}",
           %endfor
         ];
         jsImageLoops[${i}] = initImageLoop(imageLists[${i}], "${image_loops.loops[i].model_var}");
