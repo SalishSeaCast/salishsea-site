@@ -21,7 +21,7 @@ from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
 import requests
 
-from views.salishseacast import FigureGroup, FigureMetadata
+from salishsea_site.views.salishseacast import FigureGroup, FigureMetadata
 
 logger = logging.getLogger(__name__)
 
