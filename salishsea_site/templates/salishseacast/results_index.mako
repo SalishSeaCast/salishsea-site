@@ -14,6 +14,7 @@
 ## limitations under the License.
 
 <%inherit file="../site.mako"/>
+<%namespace file="results_index_page_defs.mako" import="month_heading"/>
 
 <%block name="title">
   Salish Sea NEMO Model Daily Results
@@ -62,17 +63,6 @@
     </div>
   </div>
 </div>
-
-
-<%def name="month_heading(month_cols, date)">
-  <th class="text-center" colspan="${month_cols}">
-    %if month_cols < 3:
-      ${date.format('MMM')}
-    %else:
-      ${date.format('MMMM')}
-    %endif
-  </th>
-</%def>
 
 
 <%def name="grid_row(title, dates, run_type, figs_type)">
