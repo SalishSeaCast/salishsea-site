@@ -103,6 +103,7 @@ def _salishseacast_routes(config):
     config.add_route('nowcast.monitoring', 'nemo/nowcast/monitoring')
     config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
     # VHFR FVCOM model results routes
+    config.add_route('fvcom.results.index', 'fvcom/results/')
     config.add_route(
         'fvcom.results.nowcast.publish',
         'fvcom/results/nowcast/publish/{results_date}'

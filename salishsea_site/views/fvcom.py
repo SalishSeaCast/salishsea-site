@@ -73,6 +73,59 @@ tide_stn_water_level_figure_group = FigureGroup(
 
 
 @view_config(
+    route_name='fvcom.results.index', renderer='fvcom/results_index.mako'
+)
+def results_index(request):
+    """Render results calendar grid index page.
+    """
+    INDEX_GRID_COLS = 21
+    # Calculate the date range to display in the grid and the number of
+    # columns for the month headings of the grid
+    fcst_date = arrow.now().floor('day').replace(days=+1)
+    dates = arrow.Arrow.range(
+        'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date
+    )
+    if dates[0].month != dates[-1].month:
+        this_month_cols = dates[-1].day
+        last_month_cols = INDEX_GRID_COLS - this_month_cols
+    else:
+        this_month_cols, last_month_cols = INDEX_GRID_COLS, 0
+    # Replace dates for which there are no figures with None
+    grid_rows = (
+        # Calendar grid row key, run type, figures, figures type
+        (
+            'nowcast publish', 'nowcast', tide_stn_water_level_figure_group,
+            'publish'
+        ),
+    )
+    with requests.Session() as session:
+        grid_dates = {
+            row: _exclude_missing_dates(
+                request, dates, figures, figs_type, run_type, session
+            )
+            for row, run_type, figures, figs_type in grid_rows
+        }
+    return {
+        'first_date': dates[0],
+        'last_date': dates[-1],
+        'this_month_cols': this_month_cols,
+        'last_month_cols': last_month_cols,
+        'grid_dates': grid_dates,
+    }
+
+
+def _exclude_missing_dates(
+    request, dates, figures, figs_type, run_type, session
+):
+    return ((
+        d if any(
+            fig.available(request, run_type, d, session, model='fvcom')
+            for fig in figures
+        ) else None
+    ) for d in dates)
+
+
+@view_config(
     route_name='fvcom.results.nowcast.publish', renderer='fvcom/publish.mako'
 )
 def nowcast_publish(request):
