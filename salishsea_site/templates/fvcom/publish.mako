@@ -12,9 +12,6 @@
 ## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
-<%!
-  from salishsea_site.mako_filters import slug
-%>
 
 <%inherit file="../site.mako"/>
 <%namespace file="../salishseacast/figures_page_defs.mako" import="figure_group, show_figure"/>
@@ -29,6 +26,12 @@
   </div>
 
     ${figure_group(figures, figures_available, run_type, run_date, 'fvcom')}
+
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <p class="text-center"><a href=${request.route_url('fvcom.results.index')}>Results Index Page</a></p>
+    </div>
+  </div>
 </div>
 
 
