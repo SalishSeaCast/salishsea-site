@@ -235,7 +235,7 @@
       %for i, img_loop in enumerate(image_loops.loops):
         imageLists[${i}] = [
           %for run_hr in img_loop.hrs:
-            "${request.static_url(img_loop.path(run_type, run_date, run_hr), model)}",
+            "${request.static_url(img_loop.path(run_type, run_date, run_hr, model))}",
           %endfor
         ];
         jsImageLoops[${i}] = initImageLoop(imageLists[${i}], "${image_loops.loops[i].model_var}");
