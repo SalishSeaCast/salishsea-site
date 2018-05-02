@@ -43,6 +43,8 @@ class FigureMetadata:
     FIG_DIR_TMPLS = {
         'nemo': '/results/nowcast-sys/figures/{run_type}/{run_dmy}/',
         'fvcom': '/results/nowcast-sys/figures/fvcom/{run_type}/{run_dmy}/',
+        'wwatch3':
+        '/results/nowcast-sys/figures/wwatch3/{run_type}/{run_dmy}/',
     }
 
     def available(self, request, run_type, run_date, session, model='nemo'):
