@@ -27,6 +27,11 @@
 
   ${figure_group(figures, figures_available, run_type, run_date, 'wwatch3')}
 
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <p class="text-center"><a href=${request.route_url('wwatch3.results.index')}>Results Index Page</a></p>
+    </div>
+  </div>
 </div>
 
 
