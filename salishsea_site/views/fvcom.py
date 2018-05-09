@@ -97,6 +97,10 @@ def results_index(request):
             'nowcast publish', 'nowcast', tide_stn_water_level_figure_group,
             'publish'
         ),
+        (
+            'forecast publish', 'forecast', tide_stn_water_level_figure_group,
+            'publish'
+        ),
     )
     with requests.Session() as session:
         grid_dates = {
@@ -143,6 +147,30 @@ def nowcast_publish(request):
         'results_date': results_date,
         'run_type_title': 'Nowcast',
         'run_type': 'nowcast',
+        'run_date': results_date,
+        'figures': tide_stn_water_level_figure_group,
+        'figures_available': figures_available,
+    }
+
+
+@view_config(
+    route_name='fvcom.results.forecast.publish', renderer='fvcom/publish.mako'
+)
+def forecast_publish(request):
+    """Render forecast figures page.
+    """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    figures_available = []
+    with requests.Session() as session:
+        figures_available = tide_stn_water_level_figure_group.available(
+            request, 'forecast', results_date, session, 'fvcom'
+        )
+    if not any(figures_available):
+        raise HTTPNotFound
+    return {
+        'results_date': results_date,
+        'run_type_title': 'Nowcast',
+        'run_type': 'forecast',
         'run_date': results_date,
         'figures': tide_stn_water_level_figure_group,
         'figures_available': figures_available,
