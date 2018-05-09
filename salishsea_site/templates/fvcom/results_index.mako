@@ -41,6 +41,7 @@
           <th class="results-index">Tide Gauge Station Water Levels</th>
         </tr>
         ${grid_row("Nowcast", grid_dates['nowcast publish'], "nowcast", "publish")}
+        ${grid_row("Forecast", grid_dates['forecast publish'], "forecast", "publish")}
       </table>
     </div>
   </div>
