@@ -18,17 +18,17 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed"
-                data-toggle="collapse" data-target="#bs-salissea-navbar-collapse"
+                data-toggle="collapse" data-target="#bs-salishsea-navbar-collapse"
                 aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href=${request.route_url('site.index')} class="navbar-brand">Salish Sea</a>
+        <a class="navbar-brand" href=${request.route_url('site.index')}>Salish Sea</a>
       </div>
 
-      <div id="bs-salishsea-navbar-collapes" class="collapse navbar-collapse">
+      <div id="bs-salishsea-navbar-collapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle"
