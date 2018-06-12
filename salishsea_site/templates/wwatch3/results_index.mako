@@ -17,13 +17,13 @@
 <%namespace file="../salishseacast/results_index_page_defs.mako" import="month_heading"/>
 
 <%block name="title">
-  SoG WaveWatch3™ Model Daily Results
+  SoG WAVEWATCH III® Model Daily Results
 </%block>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>Strait of Georgia WaveWatch3™ Model Daily Results</h1>
+      <h1>Strait of Georgia WAVEWATCH III® Model Daily Results</h1>
     </div>
   </div>
 
