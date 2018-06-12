@@ -112,7 +112,7 @@ def _salishseacast_routes(config):
         'fvcom.results.forecast.publish',
         'fvcom/results/forecast/publish/{results_date}'
     )
-    # WaveWatch3(TM) model results routes
+    # WAVEWATCH III® model results routes
     config.add_route('wwatch3.results.index', 'wwatch3/results/')
     config.add_route(
         'wwatch3.results.forecast.publish',
