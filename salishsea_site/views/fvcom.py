@@ -169,7 +169,7 @@ def forecast_publish(request):
         raise HTTPNotFound
     return {
         'results_date': results_date,
-        'run_type_title': 'Nowcast',
+        'run_type_title': 'Forecast',
         'run_type': 'forecast',
         'run_date': results_date,
         'figures': tide_stn_water_level_figure_group,
