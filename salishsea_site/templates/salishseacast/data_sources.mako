@@ -21,7 +21,7 @@
 <div class="row">
   <div class="col-md-12">
     <h2 id="${'Data Sources' | slug}">Data Sources ${header_link(slug('Data Sources'))}</h2>
-    <p>The forcing data used to drive the Salish Sea model is obtained from several sources:</p>
+    <p>The forcing data used to drive the Salish Sea models are obtained from several sources:</p>
     <dl>
       <dt>Winds and metorological conditions</dt>
       <dd>
