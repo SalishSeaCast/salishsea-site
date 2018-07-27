@@ -32,6 +32,8 @@
       <p class="text-center"><a href=${request.route_url('wwatch3.results.index')}>Results Index Page</a></p>
     </div>
   </div>
+
+  <%include file="data_sources.mako"/>
 </div>
 
 
