@@ -16,7 +16,7 @@
 <%inherit file="../site.mako"/>
 <%namespace file="../salishseacast/figures_page_defs.mako" import="figure_group, show_figure"/>
 
-<%block name="title">${results_date.format('dddd, D MMMM YYYY')} – VHFR FVCOM ${run_type_title}</%block>
+<%block name="title">${results_date.format('dddd, D MMMM YYYY')} – WAVEWATCH III® ${run_type_title}</%block>
 
 <div class="container">
   <div class="row">
