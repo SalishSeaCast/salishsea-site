@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <%include file="data_sources.mako"/>
+  <%include file="../data_sources.mako"/>
 </div>
 
 
