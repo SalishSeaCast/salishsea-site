@@ -25,7 +25,16 @@
     </div>
   </div>
 
-    ${figure_group(figures, figures_available, run_type, run_date, 'fvcom')}
+  <h2>Disclaimer</h2>
+  <p>
+    This page presents output from a research project.
+    Results on this page have not been subject to statistical evaluation in comparison
+    to validated instrument observations.
+    Model modifications may change the way in which the results are calculated from
+    day to day.
+  </p>
+
+  ${figure_group(figures, figures_available, run_type, run_date, 'fvcom')}
 
   <div class="row">
     <div class="col-md-2 col-md-offset-5">
