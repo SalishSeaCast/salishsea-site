@@ -292,10 +292,14 @@
 </%def>
 
 
-<%def name="figure_nav_links()">
+<%def name="figure_nav_links(model='nemo')">
   <div class="row">
     <div class="col-md-2 col-md-offset-3">
-      <p class="text-center"><a href=${request.route_url('results.index')}>Results Index Page</a></p>
+      %if model == 'nemo':
+        <p class="text-center"><a href=${request.route_url('results.index')}>Results Index Page</a></p>
+      %else:
+        <p class="text-center"><a href=${request.route_url(f'{model}.results.index')}>Results Index Page</a></p>
+      %endif
     </div>
     <div class="col-md-2">
       <p class="text-center"><a href="#top">Top of Page</a></p>
