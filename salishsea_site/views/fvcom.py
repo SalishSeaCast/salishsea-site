@@ -71,6 +71,11 @@ tide_stn_water_level_figure_group = FigureGroup(
     ]
 )
 
+second_narrows_current_figure = FigureMetadata(
+    title='Near-Surface Current at 2nd Narrows',
+    svg_name='2ndNarrows_current',
+)
+
 
 @view_config(
     route_name='fvcom.results.index', renderer='fvcom/results_index.mako'
@@ -94,11 +99,19 @@ def results_index(request):
     grid_rows = (
         # Calendar grid row key, run type, figures, figures type
         (
-            'nowcast publish', 'nowcast', tide_stn_water_level_figure_group,
+            'nowcast water levels', 'nowcast',
+            tide_stn_water_level_figure_group, 'publish'
+        ),
+        (
+            'forecast water levels', 'forecast',
+            tide_stn_water_level_figure_group, 'publish'
+        ),
+        (
+            'nowcast currents', 'nowcast', [second_narrows_current_figure],
             'publish'
         ),
         (
-            'forecast publish', 'forecast', tide_stn_water_level_figure_group,
+            'forecast currents', 'forecast', [second_narrows_current_figure],
             'publish'
         ),
     )
@@ -135,22 +148,7 @@ def _exclude_missing_dates(
 def nowcast_publish(request):
     """Render nowcast figures page.
     """
-    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    figures_available = []
-    with requests.Session() as session:
-        figures_available = tide_stn_water_level_figure_group.available(
-            request, 'nowcast', results_date, session, 'fvcom'
-        )
-    if not any(figures_available):
-        raise HTTPNotFound
-    return {
-        'results_date': results_date,
-        'run_type_title': 'Nowcast',
-        'run_type': 'nowcast',
-        'run_date': results_date,
-        'figures': tide_stn_water_level_figure_group,
-        'figures_available': figures_available,
-    }
+    return _values_for_publish_template(request, 'nowcast')
 
 
 @view_config(
@@ -159,19 +157,35 @@ def nowcast_publish(request):
 def forecast_publish(request):
     """Render forecast figures page.
     """
+    return _values_for_publish_template(request, 'forecast')
+
+
+def _values_for_publish_template(request, run_type):
+    """Calculate template variable values for a figures page.
+    """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    figures_available = []
     with requests.Session() as session:
-        figures_available = tide_stn_water_level_figure_group.available(
-            request, 'forecast', results_date, session, 'fvcom'
+        water_level_figures_available = tide_stn_water_level_figure_group.available(
+            request, run_type, results_date, session, 'fvcom'
         )
-    if not any(figures_available):
+        currents_figure_available = second_narrows_current_figure.available(
+            request, run_type, results_date, session, 'fvcom'
+        )
+    if not any(water_level_figures_available + [currents_figure_available]):
         raise HTTPNotFound
+    figure_links = []
+    if water_level_figures_available:
+        figure_links.append(tide_stn_water_level_figure_group.description)
+    if currents_figure_available:
+        figure_links.append(second_narrows_current_figure.title)
     return {
         'results_date': results_date,
-        'run_type_title': 'Forecast',
-        'run_type': 'forecast',
+        'run_type_title': run_type.title(),
+        'run_type': run_type,
         'run_date': results_date,
-        'figures': tide_stn_water_level_figure_group,
-        'figures_available': figures_available,
+        'figure_links': figure_links,
+        'water_level_figures_available': water_level_figures_available,
+        'water_level_figures': tide_stn_water_level_figure_group,
+        'currents_figure_available': currents_figure_available,
+        'second_narrows_current_figure': second_narrows_current_figure,
     }
