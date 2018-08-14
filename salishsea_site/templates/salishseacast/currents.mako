@@ -80,5 +80,5 @@
 
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
-  ${init_image_loop_group(image_loops)}
+  ${init_image_loop_group(image_loops, run_type, run_date)}
 </%block>
