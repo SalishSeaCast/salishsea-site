@@ -475,6 +475,12 @@ currents_physics_figures = [
     ),
 ]
 
+baynes_sound_figures = [
+    FigureMetadata(
+        title='Baynes Sound Surface Fields', svg_name='baynes_sound_surface'
+    ),
+]
+
 biology_image_loops = ImageLoopGroup(
     description='Tracer Fields Along Thalweg and Near Surface',
     loops=[
@@ -925,25 +931,37 @@ def nowcast_biology(request):
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     with requests.Session() as session:
-        available_loop_images = []
+        available_figures = {
+            'baynes sound': [
+                fig.available(request, 'nowcast-agrif', results_date, session)
+                for fig in baynes_sound_figures
+            ],
+            'biology loops': []
+        }
         for image_loop in biology_image_loops.loops:
             images_available = image_loop.available(
                 request, 'nowcast-green', results_date, session
             )
             if images_available:
-                available_loop_images.append(images_available)
+                available_figures['biology loops'].append(images_available)
                 image_loop.hrs = image_loop.hours(
                     request, 'nowcast-green', results_date, session
                 )
-    if not any(available_loop_images):
+    if not any(available_figures['biology loops']
+               ) or not any(available_figures['baynes sound']):
         raise HTTPNotFound
     figure_links = ([biology_image_loops.description]
-                    if available_loop_images else [])
+                    if available_figures['biology loops'] else [])
+    figure_links.extend([fig.title for fig in baynes_sound_figures]
+                        if available_figures['baynes sound'] else [])
     return {
         'results_date': results_date,
         'run_type': 'nowcast-green',
         'run_date': results_date,
+        'figure_links': figure_links,
+        'available_figures': available_figures,
         'image_loops': biology_image_loops,
+        'baynes_sound_figures': baynes_sound_figures,
     }
 
 

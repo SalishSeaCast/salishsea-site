@@ -17,7 +17,7 @@
 %>
 
 <%inherit file="../site.mako"/>
-<%namespace file="figures_page_defs.mako" import="header_link, init_image_loop_group, image_loop_group"/>
+<%namespace file="figures_page_defs.mako" import="figure_nav_links, figure_row, init_image_loop_group, image_loop_group, list_of_plots"/>
 
 <%block name="title">Salish Sea Model Biology – ${results_date.format('DD-MMM-YYYY')}</%block>
 
@@ -65,7 +65,19 @@
     </div>
   </div>
 
-  ${image_loop_group(image_loops)}
+  ${list_of_plots(figure_links)}
+
+  %if available_figures['biology loops']:
+    ${image_loop_group(image_loops)}
+    ${figure_nav_links()}
+  %endif
+
+  %if available_figures['baynes sound']:
+    %for figure in baynes_sound_figures:
+      ${figure_row(figure, 'nowcast-agrif', run_date)}
+      ${figure_nav_links()}
+    %endfor
+  %endif
 
   <%include file="data_sources.mako"/>
 </div>
@@ -73,5 +85,5 @@
 
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
-  ${init_image_loop_group(image_loops)}
+  ${init_image_loop_group(image_loops, run_type, run_date)}
 </%block>

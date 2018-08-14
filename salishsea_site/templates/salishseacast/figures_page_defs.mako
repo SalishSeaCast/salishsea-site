@@ -226,7 +226,7 @@
 </%def>
 
 
-<%def name="init_image_loop_group(image_loops, model='nemo')">
+<%def name="init_image_loop_group(image_loops, run_type, run_date, model='nemo')">
   ${show_image_loop()}
   <script>
     function init() {
@@ -259,7 +259,7 @@
 
       <%block name="page_js">
         <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
-        ${init_image_loop_group(image_loops)}
+        ${init_image_loop_group(image_loops, run_type, run_date)}
       </%block>
   </%doc>
   <div class="row" id="${group.description | slug}">
