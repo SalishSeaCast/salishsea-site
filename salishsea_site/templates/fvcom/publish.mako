@@ -14,7 +14,7 @@
 ## limitations under the License.
 
 <%inherit file="../site.mako"/>
-<%namespace file="../salishseacast/figures_page_defs.mako" import="list_of_plots, figure_group, figure_row, figure_nav_links"/>
+<%namespace file="../salishseacast/figures_page_defs.mako" import="list_of_plots, figure_group, figure_row, figure_nav_links, show_figure"/>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – VHFR FVCOM ${run_type_title}</%block>
 
@@ -51,3 +51,11 @@
 
   <%include file="../salishseacast/data_sources.mako"/>
 </div>
+
+
+<%block name="page_js">
+  <script>
+    function init() { }
+  </script>
+  ${show_figure()}
+</%block>
