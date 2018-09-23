@@ -19,11 +19,11 @@
 # Deploy changes to site by pulling changesets from Bitbucket and restarting app server
 
 APP_REPO=/results/nowcast-sys/salishsea-site
-APP_ENV=/results/nowcast-sys/salishsea-site-env/
+APP_ENV=/results/nowcast-sys/salishsea-site-env
 HG=/usr/local/bin/hg
 
 cd ${APP_REPO}
 echo $(pwd)
-${HG} pull --ssh "ssh -i ~/.ssh/salishsea-site-deployment_id_rsa.pub" --update
+${HG} pull --ssh "ssh -i ~/.ssh/salishsea-site-deployment_id_rsa" --update
 echo "Restarting app"
 ${APP_ENV}/bin/circusctl --endpoint tcp://127.0.0.1:7777 restart web
