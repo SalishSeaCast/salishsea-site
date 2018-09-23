@@ -26,4 +26,4 @@ cd ${APP_REPO}
 echo $(pwd)
 ${HG} pull --update
 echo "Restarting app"
-${APP_ENV}/bin/circusctl restart web
+${APP_ENV}/bin/circusctl --endpoint tcp://127.0.0.1:7777 restart web
