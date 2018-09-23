@@ -24,6 +24,6 @@ HG=/usr/local/bin/hg
 
 cd ${APP_REPO}
 echo $(pwd)
-${HG} pull --update
+${HG} --ssh "ssh -i ~/.ssh/salishsea-site-deployment_id_rsa.pub" pull --update
 echo "Restarting app"
 ${APP_ENV}/bin/circusctl --endpoint tcp://127.0.0.1:7777 restart web
