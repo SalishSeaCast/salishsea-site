@@ -98,30 +98,26 @@ def results_index(request):
     # Replace dates for which there are no figures with None
     grid_rows = (
         # Calendar grid row key, run type, figures, figures type
-        (
-            'nowcast water levels', 'nowcast',
-            tide_stn_water_level_figure_group, 'publish'
-        ),
+        ('nowcast water levels', 'nowcast', tide_stn_water_level_figure_group),
         (
             'forecast water levels', 'forecast',
-            tide_stn_water_level_figure_group, 'publish'
+            tide_stn_water_level_figure_group
         ),
         (
-            'nowcast currents', 'nowcast', [second_narrows_current_figure],
-            'publish'
+            'nowcast currents',
+            'nowcast',
+            [second_narrows_current_figure],
         ),
         (
-            'forecast currents', 'forecast', [second_narrows_current_figure],
-            'publish'
+            'forecast currents',
+            'forecast',
+            [second_narrows_current_figure],
         ),
     )
-    with requests.Session() as session:
-        grid_dates = {
-            row: _exclude_missing_dates(
-                request, dates, figures, figs_type, run_type, session
-            )
-            for row, run_type, figures, figs_type in grid_rows
-        }
+    grid_dates = {
+        row: _exclude_missing_dates(dates, figures, run_type)
+        for row, run_type, figures in grid_rows
+    }
     return {
         'first_date': dates[0],
         'last_date': dates[-1],
@@ -131,14 +127,10 @@ def results_index(request):
     }
 
 
-def _exclude_missing_dates(
-    request, dates, figures, figs_type, run_type, session
-):
+def _exclude_missing_dates(dates, figures, run_type):
     return ((
-        d if any(
-            fig.available(request, run_type, d, session, model='fvcom')
-            for fig in figures
-        ) else None
+        d if any(fig.available(run_type, d, model='fvcom')
+                 for fig in figures) else None
     ) for d in dates)
 
 
@@ -164,13 +156,12 @@ def _values_for_publish_template(request, run_type):
     """Calculate template variable values for a figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    with requests.Session() as session:
-        water_level_figures_available = tide_stn_water_level_figure_group.available(
-            request, run_type, results_date, session, 'fvcom'
-        )
-        currents_figure_available = second_narrows_current_figure.available(
-            request, run_type, results_date, session, 'fvcom'
-        )
+    water_level_figures_available = tide_stn_water_level_figure_group.available(
+        run_type, results_date, 'fvcom'
+    )
+    currents_figure_available = second_narrows_current_figure.available(
+        run_type, results_date, 'fvcom'
+    )
     if not any(water_level_figures_available + [currents_figure_available]):
         raise HTTPNotFound
     figure_links = []
