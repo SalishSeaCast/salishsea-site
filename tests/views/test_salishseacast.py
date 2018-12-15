@@ -33,35 +33,56 @@ from pyramid.threadlocal import get_current_request
 from salishsea_site.views import salishseacast
 
 
-@pytest.mark.usefixtures('pconfig')
-@patch('salishsea_site.views.salishseacast.requests.Session')
-class TestFigureMetadata:
-    """Unit tests for FigureMetadata class.
+class TestImageLoop:
+    """Unit tests for ImageLoop class.
     """
 
-    def test_available_in_production(self, m_session):
-        request = get_current_request()
-        request.static_url = Mock(name='static_url')
-        figure = salishseacast.FigureMetadata(title='foo', svg_name='bar')
-        figure.available(
-            request, 'nowcast', arrow.get('2016-11-05'), m_session
+    def test_first_available(self):
+        img_loop = salishseacast.ImageLoop(
+            model_var='salinity',
+            metadata=salishseacast.FigureMetadata(
+                title='Salinity Fields Along Thalweg and on Surface',
+                link_text='Salinity',
+                svg_name='salinity_thalweg_and_surface',
+            ),
         )
-        request.static_url.assert_called_once_with(
-            '/results/nowcast-sys/figures/nowcast/05nov16/bar_05nov16.svg'
-        )
-        m_session.head.assert_called_once_with(request.static_url())
+        with patch(
+            'salishsea_site.views.salishseacast.Path.exists',
+            return_value=True,
+            autospec=True
+        ):
+            assert img_loop.available('nowcast', arrow.get('2018-12-14'))
 
-    def test_available_in_development(self, m_session):
-        request = get_current_request()
-        request.static_url = Mock(name='static_url')
-        m_session.head.side_effect = (
-            requests.ConnectionError, Mock(status_code=200)
+    def test_subsequent_available(self):
+        img_loop = salishseacast.ImageLoop(
+            model_var='salinity',
+            metadata=salishseacast.FigureMetadata(
+                title='Salinity Fields Along Thalweg and on Surface',
+                link_text='Salinity',
+                svg_name='salinity_thalweg_and_surface',
+            ),
         )
-        figure = salishseacast.FigureMetadata(title='foo', svg_name='bar')
-        figure.available(
-            request, 'nowcast', arrow.get('2016-11-05'), m_session
+        with patch(
+            'salishsea_site.views.salishseacast.Path.exists', autospec=True
+        ) as p_exists:
+            p_exists.side_effect = (False, False, True)
+            assert img_loop.available('nowcast', arrow.get('2018-12-14'))
+
+    def test_none_available(self):
+        img_loop = salishseacast.ImageLoop(
+            model_var='salinity',
+            metadata=salishseacast.FigureMetadata(
+                title='Salinity Fields Along Thalweg and on Surface',
+                link_text='Salinity',
+                svg_name='salinity_thalweg_and_surface',
+            ),
         )
-        assert m_session.head.call_args == call(request.static_url().replace())
+        with patch(
+            'salishsea_site.views.salishseacast.Path.exists',
+            return_value=False,
+            autospec=True
+        ):
+            assert not img_loop.available('nowcast', arrow.get('2018-12-14'))
 
 
 class TestStormSurgePortal:

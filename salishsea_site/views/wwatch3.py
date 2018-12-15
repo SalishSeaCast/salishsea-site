@@ -69,13 +69,10 @@ def results_index(request):
             'publish'
         ),
     )
-    with requests.Session() as session:
-        grid_dates = {
-            row: _exclude_missing_dates(
-                request, dates, figures, figs_type, run_type, session
-            )
-            for row, run_type, figures, figs_type in grid_rows
-        }
+    grid_dates = {
+        row: _exclude_missing_dates(dates, figures, figs_type, run_type)
+        for row, run_type, figures, figs_type in grid_rows
+    }
     return {
         'first_date': dates[0],
         'last_date': dates[-1],
@@ -85,14 +82,11 @@ def results_index(request):
     }
 
 
-def _exclude_missing_dates(
-    request, dates, figures, figs_type, run_type, session
-):
+def _exclude_missing_dates(dates, figures, figs_type, run_type):
     return ((
-        d if any(
-            fig.available(request, run_type, d, session, model='wwatch3')
-            for fig in figures
-        ) else None
+        d
+        if any(fig.available(run_type, d, model='wwatch3')
+               for fig in figures) else None
     ) for d in dates)
 
 
@@ -104,11 +98,9 @@ def forecast_publish(request):
     """Render forecast figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    figures_available = []
-    with requests.Session() as session:
-        figures_available = wave_height_period_figure_group.available(
-            request, 'forecast', results_date, session, 'wwatch3'
-        )
+    figures_available = wave_height_period_figure_group.available(
+        'forecast', results_date, 'wwatch3'
+    )
     if not any(figures_available):
         raise HTTPNotFound
     return {
@@ -129,11 +121,9 @@ def forecast2_publish(request):
     """Render forecast2 figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    figures_available = []
-    with requests.Session() as session:
-        figures_available = wave_height_period_figure_group.available(
-            request, 'forecast2', results_date, session, 'wwatch3'
-        )
+    figures_available = wave_height_period_figure_group.available(
+        'forecast2', results_date, 'wwatch3'
+    )
     if not any(figures_available):
         raise HTTPNotFound
     return {

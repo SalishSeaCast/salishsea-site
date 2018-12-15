@@ -47,21 +47,14 @@ class FigureMetadata:
         '/results/nowcast-sys/figures/wwatch3/{run_type}/{run_dmy}/',
     }
 
-    def available(self, request, run_type, run_date, session, model='nemo'):
+    def available(self, run_type, run_date, model='nemo'):
         """Return a boolean indicating whether or not the figure is available
         on the static file server that provides figure files.
-
-        :param request: HTTP request.
-        :type request: :py:class:`pyramid.request.Request`
 
         :param str run_type: Run type for which the figure was generated.
 
         :param run_date: Run date for which the figure was generated.
         :type run_date: :py:class:`arrow.Arrow`
-
-        :param session: Requests session object to re-use server connection,
-                        if possible.
-        :type session: :py:class:`requests.Session`
 
         :param str model: Model name to use to select figures directory
                           template for figure file path construction;
@@ -70,13 +63,7 @@ class FigureMetadata:
         :return: Figure is availability on the static figure file server.
         :rtype: boolean
         """
-        figure_url = request.static_url(self.path(run_type, run_date, model))
-        try:
-            return session.head(figure_url).status_code == 200
-        except requests.ConnectionError:
-            # Development environment
-            dev_figure_url = figure_url.replace('4567', '6543')
-            return session.head(dev_figure_url).status_code == 200
+        return Path(self.path(run_type, run_date, model)).exists()
 
     def filename(self, run_dmy):
         """Return the figure file name.
@@ -128,22 +115,15 @@ class FigureGroup:
     def __iter__(self):
         return (figure for figure in self.figures)
 
-    def available(self, request, run_type, run_date, session, model='nemo'):
+    def available(self, run_type, run_date, model='nemo'):
         """Return a list of booleans indicating whether or not each of the
         figures in the group is available on the static file server that
         provides figure files.
-
-        :param request: HTTP request.
-        :type request: :py:class:`pyramid.request.Request`
 
         :param str run_type: Run type for which the figure was generated.
 
         :param run_date: Run date for which the figure was generated.
         :type run_date: :py:class:`arrow.Arrow`
-
-        :param session: Requests session object to re-use server connection,
-                        if possible.
-        :type session: :py:class:`requests.Session`
 
         :param str model: Model name to use to select figures directory
                           template for figure file path construction;
@@ -153,7 +133,7 @@ class FigureGroup:
         :rtype: list
         """
         return [
-            figure.available(request, run_type, run_date, session, model)
+            figure.available(run_type, run_date, model)
             for figure in self.figures
         ]
 
@@ -179,56 +159,34 @@ class ImageLoop:
     def __iter__(self):
         return (self for i in range(1))
 
-    def available(self, request, run_type, run_date, session, model='nemo'):
+    def available(self, run_type, run_date, model='nemo'):
         """Return a boolean indicating whether or not any of the image loop
         figures are available on the static file server that provides figure
         files.
-
-        :param request: HTTP request.
-        :type request: :py:class:`pyramid.request.Request`
 
         :param str run_type: Run type for which the figure was generated.
 
         :param run_date: Run date for which the figure was generated.
         :type run_date: :py:class:`arrow.Arrow`
-
-        :param session: Requests session object to re-use server connection,
-                        if possible.
-        :type session: :py:class:`requests.Session`
 
         :return: Run hours for which figures are available on the
                  static figure file server.
         :rtype: list of ints
         """
         for run_hr in range(self.nominal_image_count):
-            figure_url = request.static_url(
-                self.path(run_type, run_date, run_hr, model)
-            )
-            try:
-                if session.head(figure_url).status_code == 200:
-                    return True
-            except requests.ConnectionError:
-                # Development environment
-                url = figure_url.replace('4567', '6543')
-                if session.head(url).status_code == 200:
-                    return True
-        return False
+            if Path(self.path(run_type, run_date, run_hr, model)).exists():
+                return True
+        else:
+            return False
 
-    def hours(self, request, run_type, run_date, session, model='nemo'):
+    def hours(self, run_type, run_date, model='nemo'):
         """Return a list of run hours for which image loop figures are
         available on the static file server that provides figure files.
-
-        :param request: HTTP request.
-        :type request: :py:class:`pyramid.request.Request`
 
         :param str run_type: Run type for which the figure was generated.
 
         :param run_date: Run date for which the figure was generated.
         :type run_date: :py:class:`arrow.Arrow`
-
-        :param session: Requests session object to re-use server connection,
-                        if possible.
-        :type session: :py:class:`requests.Session`
 
         :param str model: Model name to use to select figures directory
                           template for figure file path construction;
@@ -240,15 +198,8 @@ class ImageLoop:
         """
         available_hrs = []
         for run_hr in range(self.nominal_image_count):
-            path = self.path(run_type, run_date, run_hr, model)
-            try:
-                if session.head(request.static_url(path)).status_code == 200:
-                    available_hrs.append(run_hr)
-            except requests.ConnectionError:
-                # Development environment
-                url = request.static_url(path).replace('4567', '6543')
-                if session.head(url).status_code == 200:
-                    available_hrs.append(run_hr)
+            if Path(self.path(run_type, run_date, run_hr, model)).exists():
+                available_hrs.append(run_hr)
         return available_hrs
 
     def filename(self, run_date, run_hr):
@@ -309,22 +260,15 @@ class ImageLoopGroup:
     def __iter__(self):
         return (loop for loop in self.loops)
 
-    def available(self, request, run_type, run_date, session, model='nemo'):
+    def available(self, run_type, run_date, model='nemo'):
         """Return a list of booleans indicating whether or not any of the image loop
         figures are available on the static file server that provides figure
         files.
-
-        :param request: HTTP request.
-        :type request: :py:class:`pyramid.request.Request`
 
         :param str run_type: Run type for which the figure was generated.
 
         :param run_date: Run date for which the figure was generated.
         :type run_date: :py:class:`arrow.Arrow`
-
-        :param session: Requests session object to re-use server connection,
-                        if possible.
-        :type session: :py:class:`requests.Session`
 
         :param str model: Model name to use to select figures directory
                           template for figure file path construction;
@@ -334,8 +278,7 @@ class ImageLoopGroup:
         :rtype: list
         """
         return [
-            loop.available(request, run_type, run_date, session, model)
-            for loop in self.loops
+            loop.available(run_type, run_date, model) for loop in self.loops
         ]
 
 
@@ -797,13 +740,10 @@ def results_index(request):
         ),
         ('nowcast comparison', 'nowcast', comparison_figures, 'comparison'),
     )
-    with requests.Session() as session:
-        grid_dates = {
-            row: _exclude_missing_dates(
-                request, dates, figures, figs_type, run_type, session
-            )
-            for row, run_type, figures, figs_type in grid_rows
-        }
+    grid_dates = {
+        row: _exclude_missing_dates(dates, figures, figs_type, run_type)
+        for row, run_type, figures, figs_type in grid_rows
+    }
     return {
         'first_date': dates[0],
         'last_date': dates[-1],
@@ -813,24 +753,17 @@ def results_index(request):
     }
 
 
-def _exclude_missing_dates(
-    request, dates, figures, figs_type, run_type, session
-):
+def _exclude_missing_dates(dates, figures, figs_type, run_type):
     if figs_type == 'publish':
         run_date_offsets = {'forecast': -1, 'forecast2': -2}
         return ((
             d if figures[0].available(
-                request,
-                run_type,
-                d.replace(days=run_date_offsets[run_type]),
-                session
+                run_type, d.replace(days=run_date_offsets[run_type])
             ) else None
         ) for d in dates)
     else:
         return ((
-            d if any(
-                fig.available(request, run_type, d, session) for fig in figures
-            ) else None
+            d if any(fig.available(run_type, d) for fig in figures) else None
         ) for d in dates)
 
 
@@ -892,21 +825,16 @@ def nowcast_currents_physics(request):
     page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    with requests.Session() as session:
-        available_figures = [
-            fig for fig in currents_physics_figures
-            if fig.available(request, 'nowcast', results_date, session)
-        ]
-        available_loop_images = []
-        for image_loop in currents_physics_image_loops.loops:
-            images_available = image_loop.available(
-                request, 'nowcast', results_date, session
-            )
-            if images_available:
-                available_loop_images.append(images_available)
-                image_loop.hrs = image_loop.hours(
-                    request, 'nowcast', results_date, session
-                )
+    available_figures = [
+        fig for fig in currents_physics_figures
+        if fig.available('nowcast', results_date)
+    ]
+    available_loop_images = []
+    for image_loop in currents_physics_image_loops.loops:
+        images_available = image_loop.available('nowcast', results_date)
+        if images_available:
+            available_loop_images.append(images_available)
+            image_loop.hrs = image_loop.hours('nowcast', results_date)
     if not any(available_figures + available_loop_images):
         raise HTTPNotFound
     figure_links = ([currents_physics_image_loops.description]
@@ -930,23 +858,18 @@ def nowcast_biology(request):
     """Render model research biology evaluation results figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    with requests.Session() as session:
-        available_figures = {
-            'baynes sound': [
-                fig.available(request, 'nowcast-agrif', results_date, session)
-                for fig in baynes_sound_figures
-            ],
-            'biology loops': []
-        }
-        for image_loop in biology_image_loops.loops:
-            images_available = image_loop.available(
-                request, 'nowcast-green', results_date, session
-            )
-            if images_available:
-                available_figures['biology loops'].append(images_available)
-                image_loop.hrs = image_loop.hours(
-                    request, 'nowcast-green', results_date, session
-                )
+    available_figures = {
+        'baynes sound': [
+            fig.available('nowcast-agrif', results_date)
+            for fig in baynes_sound_figures
+        ],
+        'biology loops': []
+    }
+    for image_loop in biology_image_loops.loops:
+        images_available = image_loop.available('nowcast-green', results_date)
+        if images_available:
+            available_figures['biology loops'].append(images_available)
+            image_loop.hrs = image_loop.hours('nowcast-green', results_date)
     if not any(available_figures['biology loops']
                ) or not any(available_figures['baynes sound']):
         raise HTTPNotFound
@@ -973,10 +896,9 @@ def nowcast_timeseries(request):
     """Render model research timeseries evaluation results figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    with requests.Session() as session:
-        available_figures = timeseries_figure_group.available(
-            request, 'nowcast-green', results_date, session
-        )
+    available_figures = timeseries_figure_group.available(
+        'nowcast-green', results_date
+    )
     if not any(available_figures):
         raise HTTPNotFound
     return {
@@ -1001,16 +923,13 @@ def nowcast_comparison(request):
     """Render model and observation comparisons figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    with requests.Session() as session:
-        ungrouped_figures = [
-            fig for fig in comparison_figures
-            if fig.available(request, 'nowcast', results_date, session)
-        ]
-        onc_venus_figures_available = (
-            onc_venus_comparison_figure_group.available(
-                request, 'nowcast', results_date, session
-            )
-        )
+    ungrouped_figures = [
+        fig for fig in comparison_figures
+        if fig.available('nowcast', results_date)
+    ]
+    onc_venus_figures_available = (
+        onc_venus_comparison_figure_group.available('nowcast', results_date)
+    )
     if not ungrouped_figures and not any(onc_venus_figures_available):
         raise HTTPNotFound
     figure_links = [figure.title for figure in ungrouped_figures]
@@ -1039,19 +958,17 @@ def _data_for_publish_template(
         'forecast2': 'Preliminary Forecast',
     }
     available_figures, tides_max_ssh_figures_available = [], []
-    with requests.Session() as session:
-        storm_surge_alerts_fig_ready = publish_figures[0].available(
-            request, run_type, run_date, session
-        )
-        if not storm_surge_alerts_fig_ready:
-            raise HTTPNotFound
-        available_figures.extend([
-            fig for fig in figures
-            if fig.available(request, run_type, run_date, session)
-        ])
-        tides_max_ssh_figures_available = tides_max_ssh_figure_group.available(
-            request, run_type, run_date, session
-        )
+    storm_surge_alerts_fig_ready = publish_figures[0].available(
+        run_type, run_date
+    )
+    if not storm_surge_alerts_fig_ready:
+        raise HTTPNotFound
+    available_figures.extend([
+        fig for fig in figures if fig.available(run_type, run_date)
+    ])
+    tides_max_ssh_figures_available = tides_max_ssh_figure_group.available(
+        run_type, run_date
+    )
     figure_links = [figure.title for figure in available_figures]
     template_data = {
         'results_date': results_date,
