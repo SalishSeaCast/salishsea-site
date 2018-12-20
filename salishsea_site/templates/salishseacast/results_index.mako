@@ -39,8 +39,23 @@
           <tr>
             <th class="results-index">Storm Surge &amp; Tides</th>
           </tr>
-          ${grid_row("Preliminary Forecast", grid_dates['prelim forecast'], "forecast2", "publish")}
-          ${grid_row("Forecast", grid_dates['forecast'], "forecast", "publish")}
+          ${grid_row("Preliminary Forecast", grid_dates['prelim storm surge forecast'], "forecast2", "publish")}
+          ${grid_row("Forecast", grid_dates['storm surge forecast'], "forecast", "publish")}
+        </table>
+
+        <table class="table table-striped">
+          <tr>
+            <td></td>
+            %if last_month_cols != 0:
+              ${month_heading(last_month_cols, first_date)}
+            %endif
+            ${month_heading(this_month_cols, last_date)}
+          </tr>
+          <tr>
+            <th class="results-index">Surface Current</th>
+          </tr>
+          ${grid_row("Preliminary Forecast", grid_dates['prelim surface currents forecast'], "forecast2", "surfacecurrents")}
+          ${grid_row("Forecast", grid_dates['surface currents forecast'], "forecast", "surfacecurrents")}
         </table>
 
         <table class="table table-striped">
@@ -73,9 +88,7 @@
         %if d is None:
           &nbsp;
         %else:
-          <a href=${request.route_url(
-                      'results.{run_type}.{figs_type}'.format(run_type=run_type, figs_type=figs_type),
-                      results_date=d.format('DDMMMYY').lower())}>
+          <a href=${request.route_url(f'results.{run_type}.{figs_type}' , results_date=d.format('DDMMMYY').lower())}>
             ${d.format("D")}
           </a>
         %endif

@@ -85,6 +85,14 @@ def _salishseacast_routes(config):
         'nemo/results/forecast2/publish/{results_date}'
     )
     config.add_route(
+        'results.forecast.surfacecurrents',
+        'nemo/results/forecast/surfacecurrents/{results_date}'
+    )
+    config.add_route(
+        'results.forecast2.surfacecurrents',
+        'nemo/results/forecast2/surfacecurrents/{results_date}'
+    )
+    config.add_route(
         'results.nowcast.currents',
         'nemo/results/nowcast/currents/{results_date}'
     )
