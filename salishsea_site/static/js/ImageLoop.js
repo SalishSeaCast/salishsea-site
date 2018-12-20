@@ -27,6 +27,7 @@ function ImageLoop( images, modelVar, dateTimes, datetimeId, speed ) {
    this.speed     = speed;
    this.interval  = false;
    this.play      = false;
+   this.loading   = false;
    this.index     = 0;
    this.idxStart  = 0;
    this.idxEnd    = images.length - 1;
@@ -42,6 +43,9 @@ function ImageLoop( images, modelVar, dateTimes, datetimeId, speed ) {
 
    var thisObj = this;
    function onInterval() {
+      if ( thisObj.loading ) {
+        return;
+      }
       if( thisObj.direction == "forward" ) {
          thisObj.next();
       } else {
@@ -50,7 +54,12 @@ function ImageLoop( images, modelVar, dateTimes, datetimeId, speed ) {
    }
 
    function setIndex(index) {
+      if ( this.loading ) {
+        return;
+      }
+      this.loading = true;
       var im = document.getElementById(modelVar);
+      im.onload = function() { thisObj.loading = false; }
       im.src = images[index];
       this.index = index;
       document.getElementById(datetimeId).innerHTML = "Date/time: " + this.dateTimes[index];
@@ -84,6 +93,7 @@ function ImageLoop( images, modelVar, dateTimes, datetimeId, speed ) {
 
    function stop() {
       this.play = false;
+      this.loading = false;
       if (this.interval) {
          clearInterval(this.interval);
          this.interval = null;
