@@ -20,7 +20,6 @@ from pathlib import Path
 
 import arrow
 import attr
-import requests
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
 
@@ -41,8 +40,12 @@ class FigureMetadata:
     link_text = attr.ib(default='')
 
     FIG_DIR_TMPLS = {
-        'nemo': '/results/nowcast-sys/figures/{run_type}/{run_dmy}/',
-        'fvcom': '/results/nowcast-sys/figures/fvcom/{run_type}/{run_dmy}/',
+        'nemo':
+        '/results/nowcast-sys/figures/{run_type}/{run_dmy}/',
+        'surface currents':
+        '/results/nowcast-sys/figures/surface_currents/{run_type}/{run_dmy}/',
+        'fvcom':
+        '/results/nowcast-sys/figures/fvcom/{run_type}/{run_dmy}/',
         'wwatch3':
         '/results/nowcast-sys/figures/wwatch3/{run_type}/{run_dmy}/',
     }
@@ -260,6 +263,9 @@ class ImageLoopGroup:
     def __iter__(self):
         return (loop for loop in self.loops)
 
+    def __getitem__(self, item):
+        return self.loops[item]
+
     def available(self, run_type, run_date, model='nemo'):
         """Return a list of booleans indicating whether or not any of the image loop
         figures are available on the static file server that provides figure
@@ -378,6 +384,20 @@ publish_tides_max_ssh_figure_group = FigureGroup(
             link_text='Woodwards Landing',
             svg_name='WL_maxSSH'
         ),
+    ]
+)
+
+surface_currents_image_loops = ImageLoopGroup(
+    description='Surface Currents',
+    loops=[
+        ImageLoop(
+            model_var=f'Tile{tile_number:02d}',
+            metadata=FigureMetadata(
+                title=f'Surface currents - tile{tile_number:02d}',
+                link_text=f'Tile{tile_number:02d}',
+                svg_name=f'surface_currents_tile{tile_number:02d}',
+            ),
+        ) for tile_number in range(1, 21)
     ]
 )
 
@@ -729,20 +749,44 @@ def results_index(request):
         this_month_cols, last_month_cols = INDEX_GRID_COLS, 0
     # Replace dates for which there are no figures with None
     grid_rows = (
-        # Calendar grid row key, run type, figures, figures type
-        ('prelim forecast', 'forecast2', publish_figures, 'publish'),
-        ('forecast', 'forecast', publish_figures, 'publish'),
-        ('nowcast currents', 'nowcast', currents_physics_figures, 'currents'),
-        ('nowcast biology', 'nowcast-green', biology_image_loops, 'biology'),
+        # Calendar grid row key, run type, figures, figures type, model
+        (
+            'prelim storm surge forecast', 'forecast2', publish_figures,
+            'publish', 'nemo'
+        ),
+        (
+            'storm surge forecast', 'forecast', publish_figures, 'publish',
+            'nemo'
+        ),
+        (
+            'prelim surface currents forecast', 'forecast2',
+            surface_currents_image_loops, 'publish', 'surface currents'
+        ),
+        (
+            'surface currents forecast', 'forecast',
+            surface_currents_image_loops, 'publish', 'surface currents'
+        ),
+        (
+            'nowcast currents', 'nowcast', currents_physics_figures,
+            'currents', 'nemo'
+        ),
+        (
+            'nowcast biology', 'nowcast-green', biology_image_loops, 'biology',
+            'nemo'
+        ),
         (
             'nowcast timeseries', 'nowcast-green', timeseries_figure_group,
-            'timeseries'
+            'timeseries', 'nemo'
         ),
-        ('nowcast comparison', 'nowcast', comparison_figures, 'comparison'),
+        (
+            'nowcast comparison', 'nowcast', comparison_figures, 'comparison',
+            'nemo'
+        ),
     )
     grid_dates = {
-        row: _exclude_missing_dates(dates, figures, figs_type, run_type)
-        for row, run_type, figures, figs_type in grid_rows
+        row:
+        _exclude_missing_dates(dates, figures, figs_type, run_type, model)
+        for row, run_type, figures, figs_type, model in grid_rows
     }
     return {
         'first_date': dates[0],
@@ -753,17 +797,18 @@ def results_index(request):
     }
 
 
-def _exclude_missing_dates(dates, figures, figs_type, run_type):
+def _exclude_missing_dates(dates, figures, figs_type, run_type, model):
     if figs_type == 'publish':
         run_date_offsets = {'forecast': -1, 'forecast2': -2}
         return ((
             d if figures[0].available(
-                run_type, d.replace(days=run_date_offsets[run_type])
+                run_type, d.replace(days=run_date_offsets[run_type]), model
             ) else None
         ) for d in dates)
     else:
         return ((
-            d if any(fig.available(run_type, d) for fig in figures) else None
+            d if any(fig.available(run_type, d, model)
+                     for fig in figures) else None
         ) for d in dates)
 
 
@@ -805,6 +850,82 @@ def forecast2_publish(request):
         request, 'forecast2', results_date, publish_figures,
         publish_tides_max_ssh_figure_group, run_date
     )
+
+
+@view_config(
+    route_name='results.forecast.surfacecurrents',
+    renderer='salishseacast/surface_currents.mako'
+)
+def forecast_surface_currents(request):
+    """Render surface currents tiles forecast figures page. """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    run_date = results_date.replace(days=-1)
+    available_loop_images = []
+    for image_loop in surface_currents_image_loops.loops:
+        images_available = image_loop.available(
+            'forecast', run_date, model='surface currents'
+        )
+        if images_available:
+            available_loop_images.append(images_available)
+            image_loop.hrs = image_loop.hours(
+                'forecast', run_date, model='surface currents'
+            )
+    if not any(available_loop_images):
+        raise HTTPNotFound
+    tiles_pdf_path = os.fspath(
+        Path(
+            request.static_path(
+                surface_currents_image_loops.loops[0].path(
+                    'forecast', run_date, 0, 'surface currents'
+                )
+            )
+        ).parent
+    )
+    return {
+        'results_date': results_date,
+        'run_type': 'forecast',
+        'run_date': run_date,
+        'image_loops': surface_currents_image_loops,
+        'tiles_pdf_path': tiles_pdf_path,
+    }
+
+
+@view_config(
+    route_name='results.forecast2.surfacecurrents',
+    renderer='salishseacast/surface_currents.mako'
+)
+def forecast2_surface_currents(request):
+    """Render surface currents tiles forecast2 figures page. """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    run_date = results_date.replace(days=-2)
+    available_loop_images = []
+    for image_loop in surface_currents_image_loops.loops:
+        images_available = image_loop.available(
+            'forecast2', run_date, model='surface currents'
+        )
+        if images_available:
+            available_loop_images.append(images_available)
+            image_loop.hrs = image_loop.hours(
+                'forecast2', run_date, model='surface currents'
+            )
+    if not any(available_loop_images):
+        raise HTTPNotFound
+    tiles_pdf_path = os.fspath(
+        Path(
+            request.static_path(
+                surface_currents_image_loops.loops[0].path(
+                    'forecast2', run_date, 0, 'surface currents'
+                )
+            )
+        ).parent
+    )
+    return {
+        'results_date': results_date,
+        'run_type': 'forecast2',
+        'run_date': run_date,
+        'image_loops': surface_currents_image_loops,
+        'tiles_pdf_path': tiles_pdf_path,
+    }
 
 
 @view_config(
