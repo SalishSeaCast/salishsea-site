@@ -14,7 +14,7 @@ function initImageLoop( images, modelVar) {
 
    var il = new ImageLoop(images, modelVar, dateTimes, datetimeId, 500);
 
-   document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[il.index];
+   document.getElementById(datetimeId).innerHTML = "Date/time: "+dateTimes[0];
    return il;
 }
 
