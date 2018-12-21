@@ -16,6 +16,7 @@
 """
 import logging
 import os
+import urllib.parse
 from pathlib import Path
 
 import arrow
@@ -872,21 +873,23 @@ def forecast_surface_currents(request):
             )
     if not any(available_loop_images):
         raise HTTPNotFound
-    tiles_pdf_path = os.fspath(
-        Path(
-            request.static_path(
-                surface_currents_image_loops.loops[0].path(
-                    'forecast', run_date, 0, 'surface currents'
-                )
-            )
-        ).parent
+    img_url = request.static_url(
+        surface_currents_image_loops.loops[0].path(
+            'forecast', run_date, 0, 'surface currents'
+        )
     )
+    parsed_url = urllib.parse.urlparse(img_url)
+    tiles_pdf_path = os.fspath(Path(parsed_url.path).parent / 'tilexx.pdf')
+    tiles_pdf_url_stub = urllib.parse.urlunparse((
+        parsed_url.scheme, parsed_url.netloc, tiles_pdf_path,
+        parsed_url.params, parsed_url.query, parsed_url.fragment
+    ))
     return {
         'results_date': results_date,
         'run_type': 'forecast',
         'run_date': run_date,
         'image_loops': surface_currents_image_loops,
-        'tiles_pdf_path': tiles_pdf_path,
+        'tiles_pdf_url_stub': tiles_pdf_url_stub,
     }
 
 
