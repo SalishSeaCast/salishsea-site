@@ -66,17 +66,17 @@
     ## tilemap click handler
     function regionMap(tilenumber) {
       if (tilenumber < 10) {
-        var tilenumberstr = "0" + tilenumber.toString()
+        var tilenumberstr = "0" + tilenumber.toString();
       } else {
-        var tilenumberstr = tilenumber.toString()
+        var tilenumberstr = tilenumber.toString();
       }
       ## Set the dropdown box
-      document.getElementsByClassName("form-control")[0].selectedIndex = tilenumber - 1
+      document.getElementsByClassName("form-control")[0].selectedIndex = tilenumber - 1;
       ## Switch to the clicked tile map
-      showImageLoop({target: {value: "Tile" + tilenumberstr}})
+      showImageLoop({target: {value: "Tile" + tilenumberstr}});
       ## Update the PDF link
-      document.getElementById("pdflink").innerHTML = "Download PDF time series for tile " + tilenumberstr
-      document.getElementById("pdflink").href = "${tiles_pdf_path}" + "/tile" + tilenumberstr + ".pdf"
+      document.getElementById("pdflink").innerHTML = "Download PDF time series for tile " + tilenumberstr;
+      document.getElementById("pdflink").href = "${tiles_pdf_url_stub}".replace("xx", tilenumberstr);
     }
 
     ## Set tile 01 at load time
