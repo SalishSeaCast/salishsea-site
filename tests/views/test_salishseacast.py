@@ -263,8 +263,10 @@ class TestResultsIndex:
             m_now.return_value = arrow.get('2016-11-06 13:09:42+07:00')
             data = salishseacast.results_index(request)
         expected = {
-            'prelim forecast': m_exlude_missing_dates(),
-            'forecast': m_exlude_missing_dates(),
+            'prelim storm surge forecast': m_exlude_missing_dates(),
+            'storm surge forecast': m_exlude_missing_dates(),
+            'prelim surface currents forecast': m_exlude_missing_dates(),
+            'surface currents forecast': m_exlude_missing_dates(),
             'nowcast currents': m_exlude_missing_dates(),
             'nowcast biology': m_exlude_missing_dates(),
             'nowcast timeseries': m_exlude_missing_dates(),
@@ -273,23 +275,39 @@ class TestResultsIndex:
         assert data['grid_dates'] == expected
 
     @pytest.mark.parametrize(
-        'figures, figs_type, run_type', [
-            (salishseacast.publish_figures, 'publish', 'forecast'),
-            (salishseacast.publish_figures, 'publish', 'forecast2'),
-            (salishseacast.currents_physics_figures, 'currents', 'nowcast'),
-            (salishseacast.biology_image_loops, 'biology', 'nowcast-green'),
+        'figures, figs_type, run_type, model', [
+            (salishseacast.publish_figures, 'publish', 'forecast', 'nemo'),
+            (salishseacast.publish_figures, 'publish', 'forecast2', 'nemo'),
+            (
+                salishseacast.surface_currents_image_loops, 'publish',
+                'forecast', 'surface currents'
+            ),
+            (
+                salishseacast.surface_currents_image_loops, 'publish',
+                'forecast2', 'surface currents'
+            ),
+            (
+                salishseacast.currents_physics_figures, 'currents', 'nowcast',
+                'nemo'
+            ),
+            (
+                salishseacast.biology_image_loops, 'biology', 'nowcast-green',
+                'nemo'
+            ),
             (
                 salishseacast.timeseries_figure_group, 'timeseries',
-                'nowcast-green'
+                'nowcast-green', 'nemo'
             ),
-            (salishseacast.comparison_figures, 'comparison', 'nowcast'),
+            (
+                salishseacast.comparison_figures, 'comparison', 'nowcast',
+                'nemo'
+            ),
         ]
     )
-    @patch('salishsea_site.views.salishseacast.requests.Session')
     @patch('salishsea_site.views.salishseacast._exclude_missing_dates')
     def test_exclude_missing_dates_calls(
-        self, m_exlude_missing_dates, m_session, m_available, figures,
-        figs_type, run_type
+        self, m_exlude_missing_dates, m_available, figures, figs_type,
+        run_type, model
     ):
         m_available.return_value = True
         request = get_current_request()
@@ -300,10 +318,7 @@ class TestResultsIndex:
         dates = arrow.Arrow.range(
             'day', fcst_date.replace(days=-20), fcst_date
         )
-        expected = call(
-            request, dates, figures, figs_type, run_type,
-            m_session().__enter__()
-        )
+        expected = call(dates, figures, figs_type, run_type, model)
         assert expected in m_exlude_missing_dates.call_args_list
 
 
@@ -392,44 +407,37 @@ class TestBiology:
 
     def test_no_figures_raises_httpnotfound(self, m_available):
         request = get_current_request()
-        m_available.return_value = []
+        m_available.return_value = False
         with pytest.raises(HTTPNotFound):
             salishseacast.nowcast_biology(request)
 
     def test_results_date(self, m_available):
         request = get_current_request()
         request.matchdict = {'results_date': '07may17'}
-        m_available.return_value = [0]
+        m_available.return_value = True
         data = salishseacast.nowcast_biology(request)
         assert data['results_date'] == arrow.get('2017-05-07')
 
     def test_run_type(self, m_available):
         request = get_current_request()
         request.matchdict = {'results_date': '07may17'}
-        m_available.return_value = [0]
+        m_available.return_value = True
         data = salishseacast.nowcast_biology(request)
         assert data['run_type'] == 'nowcast-green'
 
     def test_run_date(self, m_available):
         request = get_current_request()
         request.matchdict = {'results_date': '07may17'}
-        m_available.return_value = [0]
+        m_available.return_value = True
         data = salishseacast.nowcast_biology(request)
         assert data['run_date'] == arrow.get('2017-05-07')
 
     def test_image_loop(self, m_available):
         request = get_current_request()
         request.matchdict = {'results_date': '07may17'}
-        m_available.return_value = [0]
+        m_available.return_value = True
         data = salishseacast.nowcast_biology(request)
-        assert data['image_loop'] == salishseacast.biology_image_loops
-
-    def test_image_loop_hrs(self, m_available):
-        request = get_current_request()
-        request.matchdict = {'results_date': '10jul17'}
-        m_available.return_value = [0]
-        data = salishseacast.nowcast_biology(request)
-        assert data['image_loop_hrs'] == [0]
+        assert data['image_loops'] == salishseacast.biology_image_loops
 
 
 @pytest.mark.usefixtures('pconfig')
@@ -613,8 +621,11 @@ class TestDataForPublishTemplate:
 
     def test_missing_figures(self, m_available):
         request = get_current_request()
-        m_available.side_effect = ([True, True] + [False] *
-                                   (len(salishseacast.publish_figures) - 1))
+        m_available.side_effect = (
+            [True, True] + [False] *
+            (len(salishseacast.publish_figures) - 1) + [True] *
+            len(salishseacast.publish_tides_max_ssh_figure_group.figures)
+        )
         data = salishseacast._data_for_publish_template(
             request, 'forecast', arrow.get('2016-11-04'),
             salishseacast.publish_figures,
