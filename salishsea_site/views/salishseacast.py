@@ -149,8 +149,6 @@ class ImageLoop:
     metadata = attr.ib()
     #: Name of the model variable that the loop displays.
     model_var = attr.ib()
-    #: Typical number of images to be displayed in the loop.
-    nominal_image_count = attr.ib(default=24)
 
     @property
     def title(self):
@@ -177,13 +175,13 @@ class ImageLoop:
                  static figure file server.
         :rtype: list of ints
         """
-        for run_hr in range(self.nominal_image_count):
+        for run_hr in range(24):
             if Path(self.path(run_type, run_date, run_hr, model)).exists():
                 return True
         else:
             return False
 
-    def hours(self, run_type, run_date, model='nemo'):
+    def hours(self, run_type, run_date, model='nemo', file_dates=[]):
         """Return a list of run hours for which image loop figures are
         available on the static file server that provides figure files.
 
@@ -200,13 +198,18 @@ class ImageLoop:
                  static figure file server.
         :rtype: list of ints
         """
-        available_hrs = []
-        for run_hr in range(self.nominal_image_count):
-            if Path(self.path(run_type, run_date, run_hr, model)).exists():
-                available_hrs.append(run_hr)
+        available_hrs = {}
+        file_dates = file_dates or [run_date]
+        for file_date in file_dates:
+            available_hrs[file_date] = []
+            for run_hr in range(24):
+                if Path(
+                    self.path(run_type, run_date, run_hr, model, file_date)
+                ).exists():
+                    available_hrs[file_date].append(run_hr)
         return available_hrs
 
-    def filename(self, run_date, run_hr):
+    def filename(self, file_date, run_hr):
         """Return the figure file name.
 
         :param run_date: Run date for which the figure was generated.
@@ -217,13 +220,13 @@ class ImageLoop:
         :returns: Figure file name.
         :rtype: str
         """
-        return '{svg_name}_{run_yyyymmdd}_{run_hr:02d}3000_UTC.png'.format(
+        return '{svg_name}_{yyyymmdd}_{run_hr:02d}3000_UTC.png'.format(
             svg_name=self.metadata.svg_name,
-            run_yyyymmdd=run_date.format('YYYYMMDD'),
+            yyyymmdd=file_date.format('YYYYMMDD'),
             run_hr=run_hr,
         )
 
-    def path(self, run_type, run_date, run_hr, model='nemo'):
+    def path(self, run_type, run_date, run_hr, model='nemo', file_date=''):
         """Return the figure file path.
 
         :param str run_type: Run type for which the figure was generated.
@@ -246,7 +249,8 @@ class ImageLoop:
             svg_name=self.metadata.svg_name,
             run_dmy=run_dmy
         )
-        return os.path.join(fig_dir, self.filename(run_date, run_hr))
+        file_date = file_date or run_date
+        return os.path.join(fig_dir, self.filename(file_date, run_hr))
 
 
 @attr.s
@@ -860,7 +864,10 @@ def forecast2_publish(request):
 def forecast_surface_currents(request):
     """Render surface currents tiles forecast figures page. """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    run_date = results_date.replace(days=-1)
+    run_date = results_date.shift(days=-1)
+    tile_dates = arrow.Arrow.range(
+        'day', run_date.shift(days=-1), run_date.shift(days=+2)
+    )
     available_loop_images = []
     for image_loop in surface_currents_image_loops.loops:
         images_available = image_loop.available(
@@ -869,10 +876,14 @@ def forecast_surface_currents(request):
         if images_available:
             available_loop_images.append(images_available)
             image_loop.hrs = image_loop.hours(
-                'forecast', run_date, model='surface currents'
+                'forecast',
+                run_date,
+                model='surface currents',
+                file_dates=tile_dates
             )
     if not any(available_loop_images):
         raise HTTPNotFound
+    # Build a URL stub for the tilexx.pdf files that will be transformed in the template javascript
     img_url = request.static_url(
         surface_currents_image_loops.loops[0].path(
             'forecast', run_date, 0, 'surface currents'
@@ -888,6 +899,7 @@ def forecast_surface_currents(request):
         'results_date': results_date,
         'run_type': 'forecast',
         'run_date': run_date,
+        'tile_dates': tile_dates,
         'image_loops': surface_currents_image_loops,
         'tiles_pdf_url_stub': tiles_pdf_url_stub,
     }
@@ -900,7 +912,8 @@ def forecast_surface_currents(request):
 def forecast2_surface_currents(request):
     """Render surface currents tiles forecast2 figures page. """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    run_date = results_date.replace(days=-2)
+    run_date = results_date.shift(days=-2)
+    tile_dates = arrow.Arrow.range('day', run_date, run_date.shift(days=+3))
     available_loop_images = []
     for image_loop in surface_currents_image_loops.loops:
         images_available = image_loop.available(
@@ -909,25 +922,32 @@ def forecast2_surface_currents(request):
         if images_available:
             available_loop_images.append(images_available)
             image_loop.hrs = image_loop.hours(
-                'forecast2', run_date, model='surface currents'
+                'forecast2',
+                run_date,
+                model='surface currents',
+                file_dates=tile_dates
             )
     if not any(available_loop_images):
         raise HTTPNotFound
-    tiles_pdf_path = os.fspath(
-        Path(
-            request.static_path(
-                surface_currents_image_loops.loops[0].path(
-                    'forecast2', run_date, 0, 'surface currents'
-                )
-            )
-        ).parent
+    # Build a URL stub for the tilexx.pdf files that will be transformed in the template javascript
+    img_url = request.static_url(
+        surface_currents_image_loops.loops[0].path(
+            'forecast2', run_date, 0, 'surface currents'
+        )
     )
+    parsed_url = urllib.parse.urlparse(img_url)
+    tiles_pdf_path = os.fspath(Path(parsed_url.path).parent / 'tilexx.pdf')
+    tiles_pdf_url_stub = urllib.parse.urlunparse((
+        parsed_url.scheme, parsed_url.netloc, tiles_pdf_path,
+        parsed_url.params, parsed_url.query, parsed_url.fragment
+    ))
     return {
         'results_date': results_date,
         'run_type': 'forecast2',
         'run_date': run_date,
+        'tile_dates': tile_dates,
         'image_loops': surface_currents_image_loops,
-        'tiles_pdf_path': tiles_pdf_path,
+        'tiles_pdf_url_stub': tiles_pdf_url_stub,
     }
 
 
@@ -994,8 +1014,9 @@ def nowcast_biology(request):
         if images_available:
             available_figures['biology loops'].append(images_available)
             image_loop.hrs = image_loop.hours('nowcast-green', results_date)
-    if not any(available_figures['biology loops']
-               ) or not any(available_figures['baynes sound']):
+    if not any(
+        available_figures['baynes sound'] + available_figures['biology loops']
+    ):
         raise HTTPNotFound
     figure_links = ([biology_image_loops.description]
                     if available_figures['biology loops'] else [])
