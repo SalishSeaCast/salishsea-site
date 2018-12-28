@@ -150,12 +150,14 @@
         <li>Doug Latornell</li>
         <li><a href="http://www.eoas.ubc.ca/about/grad/B.Moore-Maley.html">Ben Moore-Maley</a></li>
         <li>Tereza Jarníková</li>
-        <li><a href="https://ca.linkedin.com/in/jie-liu-0a93a5ab">Jie Liu</a></li>
         <li><a href="http://www.nancysoontiens.com">Nancy Soontiens</a> (emeritus)</li>
         <li>Kate Le Souëf (emeritus)</li>
+        <li><a href="https://ca.linkedin.com/in/jie-liu-0a93a5ab">Jie Liu</a> (emeritus)</li>
         <li>Idalia Machuca (emeritus)</li>
         <li>Muriel Dunn (emeritus)</li>
         <li>James Petrie (emeritus)</li>
+        <li>Giorgio Sgarbi (emeritus)</li>
+        <li>Vicky Do (emeritus)</li>
       </ul>
       <p>
         The team collaborates with other
