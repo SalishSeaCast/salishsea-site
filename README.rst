@@ -20,7 +20,7 @@ License
 =======
 
 The salishsea.eos.ubc.ca site content, code, and documentation are
-copyright 2014-2018 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
+copyright 2014-2019 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
 in the Department of Earth, Ocean, and Atmospheric Sciences
 at The University of British Columbia.
 Please see the CONTRIBUTORS file for details.
