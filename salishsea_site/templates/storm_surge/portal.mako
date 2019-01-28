@@ -60,31 +60,31 @@
       <h2>Storm Surge BC</h2>
       <div class="row">
         <div class="col-md-3">
-          <a href="http://www.stormsurgebc.ca/">
+          <a href="https://www.stormsurgebc.ca/">
             <img class="img-responsive"
-              src="http://www.stormsurgebc.ca/files/images/alert.gif"
+              src="https://www.stormsurgebc.ca/files/images/alert.gif"
               title="Storm Surge BC Alert Map"
               alt="Storm Surge BC Alert Map">
           </a>
         </div>
         <div class="col-md-9">
           <p>
-            <a href="http://stormsurgebc.ca/">Storm Surge BC</a>
+            <a href="https://stormsurgebc.ca/">Storm Surge BC</a>
             is the British Columbia Storm Surge Forecasting Program site.
             The program is a joint effort between the BC Ministry of Environment
             and the federal Department of Fisheries and Oceans.
             The objective of the program is to provide 6-day forecasts of storm surge
             and total water levels at several sites in the marine waters of southern British Columbia.
             A predictive numerical ocean model and real-time data monitoring are employed to generate
-            <a href="http://stormsurgebc.ca/bulletins.html">bulletins</a>
+            <a href="https://stormsurgebc.ca/bulletins.html">bulletins</a>
             for Victoria, Vancouver and Campbell River.
             The site also provides a
-            <a href="http://stormsurgebc.ca/almanac.html">seasonal almanac</a>
-            and a <a href="http://stormsurgebc.ca/twitter.html">Twitter feed</a>.
+            <a href="https://stormsurgebc.ca/almanac.html">seasonal almanac</a>
+            and a <a href="https://stormsurgebc.ca/twitter.html">Twitter feed</a>.
             The forecasting system is considered to be a research tool only and is to be used at your own risk.
-            <a href="http://stormsurgebc.ca/">Storm Surge BC</a>
+            <a href="https://stormsurgebc.ca/">Storm Surge BC</a>
             is maintained by
-            <a href="http://stormsurgebc.ca/contact.html">Dr. Scott Tinis</a>.
+            <a href="https://stormsurgebc.ca/contact.html">Dr. Scott Tinis</a>.
           </p>
         </div>
       </div>
@@ -92,7 +92,7 @@
       <h2>Halibut Bank Weather Buoy</h2>
       <p>
         The
-        <a href="http://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146">
+        <a href="https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146">
           Halibut Bank Weather Buoy
         </a>
         is located at
@@ -102,7 +102,7 @@
         west of Bowen Island and north-east of Nanaimo,
         in the open water of the south-central Georgia Strait.
         The buoy is equipped with automated weather and wave measuring sensors whose data are provided on an
-        <a href="http://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146">
+        <a href="https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146">
           Environment Canada web page
         </a>.
         Current conditions as well as those for the preceding 24 hours are available.
@@ -135,7 +135,7 @@
         </a>
         with information about sea level rise and storm surges.
         The storm surge information there elaborates on the
-        <a href="http://stormsurgebc.ca/">Storm Surge BC</a>
+        <a href="https://stormsurgebc.ca/">Storm Surge BC</a>
         site.
       </p>
 

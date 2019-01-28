@@ -5,7 +5,7 @@
 ## you may not use this file except in compliance with the License.
 ## You may obtain a copy of the License at
 ##
-##    http://www.apache.org/licenses/LICENSE-2.0
+##    https://www.apache.org/licenses/LICENSE-2.0
 ##
 ## Unless required by applicable law or agreed to in writing, software
 ## distributed under the License is distributed on an "AS IS" BASIS,
@@ -66,8 +66,8 @@
         Allen, S. E. and M. A. Wolfe. (2013).
         Hindcast of the Timing of the Spring Phytoplankton Bloom in the Strait of Georgia, 1968-2010.
         Progress in Oceanography, volume 115, pp 6-13.
-        <a href="http://dx.doi.org/10.1016/j.pocean.2013.05.026" title="Link to paper via DOI">
-          http://dx.doi.org/10.1016/j.pocean.2013.05.026
+        <a href="https://dx.doi.org/10.1016/j.pocean.2013.05.026" title="Link to paper via DOI">
+          https://dx.doi.org/10.1016/j.pocean.2013.05.026
         </a>
       </p>
 
@@ -80,7 +80,7 @@
           Hourly wind velocities at 
           <a href="http://www.lighthousefriends.com/light.asp?ID=1178">Sand Heads Lightstation</a>
           from the historical data web service at
-          <a href="http://climate.weather.gc.ca/">climate.weather.gc.ca/</a>
+          <a href="https://climate.weather.gc.ca/">climate.weather.gc.ca/</a>
         </li>
           Hourly air temperature,
           relative humidity,
@@ -89,13 +89,13 @@
           at Vancouver International Airport
           (YVR)
           from the historical data web service at
-          <a href="http://climate.weather.gc.ca/">climate.weather.gc.ca/</a>
+          <a href="https://climate.weather.gc.ca/">climate.weather.gc.ca/</a>
         <li>
           Average daily river discharge rates for the
           <a href="http://www.aquatic.uoguelph.ca/rivers/fraser.htm">Fraser River</a>,
-          and the <a href="http://en.wikipedia.org/wiki/Englishman_River">Englishman River</a>
+          and the <a href="https://en.wikipedia.org/wiki/Englishman_River">Englishman River</a>
           (as a proxy for the fresh water sources other than the Fraser)
-          from <a href="http://wateroffice.ec.gc.ca/">wateroffice.ec.gc.ca</a>
+          from <a href="https://wateroffice.ec.gc.ca/">wateroffice.ec.gc.ca</a>
         </li>
       </ul>
 

@@ -5,7 +5,7 @@
 ## you may not use this file except in compliance with the License.
 ## You may obtain a copy of the License at
 ##
-##    http://www.apache.org/licenses/LICENSE-2.0
+##    https://www.apache.org/licenses/LICENSE-2.0
 ##
 ## Unless required by applicable law or agreed to in writing, software
 ## distributed under the License is distributed on an "AS IS" BASIS,
@@ -97,8 +97,8 @@
         Schweigert, J.F., M. Thompson, C. Fort, D.E. Hay, T.W. Therriault, and L.N. Brown. (2013).
         Factors linking Pacific herring (<em>Clupea pallasi</em>) productivity and the spring plankton bloom in the Strait of Georgia, British Columbia, Canada.
         Prog. Oceanogr., volume 115, pp 103-110.
-        <a href="http://dx.doi.org/10.1016/j.pocean.2013.05.017" title="Link to paper via DOI">
-          http://dx.doi.org/10.1016/j.pocean.2013.05.017
+        <a href="https://dx.doi.org/10.1016/j.pocean.2013.05.017" title="Link to paper via DOI">
+          https://dx.doi.org/10.1016/j.pocean.2013.05.017
         </a>
       </p>
       <p>
@@ -106,8 +106,8 @@
         Tommasi, D., B.P.V. Hunt, E.A. Pakhomov, and D.L. Mackas. (2013).
         Mesozooplankton community seasonal succession and its drivers: Insights from a British Columbia, Canada, fjord.
         J. Mar. Systems, volume 115, pp. 10-32.
-        <a href="http://dx.doi.org/10.1016/j.jmarsys.2013.01.005" title="Link to paper via DOI">
-          http://dx.doi.org/10.1016/j.jmarsys.2013.01.005
+        <a href="https://dx.doi.org/10.1016/j.jmarsys.2013.01.005" title="Link to paper via DOI">
+          https://dx.doi.org/10.1016/j.jmarsys.2013.01.005
         </a>
       </p>
       <p>
@@ -115,22 +115,22 @@
         Allen, S. E. and M. A. Wolfe. (2013).
         Hindcast of the Timing of the Spring Phytoplankton Bloom in the Strait of Georgia, 1968-2010.
         Progress in Oceanography, volume 115, pp 6-13.
-        <a href="http://dx.doi.org/10.1016/j.pocean.2013.05.026" title="Link to paper via DOI">
-          http://dx.doi.org/10.1016/j.pocean.2013.05.026
+        <a href="https://dx.doi.org/10.1016/j.pocean.2013.05.026" title="Link to paper via DOI">
+          https://dx.doi.org/10.1016/j.pocean.2013.05.026
         </a>
       </p>
       <p>
         <a id="footnote4" href="#footnote4-back-link" title="Link to reference">[4]</a>
         Environment Canada, (${ec_database_year}). Climate database.
-        <a href="http://climate.weather.gc.ca/index_e.html" title="Link to database description">
-          http://climate.weather.gc.ca/index_e.html
+        <a href="https://climate.weather.gc.ca/index_e.html" title="Link to database description">
+          https://climate.weather.gc.ca/index_e.html
         </a>
       </p>
       <p>
         <a id="footnote5" href="#footnote5-back-link" title="Link to reference">[5]</a>
         Environment Canada, (${ec_database_year}). Hydrometric data.
-        <a href="http://www.ec.gc.ca/rhc-wsc/" title="Link to database description">
-          http://www.ec.gc.ca/rhc-wsc/
+        <a href="https://www.ec.gc.ca/rhc-wsc/" title="Link to database description">
+          https://www.ec.gc.ca/rhc-wsc/
         </a>
       </p>
       <p>
@@ -138,8 +138,8 @@
         Collins, A. K., S. E. Allen, and R. Pawlowicz. (2009).
         The role of wind in determining the timing of the spring bloom in the Strait of Georgia.
         Can. J. Fish. Aquat. Sci, volume 66, pp. 1597-1616.
-        <a href="http://dx.doi.org/10.1139/F09-071 " title="Link to paper via DOI">
-          http://dx.doi.org/10.1139/F09-071
+        <a href="https://dx.doi.org/10.1139/F09-071 " title="Link to paper via DOI">
+          https://dx.doi.org/10.1139/F09-071
         </a>
       </p>
       <p>

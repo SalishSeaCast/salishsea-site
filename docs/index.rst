@@ -5,7 +5,7 @@
 .. you may not use this file except in compliance with the License.
 .. You may obtain a copy of the License at
 ..
-..    http://www.apache.org/licenses/LICENSE-2.0
+..    https://www.apache.org/licenses/LICENSE-2.0
 ..
 .. Unless required by applicable law or agreed to in writing, software
 .. distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,7 +26,7 @@ and details about its development.
 
 .. _salishsea.eos.ubc.ca: https://salishsea.eos.ubc.ca/
 .. _Python: https://www.python.org/
-.. _Pyramid web framework: http://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
+.. _Pyramid web framework: https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
 
 If you are new to Python web frameworks you should probably start by reading the `Pyramid Hello World`_ docs,
 and then maybe proceed to the `Quick Tutorial`_.
@@ -37,9 +37,9 @@ bottle,
 etc. you could start with the `Quick Tutorial`_,
 or dive into the `narrative documentation`_.
 
-.. _Pyramid Hello World: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/firstapp.html#firstapp-chapter
-.. _Quick Tutorial: http://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
-.. _narrative documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/index.html#narrative-documentation
+.. _Pyramid Hello World: https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/firstapp.html#firstapp-chapter
+.. _Quick Tutorial: https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
+.. _narrative documentation: https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html#narrative-documentation
 
 
 .. _salishSeaSiteStructure:
@@ -55,14 +55,14 @@ The :file:`salishsea_site` directory tree contains the app package:
   (see below)
   and model run results figures and other static files produced by the Salish Sea NEMO and SOG 1-D models.
 
-  .. _map URL paths to route names: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/urldispatch.html
+  .. _map URL paths to route names: https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/urldispatch.html
 
 * The :file:`salishsea_site/views/` directory contains Python modules that define the `view functions`_ that the routes connect to.
   The view functions handle the HTTP requests coming into the app,
   and calculate the dynamic elements of the responses which are returned by the functions as :py:class:`dict` objects.
   The view modules are organized to correspond to the site's top-of-page navigation bar.
 
-  .. _view functions: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
+  .. _view functions: https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
 
 * The :file:`salishsea_site/templates/` directory tree contains the `page templates`_ that the view functions pass to the renderer to produce the HTML stream that is sent to the user's browser in the HTTP response.
   The :py:class:`dict` objects returned by the view functions contain the template variable names and the values to substitute for them.
@@ -73,10 +73,10 @@ The :file:`salishsea_site` directory tree contains the app package:
   and flow control in the templates.
   The templates are organized in sub-directories that correspond to the view modules.
 
-  .. _page templates: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
+  .. _page templates: https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
   .. _HTML5: https://developer.mozilla.org/en/docs/Web/Guide/HTML/HTML5
   .. _Bootstrap 3: https://getbootstrap.com/
-  .. _Mako template library: http://www.makotemplates.org/
+  .. _Mako template library: https://www.makotemplates.org/
 
 * The :file:`salishsea_site/static/` directory tree contains the app's static assets,
   CSS files,
@@ -94,14 +94,14 @@ The :file:`tests/` directory tree contains the unit test suite for the package.
 It is intended to be run using the `pytest`_ tool.
 Please see :ref:`SalishSeaSiteRunningTheUnitTests` for details.
 
-.. _pytest: http://docs.pytest.org/en/latest/
+.. _pytest: https://docs.pytest.org/en/latest/
 
 The :file:`docs/` directory tree contains the `reStructuredText`_ source files for these docs,
 and the `Sphinx` configuration and :file:`Makefile` to render them to HTML.
 Please see :ref:`SalishSeaSiteBuildingTheDocumentation` for details.
 
-.. _reStructuredText: http://www.sphinx-doc.org/en/stable/rest.html
-.. _Sphinx: http://www.sphinx-doc.org/en/stable/rest.html
+.. _reStructuredText: https://www.sphinx-doc.org/en/stable/rest.html
+.. _Sphinx: https://www.sphinx-doc.org/en/stable/rest.html
 
 
 .. _SalishSeaSiteDevelopment:
