@@ -58,7 +58,7 @@
             J. Morrison , M. G. G. Foreman and D. Masson, 2012.
             A method for estimating monthly freshwater discharge affecting British Columbia coastal waters.
             Atmosphere-Ocean volume 50, issue 1.
-            <a href="http://dx.doi.org/10.1080/07055900.2011.637667">http://dx.doi.org/10.1080/07055900.2011.637667</a>
+            <a href="https://dx.doi.org/10.1080/07055900.2011.637667">https://dx.doi.org/10.1080/07055900.2011.637667</a>
           </li>
         </ul>
       </dd>

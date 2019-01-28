@@ -12,7 +12,7 @@ Documentation for the app is in the ``docs/`` directory and is rendered at
 https://salishsea-site.readthedocs.io/en/latest/.
 
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: http://salishsea-site.readthedocs.io/en/latest/?badge=latest
+    :target: https://salishsea-site.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
 
@@ -26,5 +26,5 @@ at The University of British Columbia.
 Please see the CONTRIBUTORS file for details.
 
 They are licensed under the Apache License, Version 2.0.
-http://www.apache.org/licenses/LICENSE-2.0
+https://www.apache.org/licenses/LICENSE-2.0
 Please see the LICENSE file for details of the license.
