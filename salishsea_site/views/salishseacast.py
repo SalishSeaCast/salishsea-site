@@ -862,39 +862,16 @@ def forecast2_publish(request):
     renderer='salishseacast/surface_currents.mako'
 )
 def forecast_surface_currents(request):
-    """Render surface currents tiles forecast figures page. """
+    """Render surface currents tiles forecast figures page.
+    """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.shift(days=-1)
     tile_dates = arrow.Arrow.range(
         'day', run_date.shift(days=-1), run_date.shift(days=+2)
     )
-    available_loop_images = []
-    for image_loop in surface_currents_image_loops.loops:
-        images_available = image_loop.available(
-            'forecast', run_date, model='surface currents'
-        )
-        if images_available:
-            available_loop_images.append(images_available)
-            image_loop.hrs = image_loop.hours(
-                'forecast',
-                run_date,
-                model='surface currents',
-                file_dates=tile_dates
-            )
-    if not any(available_loop_images):
-        raise HTTPNotFound
-    # Build a URL stub for the tilexx.pdf files that will be transformed in the template javascript
-    img_url = request.static_url(
-        surface_currents_image_loops.loops[0].path(
-            'forecast', run_date, 0, 'surface currents'
-        )
+    tiles_pdf_url_stub = _calc_tiles_pdf_url_stub(
+        request, "forecast", run_date, tile_dates
     )
-    parsed_url = urllib.parse.urlparse(img_url)
-    tiles_pdf_path = os.fspath(Path(parsed_url.path).parent / 'tilexx.pdf')
-    tiles_pdf_url_stub = urllib.parse.urlunparse((
-        parsed_url.scheme, parsed_url.netloc, tiles_pdf_path,
-        parsed_url.params, parsed_url.query, parsed_url.fragment
-    ))
     return {
         'results_date': results_date,
         'run_type': 'forecast',
@@ -910,19 +887,34 @@ def forecast_surface_currents(request):
     renderer='salishseacast/surface_currents.mako'
 )
 def forecast2_surface_currents(request):
-    """Render surface currents tiles forecast2 figures page. """
+    """Render surface currents tiles forecast2 figures page.
+    """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
     run_date = results_date.shift(days=-2)
     tile_dates = arrow.Arrow.range('day', run_date, run_date.shift(days=+3))
+    tiles_pdf_url_stub = _calc_tiles_pdf_url_stub(
+        request, "forecast2", run_date, tile_dates
+    )
+    return {
+        'results_date': results_date,
+        'run_type': 'forecast2',
+        'run_date': run_date,
+        'tile_dates': tile_dates,
+        'image_loops': surface_currents_image_loops,
+        'tiles_pdf_url_stub': tiles_pdf_url_stub,
+    }
+
+
+def _calc_tiles_pdf_url_stub(request, run_type, run_date, tile_dates):
     available_loop_images = []
     for image_loop in surface_currents_image_loops.loops:
         images_available = image_loop.available(
-            'forecast2', run_date, model='surface currents'
+            run_type, run_date, model='surface currents'
         )
         if images_available:
             available_loop_images.append(images_available)
             image_loop.hrs = image_loop.hours(
-                'forecast2',
+                run_type,
                 run_date,
                 model='surface currents',
                 file_dates=tile_dates
@@ -932,7 +924,7 @@ def forecast2_surface_currents(request):
     # Build a URL stub for the tilexx.pdf files that will be transformed in the template javascript
     img_url = request.static_url(
         surface_currents_image_loops.loops[0].path(
-            'forecast2', run_date, 0, 'surface currents'
+            run_type, run_date, 0, 'surface currents'
         )
     )
     parsed_url = urllib.parse.urlparse(img_url)
@@ -941,14 +933,7 @@ def forecast2_surface_currents(request):
         parsed_url.scheme, parsed_url.netloc, tiles_pdf_path,
         parsed_url.params, parsed_url.query, parsed_url.fragment
     ))
-    return {
-        'results_date': results_date,
-        'run_type': 'forecast2',
-        'run_date': run_date,
-        'tile_dates': tile_dates,
-        'image_loops': surface_currents_image_loops,
-        'tiles_pdf_url_stub': tiles_pdf_url_stub,
-    }
+    return tiles_pdf_url_stub
 
 
 @view_config(
