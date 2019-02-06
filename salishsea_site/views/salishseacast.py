@@ -905,6 +905,29 @@ def forecast2_surface_currents(request):
     }
 
 
+@view_config(
+    route_name='results.nowcast-green.surfacecurrents',
+    renderer='salishseacast/surface_currents.mako'
+)
+def nowcast_green_surface_currents(request):
+    """Render surface currents tiles nowcast-green figures page.
+    """
+    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    run_date = results_date
+    tile_dates = arrow.Arrow.range('day', run_date, run_date.shift(days=+3))
+    tiles_pdf_url_stub = _calc_tiles_pdf_url_stub(
+        request, "nowcast-green", run_date, tile_dates
+    )
+    return {
+        'results_date': results_date,
+        'run_type': 'nowcast-green',
+        'run_date': run_date,
+        'tile_dates': tile_dates,
+        'image_loops': surface_currents_image_loops,
+        'tiles_pdf_url_stub': tiles_pdf_url_stub,
+    }
+
+
 def _calc_tiles_pdf_url_stub(request, run_type, run_date, tile_dates):
     available_loop_images = []
     for image_loop in surface_currents_image_loops.loops:
