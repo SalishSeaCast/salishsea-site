@@ -18,8 +18,8 @@
 
 # Deploy changes to site by pulling changesets from Bitbucket and restarting app server
 
-APP_REPO=/results/nowcast-sys/salishsea-site
-APP_ENV=/results/nowcast-sys/salishsea-site-env
+APP_REPO=/SalishSeaCast/salishsea-site
+APP_ENV=/SalishSeaCast/salishsea-site-env
 HG=/usr/local/bin/hg
 
 cd ${APP_REPO}
