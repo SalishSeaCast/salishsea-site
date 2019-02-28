@@ -744,8 +744,10 @@ def results_index(request):
     # Calculate the date range to display in the grid and the number of
     # columns for the month headings of the grid
     fcst_date = arrow.now().floor('day').replace(days=+1)
-    dates = arrow.Arrow.range(
-        'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date
+    dates = list(
+        arrow.Arrow.range(
+            'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date
+        )
     )
     if dates[0].month != dates[-1].month:
         this_month_cols = dates[-1].day
