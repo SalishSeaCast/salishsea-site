@@ -149,6 +149,12 @@ class ImageLoop:
     metadata = attr.ib()
     #: Name of the model variable that the loop displays.
     model_var = attr.ib()
+    #: First hour in the day for which image loop figures are stored;
+    #: e.g. 0 for hourly average NEMO fields, 1 for FVCOM fields
+    first_hr = attr.ib(default=0)
+    #: Minute within the hour for which image loop figures are stored;
+    #: e.g. 30 for hourly average NEMO fields, 0 for FVCOM fields
+    image_minute = attr.ib(default=30)
 
     @property
     def title(self):
@@ -175,7 +181,7 @@ class ImageLoop:
                  static figure file server.
         :rtype: list of ints
         """
-        for run_hr in range(24):
+        for run_hr in range(self.first_hr, 24):
             if Path(self.path(run_type, run_date, run_hr, model)).exists():
                 return True
         else:
@@ -202,7 +208,7 @@ class ImageLoop:
         file_dates = file_dates or [run_date]
         for file_date in file_dates:
             available_hrs[file_date] = []
-            for run_hr in range(24):
+            for run_hr in range(self.first_hr, 24):
                 if Path(
                     self.path(run_type, run_date, run_hr, model, file_date)
                 ).exists():
@@ -220,11 +226,8 @@ class ImageLoop:
         :returns: Figure file name.
         :rtype: str
         """
-        return '{svg_name}_{yyyymmdd}_{run_hr:02d}3000_UTC.png'.format(
-            svg_name=self.metadata.svg_name,
-            yyyymmdd=file_date.format('YYYYMMDD'),
-            run_hr=run_hr,
-        )
+        file_date = file_date.format("YYYYMMDD")
+        return f'{self.metadata.svg_name}_{file_date}_{run_hr:02d}{self.image_minute:02d}00_UTC.png'
 
     def path(self, run_type, run_date, run_hr, model='nemo', file_date=''):
         """Return the figure file path.
