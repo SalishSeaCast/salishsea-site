@@ -14,7 +14,7 @@
 ## limitations under the License.
 
 <%inherit file="../site.mako"/>
-<%namespace file="../salishseacast/figures_page_defs.mako" import="list_of_plots, figure_group, figure_row, figure_nav_links, show_figure"/>
+<%namespace file="../salishseacast/figures_page_defs.mako" import="list_of_plots, figure_group, figure_row, figure_nav_links, init_image_loop_group, image_loop_group, show_figure"/>
 
 <%block name="title">${results_date.format('dddd, D MMMM YYYY')} – VHFR FVCOM ${run_type_title}</%block>
 
@@ -41,12 +41,19 @@
 
   ${list_of_plots(figure_links)}
 
-  ${figure_group(water_level_figures, water_level_figures_available, run_type, run_date, 'fvcom')}
-  ${figure_nav_links('fvcom')}
+  %if available_figures["water levels"]:
+    ${figure_group(water_level_figures, available_figures["water levels"], run_type, run_date, 'fvcom')}
+    ${figure_nav_links('fvcom')}
+  %endif
 
-  %if currents_figure_available:
+  %if available_figures["2nd narrows currents"]:
     ${figure_row(second_narrows_current_figure, run_type, run_date, 'fvcom')}
     ${figure_nav_links('fvcom')}
+  %endif
+
+  %if available_figures["image loops"]:
+    ${image_loop_group(image_loops)}
+    ${figure_nav_links()}
   %endif
 
   <%include file="../salishseacast/data_sources.mako"/>
@@ -54,8 +61,6 @@
 
 
 <%block name="page_js">
-  <script>
-    function init() { }
-  </script>
-  ${show_figure()}
+  <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+  ${init_image_loop_group(image_loops, run_type, run_date, "fvcom")}
 </%block>
