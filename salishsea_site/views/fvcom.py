@@ -19,9 +19,9 @@ import logging
 import arrow
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
-import requests
 
-from salishsea_site.views.salishseacast import FigureGroup, FigureMetadata
+from salishsea_site.views.salishseacast import FigureGroup, FigureMetadata, ImageLoopGroup, \
+    ImageLoop
 
 logger = logging.getLogger(__name__)
 
@@ -76,6 +76,132 @@ second_narrows_current_figure = FigureMetadata(
     svg_name='2ndNarrows_current',
 )
 
+image_loops = ImageLoopGroup(
+    description='Surface Currents and Thalweg Transects',
+    loops=[
+        ImageLoop(
+            model_var='English Bay',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Surface Currents in English Bay',
+                link_text='English Bay Surface Currents',
+                svg_name='EnglishBay_surface_currents',
+            )
+        ),
+        ImageLoop(
+            model_var='Vancouver Harbour',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Surface Currents in Vancouver Harbour',
+                link_text='Vancouver Harbour Surface Currents',
+                svg_name='VancouverHarbour_surface_currents',
+            )
+        ),
+        ImageLoop(
+            model_var='Indian Arm',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Surface Currents in Indian Arm',
+                link_text='Indian Arm Surface Currents',
+                svg_name='IndianArm_surface_currents',
+            )
+        ),
+        ImageLoop(
+            model_var='Vancouver Harbour Salinity',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Salinity in Vancouver Harbour',
+                link_text='Vancouver Harbour Salinity',
+                svg_name='VancouverHarbour_thalweg_salinity',
+            )
+        ),
+        ImageLoop(
+            model_var='Vancouver Harbour Temperature',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Temperature in Vancouver Harbour',
+                link_text='Vancouver Harbour Temperature',
+                svg_name='VancouverHarbour_thalweg_temp',
+            )
+        ),
+        ImageLoop(
+            model_var='Vancouver Harbour Tangential Velocity',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Tangential Velocity in Vancouver Harbour',
+                link_text='Vancouver Harbour Tangential Velocity',
+                svg_name='VancouverHarbour_thalweg_tangential_velocity',
+            )
+        ),
+        ImageLoop(
+            model_var='Port Moody Salinity',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Salinity in Port Moody Arm',
+                link_text='Port Moody Salinity',
+                svg_name='PortMoody_thalweg_salinity',
+            )
+        ),
+        ImageLoop(
+            model_var='Port Moody Temperature',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Temperature in Port Moody Arm',
+                link_text='Port Moody Temperature',
+                svg_name='PortMoody_thalweg_temp',
+            )
+        ),
+        ImageLoop(
+            model_var='Port Moody Tangential Velocity',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Tangential Velocity in Port Moody Arm',
+                link_text='Port Moody Tangential Velocity',
+                svg_name='PortMoody_thalweg_tangential_velocity',
+            )
+        ),
+        ImageLoop(
+            model_var='Indian Arm Salinity',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Salinity in Indian Arm',
+                link_text='Indian Arm Salinity',
+                svg_name='IndianArm_thalweg_salinity',
+            )
+        ),
+        ImageLoop(
+            model_var='Indian Arm Temperature',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Temperature in Indian Arm',
+                link_text='Indian Arm Temperature',
+                svg_name='IndianArm_thalweg_temp',
+            )
+        ),
+        ImageLoop(
+            model_var='Indian Arm Tangential Velocity',
+            first_hr=1,
+            image_minute=0,
+            metadata=FigureMetadata(
+                title='Tangential Velocity in Indian Arm',
+                link_text='Indian Arm Tangential Velocity',
+                svg_name='IndianArm_thalweg_tangential_velocity',
+            )
+        ),
+    ]
+)
+
 
 @view_config(
     route_name='fvcom.results.index', renderer='fvcom/results_index.mako'
@@ -86,10 +212,10 @@ def results_index(request):
     INDEX_GRID_COLS = 21
     # Calculate the date range to display in the grid and the number of
     # columns for the month headings of the grid
-    fcst_date = arrow.now().floor('day').replace(days=+1)
+    fcst_date = arrow.now().floor('day').shift(days=+1)
     dates = list(
         arrow.Arrow.range(
-            'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date
+            'day', fcst_date.shift(days=-(INDEX_GRID_COLS - 1)), fcst_date
         )
     )
     if dates[0].month != dates[-1].month:
@@ -104,16 +230,6 @@ def results_index(request):
         (
             'forecast water levels', 'forecast',
             tide_stn_water_level_figure_group
-        ),
-        (
-            'nowcast currents',
-            'nowcast',
-            [second_narrows_current_figure],
-        ),
-        (
-            'forecast currents',
-            'forecast',
-            [second_narrows_current_figure],
         ),
     )
     grid_dates = {
@@ -158,27 +274,44 @@ def _values_for_publish_template(request, run_type):
     """Calculate template variable values for a figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    water_level_figures_available = tide_stn_water_level_figure_group.available(
-        run_type, results_date, 'fvcom'
-    )
-    currents_figure_available = second_narrows_current_figure.available(
-        run_type, results_date, 'fvcom'
-    )
-    if not any(water_level_figures_available + [currents_figure_available]):
+    available_figures = {
+        "water levels":
+        tide_stn_water_level_figure_group.available(
+            run_type, results_date, 'fvcom'
+        ),
+        "2nd narrows currents": [
+            second_narrows_current_figure.available(
+                run_type, results_date, 'fvcom'
+            )
+        ],
+        "image loops": [],
+    }
+    for image_loop in image_loops.loops:
+        images_available = image_loop.available(
+            run_type, results_date, 'fvcom'
+        )
+        if images_available:
+            available_figures["image loops"].append(images_available)
+            image_loop.hrs = image_loop.hours(
+                run_type, results_date, model='fvcom'
+            )
+    if not any(available_figures[figs] for figs in available_figures):
         raise HTTPNotFound
     figure_links = []
-    if water_level_figures_available:
+    if available_figures["water levels"]:
         figure_links.append(tide_stn_water_level_figure_group.description)
-    if currents_figure_available:
+    if available_figures["2nd narrows currents"]:
         figure_links.append(second_narrows_current_figure.title)
+    if available_figures["image loops"]:
+        figure_links.append(image_loops.description)
     return {
         'results_date': results_date,
         'run_type_title': run_type.title(),
         'run_type': run_type,
         'run_date': results_date,
         'figure_links': figure_links,
-        'water_level_figures_available': water_level_figures_available,
+        'available_figures': available_figures,
         'water_level_figures': tide_stn_water_level_figure_group,
-        'currents_figure_available': currents_figure_available,
         'second_narrows_current_figure': second_narrows_current_figure,
+        'image_loops': image_loops,
     }

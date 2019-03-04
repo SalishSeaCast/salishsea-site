@@ -38,25 +38,10 @@
           ${month_heading(this_month_cols, last_date)}
         </tr>
         <tr>
-          <th class="results-index">Tide Gauge Station Water Levels</th>
+          <th class="results-index">Water Levels, Currents &amp; Thalweg Transects</th>
         </tr>
         ${grid_row("Nowcast", grid_dates['nowcast water levels'], "nowcast", "publish")}
         ${grid_row("Forecast", grid_dates['forecast water levels'], "forecast", "publish")}
-      </table>
-
-      <table class="table table-striped">
-        <tr>
-          <td></td>
-          %if last_month_cols != 0:
-            ${month_heading(last_month_cols, first_date)}
-          %endif
-          ${month_heading(this_month_cols, last_date)}
-        </tr>
-        <tr>
-          <th class="results-index">2nd Narrows Currents</th>
-        </tr>
-        ${grid_row("Nowcast", grid_dates['nowcast currents'], "nowcast", "publish")}
-        ${grid_row("Forecast", grid_dates['forecast currents'], "forecast", "publish")}
       </table>
     </div>
   </div>
