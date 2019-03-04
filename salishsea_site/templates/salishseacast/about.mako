@@ -26,9 +26,9 @@
 
       <h2>About the Project</h2>
       <p>
-        The Salish Sea is home to a large population of Canadians living in coastal communities 
+        The Salish Sea is home to a large population of Canadians living in coastal communities
         at risk to ocean related hazards.
-        There is an ongoing need to assess the impact of these hazards on human and 
+        There is an ongoing need to assess the impact of these hazards on human and
         marine environments through a multidisciplinary approach involving Canadian oceanographers,
         biologists,
         and social scientists.
@@ -125,13 +125,13 @@
           </a>.
         </li>
         <li>
-          The project team maintains a set of 
+          The project team maintains a set of
           <a href="https://www.mercurial-scm.org/">Mercurial</a>
           version control repositories for code,
-          documentation 
+          documentation
           (including the source files for this site),
           and analyses of model results.
-          The contents of those repositories and their development history is accessible at 
+          The contents of those repositories and their development history is accessible at
           <a href="https://bitbucket.org/salishsea/">https://bitbucket.org/salishsea/</a>.
         </li>
       </ul>
@@ -198,7 +198,7 @@
           <li>Keith Thompson, Dalhousie University</li>
           <li>Vasily Korabel, Dalhousie University</li>
           <li>Youyu Lu, Fisheries and Oceans Canada</li>
-          <li>J-P Paquin, Dalhousie University</li>
+          <li>J-P Paquin, Environment and Climate Change, Canada</li>
           <li>Fatemeh Chegini, Dalhousie University</li>
           <li>Luc Fillion, Environment Canada</li>
           <li>Kao-Shen Chung, Environment Canada</li>
@@ -208,18 +208,42 @@
         </ul>
       </p>
       <p>
-        and with many other researchers,
+        Much of our evaluation data, some of our funding, and access to computing
+        resources for our daily runs comes from <a href="http://www.oceannetworks.ca/">Ocean Networks Canada (ONC)</a>
+        Our contacts with ONC include:
+        <ul>
+        <li> Richard Dewey, Associate Director, Science</li>
+        <li> Steve Mihaly, Senior Staff Scientist</li>
+        <li> Mike Morley, Data Manager</li>
+        <li> Akash Sastri, Senior Staff Scientist</li>
+        <li> Dwight Owens, User Engagement</li>
+        <li> Leslie Elliot, Communications Manager</li>
+        </ul>
+        </p>
+      <p>
+        Other funders include:
+        <ul>
+        <li> <a href="https://www.psf.ca/">Pacific Salmon Foundation</a></li>
+        <li> <a href="http://www.metrovancouver.org/">Metro Vancouver</a></li>
+        </ul>
+      </p>
+      <p>
+        We collaborate with many other researchers,
         including:
         <ul>
+          <li>Hayley Dosser, Hakai Foundation</li>
+          <li>Michael Dunphy, Fisheries and Oceans Canada</li>
           <li>Mike Foreman, Fisheries and Oceans Canada</li>
           <li>Charles Hannah, Fisheries and Oceans Canada</li>
           <li>Debby Ianson, Fisheries and Oceans Canada</li>
           <li>Diane Masson, Fisheries and Oceans Canada</li>
+          <li>Parker MacCready, University of Washington</li>
           <li>John Morrison, Fisheries and Oceans Canada</li>
           <li>Paul Myers, University of Alberta</li>
           <li>Angelica Pena, Fisheries and Oceans Canada</li>
-          <li>Neil Swart, Environment Canada</li>
-          <li>Pramod Thupaki, Fisheries and Oceans Canada</li>
+          <li>Greg Smith, Enivironment and Climate Change, Canada
+          <li>Neil Swart, Environment  and Climate Change, Canada</li>
+          <li>Pramod Thupaki, Hakai Foundation</li>
         </ul>
       </p>
     </div>
