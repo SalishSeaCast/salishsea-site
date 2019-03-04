@@ -62,5 +62,6 @@
 
 <%block name="page_js">
   <script src="${request.static_path("salishsea_site:static/js/ImageLoop.js")}"></script>
+  ${show_figure()}
   ${init_image_loop_group(image_loops, run_type, run_date, "fvcom")}
 </%block>
