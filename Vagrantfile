@@ -30,7 +30,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Provisioning
   config.vm.provision "shell", inline: <<-SHELL
-    add-apt-repository -y ppa:mercurial-ppa/releases
     apt-get update
 
     TIMEZONE=Canada/Pacific
