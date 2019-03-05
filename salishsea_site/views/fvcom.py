@@ -291,8 +291,15 @@ def _values_for_publish_template(request, run_type):
         )
         if images_available:
             available_figures["image loops"].append(images_available)
+            run_duration = 24 if run_type == "nowcast" else 60  # hours
             image_loop.hrs = image_loop.hours(
-                run_type, results_date, model='fvcom'
+                run_type,
+                results_date,
+                model='fvcom',
+                file_dates=arrow.Arrow.range(
+                    'day', results_date,
+                    results_date.shift(hours=+run_duration)
+                ),
             )
     if not any(available_figures[figs] for figs in available_figures):
         raise HTTPNotFound
