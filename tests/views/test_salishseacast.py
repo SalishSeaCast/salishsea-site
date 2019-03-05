@@ -64,7 +64,7 @@ class TestStormSurgeForecast:
             assert data == {}
             expected = call(
                 request, 'forecast',
-                m_now().floor('day').replace(days=+1),
+                m_now().floor('day').shift(days=+1),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
                 m_now().floor('day')
@@ -80,10 +80,10 @@ class TestStormSurgeForecast:
             assert data == {}
             expected = call(
                 request, 'forecast2',
-                m_now().floor('day').replace(days=+1),
+                m_now().floor('day').shift(days=+1),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
-                m_now().floor('day').replace(days=-1)
+                m_now().floor('day').shift(days=-1)
             )
             assert m_dfpt.call_args_list[1] == expected
 
@@ -98,7 +98,7 @@ class TestStormSurgeForecast:
                 request, 'forecast',
                 m_now().floor('day'), salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
-                m_now().floor('day').replace(days=-1)
+                m_now().floor('day').shift(days=-1)
             )
             assert m_dfpt.call_args_list[2] == expected
 
@@ -256,9 +256,9 @@ class TestResultsIndex:
         with patch('salishsea_site.views.salishseacast.arrow.now') as m_now:
             m_now.return_value = arrow.get('2016-11-06 13:09:42+07:00')
             salishseacast.results_index(request)
-        fcst_date = m_now().floor('day').replace(days=+1)
+        fcst_date = m_now().floor('day').shift(days=+1)
         dates = list(
-            arrow.Arrow.range('day', fcst_date.replace(days=-20), fcst_date)
+            arrow.Arrow.range('day', fcst_date.shift(days=-20), fcst_date)
         )
         expected = call(dates, figures, figs_type, run_type, model)
         assert expected in m_exlude_missing_dates.call_args_list

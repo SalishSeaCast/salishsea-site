@@ -405,22 +405,22 @@ def storm_surge_forecast(request):
     """Render storm surge forecast page that shows most recent forecast or
     forecast2 results figures.
     """
-    fcst_date = arrow.now().floor('day').replace(days=+1)
+    fcst_date = arrow.now().floor('day').shift(days=+1)
     try:
         try:
             return _data_for_publish_template(
                 request, 'forecast', fcst_date, publish_figures,
-                publish_tides_max_ssh_figure_group, fcst_date.replace(days=-1)
+                publish_tides_max_ssh_figure_group, fcst_date.shift(days=-1)
             )
         except HTTPNotFound:
             return _data_for_publish_template(
                 request, 'forecast2', fcst_date, publish_figures,
-                publish_tides_max_ssh_figure_group, fcst_date.replace(days=-2)
+                publish_tides_max_ssh_figure_group, fcst_date.shift(days=-2)
             )
     except HTTPNotFound:
         return _data_for_publish_template(
-            request, 'forecast', fcst_date.replace(days=-1), publish_figures,
-            publish_tides_max_ssh_figure_group, fcst_date.replace(days=-2)
+            request, 'forecast', fcst_date.shift(days=-1), publish_figures,
+            publish_tides_max_ssh_figure_group, fcst_date.shift(days=-2)
         )
 
 
@@ -463,10 +463,10 @@ def results_index(request):
     INDEX_GRID_COLS = 21
     # Calculate the date range to display in the grid and the number of
     # columns for the month headings of the grid
-    fcst_date = arrow.now().floor('day').replace(days=+1)
+    fcst_date = arrow.now().floor('day').shift(days=+1)
     dates = list(
         arrow.Arrow.range(
-            'day', fcst_date.replace(days=-(INDEX_GRID_COLS - 1)), fcst_date
+            'day', fcst_date.shift(days=-(INDEX_GRID_COLS - 1)), fcst_date
         )
     )
     if dates[0].month != dates[-1].month:
@@ -529,7 +529,7 @@ def _exclude_missing_dates(dates, figures, figs_type, run_type, model):
         run_date_offsets = {'forecast': -1, 'forecast2': -2}
         return ((
             d if figures[0].available(
-                run_type, d.replace(days=run_date_offsets[run_type]), model
+                run_type, d.shift(days=run_date_offsets[run_type]), model
             ) else None
         ) for d in dates)
     else:
@@ -552,7 +552,7 @@ def forecast_publish(request):
     """Render storm surge forecast figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    run_date = results_date.replace(days=-1)
+    run_date = results_date.shift(days=-1)
     return _data_for_publish_template(
         request, 'forecast', results_date, publish_figures,
         publish_tides_max_ssh_figure_group, run_date
@@ -572,7 +572,7 @@ def forecast2_publish(request):
     """Render preliminary storm surge forecast figures page.
     """
     results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
-    run_date = results_date.replace(days=-2)
+    run_date = results_date.shift(days=-2)
     return _data_for_publish_template(
         request, 'forecast2', results_date, publish_figures,
         publish_tides_max_ssh_figure_group, run_date
