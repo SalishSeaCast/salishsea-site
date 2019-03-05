@@ -182,14 +182,19 @@ class ImageLoop:
         """Return a list of run hours for which image loop figures are
         available on the static file server that provides figure files.
 
-        :param str run_type: Run type for which the figure was generated.
+        :param str run_type: Run type for which the figures were generated.
 
-        :param run_date: Run date for which the figure was generated.
+        :param run_date: Run date for which the figures were generated.
         :type run_date: :py:class:`arrow.Arrow`
 
         :param str model: Model name to use to select figures directory
                           template for figure file path construction;
                           'nemo' or 'fvcom'.
+
+        :param file_dates: Date for which to check figures availability;
+                           defaults to ``run_date`` if empty.
+                           Use for image loops that span more than one day.
+        :type file_dates: iterable of :py:class:`arrow.Arrow`
 
         :return: Run hours for which figures are available on the
                  static figure file server.
@@ -199,7 +204,7 @@ class ImageLoop:
         file_dates = file_dates or [run_date]
         for file_date in file_dates:
             available_hrs[file_date] = []
-            for run_hr in range(self.first_hr, 24):
+            for run_hr in range(24):
                 if Path(
                     self.path(run_type, run_date, run_hr, model, file_date)
                 ).exists():
@@ -233,6 +238,11 @@ class ImageLoop:
         :param str model: Model name to use to select figures directory
                           template for figure file path construction;
                           'nemo' or 'fvcom'.
+
+        :param file_date: Date for which to calculate figure file path;
+                           defaults to ``run_date`` if empty.
+                           Use for image loops that span more than one day.
+        :type file_date: iterable of :py:class:`arrow.Arrow`
 
         :return: Figure file path.
         :rtype: str
