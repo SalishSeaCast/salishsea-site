@@ -20,69 +20,15 @@ import os
 from pathlib import Path
 from unittest.mock import (
     call,
-    Mock,
     patch,
 )
 
 import arrow
 import pytest
-import requests
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.threadlocal import get_current_request
 
 from salishsea_site.views import salishseacast
-
-
-class TestImageLoop:
-    """Unit tests for ImageLoop class.
-    """
-
-    def test_first_available(self):
-        img_loop = salishseacast.ImageLoop(
-            model_var='salinity',
-            metadata=salishseacast.FigureMetadata(
-                title='Salinity Fields Along Thalweg and on Surface',
-                link_text='Salinity',
-                svg_name='salinity_thalweg_and_surface',
-            ),
-        )
-        with patch(
-            'salishsea_site.views.salishseacast.Path.exists',
-            return_value=True,
-            autospec=True
-        ):
-            assert img_loop.available('nowcast', arrow.get('2018-12-14'))
-
-    def test_subsequent_available(self):
-        img_loop = salishseacast.ImageLoop(
-            model_var='salinity',
-            metadata=salishseacast.FigureMetadata(
-                title='Salinity Fields Along Thalweg and on Surface',
-                link_text='Salinity',
-                svg_name='salinity_thalweg_and_surface',
-            ),
-        )
-        with patch(
-            'salishsea_site.views.salishseacast.Path.exists', autospec=True
-        ) as p_exists:
-            p_exists.side_effect = (False, False, True)
-            assert img_loop.available('nowcast', arrow.get('2018-12-14'))
-
-    def test_none_available(self):
-        img_loop = salishseacast.ImageLoop(
-            model_var='salinity',
-            metadata=salishseacast.FigureMetadata(
-                title='Salinity Fields Along Thalweg and on Surface',
-                link_text='Salinity',
-                svg_name='salinity_thalweg_and_surface',
-            ),
-        )
-        with patch(
-            'salishsea_site.views.salishseacast.Path.exists',
-            return_value=False,
-            autospec=True
-        ):
-            assert not img_loop.available('nowcast', arrow.get('2018-12-14'))
 
 
 class TestStormSurgePortal:
@@ -117,8 +63,7 @@ class TestStormSurgeForecast:
             data = salishseacast.storm_surge_forecast(request)
             assert data == {}
             expected = call(
-                request,
-                'forecast',
+                request, 'forecast',
                 m_now().floor('day').replace(days=+1),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
@@ -134,8 +79,7 @@ class TestStormSurgeForecast:
             data = salishseacast.storm_surge_forecast(request)
             assert data == {}
             expected = call(
-                request,
-                'forecast2',
+                request, 'forecast2',
                 m_now().floor('day').replace(days=+1),
                 salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
@@ -151,10 +95,8 @@ class TestStormSurgeForecast:
             data = salishseacast.storm_surge_forecast(request)
             assert data == {}
             expected = call(
-                request,
-                'forecast',
-                m_now().floor('day'),
-                salishseacast.publish_figures,
+                request, 'forecast',
+                m_now().floor('day'), salishseacast.publish_figures,
                 salishseacast.publish_tides_max_ssh_figure_group,
                 m_now().floor('day').replace(days=-1)
             )
@@ -315,8 +257,8 @@ class TestResultsIndex:
             m_now.return_value = arrow.get('2016-11-06 13:09:42+07:00')
             salishseacast.results_index(request)
         fcst_date = m_now().floor('day').replace(days=+1)
-        dates = arrow.Arrow.range(
-            'day', fcst_date.replace(days=-20), fcst_date
+        dates = list(
+            arrow.Arrow.range('day', fcst_date.replace(days=-20), fcst_date)
         )
         expected = call(dates, figures, figs_type, run_type, model)
         assert expected in m_exlude_missing_dates.call_args_list
@@ -622,8 +564,8 @@ class TestDataForPublishTemplate:
     def test_missing_figures(self, m_available):
         request = get_current_request()
         m_available.side_effect = (
-            [True, True] + [False] *
-            (len(salishseacast.publish_figures) - 1) + [True] *
+            [True, True
+             ] + [False] * (len(salishseacast.publish_figures) - 1) + [True] *
             len(salishseacast.publish_tides_max_ssh_figure_group.figures)
         )
         data = salishseacast._data_for_publish_template(

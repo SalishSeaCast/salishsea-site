@@ -20,8 +20,7 @@ import arrow
 from pyramid.httpexceptions import HTTPNotFound
 from pyramid.view import view_config
 
-from salishsea_site.views.salishseacast import FigureGroup, FigureMetadata, ImageLoopGroup, \
-    ImageLoop
+from salishsea_site.views.figures import FigureMetadata, FigureGroup, ImageLoop, ImageLoopGroup
 
 logger = logging.getLogger(__name__)
 
