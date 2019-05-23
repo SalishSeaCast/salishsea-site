@@ -40,8 +40,9 @@
         <tr>
           <th class="results-index">Water Levels, Currents &amp; Thalweg Transects</th>
         </tr>
-        ${grid_row("Nowcast", grid_dates['nowcast water levels'], "nowcast", "publish")}
-        ${grid_row("Forecast", grid_dates['forecast water levels'], "forecast", "publish")}
+        ${grid_row("X2 Nowcast", grid_dates['x2 nowcast water levels'], "nowcast-x2", "publish")}
+        ${grid_row("R12 Nowcast", grid_dates['r12 nowcast water levels'], "nowcast-r12", "publish")}
+        ${grid_row("X2 Forecast", grid_dates['x2 forecast water levels'], "forecast-x2", "publish")}
       </table>
     </div>
   </div>

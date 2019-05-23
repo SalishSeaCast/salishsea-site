@@ -225,9 +225,16 @@ def results_index(request):
     # Replace dates for which there are no figures with None
     grid_rows = (
         # Calendar grid row key, run type, figures, figures type
-        ('nowcast water levels', 'nowcast', tide_stn_water_level_figure_group),
         (
-            'forecast water levels', 'forecast',
+            'x2 nowcast water levels', 'nowcast-x2',
+            tide_stn_water_level_figure_group
+        ),
+        (
+            'r12 nowcast water levels', 'nowcast-r12',
+            tide_stn_water_level_figure_group
+        ),
+        (
+            'x2 forecast water levels', 'forecast-x2',
             tide_stn_water_level_figure_group
         ),
     )
@@ -252,21 +259,41 @@ def _exclude_missing_dates(dates, figures, run_type):
 
 
 @view_config(
+    route_name='fvcom.results.nowcast-x2.publish',
+    renderer='fvcom/publish.mako'
+)
+# Legacy route
+@view_config(
     route_name='fvcom.results.nowcast.publish', renderer='fvcom/publish.mako'
 )
-def nowcast_publish(request):
+def nowcast_x2_publish(request):
     """Render nowcast figures page.
     """
-    return _values_for_publish_template(request, 'nowcast')
+    return _values_for_publish_template(request, 'nowcast-x2')
 
 
 @view_config(
+    route_name='fvcom.results.nowcast-r12.publish',
+    renderer='fvcom/publish.mako'
+)
+def nowcast_r12_publish(request):
+    """Render nowcast figures page.
+    """
+    return _values_for_publish_template(request, 'nowcast-r12')
+
+
+@view_config(
+    route_name='fvcom.results.forecast-x2.publish',
+    renderer='fvcom/publish.mako'
+)
+# Legacy route
+@view_config(
     route_name='fvcom.results.forecast.publish', renderer='fvcom/publish.mako'
 )
-def forecast_publish(request):
+def forecast_x2_publish(request):
     """Render forecast figures page.
     """
-    return _values_for_publish_template(request, 'forecast')
+    return _values_for_publish_template(request, 'forecast-x2')
 
 
 def _values_for_publish_template(request, run_type):
@@ -297,7 +324,8 @@ def _values_for_publish_template(request, run_type):
                 results_date,
                 model='fvcom',
                 file_dates=arrow.Arrow.range(
-                    'day', results_date,
+                    'day',
+                    results_date,
                     results_date.shift(hours=+run_duration)
                 ),
             )
