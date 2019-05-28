@@ -216,6 +216,7 @@
         <li> Steve Mihaly, Senior Staff Scientist</li>
         <li> Mike Morley, Data Manager</li>
         <li> Akash Sastri, Senior Staff Scientist</li>
+        <li> Lu Guan, Junior Staff Scientist</li>
         <li> Dwight Owens, User Engagement</li>
         <li> Leslie Elliot, Communications Manager</li>
         </ul>
