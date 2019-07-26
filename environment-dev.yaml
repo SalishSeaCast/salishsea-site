@@ -17,7 +17,7 @@ channels:
 
 dependencies:
   - pip
-  - python=3
+  - python>=3.6
   - pyyaml
   - requests
 
@@ -32,13 +32,12 @@ dependencies:
   - pip:
     - arrow
     - attrs
-    - chaussette
-    - circus
     - pyramid
     - pyramid_crow
     - pyramid_debugtoolbar
     - pyramid_mako
-    - waitress==0.9.0
+    - supervisor
+    - waitress
 
     # For code style maintenance
     - yapf
