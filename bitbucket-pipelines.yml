@@ -1,9 +1,7 @@
 pipelines:
-  custom:
-    deploy-to-prod:
-      - step:
-          # name: Deploy to production
-          # deployment: production
-          # trigger: manual
-          script:
-            - ssh $PROD_DEPLOY_USER@$PROD_DEPLOY_HOST "bash $PROD_DEPLOY_REPO/deploy.sh"
+  default:
+    - step:
+        name: Deploy to production
+        deployment: production
+        script:
+          - ssh $PROD_DEPLOY_USER@$PROD_DEPLOY_HOST "bash $PROD_DEPLOY_REPO/deploy.sh"
