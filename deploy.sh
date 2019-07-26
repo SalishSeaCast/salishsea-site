@@ -26,4 +26,4 @@ cd ${APP_REPO}
 echo $(pwd)
 ${HG} pull --ssh "ssh -i ~/.ssh/salishsea-site-deployment_id_rsa" --update
 echo "Restarting app"
-${APP_ENV}/bin/circusctl --endpoint tcp://127.0.0.1:7777 restart web
+${APP_ENV}/bin/supervisorctl --configuration supervisord-prod.ini restart salishsea-site
