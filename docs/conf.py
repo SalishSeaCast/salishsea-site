@@ -19,7 +19,7 @@ import sys
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath(".."))
 
 
 # -- General configuration ------------------------------------------------
@@ -28,40 +28,36 @@ sys.path.insert(0, os.path.abspath('..'))
 # They can be extensions coming with Sphinx
 # (named 'sphinx.ext.*')
 # or your custom ones.
-extensions = [
-    'sphinx.ext.intersphinx',
-]
+extensions = ["sphinx.ext.intersphinx"]
 
 intersphinx_mapping = {
-    'python':
-        ('https://docs.python.org/3/', None),
-    'salishseadocs':
-        ('https://salishsea-meopar-docs.readthedocs.io/en/latest/', None),
+    "python": ("https://docs.python.org/3/", None),
+    "salishseadocs": ("https://salishsea-meopar-docs.readthedocs.io/en/latest/", None),
 }
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = 'salishsea-site'
+project = "salishsea-site"
 copyright = (
-    '2014-{:%Y}, '
-    'Mesoscale Ocean and Atmospheric Dynamics (MOAD) group '
-    'and The University of British Columbia'
-    .format(datetime.date.today())
+    "2014-{:%Y}, "
+    "Mesoscale Ocean and Atmospheric Dynamics (MOAD) group "
+    "and The University of British Columbia".format(datetime.date.today())
 )
-author = 'Salish Sea MEOPAR Contributors'
+author = "Salish Sea MEOPAR Contributors"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 from salishsea_site import __pkg_metadata__
+
 #
 # The short X.Y version.
 version = __pkg_metadata__.VERSION
@@ -71,10 +67,10 @@ release = version
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -82,21 +78,21 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = '_static/UBC_EOAS_favicon.ico'
+html_favicon = "_static/UBC_EOAS_favicon.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-html_last_updated_fmt = '%b %d, %Y'
+html_last_updated_fmt = "%b %d, %Y"
 
 # If false, no module index is generated.
 html_domain_indices = False

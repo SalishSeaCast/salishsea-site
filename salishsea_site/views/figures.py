@@ -31,18 +31,16 @@ class FigureMetadata:
     #: Text to appear in list of choices for figure in group of figures.
     #: Clicking on this text will swap this figure into the figure group
     #: display elements.
-    link_text = attr.ib(default='')
+    link_text = attr.ib(default="")
 
     FIG_DIR_TMPLS = {
-        'nemo': '/results/nowcast-sys/figures/{run_type}/{run_dmy}/',
-        'surface currents':
-        '/results/nowcast-sys/figures/surface_currents/{run_type}/{run_dmy}/',
-        'fvcom': '/results/nowcast-sys/figures/fvcom/{run_type}/{run_dmy}/',
-        'wwatch3':
-        '/results/nowcast-sys/figures/wwatch3/{run_type}/{run_dmy}/',
+        "nemo": "/results/nowcast-sys/figures/{run_type}/{run_dmy}/",
+        "surface currents": "/results/nowcast-sys/figures/surface_currents/{run_type}/{run_dmy}/",
+        "fvcom": "/results/nowcast-sys/figures/fvcom/{run_type}/{run_dmy}/",
+        "wwatch3": "/results/nowcast-sys/figures/wwatch3/{run_type}/{run_dmy}/",
     }
 
-    def available(self, run_type, run_date, model='nemo'):
+    def available(self, run_type, run_date, model="nemo"):
         """Return a boolean indicating whether or not the figure is available
         on the static file server that provides figure files.
 
@@ -69,11 +67,11 @@ class FigureMetadata:
         :returns: Figure file name.
         :rtype: str
         """
-        return '{svg_name}_{run_dmy}.svg'.format(
+        return "{svg_name}_{run_dmy}.svg".format(
             svg_name=self.svg_name, run_dmy=run_dmy
         )
 
-    def path(self, run_type, run_date, model='nemo'):
+    def path(self, run_type, run_date, model="nemo"):
         """Return the figure file path.
 
         :param str run_type: Run type for which the figure was generated.
@@ -88,7 +86,7 @@ class FigureMetadata:
         :return: Figure file path.
         :rtype: str
         """
-        run_dmy = run_date.format('DDMMMYY').lower()
+        run_dmy = run_date.format("DDMMMYY").lower()
         fig_dir = self.FIG_DIR_TMPLS[model].format(
             run_type=run_type, svg_name=self.svg_name, run_dmy=run_dmy
         )
@@ -110,7 +108,7 @@ class FigureGroup:
     def __iter__(self):
         return (figure for figure in self.figures)
 
-    def available(self, run_type, run_date, model='nemo'):
+    def available(self, run_type, run_date, model="nemo"):
         """Return a list of booleans indicating whether or not each of the
         figures in the group is available on the static file server that
         provides figure files.
@@ -127,10 +125,7 @@ class FigureGroup:
         :return: Figures that are availability on the static figure file server.
         :rtype: list
         """
-        return [
-            figure.available(run_type, run_date, model)
-            for figure in self.figures
-        ]
+        return [figure.available(run_type, run_date, model) for figure in self.figures]
 
 
 @attr.s
@@ -158,7 +153,7 @@ class ImageLoop:
     def __iter__(self):
         return (self for i in range(1))
 
-    def available(self, run_type, run_date, model='nemo'):
+    def available(self, run_type, run_date, model="nemo"):
         """Return a boolean indicating whether or not any of the image loop
         figures are available on the static file server that provides figure
         files.
@@ -178,7 +173,7 @@ class ImageLoop:
         else:
             return False
 
-    def hours(self, run_type, run_date, model='nemo', file_dates=[]):
+    def hours(self, run_type, run_date, model="nemo", file_dates=[]):
         """Return a list of run hours for which image loop figures are
         available on the static file server that provides figure files.
 
@@ -223,9 +218,9 @@ class ImageLoop:
         :rtype: str
         """
         file_date = file_date.format("YYYYMMDD")
-        return f'{self.metadata.svg_name}_{file_date}_{run_hr:02d}{self.image_minute:02d}00_UTC.png'
+        return f"{self.metadata.svg_name}_{file_date}_{run_hr:02d}{self.image_minute:02d}00_UTC.png"
 
-    def path(self, run_type, run_date, run_hr, model='nemo', file_date=''):
+    def path(self, run_type, run_date, run_hr, model="nemo", file_date=""):
         """Return the figure file path.
 
         :param str run_type: Run type for which the figure was generated.
@@ -247,11 +242,9 @@ class ImageLoop:
         :return: Figure file path.
         :rtype: str
         """
-        run_dmy = run_date.format('DDMMMYY').lower()
+        run_dmy = run_date.format("DDMMMYY").lower()
         fig_dir = self.metadata.FIG_DIR_TMPLS[model].format(
-            run_type=run_type,
-            svg_name=self.metadata.svg_name,
-            run_dmy=run_dmy
+            run_type=run_type, svg_name=self.metadata.svg_name, run_dmy=run_dmy
         )
         file_date = file_date or run_date
         return os.path.join(fig_dir, self.filename(file_date, run_hr))
@@ -275,7 +268,7 @@ class ImageLoopGroup:
     def __getitem__(self, item):
         return self.loops[item]
 
-    def available(self, run_type, run_date, model='nemo'):
+    def available(self, run_type, run_date, model="nemo"):
         """Return a list of booleans indicating whether or not any of the image loop
         figures are available on the static file server that provides figure
         files.
@@ -292,6 +285,4 @@ class ImageLoopGroup:
         :return: Figure is availability on the static figure file server.
         :rtype: list
         """
-        return [
-            loop.available(run_type, run_date, model) for loop in self.loops
-        ]
+        return [loop.available(run_type, run_date, model) for loop in self.loops]
