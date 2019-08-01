@@ -37,164 +37,153 @@ def main(global_config, **settings):
 
 
 def _static_views(config, settings):
-    config.add_static_view(name='static', path='salishsea_site:static')
+    config.add_static_view(name="static", path="salishsea_site:static")
     config.add_static_view(
-        name=settings['nowcast_figures_server_name'],
-        path='/results/nowcast-sys/figures'
+        name=settings["nowcast_figures_server_name"],
+        path="/results/nowcast-sys/figures",
     )
 
 
 def _copyright_year_range(config):
     def _add_copyright_year_range(request):
         return (
-            '2013' if datetime.date.today().year == 2013 else
-            '2013-{:%Y}'.format(datetime.date.today())
+            "2013"
+            if datetime.date.today().year == 2013
+            else "2013-{:%Y}".format(datetime.date.today())
         )
 
-    config.add_request_method(
-        _add_copyright_year_range, 'copyright_years', reify=True
-    )
+    config.add_request_method(_add_copyright_year_range, "copyright_years", reify=True)
 
 
 def _erddap_url(config):
     def _add_erddap_url(request):
-        return 'https://salishsea.eos.ubc.ca/erddap/'
+        return "https://salishsea.eos.ubc.ca/erddap/"
 
-    config.add_request_method(_add_erddap_url, 'erddap_url', reify=True)
+    config.add_request_method(_add_erddap_url, "erddap_url", reify=True)
 
 
 def _site_routes(config):
-    config.add_route('site.index', '/')
-    config.add_route('robots.txt', '/robots.txt')
+    config.add_route("site.index", "/")
+    config.add_route("robots.txt", "/robots.txt")
     # Legacy route
-    config.add_route('site.index.html', '/index.html')
+    config.add_route("site.index.html", "/index.html")
 
 
 def _salishseacast_routes(config):
-    config.add_route('storm_surge.portal', 'storm-surge/')
-    config.add_route('storm_surge.forecast', 'storm-surge/forecast')
-    config.add_route('storm_surge.alert.feed', 'storm-surge/atom/{filename}')
-    config.add_route('salishseacast.about', 'nemo/')
-    config.add_route('results.index', 'nemo/results/')
+    config.add_route("storm_surge.portal", "storm-surge/")
+    config.add_route("storm_surge.forecast", "storm-surge/forecast")
+    config.add_route("storm_surge.alert.feed", "storm-surge/atom/{filename}")
+    config.add_route("salishseacast.about", "nemo/")
+    config.add_route("results.index", "nemo/results/")
     config.add_route(
-        'results.forecast.publish',
-        'nemo/results/forecast/publish/{results_date}'
+        "results.forecast.publish", "nemo/results/forecast/publish/{results_date}"
     )
     config.add_route(
-        'results.forecast2.publish',
-        'nemo/results/forecast2/publish/{results_date}'
+        "results.forecast2.publish", "nemo/results/forecast2/publish/{results_date}"
     )
     config.add_route(
-        'results.forecast.surfacecurrents',
-        'nemo/results/forecast/surfacecurrents/{results_date}'
+        "results.forecast.surfacecurrents",
+        "nemo/results/forecast/surfacecurrents/{results_date}",
     )
     config.add_route(
-        'results.forecast2.surfacecurrents',
-        'nemo/results/forecast2/surfacecurrents/{results_date}'
+        "results.forecast2.surfacecurrents",
+        "nemo/results/forecast2/surfacecurrents/{results_date}",
     )
     config.add_route(
-        'results.nowcast-green.surfacecurrents',
-        'nemo/results/nowcast-green/surfacecurrents/{results_date}'
+        "results.nowcast-green.surfacecurrents",
+        "nemo/results/nowcast-green/surfacecurrents/{results_date}",
     )
     config.add_route(
-        'results.nowcast.currents',
-        'nemo/results/nowcast/currents/{results_date}'
+        "results.nowcast.currents", "nemo/results/nowcast/currents/{results_date}"
     )
     config.add_route(
-        'results.nowcast.biology',
-        'nemo/results/nowcast/biology/{results_date}'
+        "results.nowcast.biology", "nemo/results/nowcast/biology/{results_date}"
     )
     config.add_route(
-        'results.nowcast.timeseries',
-        'nemo/results/nowcast/timeseries/{results_date}'
+        "results.nowcast.timeseries", "nemo/results/nowcast/timeseries/{results_date}"
     )
     config.add_route(
-        'results.nowcast.comparison',
-        'nemo/results/nowcast/comparison/{results_date}'
+        "results.nowcast.comparison", "nemo/results/nowcast/comparison/{results_date}"
     )
-    config.add_route('nowcast.monitoring', 'nemo/nowcast/monitoring')
-    config.add_route('nowcast.logs', 'nemo/nowcast/logs/{filename}')
+    config.add_route("nowcast.monitoring", "nemo/nowcast/monitoring")
+    config.add_route("nowcast.logs", "nemo/nowcast/logs/{filename}")
     # VHFR FVCOM model results routes
-    config.add_route('fvcom.results.index', 'fvcom/results/')
+    config.add_route("fvcom.results.index", "fvcom/results/")
     config.add_route(
-        'fvcom.results.nowcast-x2.publish',
-        'fvcom/results/nowcast-x2/publish/{results_date}'
+        "fvcom.results.nowcast-x2.publish",
+        "fvcom/results/nowcast-x2/publish/{results_date}",
     )
     config.add_route(
-        'fvcom.results.nowcast-r12.publish',
-        'fvcom/results/nowcast-r12/publish/{results_date}'
+        "fvcom.results.nowcast-r12.publish",
+        "fvcom/results/nowcast-r12/publish/{results_date}",
     )
     config.add_route(
-        'fvcom.results.forecast-x2.publish',
-        'fvcom/results/forecast-x2/publish/{results_date}'
+        "fvcom.results.forecast-x2.publish",
+        "fvcom/results/forecast-x2/publish/{results_date}",
     )
     # WAVEWATCH III® model results routes
-    config.add_route('wwatch3.results.index', 'wwatch3/results/')
+    config.add_route("wwatch3.results.index", "wwatch3/results/")
     config.add_route(
-        'wwatch3.results.forecast.publish',
-        'wwatch3/results/forecast/publish/{results_date}'
+        "wwatch3.results.forecast.publish",
+        "wwatch3/results/forecast/publish/{results_date}",
     )
     config.add_route(
-        'wwatch3.results.forecast2.publish',
-        'wwatch3/results/forecast2/publish/{results_date}'
+        "wwatch3.results.forecast2.publish",
+        "wwatch3/results/forecast2/publish/{results_date}",
     )
     # Legacy routes
-    config.add_route('storm_surge.index.html', 'storm-surge/index.html')
-    config.add_route('storm_surge.forecast.html', 'storm-surge/forecast.html')
-    config.add_route('results.index.html', 'nemo/results/index.html')
-    config.add_route('nemo.index.html', 'nemo/index.html')
+    config.add_route("storm_surge.index.html", "storm-surge/index.html")
+    config.add_route("storm_surge.forecast.html", "storm-surge/forecast.html")
+    config.add_route("results.index.html", "nemo/results/index.html")
+    config.add_route("nemo.index.html", "nemo/index.html")
     config.add_route(
-        'results.forecast.publish.html',
-        'nemo/results/forecast/publish_{results_date}.html'
+        "results.forecast.publish.html",
+        "nemo/results/forecast/publish_{results_date}.html",
     )
     config.add_route(
-        'results.forecast2.publish.html',
-        'nemo/results/forecast2/publish_{results_date}.html'
+        "results.forecast2.publish.html",
+        "nemo/results/forecast2/publish_{results_date}.html",
     )
     config.add_route(
-        'results.nowcast.research',
-        'nemo/results/nowcast/research/{results_date}'
+        "results.nowcast.research", "nemo/results/nowcast/research/{results_date}"
     )
     config.add_route(
-        'results.nowcast.research.html',
-        'nemo/results/nowcast/research_{results_date}.html'
+        "results.nowcast.research.html",
+        "nemo/results/nowcast/research_{results_date}.html",
     )
     config.add_route(
-        'results.nowcast.comparison.html',
-        'nemo/results/nowcast/comparison_{results_date}.html'
+        "results.nowcast.comparison.html",
+        "nemo/results/nowcast/comparison_{results_date}.html",
     )
     config.add_route(
-        'fvcom.results.nowcast.publish',
-        'fvcom/results/nowcast/publish/{results_date}'
+        "fvcom.results.nowcast.publish", "fvcom/results/nowcast/publish/{results_date}"
     )
     config.add_route(
-        'fvcom.results.forecast.publish',
-        'fvcom/results/forecast/publish/{results_date}'
+        "fvcom.results.forecast.publish",
+        "fvcom/results/forecast/publish/{results_date}",
     )
 
 
 def _bloomcast_routes(config):
-    config.add_route('bloomcast.about', 'bloomcast/')
-    config.add_route('bloomcast.spring_diatoms', 'bloomcast/spring_diatoms')
+    config.add_route("bloomcast.about", "bloomcast/")
+    config.add_route("bloomcast.spring_diatoms", "bloomcast/spring_diatoms")
     # Legacy routes
-    config.add_route('bloomcast.index.html', 'bloomcast.html')
-    config.add_route(
-        'bloomcast.spring_diatoms.html', 'bloomcast/spring_diatoms.html'
-    )
+    config.add_route("bloomcast.index.html", "bloomcast.html")
+    config.add_route("bloomcast.spring_diatoms.html", "bloomcast/spring_diatoms.html")
 
 
 def _about_site_routes(config):
-    config.add_route('about.contributors', 'contributors')
-    config.add_route('about.publications', 'publications')
-    config.add_route('about.license', 'license')
+    config.add_route("about.contributors", "contributors")
+    config.add_route("about.publications", "publications")
+    config.add_route("about.license", "license")
     # Legacy route
-    config.add_route('about.contributors.html', 'contributors.html')
-    config.add_route('about.license.html', 'license.html')
+    config.add_route("about.contributors.html", "contributors.html")
+    config.add_route("about.license.html", "license.html")
 
 
 def _figure_server(config):
-    config.add_view('salishsea_site._figure', route_name='figure')
-    config.add_route('figure', '/*subpath')
+    config.add_view("salishsea_site._figure", route_name="figure")
+    config.add_route("figure", "/*subpath")
 
 
-_figure = static_view('/var/www/html/nowcast-sys/figures', use_subpath=True)
+_figure = static_view("/var/www/html/nowcast-sys/figures", use_subpath=True)

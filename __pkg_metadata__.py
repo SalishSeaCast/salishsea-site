@@ -14,7 +14,7 @@
 # limitations under the License.
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
-PROJECT = 'salishsea_site'
-DESCRIPTION = 'salishsea.eos.ubc.ca site web app'
-VERSION = '19.1.dev0'
-DEV_STATUS = '5 - Production'
+PROJECT = "salishsea_site"
+DESCRIPTION = "salishsea.eos.ubc.ca site web app"
+VERSION = "19.1.dev0"
+DEV_STATUS = "5 - Production"

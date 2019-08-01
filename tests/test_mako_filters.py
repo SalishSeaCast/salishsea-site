@@ -20,15 +20,16 @@ from salishsea_site import mako_filters
 
 
 @pytest.mark.parametrize(
-    'text, expected', [
-        ('foo', 'foo'),
-        ('foo bar', 'foo-bar'),
-        ('foo Bar', 'foo-bar'),
-        ('foo-Bar', 'foo-bar'),
-        ('FOO BAR', 'foo-bar'),
-        ('foo - bar', 'foo---bar'),
-        ('foo — bar', 'foo-—-bar'),
-    ]
+    "text, expected",
+    [
+        ("foo", "foo"),
+        ("foo bar", "foo-bar"),
+        ("foo Bar", "foo-bar"),
+        ("foo-Bar", "foo-bar"),
+        ("FOO BAR", "foo-bar"),
+        ("foo - bar", "foo---bar"),
+        ("foo — bar", "foo-—-bar"),
+    ],
 )
 class TestSlug:
     def test_slug(self, text, expected):

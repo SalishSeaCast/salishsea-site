@@ -18,7 +18,7 @@ from pyramid import testing
 import pytest
 
 
-@pytest.yield_fixture(scope='function')
+@pytest.yield_fixture(scope="function")
 def pconfig():
     config = testing.setUp(request=testing.DummyRequest)
     yield config

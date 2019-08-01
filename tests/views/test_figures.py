@@ -27,47 +27,47 @@ class TestImageLoop:
 
     def test_first_available(self):
         img_loop = salishsea_site.views.figures.ImageLoop(
-            model_var='salinity',
+            model_var="salinity",
             metadata=salishsea_site.views.figures.FigureMetadata(
-                title='Salinity Fields Along Thalweg and on Surface',
-                link_text='Salinity',
-                svg_name='salinity_thalweg_and_surface',
+                title="Salinity Fields Along Thalweg and on Surface",
+                link_text="Salinity",
+                svg_name="salinity_thalweg_and_surface",
             ),
         )
         with patch(
-            'salishsea_site.views.salishseacast.Path.exists',
+            "salishsea_site.views.salishseacast.Path.exists",
             return_value=True,
-            autospec=True
+            autospec=True,
         ):
-            assert img_loop.available('nowcast', arrow.get('2018-12-14'))
+            assert img_loop.available("nowcast", arrow.get("2018-12-14"))
 
     def test_subsequent_available(self):
         img_loop = salishsea_site.views.figures.ImageLoop(
-            model_var='salinity',
+            model_var="salinity",
             metadata=salishsea_site.views.figures.FigureMetadata(
-                title='Salinity Fields Along Thalweg and on Surface',
-                link_text='Salinity',
-                svg_name='salinity_thalweg_and_surface',
+                title="Salinity Fields Along Thalweg and on Surface",
+                link_text="Salinity",
+                svg_name="salinity_thalweg_and_surface",
             ),
         )
         with patch(
-            'salishsea_site.views.salishseacast.Path.exists', autospec=True
+            "salishsea_site.views.salishseacast.Path.exists", autospec=True
         ) as p_exists:
             p_exists.side_effect = (False, False, True)
-            assert img_loop.available('nowcast', arrow.get('2018-12-14'))
+            assert img_loop.available("nowcast", arrow.get("2018-12-14"))
 
     def test_none_available(self):
         img_loop = salishsea_site.views.figures.ImageLoop(
-            model_var='salinity',
+            model_var="salinity",
             metadata=salishsea_site.views.figures.FigureMetadata(
-                title='Salinity Fields Along Thalweg and on Surface',
-                link_text='Salinity',
-                svg_name='salinity_thalweg_and_surface',
+                title="Salinity Fields Along Thalweg and on Surface",
+                link_text="Salinity",
+                svg_name="salinity_thalweg_and_surface",
             ),
         )
         with patch(
-            'salishsea_site.views.salishseacast.Path.exists',
+            "salishsea_site.views.salishseacast.Path.exists",
             return_value=False,
-            autospec=True
+            autospec=True,
         ):
-            assert not img_loop.available('nowcast', arrow.get('2018-12-14'))
+            assert not img_loop.available("nowcast", arrow.get("2018-12-14"))
