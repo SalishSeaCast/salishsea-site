@@ -114,6 +114,10 @@ Web App Package Development
 Python Versions
 ---------------
 
+.. image:: https://img.shields.io/badge/python-3.6+-blue.svg
+    :target: https://docs.python.org/3.7/
+    :alt: Python Version
+
 The :kbd:`salishsea-site` package is developed,
 tested,
 and deployed using `Python`_ 3.6 or later.
@@ -132,6 +136,10 @@ in particular:
 
 Getting the Code
 ----------------
+
+.. image:: https://img.shields.io/badge/version%20control-hg-blue.svg
+    :target: https://bitbucket.org/salishsea/salishsea-site/
+    :alt: Mercurial on Bitbucket
 
 Clone the :ref:`salishsea-site-repo` code and documentation `repository`_ from Bitbucket with:
 
@@ -239,6 +247,10 @@ To stop the dev server use :kbd:`Ctrl-C` in the terminal session where you ran t
 Building the Documentation
 --------------------------
 
+.. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
+    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :alt: Documentation Status
+
 The documentation for the :kbd:`salishsea-site` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
 Creating a :ref:`SalishSeaSiteDevelopmentEnvironment` as described above includes the installation of Sphinx.
 Building the documentation is driven by :file:`docs/Makefile`.
@@ -344,6 +356,10 @@ to produce an HTML report that you can view in your browser by opening :file:`sa
 Version Control Repository
 --------------------------
 
+.. image:: https://img.shields.io/badge/version%20control-hg-blue.svg
+    :target: https://bitbucket.org/salishsea/salishsea-site/
+    :alt: Mercurial on Bitbucket
+
 The :kbd:`salishsea-site` package code and documentation source files are available in the :ref:`salishsea-site-repo` `Mercurial`_ repository at https://bitbucket.org/salishsea/salishsea-site.
 
 .. _Mercurial: https://www.mercurial-scm.org/
@@ -354,6 +370,10 @@ The :kbd:`salishsea-site` package code and documentation source files are availa
 Issue Tracker
 -------------
 
+.. image:: https://img.shields.io/bitbucket/issues/salishsea/salishsea-site.svg
+    :target: https://bitbucket.org/salishsea/salishsea-site/issues?status=new&status=open
+    :alt: Issue Tracker
+
 Development tasks,
 bug reports,
 and enhancement ideas are recorded and managed in the issue tracker at https://bitbucket.org/salishsea/salishsea-site/issues.
@@ -361,6 +381,10 @@ and enhancement ideas are recorded and managed in the issue tracker at https://b
 
 License
 =======
+
+.. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
+    :target: https://www.apache.org/licenses/LICENSE-2.0
+    :alt: Licensed under the Apache License, Version 2.0
 
 The salishsea.eos.ubc.ca site content, code, and documentation are
 Copyright 2014-2019 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group

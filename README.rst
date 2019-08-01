@@ -3,6 +3,22 @@ salishsea.eos.ubc.ca Site
 *************************
 :License: Apache License, Version 2.0
 
+.. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
+    :target: https://www.apache.org/licenses/LICENSE-2.0
+    :alt: Licensed under the Apache License, Version 2.0
+.. image:: https://img.shields.io/badge/python-3.6+-blue.svg
+    :target: https://docs.python.org/3.7/
+    :alt: Python Version
+.. image:: https://img.shields.io/badge/version%20control-hg-blue.svg
+    :target: https://bitbucket.org/salishsea/salishsea-site/
+    :alt: Mercurial on Bitbucket
+.. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
+    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :alt: Documentation Status
+.. image:: https://img.shields.io/bitbucket/issues/salishsea/salishsea-site.svg
+    :target: https://bitbucket.org/salishsea/salishsea-site/issues?status=new&status=open
+    :alt: Issue Tracker
+
 This repo contains the code and documentation for the dynamic web app
 based on the Pyramid framework that serves the salishsea.eos.ubc.ca
 site where information and research results from various projects about the
@@ -12,12 +28,16 @@ Documentation for the app is in the ``docs/`` directory and is rendered at
 https://salishsea-site.readthedocs.io/en/latest/.
 
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io/en/latest/?badge=latest
+    :target: https://salishsea-site.readthedocs.io/en/latest/
     :alt: Documentation Status
 
 
 License
 =======
+
+.. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
+    :target: https://www.apache.org/licenses/LICENSE-2.0
+    :alt: Licensed under the Apache License, Version 2.0
 
 The salishsea.eos.ubc.ca site content, code, and documentation are
 copyright 2014-2019 by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
