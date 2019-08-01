@@ -16,5 +16,5 @@
 """
 PROJECT = 'salishsea_site'
 DESCRIPTION = 'salishsea.eos.ubc.ca site web app'
-VERSION = '2.0'
+VERSION = '19.1.dev0'
 DEV_STATUS = '5 - Production'
