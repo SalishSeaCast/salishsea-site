@@ -195,21 +195,44 @@ To deactivate the environment use:
 Coding Style
 ------------
 
-The :kbd:`salishsea-site` package uses the `yapf`_ code formatting tool to maintain a coding style that is very close to `PEP 8`_.
-The project-specific differences from the :command:`yapf` implementation of PEP 8 are defined in the :file:`.style.yapf` in the repository root directory.
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://black.readthedocs.io/en/stable/
+    :alt: The uncompromising Python code formatter
 
-.. _yapf: https://github.com/google/yapf
+The :kbd:`salishsea-site` package uses the `black`_ code formatting tool to maintain a coding style that is very close to `PEP 8`_.
+
+.. _black: https://black.readthedocs.io/en/stable/
 .. _PEP 8: https://www.python.org/dev/peps/pep-0008/
 
-:command:`yapf` is installed as part of the :ref:`SalishSeaSiteDevelopmentEnvironment` setup.
+:command:`black` is installed as part of the :ref:`SalishSeaSiteDevelopmentEnvironment` setup.
 
-To run :command:`yapf` on the entire code-base use:
+o run :command:`black` on the entire code-base use:
 
 .. code-block:: bash
 
-    $ yapf --parallel --in-place --recursive salishsea_site/ tests/ __pkg_metadata__.py setup.py
+    $ cd SalishSeaCmd
+    $ conda activate salishsea-cmd
+    (salishsea-cmd)$ black ./
 
 in the repository root directory.
+The output looks something like::
+
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/mako_filters.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/site.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/about.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/bloomcast.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/conftest.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/test_mako_filters.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/views/test_bloomcast.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/views/test_figures.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/wwatch3.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/figures.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/__init__.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/fvcom.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/views/test_salishseacast.py
+  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/salishseacast.py
+  All done! ✨ 🍰 ✨
+  14 files reformatted, 4 file left unchanged.
 
 
 .. _SalishSeaSiteRunningDevApp:

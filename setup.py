@@ -16,47 +16,44 @@
 """
 import os
 
-from setuptools import (
-    find_packages,
-    setup,
-)
+from setuptools import find_packages, setup
 
 import __pkg_metadata__
 
 python_classifiers = [
-    'Programming Language :: Python :: {0}'.format(py_version)
-    for py_version in ['3', '3.6', '3.7']
+    "Programming Language :: Python :: {0}".format(py_version)
+    for py_version in ["3", "3.6", "3.7"]
 ]
 other_classifiers = [
-    'Development Status :: ' + __pkg_metadata__.DEV_STATUS,
-    'License :: OSI Approved :: Apache Software License',
-    'Programming Language :: Python :: Implementation :: CPython',
-    'Operating System :: POSIX :: Linux',
-    'Operating System :: Unix',
-    'Framework :: Pyramid',
-    'Topic :: Internet :: WWW/HTTP',
-    'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
+    "Development Status :: " + __pkg_metadata__.DEV_STATUS,
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Unix",
+    "Framework :: Pyramid",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
 ]
 
 here = os.path.abspath(os.path.dirname(__file__))
 try:
-    long_description = open('README.rst', 'rt').read()
+    long_description = open("README.rst", "rt").read()
 except IOError:
-    long_description = ''
+    long_description = ""
 
 install_requires = [
     # see environment-prod.yaml for conda environment production installation,
     # see environment-dev.yaml for conda environment dev installation,
     # see requirements.txt for package versions used during recent development
-    'arrow',
-    'attrs',
-    'pyramid',
-    'pyramid_crow',
-    'pyramid_mako',
-    'pyyaml',
-    'requests',
+    "arrow",
+    "attrs",
+    "pyramid",
+    "pyramid_crow",
+    "pyramid_mako",
+    "pyyaml",
+    "requests",
     "supervisor",
-    'waitress',
+    "waitress",
 ]
 
 setup(
@@ -64,13 +61,13 @@ setup(
     version=__pkg_metadata__.VERSION,
     description=__pkg_metadata__.DESCRIPTION,
     long_description=long_description,
-    author='Doug Latornell',
-    author_email='dlatornell@eos.ubc.ca',
-    url='https://salishsea-site.readthedocs.io/en/latest/',
-    license='Apache License, Version 2.0',
+    author="Doug Latornell",
+    author_email="dlatornell@eos.ubc.ca",
+    url="https://salishsea-site.readthedocs.io/en/latest/",
+    license="Apache License, Version 2.0",
     classifiers=python_classifiers + other_classifiers,
-    keywords='web pyramid pylons',
-    platforms=['Linux'],
+    keywords="web pyramid pylons",
+    platforms=["Linux"],
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,

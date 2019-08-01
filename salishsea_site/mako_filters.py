@@ -27,4 +27,4 @@ def slug(text):
              lower-cased.
     :rtype: str
     """
-    return text.replace(' ', '-').lower()
+    return text.replace(" ", "-").lower()

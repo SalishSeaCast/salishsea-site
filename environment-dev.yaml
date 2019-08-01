@@ -21,6 +21,9 @@ dependencies:
   - pyyaml
   - requests
 
+  # For coding style
+  - black
+
   # For unit tests
   - coverage
   - pytest
@@ -38,6 +41,3 @@ dependencies:
     - pyramid_mako
     - supervisor
     - waitress
-
-    # For code style maintenance
-    - yapf

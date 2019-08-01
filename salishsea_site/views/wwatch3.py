@@ -25,35 +25,33 @@ from salishsea_site.views.figures import FigureMetadata, FigureGroup
 logger = logging.getLogger(__name__)
 
 wave_height_period_figure_group = FigureGroup(
-    description='Wave Height and Period at Buoys',
+    description="Wave Height and Period at Buoys",
     figures=[
         FigureMetadata(
-            title='Halibut Bank Wave Height and Period',
-            link_text='Halibut Bank',
-            svg_name='HB_waves'
+            title="Halibut Bank Wave Height and Period",
+            link_text="Halibut Bank",
+            svg_name="HB_waves",
         ),
         FigureMetadata(
-            title='Sentry Shoal Wave Height and Period',
-            link_text='Sentry Shoal',
-            svg_name='SS_waves'
+            title="Sentry Shoal Wave Height and Period",
+            link_text="Sentry Shoal",
+            svg_name="SS_waves",
         ),
-    ]
+    ],
 )
 
 
-@view_config(
-    route_name='wwatch3.results.index', renderer='wwatch3/results_index.mako'
-)
+@view_config(route_name="wwatch3.results.index", renderer="wwatch3/results_index.mako")
 def results_index(request):
     """Render results calendar grid index page.
     """
     INDEX_GRID_COLS = 21
     # Calculate the date range to display in the grid and the number of
     # columns for the month headings of the grid
-    fcst_date = arrow.now().floor('day').shift(days=+1)
+    fcst_date = arrow.now().floor("day").shift(days=+1)
     dates = list(
         arrow.Arrow.range(
-            'day', fcst_date.shift(days=-(INDEX_GRID_COLS - 1)), fcst_date
+            "day", fcst_date.shift(days=-(INDEX_GRID_COLS - 1)), fcst_date
         )
     )
     if dates[0].month != dates[-1].month:
@@ -64,74 +62,72 @@ def results_index(request):
     # Replace dates for which there are no figures with None
     grid_rows = (
         # Calendar grid row key, run type, figures, figures type
-        ('forecast', 'forecast', wave_height_period_figure_group, 'publish'),
-        (
-            'prelim forecast', 'forecast2', wave_height_period_figure_group,
-            'publish'
-        ),
+        ("forecast", "forecast", wave_height_period_figure_group, "publish"),
+        ("prelim forecast", "forecast2", wave_height_period_figure_group, "publish"),
     )
     grid_dates = {
         row: _exclude_missing_dates(dates, figures, figs_type, run_type)
         for row, run_type, figures, figs_type in grid_rows
     }
     return {
-        'first_date': dates[0],
-        'last_date': dates[-1],
-        'this_month_cols': this_month_cols,
-        'last_month_cols': last_month_cols,
-        'grid_dates': grid_dates,
+        "first_date": dates[0],
+        "last_date": dates[-1],
+        "this_month_cols": this_month_cols,
+        "last_month_cols": last_month_cols,
+        "grid_dates": grid_dates,
     }
 
 
 def _exclude_missing_dates(dates, figures, figs_type, run_type):
-    return ((
-        d
-        if any(fig.available(run_type, d, model='wwatch3')
-               for fig in figures) else None
-    ) for d in dates)
+    return (
+        (
+            d
+            if any(fig.available(run_type, d, model="wwatch3") for fig in figures)
+            else None
+        )
+        for d in dates
+    )
 
 
 @view_config(
-    route_name='wwatch3.results.forecast.publish',
-    renderer='wwatch3/publish.mako'
+    route_name="wwatch3.results.forecast.publish", renderer="wwatch3/publish.mako"
 )
 def forecast_publish(request):
     """Render forecast figures page.
     """
-    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     figures_available = wave_height_period_figure_group.available(
-        'forecast', results_date, 'wwatch3'
+        "forecast", results_date, "wwatch3"
     )
     if not any(figures_available):
         raise HTTPNotFound
     return {
-        'results_date': results_date,
-        'run_type_title': 'Forecast',
-        'run_type': 'forecast',
-        'run_date': results_date,
-        'figures': wave_height_period_figure_group,
-        'figures_available': figures_available,
+        "results_date": results_date,
+        "run_type_title": "Forecast",
+        "run_type": "forecast",
+        "run_date": results_date,
+        "figures": wave_height_period_figure_group,
+        "figures_available": figures_available,
     }
 
 
 @view_config(
-    route_name='wwatch3.results.forecast2.publish',
-    renderer='wwatch3/publish.mako'
+    route_name="wwatch3.results.forecast2.publish", renderer="wwatch3/publish.mako"
 )
 def forecast2_publish(request):
     """Render forecast2 figures page.
     """
-    results_date = arrow.get(request.matchdict['results_date'], 'DDMMMYY')
+    results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     figures_available = wave_height_period_figure_group.available(
-        'forecast2', results_date, 'wwatch3'
+        "forecast2", results_date, "wwatch3"
     )
     if not any(figures_available):
         raise HTTPNotFound
     return {
-        'results_date': results_date,
-        'run_type_title': 'Preliminary Forecast',
-        'run_type': 'forecast2',
-        'run_date': results_date,
-        'figures': wave_height_period_figure_group,
-        'figures_available': figures_available,
+        "results_date": results_date,
+        "run_type_title": "Preliminary Forecast",
+        "run_type": "forecast2",
+        "run_date": results_date,
+        "figures": wave_height_period_figure_group,
+        "figures_available": figures_available,
     }
