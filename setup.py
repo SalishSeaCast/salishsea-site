@@ -48,10 +48,10 @@ install_requires = [
     "arrow",
     "attrs",
     "pyramid",
-    "pyramid_crow",
     "pyramid_mako",
     "pyyaml",
     "requests",
+    "sentry-sdk",
     "supervisor",
     "waitress",
 ]
