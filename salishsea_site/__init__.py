@@ -15,9 +15,14 @@
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
 import datetime
+import os
 
 from pyramid.config import Configurator
 from pyramid.static import static_view
+import sentry_sdk
+from sentry_sdk.integrations.pyramid import PyramidIntegration
+
+sentry_sdk.init(dsn=os.environ["SENTRY_DSN"], integrations=[PyramidIntegration()])
 
 
 def main(global_config, **settings):

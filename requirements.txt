@@ -36,7 +36,6 @@ Pygments==2.4.2
 pyOpenSSL==19.0.0
 pyparsing==2.4.2
 pyramid==1.10.4
-pyramid-crow==0.4.2
 pyramid-debugtoolbar==4.5
 pyramid-mako==1.0.2
 PySocks==1.7.0
@@ -44,10 +43,10 @@ pytest==5.0.1
 python-dateutil==2.8.0
 pytz==2019.2
 PyYAML==5.1.2
-raven==6.10.0
 repoze.lru==0.7
 requests==2.22.0
 -e salishsea_site==2.0
+sentry-sdk==0.11.1
 six==1.12.0
 snowballstemmer==1.9.0
 Sphinx==2.1.2

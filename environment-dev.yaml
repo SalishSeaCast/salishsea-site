@@ -36,8 +36,8 @@ dependencies:
     - arrow
     - attrs
     - pyramid
-    - pyramid_crow
     - pyramid_debugtoolbar
     - pyramid_mako
+    - sentry-sdk
     - supervisor
     - waitress
