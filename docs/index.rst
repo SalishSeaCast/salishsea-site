@@ -177,7 +177,7 @@ and building the documentation with the commands:
 .. code-block:: bash
 
     $ cd salishsea-site
-    $ conda env create -f environment-dev.yaml
+    $ conda env create -f env/environment-dev.yaml
     $ source activate salishsea-site
     (salishsea-site)$ pip install --editable .
 

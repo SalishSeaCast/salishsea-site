@@ -1,2 +1,13 @@
+version: 2
+
+# Only build HTML and JSON formats
+formats: []
+
+python:
+  version: 3.7
+
 conda:
-  file: environment-rtd.yml
+  environment: env/environment-rtd.yaml
+
+build:
+  image: latest
