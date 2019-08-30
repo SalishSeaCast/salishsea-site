@@ -14,6 +14,8 @@
 # limitations under the License.
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
+__version__ = "19.1.dev0"
+
 import datetime
 import os
 
