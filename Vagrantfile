@@ -125,9 +125,8 @@ EOF
           --channel conda-forge --channel defaults \
           --prefix ${SALISHSEA_SITE_ENV} \
           pip \
-          python=3.6 \
+          python>=3.6 \
           pyyaml \
-          'pyzmq<17.0,>=13.1.0' \
           requests \
       "
       echo "Installing pip packages into ${SALISHSEA_SITE_ENV} conda env"
@@ -135,13 +134,12 @@ EOF
         $PIP install \
           arrow \
           attrs \
-          chaussette \
-          circus \
           pyramid \
-          pyramid-crow \
           pyramid-debugtoolbar \
           pyramid-mako \
-          waitress==0.9.0 \
+          sentry-sdk \
+          supervisor \
+          waitress \
         "
       echo "Installing editable salishsea-site package into ${SALISHSEA_SITE_ENV} conda env"
       su vagrant -c " \
