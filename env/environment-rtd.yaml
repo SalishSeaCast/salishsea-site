@@ -11,3 +11,4 @@ dependencies:
   - python>=3.6
   - pip:
       - pyramid
+      - sentry_sdk
