@@ -595,8 +595,8 @@ def forecast_surface_currents(request):
     """
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date.shift(days=-1)
-    tile_dates = arrow.Arrow.range(
-        "day", run_date.shift(days=-1), run_date.shift(days=+2)
+    tile_dates = list(
+        arrow.Arrow.range("day", run_date.shift(days=-1), run_date.shift(days=+2))
     )
     tiles_pdf_url_stub = _calc_tiles_pdf_url_stub(
         request, "forecast", run_date, tile_dates
@@ -620,7 +620,7 @@ def forecast2_surface_currents(request):
     """
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date.shift(days=-2)
-    tile_dates = arrow.Arrow.range("day", run_date, run_date.shift(days=+3))
+    tile_dates = list(arrow.Arrow.range("day", run_date, run_date.shift(days=+3)))
     tiles_pdf_url_stub = _calc_tiles_pdf_url_stub(
         request, "forecast2", run_date, tile_dates
     )
@@ -643,7 +643,7 @@ def nowcast_green_surface_currents(request):
     """
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date
-    tile_dates = arrow.Arrow.range("day", run_date, run_date.shift(days=+3))
+    tile_dates = list(arrow.Arrow.range("day", run_date, run_date.shift(days=+3)))
     tiles_pdf_url_stub = _calc_tiles_pdf_url_stub(
         request, "nowcast-green", run_date, tile_dates
     )
@@ -702,7 +702,7 @@ def _calc_tiles_pdf_url_stub(request, run_type, run_date, tile_dates):
     route_name="results.nowcast.research.html", renderer="salishseacast/currents.mako"
 )
 def nowcast_currents_physics(request):
-    """Render model research currents and physics evaluation results figures 
+    """Render model research currents and physics evaluation results figures
     page.
     """
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
