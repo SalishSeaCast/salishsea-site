@@ -114,13 +114,13 @@ Web App Package Development
 Python Versions
 ---------------
 
-.. image:: https://img.shields.io/badge/python-3.6+-blue.svg
-    :target: https://docs.python.org/3.7/
+.. image:: https://img.shields.io/badge/python-3.8-blue.svg
+    :target: https://docs.python.org/3.8/
     :alt: Python Version
 
 The :kbd:`salishsea-site` package is developed,
 tested,
-and deployed using `Python`_ 3.6 or later.
+and deployed using `Python`_ 3.8.
 The package uses some Python language features that are not available in versions prior to 3.6,
 in particular:
 
