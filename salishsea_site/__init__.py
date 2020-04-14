@@ -1,4 +1,4 @@
-# Copyright 2014-2019 The Salish Sea MEOPAR Contributors
+# Copyright 2014-2020 The Salish Sea MEOPAR Contributors
 # and The University of British Columbia
 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,9 +19,9 @@ __version__ = "19.2.dev0"
 import datetime
 import os
 
+import sentry_sdk
 from pyramid.config import Configurator
 from pyramid.static import static_view
-import sentry_sdk
 from sentry_sdk.integrations.pyramid import PyramidIntegration
 
 sentry_sdk.init(dsn=os.environ.get("SENTRY_DSN"), integrations=[PyramidIntegration()])

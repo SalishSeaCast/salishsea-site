@@ -1,4 +1,4 @@
-# Copyright 2014-2019 The Salish Sea MEOPAR Contributors
+# Copyright 2014-2020 The Salish Sea MEOPAR Contributors
 # and The University of British Columbia
 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +16,10 @@
 
 .. note:: :py:func:`pconfig` fixture is defined in :file:`tests/conftest.py`.
 """
+import datetime
 from pathlib import Path
 from unittest.mock import patch
 
-import datetime
 from pyramid.threadlocal import get_current_request
 
 from salishsea_site.views import bloomcast
