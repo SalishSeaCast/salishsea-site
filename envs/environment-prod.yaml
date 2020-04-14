@@ -6,8 +6,8 @@
 #
 #    $ cd salishsea_site
 #    $ conda env create -f envs/environment-prod.yaml
-#    $ source activate salishsea_site
-#    $ pip install --editable .
+#    $ source activate salishsea-site
+#    (salishsea-site)$ python3 -m pip install --editable .
 
 name: salishsea-site-env
 

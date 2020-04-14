@@ -179,7 +179,7 @@ and building the documentation with the commands:
     $ cd salishsea-site
     $ conda env create -f env/environment-dev.yaml
     $ source activate salishsea-site
-    (salishsea-site)$ pip install --editable .
+    (salishsea-site)$ python3 -m pip install --editable .
 
 The :kbd:`--editable` option in the :command:`pip install` commands above installs the :kbd:`salishsea-site` package via a symlink so that it is automatically updated as the repo evolves.
 
