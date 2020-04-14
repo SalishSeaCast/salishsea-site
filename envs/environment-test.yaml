@@ -1,0 +1,30 @@
+# conda environment description file for salishsea-site package testing environment
+#
+# Creates a conda environment in which the salishsea-site package unit tests and
+# coverage analysis can be run.
+# Primarily intended for creation of a conda env for use in a GitHub Actions workflow.
+
+name: salishsea-site-test
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - pip
+  - pyyaml
+  - requests
+
+  # For unit tests and coverage monitoring
+  - pytest
+  - pytest-cov
+
+  - pip:
+    - arrow
+    - attrs
+    - pyramid
+    - pyramid_debugtoolbar
+    - pyramid_mako
+    - sentry-sdk
+    - supervisor
+    - waitress
