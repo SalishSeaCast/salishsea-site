@@ -1,15 +1,15 @@
 # conda environment description file for salishsea_site package
-# development environment
+# production deployment
 #
-# Create a conda environment for development, testing, and documentation
-# of the salishsea_site web app with:
+# Create a conda environment for production deployment of the
+# salishsea_site web app with:
 #
 #    $ cd salishsea_site
-#    $ conda env create -f environment-dev.yaml
+#    $ conda env create -f envs/environment-prod.yaml
 #    $ source activate salishsea_site
 #    $ pip install --editable .
 
-name: salishsea-site
+name: salishsea-site-env
 
 channels:
   - conda-forge
@@ -20,23 +20,10 @@ dependencies:
   - python>=3.6
   - pyyaml
   - requests
-
-  # For coding style
-  - black
-
-  # For unit tests
-  - coverage
-  - pytest
-
-  # For documentation
-  - sphinx
-  - sphinx_rtd_theme
-
   - pip:
     - arrow
     - attrs
     - pyramid
-    - pyramid_debugtoolbar
     - pyramid_mako
     - sentry-sdk
     - supervisor
