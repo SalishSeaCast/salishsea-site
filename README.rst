@@ -9,9 +9,9 @@ salishsea.eos.ubc.ca Site
 .. image:: https://img.shields.io/badge/python-3.6+-blue.svg
     :target: https://docs.python.org/3.7/
     :alt: Python Version
-.. image:: https://img.shields.io/badge/version%20control-hg-blue.svg
-    :target: https://bitbucket.org/salishsea/salishsea-site/
-    :alt: Mercurial on Bitbucket
+.. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site
+    :alt: Git on GitHub
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
@@ -20,6 +20,15 @@ salishsea.eos.ubc.ca Site
     :alt: Documentation Status
 .. image:: https://img.shields.io/bitbucket/issues/salishsea/salishsea-site.svg
     :target: https://bitbucket.org/salishsea/salishsea-site/issues?status=new&status=open
+    :alt: Issue Tracker
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
+    :alt: GitHub Workflow Status
+.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
+    :alt: Codecov Testing Coverage Report
+.. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site/issues
     :alt: Issue Tracker
 
 This repo contains the code and documentation for the dynamic web app

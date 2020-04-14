@@ -20,6 +20,31 @@
 salishsea.eos.ubc.ca Site Web App
 *********************************
 
+.. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
+    :target: https://www.apache.org/licenses/LICENSE-2.0
+    :alt: Licensed under the Apache License, Version 2.0
+.. image:: https://img.shields.io/badge/python-3.8-blue.svg
+    :target: https://docs.python.org/3.8/
+    :alt: Python Version
+.. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site
+    :alt: Git on GitHub
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://black.readthedocs.io/en/stable/
+    :alt: The uncompromising Python code formatter
+.. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
+    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :alt: Documentation Status
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
+    :alt: GitHub Workflow Status
+.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
+    :alt: Codecov Testing Coverage Report
+.. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site/issues
+    :alt: Issue Tracker
+
 The `salishsea.eos.ubc.ca`_ site is a dynamic web application written in `Python`_ 3 using the `Pyramid web framework`_.
 These docs provide a brief explanation of the structure of the app,
 and details about its development.
@@ -74,7 +99,7 @@ The :file:`salishsea_site` directory tree contains the app package:
   The templates are organized in sub-directories that correspond to the view modules.
 
   .. _page templates: https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
-  .. _HTML5: https://developer.mozilla.org/en/docs/Web/Guide/HTML/HTML5
+  .. _HTML5: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
   .. _Bootstrap 3: https://getbootstrap.com/
   .. _Mako template library: https://www.makotemplates.org/
 
@@ -100,8 +125,8 @@ The :file:`docs/` directory tree contains the `reStructuredText`_ source files f
 and the `Sphinx` configuration and :file:`Makefile` to render them to HTML.
 Please see :ref:`SalishSeaSiteBuildingTheDocumentation` for details.
 
-.. _reStructuredText: https://www.sphinx-doc.org/en/stable/rest.html
-.. _Sphinx: https://www.sphinx-doc.org/en/stable/rest.html
+.. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+.. _Sphinx: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
 
 .. _SalishSeaSiteDevelopment:
@@ -137,27 +162,28 @@ in particular:
 Getting the Code
 ----------------
 
-.. image:: https://img.shields.io/badge/version%20control-hg-blue.svg
-    :target: https://bitbucket.org/salishsea/salishsea-site/
-    :alt: Mercurial on Bitbucket
+.. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site
+    :alt: Git on GitHub
 
-Clone the :ref:`salishsea-site-repo` code and documentation `repository`_ from Bitbucket with:
+Clone the :ref:`salishsea-site-repo` code and documentation `repository`_ from GitHub with:
 
-.. _repository: https://bitbucket.org/salishsea/salishsea-site/
+.. _repository: https://github.com/SalishSeaCast/salishsea-site
 
 .. code-block:: bash
 
-    $ hg clone ssh://hg@bitbucket.org/salishsea/salishsea-site
+    $ git clone git@github.com:SalishSeaCast/salishsea-site.git
 
 or
 
 .. code-block:: bash
 
-    $ hg clone https://<your_userid>@bitbucket.org/salishsea/salishsea-site
+    $ git clone https://github.com/SalishSeaCast/salishsea-site.git
 
-if you don't have `ssh key authentication`_ set up on Bitbucket.
+if you don't have `ssh key authentication`_ set up on GitHub
+(or copy the link from the :guilabel:`Clone or download` button on the `repository`_ page).
 
-.. _ssh key authentication: https://confluence.atlassian.com/bitbucket/set-up-ssh-for-mercurial-728138122.html
+.. _ssh key authentication: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 
 
 .. _SalishSeaSiteDevelopmentEnvironment:
@@ -171,14 +197,14 @@ you can create and activate an environment called :kbd:`salishsea-site` that wil
 testing,
 and building the documentation with the commands:
 
-.. _Conda: https://conda.io/docs/
-.. _Miniconda3: https://conda.io/docs/install/quick.html
+.. _Conda: https://conda.io/en/latest/
+.. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
 
 .. code-block:: bash
 
     $ cd salishsea-site
     $ conda env create -f env/environment-dev.yaml
-    $ source activate salishsea-site
+    $ conda activate salishsea-site
     (salishsea-site)$ python3 -m pip install --editable .
 
 The :kbd:`--editable` option in the :command:`pip install` commands above installs the :kbd:`salishsea-site` package via a symlink so that it is automatically updated as the repo evolves.
@@ -187,7 +213,7 @@ To deactivate the environment use:
 
 .. code-block:: bash
 
-    (salishsea-site)$ source deactivate
+    (salishsea-site)$ conda deactivate
 
 
 .. _SalishSeaSiteCodingStyle:
@@ -275,8 +301,38 @@ Building the Documentation
     :alt: Documentation Status
 
 The documentation for the :kbd:`salishsea-site` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
-Creating a :ref:`SalishSeaSiteDevelopmentEnvironment` as described above includes the installation of Sphinx.
-Building the documentation is driven by :file:`docs/Makefile`.
+
+If you have write access to the `repository`_ on GitHub,
+whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
+
+Additions,
+improvements,
+and corrections to these docs are *always* welcome.
+
+The quickest way to fix typos, etc. on existing pages is to use the :guilabel:`Edit on GitHub` link in the upper right corner of the page to get to the online editor for the page on `GitHub`_.
+
+.. _GitHub: https://github.com/SalishSeaCast/salishsea-site
+
+For more substantial work,
+and to add new pages,
+follow the instructions in the :ref:`SalishSeaSiteDevelopmentEnvironment` section above.
+In the development environment you can build the docs locally instead of having to push commits to GitHub to trigger a `build on readthedocs.org`_ and wait for it to complete.
+Below are instructions that explain how to:
+
+.. _build on readthedocs.org: https://readthedocs.org/projects/salishsea-site/builds/
+
+* build the docs with your changes,
+  and preview them in Firefox
+
+* check the docs for broken links
+
+
+.. _SalishSeaSiteBuildingAndPreviewingTheDocumentation:
+
+Building and Previewing the Documentation
+-----------------------------------------
+
+Building the documentation is driven by the :file:`docs/Makefile`.
 With your :kbd:`salishsea-site` development environment activated,
 use:
 
@@ -288,35 +344,114 @@ to do a clean build of the documentation.
 The output looks something like::
 
   Removing everything under '_build'...
-  Running Sphinx v1.5.1
-  making output directory...
-  loading pickled environment... not yet created
+  Running Sphinx v3.0.1
+  making output directory... done
   loading intersphinx inventory from https://docs.python.org/3/objects.inv...
-  loading intersphinx inventory from http://salishsea-meopar-docs.readthedocs.org/en/latest/objects.inv...
-  intersphinx inventory has moved: http://salishsea-meopar-docs.readthedocs.org/en/latest/objects.inv -> http://salishsea-meopar-docs.readthedocs.io/en/latest/objects.inv
+  loading intersphinx inventory from https://salishsea-meopar-docs.readthedocs.io/en/latest/objects.inv...
   building [mo]: targets for 0 po files that are out of date
   building [html]: targets for 1 source files that are out of date
-  updating environment: 1 added, 0 changed, 0 removed
+  updating environment: [new config] 1 added, 0 changed, 0 removed
   reading sources... [100%] index
   looking for now-outdated files... none found
   pickling environment... done
   checking consistency... done
   preparing documents... done
   writing output... [100%] index
-  generating indices... genindex
-  writing additional pages... search
-  copying static files... done
+  generating indices...  genindexdone
+  writing additional pages...  searchdone
+  copying static files... ... done
   copying extra files... done
-  dumping search index in English (code: en) ... done
+  dumping search index in English (code: en)... done
   dumping object inventory... done
   build succeeded.
 
-  Build finished. The HTML pages are in _build/html.
+  The HTML pages are in _build/html.
 
 The HTML rendering of the docs ends up in :file:`docs/_build/html/`.
 You can open the :file:`index.html` file in that directory tree in your browser to preview the results of the build before committing and pushing your changes to Bitbucket.
 
-Whenever you push changes to :ref:`salishsea-site-repo` on Bitbucket the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
+If you have write access to the `repository`_ on GitHub,
+whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
+
+
+.. _SalishSeaSiteLinkCheckingTheDocumentation:
+
+Link Checking the Documentation
+-------------------------------
+
+Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
+With your :kbd:`salishsea-site` environment activated,
+use:
+
+.. code-block:: bash
+
+    (salishsea-site)$ cd salishsea-site/docs/
+    (salishsea-site) docs$ make linkcheck
+
+The output looks something like::
+
+  Running Sphinx v3.0.1
+  loading pickled environment... done
+  building [mo]: targets for 0 po files that are out of date
+  building [linkcheck]: targets for 1 source files that are out of date
+  updating environment: 0 added, 1 changed, 0 removed
+  reading sources... [100%] index
+  looking for now-outdated files... none found
+  pickling environment... done
+  checking consistency... done
+  preparing documents... done
+  writing output... [100%] index
+  (line   21) ok        https://docs.python.org/3.8/
+  (line   21) ok        https://black.readthedocs.io/en/stable/
+  (line   21) ok        https://salishsea-site.readthedocs.io/en/latest/
+  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
+  (line   21) ok        https://www.apache.org/licenses/LICENSE-2.0
+  (line   48) ok        https://salishsea.eos.ubc.ca/
+  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site
+  (line   48) ok        https://www.python.org/
+  (line   21) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site
+  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/issues
+  (line   48) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
+  (line   56) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
+  (line   56) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/firstapp.html#firstapp-chapter
+  (line   85) ok        https://docs.python.org/3/library/stdtypes.html#dict
+  (line   59) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
+  (line   59) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html#narrative-documentation
+  (line   92) ok        https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
+  (line   92) ok        https://getbootstrap.com/
+  (line   85) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
+  (line   77) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/urldispatch.html
+  (line  152) ok        https://docs.python.org/3/reference/lexical_analysis.html#f-strings
+  (line  154) ok        https://docs.python.org/3/whatsnew/3.6.html#whatsnew36-pep519
+  (line   92) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
+  (line  183) ok        https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
+  (line   92) ok        https://www.makotemplates.org/
+  (line  118) ok        https://docs.pytest.org/en/latest/
+  (line  124) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+  (line  169) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/repos_organization.html#salishsea-site-repo
+  (line  228) ok        https://www.python.org/dev/peps/pep-0008/
+  (line  194) ok        https://conda.io/en/latest/
+  (line  194) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/work_env/anaconda_python.html#anacondapythondistro
+  (line  316) ok        https://readthedocs.org/projects/salishsea-site/builds/
+  (line  194) ok        https://docs.conda.io/en/latest/miniconda.html
+  (line  518) ok        https://www.mercurial-scm.org/
+  (line   21) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
+  (line  484) ok        https://coverage.readthedocs.io/en/latest/
+  (line  544) ok        https://salishsea.eos.ubc.ca/contributors
+  (line   21) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
+  (line   21) ok        https://img.shields.io/badge/code%20style-black-000000.svg
+  (line   21) ok        https://img.shields.io/badge/python-3.8-blue.svg
+  (line   21) ok        https://readthedocs.org/projects/salishsea-site/badge/?version=latest
+  (line  512) ok        https://bitbucket.org/salishsea/salishsea-site/
+  (line  512) ok        https://img.shields.io/badge/version%20control-hg-blue.svg
+  (line   21) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+  (line  518) ok        https://bitbucket.org/salishsea/salishsea-site
+  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
+  (line   21) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
+  (line  526) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
+  build succeeded.
+
+  Look for any errors in the above output or in _build/linkcheck/output.txt
 
 
 .. _SalishSeaSiteRunningTheUnitTests:
@@ -338,40 +473,66 @@ use:
 to run the test suite.
 The output looks something like::
 
-  =========================== test session starts ============================
-  platform linux -- Python 3.6.0, pytest-3.0.5, py-1.4.32, pluggy-0.4.0
-  rootdir: /home/doug/Documents/MEOPAR/salishsea-site, inifile:
-  collected 65 items
+  ============================ test session starts ============================
+  platform linux -- Python 3.8.2, pytest-5.4.1, py-1.8.1, pluggy-0.13.1
+  rootdir: /media/doug/warehouse/MEOPAR/salishsea-site
+  collected 76 items
+  tests/test_mako_filters.py .......                                     [  9%]
+  tests/views/test_bloomcast.py ..                                       [ 11%]
+  tests/views/test_figures.py ...                                        [ 15%]
+  tests/views/test_salishseacast.py .....................................
+  ...........................                                            [100%]
+  ============================ 76 passed in 0.72s =============================
 
-  tests/test_mako_filters.py .......
-  tests/views/test_bloomcast.py ..
-  tests/views/test_salishseacast.py ........................................................
-
-  ======================== 65 passed in 0.87 seconds =========================
-
-You can monitor what lines of code the test suite exercises using the `coverage.py`_ tool with the command:
+You can monitor what lines of code the test suite exercises using the `coverage.py`_ and `pytest-cov`_ tools with the command:
 
 .. _coverage.py: https://coverage.readthedocs.io/en/latest/
+.. _pytest-cov: https://pytest-cov.readthedocs.io/en/latest/
+
 
 .. code-block:: bash
 
     (salishsea-site)$ cd salishsea-site/
-    (salishsea-site)$ coverage run -m py.test
+    (salishsea-site)$ pytest --cov=./
 
-and generate a test coverage report with:
+The test coverage report will be displayed below the test suite run output.
 
-.. code-block:: bash
-
-    (salishsea-site)$ coverage report
-
-to produce a plain text report,
-or
+Alternatively,
+you can use
 
 .. code-block:: bash
 
-    (salishsea-site)$ coverage html
+    (salishsea-site)$ pytest --cov=./ --cov-report html
 
 to produce an HTML report that you can view in your browser by opening :file:`salishsea-site/htmlcov/index.html`.
+
+
+.. _SalishSeaSiteContinuousIntegration:
+
+Continuous Integration
+----------------------
+
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
+    :alt: GitHub Workflow Status
+.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
+    :alt: Codecov Testing Coverage Report
+
+The :kbd:`salishsea-site` package unit test suite is run and a coverage report is generated whenever changes are pushed to GitHub.
+The results are visible on the `repo actions page`_,
+from the green checkmarks beside commits on the `repo commits page`_,
+or from the green checkmark to the left of the "Latest commit" message on the `repo code overview page`_ .
+The testing coverage report is uploaded to `codecov.io`_
+
+.. _repo actions page: https://github.com/SalishSeaCast/salishsea-site/actions
+.. _repo commits page: https://github.com/SalishSeaCast/salishsea-site/commits/master
+.. _repo code overview page: https://github.com/SalishSeaCast/salishsea-site
+.. _codecov.io: https://codecov.io/gh/SalishSeaCast/salishsea-site
+
+The `GitHub Actions`_ workflow configuration that defines the continuous integration tasks is in the :file:`.github/workflows/pytest-coverage.yaml` file.
+
+.. _GitHub Actions: https://help.github.com/en/actions
 
 
 .. _SalishSeaSiteVersionControlRepository:
@@ -379,13 +540,13 @@ to produce an HTML report that you can view in your browser by opening :file:`sa
 Version Control Repository
 --------------------------
 
-.. image:: https://img.shields.io/badge/version%20control-hg-blue.svg
-    :target: https://bitbucket.org/salishsea/salishsea-site/
-    :alt: Mercurial on Bitbucket
+.. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site
+    :alt: Git on GitHub
 
-The :kbd:`salishsea-site` package code and documentation source files are available in the :ref:`salishsea-site-repo` `Mercurial`_ repository at https://bitbucket.org/salishsea/salishsea-site.
+The :kbd:`salishsea-site` package code and documentation source files are available in the :ref:`salishsea-site-repo` `Git`_ repository at https://github.com/SalishSeaCast/salishsea-site.
 
-.. _Mercurial: https://www.mercurial-scm.org/
+.. _Git: https://git-scm.com/
 
 
 .. _SalishSeaSiteIssueTracker:
@@ -393,13 +554,13 @@ The :kbd:`salishsea-site` package code and documentation source files are availa
 Issue Tracker
 -------------
 
-.. image:: https://img.shields.io/bitbucket/issues/salishsea/salishsea-site.svg
-    :target: https://bitbucket.org/salishsea/salishsea-site/issues?status=new&status=open
+.. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site/issues
     :alt: Issue Tracker
 
 Development tasks,
 bug reports,
-and enhancement ideas are recorded and managed in the issue tracker at https://bitbucket.org/salishsea/salishsea-site/issues.
+and enhancement ideas are recorded and managed in the issue tracker at https://github.com/SalishSeaCast/salishsea-site/issues.
 
 
 License
