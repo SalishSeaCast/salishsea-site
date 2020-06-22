@@ -1,0 +1,46 @@
+name: docs-linkcheck
+
+on:
+  push:
+    branches:
+    - '*'
+  pull_request:
+    branches:
+    - '*'
+
+jobs:
+  test-coverage:
+    name: linkcheck docs
+    runs-on: 'ubuntu-latest'
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.8']
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: goanpeca/setup-miniconda@v1
+        with:
+           auto-update-conda: true
+           auto-activate-base: false
+           environment-file: envs/environment-test.yaml
+           python-version: ${{ matrix.python-version }}
+           activate-environment: salishsea-site-test
+
+      - name: Install package
+        shell: bash -l {0}
+        run: |
+          python3 -m pip install --editable $GITHUB_WORKSPACE
+
+      - name: linkcheck docs
+        shell: bash -l {0}
+        run: |
+          (cd docs && make linkcheck)
+
+      - uses: pioug/le-slack-message@v1.0.0
+        with:
+          ACTION_NAME: ${{ github.repository }} docs linkcheck
+          JOB: ${{ toJson(job) }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
