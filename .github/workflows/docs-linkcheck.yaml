@@ -40,9 +40,11 @@ jobs:
         run: |
           (cd docs && make linkcheck)
 
-      - uses: pioug/le-slack-message@v1.0.0
+      - uses: 8398a7/action-slack@v3
         with:
-          ACTION_NAME: ${{ github.repository }} docs linkcheck
-          JOB: ${{ toJson(job) }}
+          status: ${{ job.status }}
+          author_name: Sphinx linkcheck
+          fields: repo,eventName,ref,workflow
+        env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
