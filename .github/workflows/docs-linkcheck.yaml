@@ -9,7 +9,7 @@ on:
     - '*'
 
 jobs:
-  test-coverage:
+  docs-linkcheck:
     name: linkcheck docs
     runs-on: 'ubuntu-latest'
     strategy:
