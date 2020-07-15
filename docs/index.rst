@@ -35,9 +35,12 @@ salishsea.eos.ubc.ca Site Web App
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
     :target: https://salishsea-site.readthedocs.io/en/latest/
     :alt: Documentation Status
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
+    :alt: Sphinx linkcheck Status
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
-    :alt: GitHub Workflow Status
+    :alt: Continuous Integration Status
 .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
@@ -379,6 +382,10 @@ whenever you push changes to GitHub the documentation is automatically re-built 
 Link Checking the Documentation
 -------------------------------
 
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
+    :alt: Sphinx linkcheck Status
+
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
 With your :kbd:`salishsea-site` environment activated,
 use:
@@ -452,6 +459,10 @@ The output looks something like::
   build succeeded.
 
   Look for any errors in the above output or in _build/linkcheck/output.txt
+
+:command:`make linkcheck` is run monthly via a `scheduled GitHub Actions workflow`_
+
+.. _scheduled GitHub Actions workflow: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
 
 
 .. _SalishSeaSiteRunningTheUnitTests:

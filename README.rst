@@ -18,6 +18,9 @@ salishsea.eos.ubc.ca Site
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
     :target: https://salishsea-site.readthedocs.io/en/latest/
     :alt: Documentation Status
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
+    :alt: Sphinx linkcheck Status
 .. image:: https://img.shields.io/bitbucket/issues/salishsea/salishsea-site.svg
     :target: https://bitbucket.org/salishsea/salishsea-site/issues?status=new&status=open
     :alt: Issue Tracker
