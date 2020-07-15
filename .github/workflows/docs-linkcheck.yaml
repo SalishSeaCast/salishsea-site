@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
     - '*'
+  schedule:
+    - cron: 43 4 7 * *  # 04:43 UTC on the 7th day of each month
 
 jobs:
   docs-linkcheck:
