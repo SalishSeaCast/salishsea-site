@@ -16,14 +16,14 @@
 # limitations under the License.
 
 
-# Deploy changes to site by pulling changesets from Bitbucket and restarting app server
+# Deploy changes to site by pulling revisions from GitHub and restarting app server
 
 APP_REPO=/SalishSeaCast/salishsea-site
 APP_ENV=/SalishSeaCast/salishsea-site-env
-HG=/usr/local/bin/hg
+GIT=/usr/bin/git
 
 cd ${APP_REPO}
 echo $(pwd)
-${HG} pull --ssh "ssh -i ~/.ssh/salishsea-site-deployment_id_rsa" --update
+GIT_SSH_COMMAND='ssh -i ~/.ssh/salishsea-site-deployment_id_rsa -o IdentitiesOnly=yes' ${GIT} pull
 echo "Restarting app"
 ${APP_ENV}/bin/supervisorctl --configuration supervisord-prod.ini restart salishsea-site
