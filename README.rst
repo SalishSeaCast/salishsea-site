@@ -21,9 +21,6 @@ salishsea.eos.ubc.ca Site
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
     :alt: Sphinx linkcheck Status
-.. image:: https://img.shields.io/bitbucket/issues/salishsea/salishsea-site.svg
-    :target: https://bitbucket.org/salishsea/salishsea-site/issues?status=new&status=open
-    :alt: Issue Tracker
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
     :alt: GitHub Workflow Status
