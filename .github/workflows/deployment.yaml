@@ -48,7 +48,6 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          fingerprint: ${{ secrets.DEPLOY_HOST_FINGERPRINT }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: ${{ secrets.DEPLOY_PATH }}/deploy.sh
