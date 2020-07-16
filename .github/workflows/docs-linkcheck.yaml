@@ -1,4 +1,4 @@
-name: docs-linkcheck
+name: sphinx-linkcheck
 
 on:
   push:
