@@ -126,13 +126,13 @@
         </li>
         <li>
           The project team maintains a set of
-          <a href="https://www.mercurial-scm.org/">Mercurial</a>
+          <a href="https://git-scm.com/">Git</a>
           version control repositories for code,
           documentation
           (including the source files for this site),
           and analyses of model results.
           The contents of those repositories and their development history is accessible at
-          <a href="https://bitbucket.org/salishsea/">https://bitbucket.org/salishsea/</a>.
+          <a href="https://github.com/SalishSeaCast">https://github.com/SalishSeaCast</a>.
         </li>
       </ul>
 

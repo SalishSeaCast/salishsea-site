@@ -53,7 +53,7 @@
   <div class="container">
     <p>
       © Copyright ${request.copyright_years}
-      <a href="https://bitbucket.org/salishsea/docs/src/tip/CONTRIBUTORS.rst">
+      <a href="https://github.com/SalishSeaCast/docs/blob/master/CONTRIBUTORS.rst">
         Salish Sea MEOPAR Project Contributors
       </a> and The University of British Columbia
       <br>
@@ -61,7 +61,7 @@
       <a href="https://www.apache.org/licenses/LICENSE-2.0">https://www.apache.org/licenses/LICENSE-2.0</a>.
       <br>
       Please acknowledge our work by using one or more of
-      <a href="https://bitbucket.org/salishsea/docs/src/tip/CITATION.rst">these citations</a>.
+      <a href="https://github.com/SalishSeaCast/docs/blob/master/CITATION.rst">these citations</a>.
     </p>
   </div>
 </footer>
