@@ -103,7 +103,7 @@
         <em>Atmosphere-Ocean</em> <strong>54</strong> 1-21.
         <a href="https://dx.doi.org/10.1080/07055900.2015.1108899">https://dx.doi.org/10.1080/07055900.2015.1108899</a>)
       </p>
-       <p>
+      <p>
         <strong>Mixing in San Juan/Gulf Islands:</strong>
         The sensitivity of the deep water renewal into the Strait of Georgia and of fresh water
         pulses into Juan de Fuca Strait to modelling choices affecting both turbulence and
@@ -194,24 +194,25 @@
         researchers and
         <a href="http://www.nemo-ocean.eu/">NEMO</a>
         users across Canada:
-        <ul>
-          <li>Keith Thompson, Dalhousie University</li>
-          <li>Vasily Korabel, Dalhousie University</li>
-          <li>Youyu Lu, Fisheries and Oceans Canada</li>
-          <li>J-P Paquin, Environment and Climate Change, Canada</li>
-          <li>Fatemeh Chegini, Dalhousie University</li>
-          <li>Luc Fillion, Environment Canada</li>
-          <li>Kao-Shen Chung, Environment Canada</li>
-          <li>Weiguang Chang, Environment Canada</li>
-          <li>Jim Christian, Environment Canada</li>
-          <li>Olivier Riche, Environment Canada</li>
-        </ul>
       </p>
+      <ul>
+        <li>Keith Thompson, Dalhousie University</li>
+        <li>Vasily Korabel, Dalhousie University</li>
+        <li>Youyu Lu, Fisheries and Oceans Canada</li>
+        <li>J-P Paquin, Environment and Climate Change, Canada</li>
+        <li>Fatemeh Chegini, Dalhousie University</li>
+        <li>Luc Fillion, Environment Canada</li>
+        <li>Kao-Shen Chung, Environment Canada</li>
+        <li>Weiguang Chang, Environment Canada</li>
+        <li>Jim Christian, Environment Canada</li>
+        <li>Olivier Riche, Environment Canada</li>
+      </ul>
       <p>
         Much of our evaluation data, some of our funding, and access to computing
         resources for our daily runs comes from <a href="http://www.oceannetworks.ca/">Ocean Networks Canada (ONC)</a>
         Our contacts with ONC include:
-        <ul>
+      </p>
+      <ul>
         <li> Richard Dewey, Associate Director, Science</li>
         <li> Steve Mihaly, Senior Staff Scientist</li>
         <li> Mike Morley, Data Manager</li>
@@ -219,34 +220,33 @@
         <li> Lu Guan, Junior Staff Scientist</li>
         <li> Dwight Owens, User Engagement</li>
         <li> Leslie Elliot, Communications Manager</li>
-        </ul>
-        </p>
+      </ul>
       <p>
         Other funders include:
-        <ul>
+      </p>
+      <ul>
         <li> <a href="https://www.psf.ca/">Pacific Salmon Foundation</a></li>
         <li> <a href="http://www.metrovancouver.org/">Metro Vancouver</a></li>
-        </ul>
-      </p>
+      </ul>
       <p>
         We collaborate with many other researchers,
         including:
-        <ul>
-          <li>Hayley Dosser, Hakai Foundation</li>
-          <li>Michael Dunphy, Fisheries and Oceans Canada</li>
-          <li>Mike Foreman, Fisheries and Oceans Canada</li>
-          <li>Charles Hannah, Fisheries and Oceans Canada</li>
-          <li>Debby Ianson, Fisheries and Oceans Canada</li>
-          <li>Diane Masson, Fisheries and Oceans Canada</li>
-          <li>Parker MacCready, University of Washington</li>
-          <li>John Morrison, Fisheries and Oceans Canada</li>
-          <li>Paul Myers, University of Alberta</li>
-          <li>Angelica Pena, Fisheries and Oceans Canada</li>
-          <li>Greg Smith, Enivironment and Climate Change, Canada
-          <li>Neil Swart, Environment  and Climate Change, Canada</li>
-          <li>Pramod Thupaki, Hakai Foundation</li>
-        </ul>
       </p>
+      <ul>
+        <li>Hayley Dosser, Hakai Foundation</li>
+        <li>Michael Dunphy, Fisheries and Oceans Canada</li>
+        <li>Mike Foreman, Fisheries and Oceans Canada</li>
+        <li>Charles Hannah, Fisheries and Oceans Canada</li>
+        <li>Debby Ianson, Fisheries and Oceans Canada</li>
+        <li>Diane Masson, Fisheries and Oceans Canada</li>
+        <li>Parker MacCready, University of Washington</li>
+        <li>John Morrison, Fisheries and Oceans Canada</li>
+        <li>Paul Myers, University of Alberta</li>
+        <li>Angelica Pena, Fisheries and Oceans Canada</li>
+        <li>Greg Smith, Enivironment and Climate Change, Canada
+        <li>Neil Swart, Environment  and Climate Change, Canada</li>
+        <li>Pramod Thupaki, Hakai Foundation</li>
+      </ul>
     </div>
   </div>
 </div>
