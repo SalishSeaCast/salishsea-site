@@ -1,0 +1,64 @@
+name: deployment
+
+on:
+  push:
+    branches:
+    - '*'
+
+jobs:
+  test-deploy:
+    name: pytest & deploy on success
+    runs-on: 'ubuntu-latest'
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.8']
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache conda pkgs
+        uses: actions/cache@v1
+        env:
+          # Increase this value to reset cache if envs/environment-test.yaml has not changed
+          CACHE_NUMBER: 0
+        with:
+          path: ~/conda_pkgs_dir
+          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('envs/environment-test.yaml') }}
+
+      - uses: goanpeca/setup-miniconda@v1
+        with:
+           auto-update-conda: false
+           auto-activate-base: false
+           environment-file: envs/environment-test.yaml
+           python-version: ${{ matrix.python-version }}
+           activate-environment: salishsea-site-test
+
+      - name: Install package
+        shell: bash -l {0}
+        run: |
+          python3 -m pip install --editable $GITHUB_WORKSPACE
+
+      - name: pytest package
+        shell: bash -l {0}
+        run: |
+          pytest
+
+      - name: update & restart app via ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          fingerprint: ${{ secrets.DEPLOY_HOST_FINGERPRINT }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: ${{ secrets.DEPLOY_PATH }}/deploy.sh
+
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: pytest & deploy
+          fields: repo,eventName,ref,workflow
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+
