@@ -29,8 +29,7 @@ from salishsea_site.views import salishseacast
 
 
 class TestStormSurgePortal:
-    """Unit tests for storm_surge_portal view.
-    """
+    """Unit tests for storm_surge_portal view."""
 
     def test_storm_surge_portal(self):
         request = get_current_request()
@@ -41,8 +40,7 @@ class TestStormSurgePortal:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast._data_for_publish_template")
 class TestStormSurgeForecast:
-    """Unit tests for storm_surge_forecast view.
-    """
+    """Unit tests for storm_surge_forecast view."""
 
     def test_no_forecast(self, m_dfpt):
         m_dfpt.side_effect = HTTPNotFound
@@ -107,8 +105,7 @@ class TestStormSurgeForecast:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.logger")
 class TestStormSurgeAlertFeed:
-    """Unit tests for storm_surge_alert_feed view.
-    """
+    """Unit tests for storm_surge_alert_feed view."""
 
     def test_feed_file_not_found(self, m_logger, pconfig):
         pconfig.add_settings(nowcast_figures_server_name="nowcast-sys/figures/")
@@ -138,8 +135,7 @@ class TestStormSurgeAlertFeed:
 
 
 class TestAboutSalishSeaCast:
-    """Unit tests for SalishSeaCast about view.
-    """
+    """Unit tests for SalishSeaCast about view."""
 
     def test_about(self):
         request = get_current_request()
@@ -150,8 +146,7 @@ class TestAboutSalishSeaCast:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.FigureMetadata.available")
 class TestResultsIndex:
-    """Unit tests for results_index view.
-    """
+    """Unit tests for results_index view."""
 
     def test_first_date(self, m_available):
         m_available.return_value = True
@@ -258,8 +253,7 @@ class TestResultsIndex:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast._data_for_publish_template")
 class TestForecastPublish:
-    """Unit test for forecast_publish view view.
-    """
+    """Unit test for forecast_publish view view."""
 
     def test_forecast_publish(self, m_dfpt):
         request = get_current_request()
@@ -278,8 +272,7 @@ class TestForecastPublish:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast._data_for_publish_template")
 class TestForecast2Publish:
-    """Unit test for forecast2_publish view view.
-    """
+    """Unit test for forecast2_publish view view."""
 
     def test_forecast2_publish(self, m_dfpt):
         request = get_current_request()
@@ -298,8 +291,7 @@ class TestForecast2Publish:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.FigureMetadata.available")
 class TestCurrentsPhysics:
-    """Unit tests for nowcast_currents_physics view.
-    """
+    """Unit tests for nowcast_currents_physics view."""
 
     def test_no_figures_raises_httpnotfound(self, m_available):
         request = get_current_request()
@@ -339,8 +331,7 @@ class TestCurrentsPhysics:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.ImageLoop.available")
 class TestBiology:
-    """Unit tests for nowcast_biology view.
-    """
+    """Unit tests for nowcast_biology view."""
 
     def test_no_figures_raises_httpnotfound(self, m_available):
         request = get_current_request()
@@ -380,8 +371,7 @@ class TestBiology:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.FigureGroup.available")
 class TestTimeseries:
-    """Unit tests for nowcast_timeseries view.
-    """
+    """Unit tests for nowcast_timeseries view."""
 
     def test_no_figures_raises_httpnotfound(self, m_available):
         request = get_current_request()
@@ -421,8 +411,7 @@ class TestTimeseries:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.FigureMetadata.available")
 class TestNowcastComparison:
-    """Unit tests for nowcast_comparison view.
-    """
+    """Unit tests for nowcast_comparison view."""
 
     def test_no_figures_raises_httpnotfound(self, m_available):
         request = get_current_request()
@@ -479,8 +468,7 @@ class TestNowcastComparison:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.FigureMetadata.available")
 class TestDataForPublishTemplate:
-    """Unit test for _data_for_publish_template view utility function.
-    """
+    """Unit test for _data_for_publish_template view utility function."""
 
     def test_no_alerts_fig_raises_httpnotfound(self, m_available):
         request = get_current_request()
@@ -585,8 +573,7 @@ class TestDataForPublishTemplate:
 @pytest.mark.usefixtures("pconfig")
 @patch("salishsea_site.views.salishseacast.logger")
 class TestNowcastLogs:
-    """Unit tests for nowcast_logs view.
-    """
+    """Unit tests for nowcast_logs view."""
 
     def test_envvar_not_set(self, m_logger):
         request = get_current_request()

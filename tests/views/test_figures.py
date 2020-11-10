@@ -22,8 +22,7 @@ import salishsea_site.views.figures
 
 
 class TestImageLoop:
-    """Unit tests for ImageLoop class.
-    """
+    """Unit tests for ImageLoop class."""
 
     def test_first_available(self):
         img_loop = salishsea_site.views.figures.ImageLoop(

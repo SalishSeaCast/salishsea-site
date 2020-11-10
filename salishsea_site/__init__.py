@@ -28,8 +28,7 @@ sentry_sdk.init(dsn=os.environ.get("SENTRY_DSN"), integrations=[PyramidIntegrati
 
 
 def main(global_config, **settings):
-    """Configure the Pyramid WSGI application.
-    """
+    """Configure the Pyramid WSGI application."""
     config = Configurator(settings=settings)
     _static_views(config, settings)
     _copyright_year_range(config)

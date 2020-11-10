@@ -208,8 +208,7 @@ image_loops = ImageLoopGroup(
 
 @view_config(route_name="fvcom.results.index", renderer="fvcom/results_index.mako")
 def results_index(request):
-    """Render results calendar grid index page.
-    """
+    """Render results calendar grid index page."""
     INDEX_GRID_COLS = 21
     # Calculate the date range to display in the grid and the number of
     # columns for the month headings of the grid
@@ -261,8 +260,7 @@ def _exclude_missing_dates(dates, figures, run_type):
 # Legacy route
 @view_config(route_name="fvcom.results.nowcast.publish", renderer="fvcom/publish.mako")
 def nowcast_x2_publish(request):
-    """Render nowcast figures page.
-    """
+    """Render nowcast figures page."""
     return _values_for_publish_template(request, "nowcast-x2")
 
 
@@ -270,8 +268,7 @@ def nowcast_x2_publish(request):
     route_name="fvcom.results.nowcast-r12.publish", renderer="fvcom/publish.mako"
 )
 def nowcast_r12_publish(request):
-    """Render nowcast figures page.
-    """
+    """Render nowcast figures page."""
     return _values_for_publish_template(request, "nowcast-r12")
 
 
@@ -281,14 +278,12 @@ def nowcast_r12_publish(request):
 # Legacy route
 @view_config(route_name="fvcom.results.forecast.publish", renderer="fvcom/publish.mako")
 def forecast_x2_publish(request):
-    """Render forecast figures page.
-    """
+    """Render forecast figures page."""
     return _values_for_publish_template(request, "forecast-x2")
 
 
 def _values_for_publish_template(request, run_type):
-    """Calculate template variable values for a figures page.
-    """
+    """Calculate template variable values for a figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     available_figures = {
         "water levels": tide_stn_water_level_figure_group.available(

@@ -43,8 +43,7 @@ wave_height_period_figure_group = FigureGroup(
 
 @view_config(route_name="wwatch3.results.index", renderer="wwatch3/results_index.mako")
 def results_index(request):
-    """Render results calendar grid index page.
-    """
+    """Render results calendar grid index page."""
     INDEX_GRID_COLS = 21
     # Calculate the date range to display in the grid and the number of
     # columns for the month headings of the grid
@@ -93,8 +92,7 @@ def _exclude_missing_dates(dates, figures, figs_type, run_type):
     route_name="wwatch3.results.forecast.publish", renderer="wwatch3/publish.mako"
 )
 def forecast_publish(request):
-    """Render forecast figures page.
-    """
+    """Render forecast figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     figures_available = wave_height_period_figure_group.available(
         "forecast", results_date, "wwatch3"
@@ -115,8 +113,7 @@ def forecast_publish(request):
     route_name="wwatch3.results.forecast2.publish", renderer="wwatch3/publish.mako"
 )
 def forecast2_publish(request):
-    """Render forecast2 figures page.
-    """
+    """Render forecast2 figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     figures_available = wave_height_period_figure_group.available(
         "forecast2", results_date, "wwatch3"

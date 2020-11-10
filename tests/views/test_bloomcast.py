@@ -26,8 +26,7 @@ from salishsea_site.views import bloomcast
 
 
 class TestAbout:
-    """Unit tests for bloomcast about view.
-    """
+    """Unit tests for bloomcast about view."""
 
     def test_about(self):
         request = get_current_request()
@@ -37,8 +36,7 @@ class TestAbout:
 
 @patch("salishsea_site.views.bloomcast.Path", spec=Path)
 class TestSpringDiatoms:
-    """Unit tests for bloomcast sprint_diatoms view.
-    """
+    """Unit tests for bloomcast sprint_diatoms view."""
 
     def test_spring_diatoms(self, m_path):
         m_path().__truediv__().open().__enter__.side_effect = (

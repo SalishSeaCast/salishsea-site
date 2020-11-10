@@ -383,8 +383,7 @@ onc_venus_comparison_figure_group = FigureGroup(
 # Legacy route
 @view_config(route_name="storm_surge.index.html", renderer="storm_surge/portal.mako")
 def storm_surge_portal(request):
-    """Render storm surge portal page.
-    """
+    """Render storm surge portal page."""
     return {}
 
 
@@ -430,8 +429,7 @@ def storm_surge_forecast(request):
 
 @view_config(route_name="storm_surge.alert.feed", renderer="string")
 def storm_surge_alert_feed(request):
-    """Render the requested storm surge alert ATOM feed file.
-    """
+    """Render the requested storm surge alert ATOM feed file."""
     introspector = request.registry.introspector
     figs_server = request.registry.settings["nowcast_figures_server_name"]
     figs_path = introspector.get("static views", figs_server)["spec"]
@@ -457,8 +455,7 @@ def about(request):
     route_name="results.index.html", renderer="salishseacast/results_index.mako"
 )
 def results_index(request):
-    """Render results calendar grid index page.
-    """
+    """Render results calendar grid index page."""
     INDEX_GRID_COLS = 21
     # Calculate the date range to display in the grid and the number of
     # columns for the month headings of the grid
@@ -550,8 +547,7 @@ def _exclude_missing_dates(dates, figures, figs_type, run_type, model):
     route_name="results.forecast.publish.html", renderer="salishseacast/publish.mako"
 )
 def forecast_publish(request):
-    """Render storm surge forecast figures page.
-    """
+    """Render storm surge forecast figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date.shift(days=-1)
     return _data_for_publish_template(
@@ -572,8 +568,7 @@ def forecast_publish(request):
     route_name="results.forecast2.publish.html", renderer="salishseacast/publish.mako"
 )
 def forecast2_publish(request):
-    """Render preliminary storm surge forecast figures page.
-    """
+    """Render preliminary storm surge forecast figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date.shift(days=-2)
     return _data_for_publish_template(
@@ -591,8 +586,7 @@ def forecast2_publish(request):
     renderer="salishseacast/surface_currents.mako",
 )
 def forecast_surface_currents(request):
-    """Render surface currents tiles forecast figures page.
-    """
+    """Render surface currents tiles forecast figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date.shift(days=-1)
     tile_dates = list(
@@ -616,8 +610,7 @@ def forecast_surface_currents(request):
     renderer="salishseacast/surface_currents.mako",
 )
 def forecast2_surface_currents(request):
-    """Render surface currents tiles forecast2 figures page.
-    """
+    """Render surface currents tiles forecast2 figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date.shift(days=-2)
     tile_dates = list(arrow.Arrow.range("day", run_date, run_date.shift(days=+3)))
@@ -639,8 +632,7 @@ def forecast2_surface_currents(request):
     renderer="salishseacast/surface_currents.mako",
 )
 def nowcast_green_surface_currents(request):
-    """Render surface currents tiles nowcast-green figures page.
-    """
+    """Render surface currents tiles nowcast-green figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     run_date = results_date
     tile_dates = list(arrow.Arrow.range("day", run_date, run_date.shift(days=+3)))
@@ -737,8 +729,7 @@ def nowcast_currents_physics(request):
     route_name="results.nowcast.biology", renderer="salishseacast/biology.mako"
 )
 def nowcast_biology(request):
-    """Render model research biology evaluation results figures page.
-    """
+    """Render model research biology evaluation results figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     available_figures = {
         "baynes sound": [
@@ -776,8 +767,7 @@ def nowcast_biology(request):
     route_name="results.nowcast.timeseries", renderer="salishseacast/timeseries.mako"
 )
 def nowcast_timeseries(request):
-    """Render model research timeseries evaluation results figures page.
-    """
+    """Render model research timeseries evaluation results figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     available_figures = timeseries_figure_group.available("nowcast-green", results_date)
     if not any(available_figures):
@@ -800,8 +790,7 @@ def nowcast_timeseries(request):
     renderer="salishseacast/comparison.mako",
 )
 def nowcast_comparison(request):
-    """Render model and observation comparisons figures page.
-    """
+    """Render model and observation comparisons figures page."""
     results_date = arrow.get(request.matchdict["results_date"], "DDMMMYY")
     ungrouped_figures = [
         fig for fig in comparison_figures if fig.available("nowcast", results_date)
