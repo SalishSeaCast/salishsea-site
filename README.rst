@@ -24,7 +24,7 @@ salishsea.eos.ubc.ca Site
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
     :alt: GitHub Workflow Status
-.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
 .. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github

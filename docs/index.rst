@@ -41,7 +41,7 @@ salishsea.eos.ubc.ca Site Web App
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
     :alt: Continuous Integration Status
-.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
 .. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
@@ -451,7 +451,7 @@ The output looks something like::
   (line   21) ok        https://readthedocs.org/projects/salishsea-site/badge/?version=latest
   (line  512) ok        https://bitbucket.org/salishsea/salishsea-site/
   (line  512) ok        https://img.shields.io/badge/version%20control-hg-blue.svg
-  (line   21) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+  (line   21) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
   (line  518) ok        https://bitbucket.org/salishsea/salishsea-site
   (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
   (line   21) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
@@ -526,7 +526,7 @@ Continuous Integration
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
     :alt: GitHub Workflow Status
-.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
 
@@ -537,7 +537,7 @@ or from the green checkmark to the left of the "Latest commit" message on the `r
 The testing coverage report is uploaded to `codecov.io`_
 
 .. _repo actions page: https://github.com/SalishSeaCast/salishsea-site/actions
-.. _repo commits page: https://github.com/SalishSeaCast/salishsea-site/commits/master
+.. _repo commits page: https://github.com/SalishSeaCast/salishsea-site/commits/main
 .. _repo code overview page: https://github.com/SalishSeaCast/salishsea-site
 .. _codecov.io: https://codecov.io/gh/SalishSeaCast/salishsea-site
 
