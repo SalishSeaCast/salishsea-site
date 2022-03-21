@@ -74,7 +74,7 @@ typed-ast==1.4.2
 typing-extensions==3.7.4.3
 urllib3==1.26.5
 venusian==3.0.0
-waitress==1.4.4
+waitress==2.1.1
 WebOb==1.8.6
 wheel==0.36.2
 zope.deprecation==4.4.0
