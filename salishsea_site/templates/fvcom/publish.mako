@@ -14,6 +14,9 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
+## SPDX-License-Identifier: Apache-2.0
+
+
 <%inherit file="../site.mako"/>
 <%namespace file="../salishseacast/figures_page_defs.mako" import="list_of_plots, figure_group, figure_row, figure_nav_links, init_image_loop_group, image_loop_group, show_figure"/>
 
