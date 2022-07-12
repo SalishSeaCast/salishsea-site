@@ -1,5 +1,6 @@
-## Copyright 2014-2019 The Salish Sea MEOPAR Contributors
-## and The University of British Columbia
+## Copyright 2014 – present by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
+## in the Department of Earth, Ocean, and Atmospheric Sciences
+## at The University of British Columbia
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
@@ -55,7 +56,7 @@
         </li>
         <li>
           Soontiens, N. and Allen, S.
-          Modelling sensitivities to mixing and advection in a sill-basin estuarine system. 
+          Modelling sensitivities to mixing and advection in a sill-basin estuarine system.
           Ocean Modelling, volume 112, pp 17-32.
           <a href="https://dx.doi.org/10.1016/j.ocemod.2017.02.008" title="Link to paper via DOI">
             https://dx.doi.org/10.1016/j.ocemod.2017.02.008

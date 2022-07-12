@@ -1,5 +1,6 @@
-# Copyright 2014-2021 The Salish Sea MEOPAR Contributors
-# and The University of British Columbia
+# Copyright 2014 – present by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
+# in the Department of Earth, Ocean, and Atmospheric Sciences
+# at The University of British Columbia
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -55,7 +56,7 @@ def _copyright_year_range(config):
         return (
             "2013"
             if datetime.date.today().year == 2013
-            else "2013-{:%Y}".format(datetime.date.today())
+            else "2013 – present"
         )
 
     config.add_request_method(_add_copyright_year_range, "copyright_years", reify=True)
