@@ -13,6 +13,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# SPDX-License-Identifier: Apache-2.0
+
+
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
 import setuptools

@@ -14,6 +14,8 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
+## SPDX-License-Identifier: Apache-2.0
+
 
 <%def name="month_heading(month_cols, date)">
   <th class="text-center" colspan="${month_cols}">
