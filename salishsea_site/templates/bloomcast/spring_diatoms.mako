@@ -1,5 +1,6 @@
-## Copyright 2014-2019 The Salish Sea MEOPAR Contributors
-## and The University of British Columbia
+## Copyright 2014 – present by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
+## in the Department of Earth, Ocean, and Atmospheric Sciences
+## at The University of British Columbia
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
@@ -77,7 +78,7 @@
       </p>
       <ul>
         <li>
-          Hourly wind velocities at 
+          Hourly wind velocities at
           <a href="http://www.lighthousefriends.com/light.asp?ID=1178">Sand Heads Lightstation</a>
           from the historical data web service at
           <a href="https://climate.weather.gc.ca/">climate.weather.gc.ca/</a>

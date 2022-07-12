@@ -1,5 +1,6 @@
-## Copyright 2014-2019 The Salish Sea MEOPAR Contributors
-## and The University of British Columbia
+## Copyright 2014 – present by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
+## in the Department of Earth, Ocean, and Atmospheric Sciences
+## at The University of British Columbia
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
@@ -64,30 +65,30 @@
         done by month for the most common weather descriptions.
       </p>
       <p>
-        The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added 
+        The physical model is based on the Large et al. (1994) KPP-model with an estuarine circulation model added
         <a href="#footnote6" id="footnote6-back-link" title="Link to citation">[6]</a>.
         To model a spring bloom,
         only a simple nitrate-diatom biological model is used.
-        The diatom growth parameters are taken from the literature based on the first phytoplankton to bloom in the Strait 
+        The diatom growth parameters are taken from the literature based on the first phytoplankton to bloom in the Strait
         (<em>Thalassiosira</em> spp.).
-        The model zooplankton concentration was taken from observations 
+        The model zooplankton concentration was taken from observations
         <a href="#footnote7" id="footnote7-back-link" title="Link to citation">[7]</a>
-        and the model was tuned by adjusting the phytoplankton growth rate 
+        and the model was tuned by adjusting the phytoplankton growth rate
         <a href="#footnote3" id="footnote3-back-link" title="Link to citation">[3]</a>
         within the range measured in the laboratory.
         The model was tuned,
         within 4 days,
-        for the spring blooms of 2002-2005 for which detailed observations were made as part of the STRATOGEM project 
+        for the spring blooms of 2002-2005 for which detailed observations were made as part of the STRATOGEM project
         <a href="#footnote3" id="footnote3-back-link" title="Link to citation">[3]</a>.
       </p>
       <p>
-        A carbon module that models dissolved inorganic carbon and total alkalinity has been added to the model and allows estimation of aragonite saturation state 
+        A carbon module that models dissolved inorganic carbon and total alkalinity has been added to the model and allows estimation of aragonite saturation state
         <a href="#footnote8" id="footnote8-back-link" title="Link to citation">[8]</a>.
       </p>
 
       <h3>Results</h3>
       <p>
-        The most recent predictions for the first spring diatom bloom in the Strait of Georgia are available at 
+        The most recent predictions for the first spring diatom bloom in the Strait of Georgia are available at
         <a href="https://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html">https://salishsea.eos.ubc.ca/bloomcast/spring_diatoms.html</a>.
       </p>
 

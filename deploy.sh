@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# Copyright 2014-2019 The Salish Sea MEOPAR Contributors
-# and The University of British Columbia
+# Copyright 2014 – present by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group
+# in the Department of Earth, Ocean, and Atmospheric Sciences
+# at The University of British Columbia
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
