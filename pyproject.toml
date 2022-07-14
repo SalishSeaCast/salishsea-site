@@ -17,10 +17,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""Pyramid web app that serves the salishsea.eos.ubc.ca site
-"""
-import setuptools
-
-
-setuptools.setup(
-)
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
