@@ -47,7 +47,7 @@ salishsea.eos.ubc.ca Site Web App
 .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
-.. image:: https://github.com/SalishSeaCast/salishsea-site/actions/workflows/CodeQL/badge.svg
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CodeQL/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL
     :alt: CodeQL analysis
 .. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
