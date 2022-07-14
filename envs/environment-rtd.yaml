@@ -4,11 +4,12 @@
 name: sphinx-build
 
 channels:
-  - defaults
+  - conda-forge
+  - nodefaults
 
 dependencies:
   - pip
-  - python>=3.6
+  - python=3.10
   - pip:
       - pyramid
       - sentry_sdk

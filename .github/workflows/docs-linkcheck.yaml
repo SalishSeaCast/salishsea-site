@@ -2,7 +2,7 @@ name: sphinx-linkcheck
 
 on:
   push:
-    branches:  ['*']
+    branches:  [ '*' ]
   schedule:
     - cron: 43 4 7 * *  # 04:43 UTC on the 7th day of each month
 
@@ -15,7 +15,7 @@ jobs:
       matrix:
         # Need to specify Python version here because we use test env which gets its
         # Python version via matrix
-        python-version: ['3.8']
+        python-version: [ '3.10' ]
 
     steps:
       - uses: actions/checkout@v2
