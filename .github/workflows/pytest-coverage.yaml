@@ -40,7 +40,8 @@ jobs:
         run: |
           pytest --cov=$GITHUB_WORKSPACE --cov-report=xml
 
-      - uses: 8398a7/action-slack@v3
+      - name: Push job status to SalishSeaCast Slack
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: Python ${{ matrix.python-version }} pytest & coverage report
