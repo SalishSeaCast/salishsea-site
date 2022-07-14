@@ -8,7 +8,7 @@ name: salishsea-site-test
 
 channels:
   - conda-forge
-  - defaults
+  - nodefaults
 
 dependencies:
   - pip

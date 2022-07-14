@@ -13,7 +13,7 @@ name: salishsea-site-env
 
 channels:
   - conda-forge
-  - defaults
+  - nodefaults
 
 dependencies:
   - pip
