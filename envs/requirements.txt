@@ -5,7 +5,7 @@
 # to create an isolated development environment.
 #
 # Create/update this file with:
-#   (salishsea-site)$ python3 -m pip list --format=freeze >> requirements.txt
+#   (salishsea-site)$ python3 -m pip list --format=freeze >> envs/requirements.txt
 
 alabaster==0.7.12
 appdirs==1.4.4
