@@ -23,8 +23,4 @@ import setuptools
 
 
 setuptools.setup(
-    entry_points="""
-    [paste.app_factory]
-    main = salishsea_site:main
-    """
 )
