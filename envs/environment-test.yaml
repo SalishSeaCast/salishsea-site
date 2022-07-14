@@ -18,6 +18,7 @@ dependencies:
   # For unit tests and coverage monitoring
   - pytest
   - pytest-cov
+  - tomli
 
   # For documentation links checking
   - sphinx
