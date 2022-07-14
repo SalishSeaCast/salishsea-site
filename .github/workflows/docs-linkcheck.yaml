@@ -13,17 +13,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Need to specify Python version here because we use test env which gets its
+        # Python version via matrix
         python-version: ['3.8']
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - name: Set up conda environment
+        uses: conda-incubator/setup-miniconda@v2
         with:
+           miniforge-variant: Mambaforge-pypy3
+           miniforge-version: latest
+           use-mamba: true
            auto-update-conda: true
            auto-activate-base: false
-           environment-file: envs/environment-test.yaml
+           channels: conda-forge,nodefaults
+           channel-priority: true
            python-version: ${{ matrix.python-version }}
+           environment-file: envs/environment-test.yaml
            activate-environment: salishsea-site-test
 
       - name: Install package
