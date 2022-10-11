@@ -25,93 +25,110 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Publications</h1>
-      <p>
-        The SalishSeaCast Project team have produced a number of refereed
-        academic journal publications.
-        If you use our model results,
-        code,
-        documentation,
-        etc.,
-        please cite one or more of our publications as appropriate.
-      </p>
-      <p>
-        If our work is helpful or informative to you in a context where academic
-        citation isn't possible we would appreciate you telling us with a quick
-        email to Susan Allen
-        &lt;<a href="mailto:sallen@eos.ubc.ca">sallen@eos.ubc.ca</a>&gt;.
-      </p>
+        <p>
+          The SalishSeaCast Project team have produced a number of refereed
+          academic journal publications.
+          If you use our model results,
+          code,
+          documentation,
+          etc.,
+          please cite one or more of our publications as appropriate.
+        </p>
+        <p>
+          If our work is helpful or informative to you in a context where academic
+          citation isn't possible we would appreciate you telling us with a quick
+          email to Susan Allen
+          &lt;<a href="mailto:sallen@eos.ubc.ca">sallen@eos.ubc.ca</a>&gt;.
+        </p>
 
       <h2>Model Configuration, Evaluation, and Storm Surge Hindcasting</h2>
-      <p>
-        The Salish Sea NEMO model configuration and its ability to calculate
-        tides and sea surface height was evaluated by hindcasting storm surge events
-        that occurred between 2002 and 2011 in:
-      </p>
-      <p>
-        Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P.,
-        Lu, Y., Thompson, K., Korabel, V., 2016.
-        Storm surges in the Strait of Georgia simulated with a regional model.
-        <em>Atmosphere-Ocean</em> <strong>54</strong> 1-21.
-      </p>
-      <p>
-        <a href="https://dx.doi.org/10.1080/07055900.2015.1108899">
-          https://dx.doi.org/10.1080/07055900.2015.1108899
-        </a>
-      </p>
+        <p>
+          The Salish Sea NEMO model configuration and its ability to calculate
+          tides and sea surface height was evaluated by hindcasting storm surge events
+          that occurred between 2002 and 2011 in:
+        </p>
+        <p>
+          Soontiens, N., Allen, S., Latornell, D., Le Souef, K., Machuca, I., Paquin, J.-P.,
+          Lu, Y., Thompson, K., Korabel, V., 2016.
+          Storm surges in the Strait of Georgia simulated with a regional model.
+          <em>Atmosphere-Ocean</em> <strong>54</strong> 1-21.
+        </p>
+        <p>
+          <a href="https://dx.doi.org/10.1080/07055900.2015.1108899">
+            https://dx.doi.org/10.1080/07055900.2015.1108899
+          </a>
+        </p>
 
       <h2>Carbon Chemistry and Aragonite Saturation State</h2>
-      <p>
-        The seasonal variability of aragonite saturation and pH in the surface
-        Strait of Georgia and their drivers were determined using a 1-D coupled
-        biochemical-physical model in:
-      </p>
-      <p>
-        Moore-Maley, B. L., S. E. Allen, and D. Ianson, 2016.
-        Locally-driven interannual variability of near-surface pH and ΩA in the Strait of Georgia.
-        <em>J. Geophys. Res. Oceans</em>, <strong>121(3)</strong>, 1600–1625.
-      </p>
-      <p>
-        <a href="https://dx.doi.org/10.1002/2015JC011118">
-          https://dx.doi.org/10.1002/2015JC011118
-        </a>
-      </p>
+        <p>
+          The seasonal variability of aragonite saturation and pH in the surface
+          Strait of Georgia and their drivers were determined using a 1-D coupled
+          biochemical-physical model in:
+        </p>
+        <p>
+          Moore-Maley, B. L., S. E. Allen, and D. Ianson, 2016.
+          Locally-driven interannual variability of near-surface pH and ΩA in the Strait of Georgia.
+          <em>J. Geophys. Res. Oceans</em>, <strong>121(3)</strong>, 1600–1625.
+        </p>
+        <p>
+          <a href="https://dx.doi.org/10.1002/2015JC011118">
+            https://dx.doi.org/10.1002/2015JC011118
+          </a>
+        </p>
 
       <h2>Turbulence and Advective Mixing</h2>
-      <p>
-        The sensitivity of the deep water renewal into the Strait of Georgia
-        and of fresh water pulses into Juan de Fuca Strait to modelling choices
-        affecting both turbulence and advection has been determined in:
-      </p>
-      <p>
-        Soontiens, N. and Allen, S.
-        Modelling sensitivities to mixing and advection in a sill-basin estuarine system.
-        <em>Ocean Modelling</em>, <strong>112</strong>, 17-32.
-      </p>
-      <p>
-        <a href="https://dx.doi.org/10.1016/j.ocemod.2017.02.008">
-          https://dx.doi.org/10.1016/j.ocemod.2017.02.008
-        </a>
-      </p>
+        <p>
+          The sensitivity of the deep water renewal into the Strait of Georgia
+          and of fresh water pulses into Juan de Fuca Strait to modelling choices
+          affecting both turbulence and advection has been determined in:
+        </p>
+        <p>
+          Soontiens, N. and Allen, S.
+          Modelling sensitivities to mixing and advection in a sill-basin estuarine system.
+          <em>Ocean Modelling</em>, <strong>112</strong>, 17-32.
+        </p>
+        <p>
+          <a href="https://dx.doi.org/10.1016/j.ocemod.2017.02.008">
+            https://dx.doi.org/10.1016/j.ocemod.2017.02.008
+          </a>
+        </p>
+
+      <h2>Salish Model Ecosystem-Lower Trophic (SMELT), the biological component of SalishSeaCast</h2>
+        <p>
+          The 3 nutrient- 3 phytoplankton- 1.5 zooplankton compartment model described in
+          Moore-Maley et al . (2016) was adapted to three dimensions and coupled to the Salish
+          Sea NEMO model described by Soontiens et al. (2016). Description and evaluation of the
+          model can be found in:
+        </p>
+        <p>
+          Olson, E. M., S. E. Allen, V. Do, M. Dunphy, and D. Ianson, 2020.
+          Assessment of Nutrient Supply by a Tidal Jet in the Northern Strait of Georgia Based on a Biogeochemical Model.
+          J. Geophys. Res. Oceans.
+        </p>
+        <p>
+          <a href="https://dx.doi.org/10.1029/2019JC015766">
+            https://dx.doi.org/10.1029/2019JC015766
+          </a>
+        </p>
+
+      <h2>Cluster Analysis of Biophysical Dynamics</h2>
+        <p>
+          A cluster-based tool for model analysis and evaluation was developed and used to 
+          determine biophysical dynamics of the system in:
+        </p>
+        <p>
+          Jarníková, T., Olson, E. M., Allen, S. E., Ianson, D., and Suchy, K. D., 2021. 
+          A clustering approach to determine biophysical provinces and physical drivers of 
+          productivity dynamics in a complex coastal sea. 
+          <em>Ocean Sci. Discuss.</em>, 1-36.
+        </p>
+        <p>
+          <a href="https://doi.org/10.5194/os-2021-66">
+            https://doi.org/10.5194/os-2021-66
+          </a>
+        </p>
     </div>
   </div>
-
-  <h2>Salish Model Ecosystem-Lower Trophic (SMELT), the biological component of SalishSeaCast</h2>
-  <p>
-    The 3 nutrient- 3 phytoplankton- 1.5 zooplankton compartment model described in
-    Moore-Maley et al . (2016) was adapted to three dimensions and coupled to the Salish
-    Sea NEMO model described by Soontiens et al. (2016). Description and evaluation of the
-    model can be found in:
-  </p>
-  <p>
-    Olson, E. M., S. E. Allen, V. Do, M. Dunphy, and D. Ianson, 2020.
-    Assessment of Nutrient Supply by a Tidal Jet in the Northern Strait of Georgia Based on a Biogeochemical Model.
-    J. Geophys. Res. Oceans.
-  </p>
-  <p>
-    <a href="https://dx.doi.org/10.1029/2019JC015766">
-      https://dx.doi.org/10.1029/2019JC015766
-    </a>
-  </p>
 
 
   <div class="row">
@@ -289,7 +306,7 @@ model.",
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
       <pre>
-@unpublished{Olson-etal-2020,
+@article{Olson-etal-2020,
     author = "Olson, E. M. and S. E. Allen and V. Do and M. Dunphy and D. Ianson",
     title = "Assessment of Nutrient Supply by a Tidal Jet in the
 Northern Strait of Georgia Based on a Biogeochemical Model",
@@ -319,6 +336,51 @@ contribute net upward nitrate flux as far south as Cape Lazo, 40 km away. The ni
 supply drives new production, consistent with existing observations. Similar dynamics
 have been described in many other tidally influenced coastal systems.",
     doi = "10.1029/2019JC015766",
+}
+      </pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        Jarníková, <em>et al</em>, 2021. 
+        A clustering approach to determine biophysical provinces and physical drivers of 
+        productivity dynamics in a complex coastal sea. 
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <pre>
+@article{Jarnikova-etal-2021,
+    author = "Jarníková, T., Olson, E. M., Allen, S. E., Ianson, D., and Suchy, K. D.",
+    title = "A clustering approach to determine biophysical provinces and physical 
+drivers of productivity dynamics in a complex coastal sea",
+    journal = "Ocean Sci. Discuss.",
+    year = "2021",
+    url = "https://doi.org/10.5194/os-2021-66",
+    abstract = "The balance between ocean mixing and stratification influences 
+primary productivity through light limitation and nutrient supply in the 
+euphotic ocean. Here, we apply a hierarchical clustering algorithm 
+(Ward's method) to four factors relating to stratification and depth-integrated 
+phytoplankton biomass extracted from a biophysical regional ocean model of the 
+Salish Sea to assess spatial co-occurrence. Running the clustering algorithm on 
+four years of model output, we identify distinct regions of the model domain that 
+exhibit contrasting wind and freshwater input dynamics, as well as regions of 
+varying watercolumn-averaged vertical eddy diffusivity and halocline depth regimes. 
+The spatial regionalizations in physical variables are similar in all four 
+analyzed years. We also find distinct interannually consistent biological zones. 
+In the Northern Strait of Georgia and Juan de Fuca Strait, a deeper winter 
+halocline and episodic summer mixing coincide with higher summer diatom abundance, 
+while in the Fraser River stratified Central Strait of Georgia, shallower 
+haloclines and stronger summer stratification coincide with summer flagellate 
+abundance. Cluster based model results and evaluation suggest that the 
+Juan de Fuca Strait supports more biomass than previously thought. Our approach 
+elucidates probable physical mechanisms controlling phytoplankton abundance and 
+composition. It also demonstrates a simple, powerful technique for finding 
+structure in large datasets and determining boundaries of biophysical provinces.",
+    doi = "10.5194/os-2021-66",
 }
       </pre>
     </div>
