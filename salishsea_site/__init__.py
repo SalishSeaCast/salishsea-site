@@ -21,7 +21,6 @@
 """
 __version__ = "22.1.dev0"
 
-import datetime
 import os
 
 import sentry_sdk
@@ -36,7 +35,6 @@ def main(global_config, **settings):
     """Configure the Pyramid WSGI application."""
     config = Configurator(settings=settings)
     _static_views(config, settings)
-    _copyright_year_range(config)
     _erddap_url(config)
     _site_routes(config)
     _salishseacast_routes(config)
@@ -53,17 +51,6 @@ def _static_views(config, settings):
         name=settings["nowcast_figures_server_name"],
         path="/results/nowcast-sys/figures",
     )
-
-
-def _copyright_year_range(config):
-    def _add_copyright_year_range(request):
-        return (
-            "2013"
-            if datetime.date.today().year == 2013
-            else "2013 – present"
-        )
-
-    config.add_request_method(_add_copyright_year_range, "copyright_years", reify=True)
 
 
 def _erddap_url(config):
