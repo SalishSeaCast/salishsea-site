@@ -103,7 +103,7 @@
     model can be found in:
   </p>
   <p>
-    Olson, E. M., S. E. Allen, V. Do, M. Dunphy, and D. Ianson (in press).
+    Olson, E. M., S. E. Allen, V. Do, M. Dunphy, and D. Ianson, 2020.
     Assessment of Nutrient Supply by a Tidal Jet in the Northern Strait of Georgia Based on a Biogeochemical Model.
     J. Geophys. Res. Oceans.
   </p>
@@ -295,7 +295,6 @@ model.",
 Northern Strait of Georgia Based on a Biogeochemical Model",
     journal = "Journal of Geophysical Research: Oceans",
     year = "2020",
-    note = "(in press)",
     url = "https://dx.doi.org/10.1029/2019JC015766",
     keywords = "nitrate, tidal jet, Discovery Passage, Strait of Georgia,
 biogeochemical model, new production",
