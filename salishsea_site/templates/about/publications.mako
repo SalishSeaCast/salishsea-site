@@ -127,6 +127,23 @@
             https://doi.org/10.5194/os-2021-66
           </a>
         </p>
+
+      <h2>SKOG, the carbonate chemistry component of SalishSeaCast</h2>
+      <p>
+        The three-dimensional carbonate chemistry model was developed and used to determine 
+        the anthropogenic increase in Salish Sea coastal carbon content in:
+      </p>
+      <p>
+        Jarníková T., Ianson D., Allen S.E., Shao A.E., Olson E.M.. 2022.
+        Anthropogenic carbon increase has caused critical shifts in aragonite saturation
+        across a sensitive coastal system.
+        <em>Global Biogeochemical Cycles</em>, 36(7).
+      </p>
+      <p>
+        <a href="https://doi.org/10.1029/2021GB007024">
+          https://doi.org/10.1029/2021GB007024
+        </a>
+      </p>
     </div>
   </div>
 
@@ -346,7 +363,7 @@ have been described in many other tidally influenced coastal systems.",
       <h3>
         Jarníková, <em>et al</em>, 2021. 
         A clustering approach to determine biophysical provinces and physical drivers of 
-        productivity dynamics in a complex coastal sea. 
+        productivity dynamics in a complex coastal sea
       </h3>
     </div>
   </div>
@@ -381,6 +398,56 @@ elucidates probable physical mechanisms controlling phytoplankton abundance and
 composition. It also demonstrates a simple, powerful technique for finding 
 structure in large datasets and determining boundaries of biophysical provinces.",
     doi = "10.5194/os-2021-66",
+}
+      </pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        Jarníková, <em>et al</em>, 2022. 
+        Anthropogenic Carbon Increase has Caused Critical Shifts in Aragonite Saturation 
+        Across a Sensitive Coastal System
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <pre>
+@article{Jarnikova-etal-2022,
+    author = "Jarníková T., Ianson D., Allen S.E., Shao A.E., Olson E.M.",
+    title = "Anthropogenic Carbon Increase has Caused Critical Shifts in
+Aragonite Saturation Across a Sensitive Coastal System",
+    journal = "Global Biogeochemical Cycles",
+    year = "2022",
+    volume = "36",
+    number = "7",
+    url = "https://doi.org/10.1029/2021GB007024",
+    keywords = "coastal ocean acidification, carbon cycle, ocean acidification,
+sub-mesoscale ocean model, anthropogenic carbon, aragonite saturation",
+    abstract = "Estuarine systems host a rich diversity of marine life that is
+vulnerable to changes in ocean chemistry due to addition of anthropogenic carbon.
+However, the detection and impact of secular carbon trends in these systems is
+complicated by heightened natural variability as compared to open-ocean regimes.
+We investigate biogeochemical changes between the pre-industrial (PI) and modern
+periods using a high-resolution, three-dimensional, biophysical model of the
+Salish Sea, a representative Northeast Pacific coastal system. While the seasonal
+amplitude of the air-sea difference in pCO2 has increased on average since
+pre-industrial times, the net CO2 source has changed little. Our simulations show
+that inorganic carbon has increased throughout the model domain by 29–39 mmol m−3
+(28–38 µmol kg−1) from the pre-industrial to present. While this increase is modest
+in a global context, the region's naturally high inorganic carbon content and the
+low buffering capacity of the local carbonate system amplify the resultant effects.
+Notably, this increased carbon drives the estuary toward system-wide undersaturation
+of aragonite, negatively impacting shell-forming organisms. Undersaturation events
+were rare during the pre-industrial experiment, with 10%–25% of the domain
+undersaturated by volume throughout the year, while under present-day conditions,
+the majority (55%–75%) of the system experiences corrosive, undersaturated conditions
+year-round. These results are extended using recent global coastal observations to
+show that estuaries throughout the Pacific Rim have already undergone a similar
+saturation state regime shift.",
+    doi = "10.1029/2021GB007024",
 }
       </pre>
     </div>
