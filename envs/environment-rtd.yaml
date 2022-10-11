@@ -1,4 +1,4 @@
-# conda environment description file for docs build envioronment
+# conda environment description file for docs build environment
 # on readthedocs.org
 
 name: sphinx-build
