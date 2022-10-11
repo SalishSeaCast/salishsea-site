@@ -26,7 +26,7 @@
     <div class="col-md-12">
       <h1>Publications</h1>
       <p>
-        The Salish Sea MEOPAR project team have produced a number of refereed
+        The SalishSeaCast Project team have produced a number of refereed
         academic journal publications.
         If you use our model results,
         code,

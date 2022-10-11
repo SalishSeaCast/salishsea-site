@@ -41,7 +41,7 @@
         provides a platform to accelerate this type of research.
       </p>
       <p>
-        The Salish Sea MEOPAR project team is developing a three-dimensional ocean model
+        The SalishSeaCast Project team is developing a three-dimensional ocean model
         for the Strait of Georgia and Salish Sea.
         Using the
         <a href="http://www.nemo-ocean.eu/">NEMO</a>
