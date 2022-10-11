@@ -19,7 +19,7 @@
 
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
-__version__ = "22.1.dev0"
+__version__ = "22.1"
 
 import os
 
