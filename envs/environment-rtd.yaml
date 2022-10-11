@@ -8,8 +8,19 @@ channels:
   - nodefaults
 
 dependencies:
-  - pip
   - python=3.10
+
+  # readthedocs packages
+  - mock
+  - pillow
+  - pip
+  - sphinx
+  - sphinx_rtd_theme
+
   - pip:
-      - pyramid
-      - sentry_sdk
+    - pyramid
+    - sentry_sdk
+
+    # readthedocs packages
+    - recommonmark
+    - readthedocs-sphinx-ext
