@@ -23,6 +23,7 @@ dependencies:
   # For documentation links checking
   - sphinx
   - sphinx_rtd_theme
+  - sphinx-notfound-page
 
   - pip:
     - arrow
