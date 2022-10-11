@@ -213,10 +213,13 @@ and building the documentation with the commands:
 
     $ cd salishsea-site
     $ conda env create -f env/environment-dev.yaml
-    $ conda activate salishsea-site
-    (salishsea-site)$ python3 -m pip install --editable .
 
-The :kbd:`--editable` option in the :command:`pip install` commands above installs the :kbd:`salishsea-site` package via a symlink so that it is automatically updated as the repo evolves.
+The :kbd:`salishsea-site` package is installed in `editable install mode`_
+as part of the conda environment creation process.
+That means that the package is installed from the cloned repo via symlinks so that
+it will be automatically updated as the repo evolves.
+
+.. _editable install mode: https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
 
 To deactivate the environment use:
 

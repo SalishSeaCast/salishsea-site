@@ -6,8 +6,6 @@
 #
 #    $ cd salishsea_site
 #    $ conda env create -f envs/environment-prod.yaml
-#    $ source activate salishsea-site
-#    (salishsea-site)$ python3 -m pip install --editable .
 
 name: salishsea-site-env
 
@@ -28,3 +26,6 @@ dependencies:
     - sentry-sdk
     - supervisor
     - waitress
+
+    # editable install of salishsea-site package
+    - --editable ../
