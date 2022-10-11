@@ -37,7 +37,7 @@ jobs:
       uses: 8398a7/action-slack@v3
       with:
         status: ${{ job.status }}
-        author_name: CodeQL analysis
+        author_name: CodeQL ${{ matrix.language }} analysis
         fields: repo,eventName,ref,workflow
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_SALISHSEACAST_WEBHOOK_URL }}
