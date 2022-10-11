@@ -33,3 +33,6 @@ dependencies:
     - sentry-sdk
     - supervisor
     - waitress
+
+    # editable install of salishsea-site package
+    - --editable ../

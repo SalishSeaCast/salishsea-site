@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up conda environment
+      - name: Set up conda environment and install salishsea-site package
         uses: conda-incubator/setup-miniconda@v2
         with:
            miniforge-variant: Mambaforge-pypy3
@@ -33,11 +33,6 @@ jobs:
            python-version: ${{ matrix.python-version }}
            environment-file: envs/environment-test.yaml
            activate-environment: salishsea-site-test
-
-      - name: Install package
-        shell: bash -l {0}
-        run: |
-          python3 -m pip install --editable $GITHUB_WORKSPACE
 
       - name: linkcheck docs
         shell: bash -l {0}
