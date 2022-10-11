@@ -59,7 +59,7 @@
     <p>
       © Copyright 2013 – present
       <a href="https://github.com/SalishSeaCast/docs/blob/main/CONTRIBUTORS.rst">
-        Salish Sea MEOPAR Project Contributors
+        SalishSeaCast Project contributors
       </a> and The University of British Columbia
       <br>
       Licensed under the Apache License, Version 2.0.
