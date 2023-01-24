@@ -41,9 +41,9 @@ salishsea.eos.ubc.ca Site Web App
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
     :alt: Sphinx linkcheck Status
-.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
-    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
-    :alt: Continuous Integration Status
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
+    :alt: Pytest with Coverage Status
 .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
@@ -420,7 +420,7 @@ The output looks something like::
   (line   21) ok        https://docs.python.org/3.8/
   (line   21) ok        https://black.readthedocs.io/en/stable/
   (line   21) ok        https://salishsea-site.readthedocs.io/en/latest/
-  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
+  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
   (line   21) ok        https://www.apache.org/licenses/LICENSE-2.0
   (line   48) ok        https://salishsea.eos.ubc.ca/
   (line   21) ok        https://github.com/SalishSeaCast/salishsea-site
@@ -462,7 +462,7 @@ The output looks something like::
   (line  512) ok        https://img.shields.io/badge/version%20control-hg-blue.svg
   (line   21) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
   (line  518) ok        https://bitbucket.org/salishsea/salishsea-site
-  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
+  (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
   (line   21) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
   (line  526) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
   build succeeded.
@@ -532,9 +532,9 @@ to produce an HTML report that you can view in your browser by opening :file:`sa
 Continuous Integration
 ----------------------
 
-.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
-    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
-    :alt: GitHub Workflow Status
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
+    :alt: Pytest with Coverage Status
 .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report

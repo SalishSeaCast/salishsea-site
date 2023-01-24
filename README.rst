@@ -23,9 +23,9 @@ salishsea.eos.ubc.ca Site
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
     :alt: Sphinx linkcheck Status
-.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CI/badge.svg
-    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3ACI
-    :alt: GitHub Workflow Status
+.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
+    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
+    :alt: Pytest with Coverage Status
 .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
