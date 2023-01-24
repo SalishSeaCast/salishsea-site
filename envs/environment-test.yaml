@@ -22,7 +22,7 @@ dependencies:
 
   # For documentation links checking
   - sphinx
-  - sphinx_rtd_theme
+  - sphinx_rtd_theme=1.1.1
   - sphinx-notfound-page
 
   - pip:
@@ -35,5 +35,5 @@ dependencies:
     - supervisor
     - waitress
 
-    # editable install of salishsea-site package
+    # install of salishsea-site package in editable mode
     - --editable ../
