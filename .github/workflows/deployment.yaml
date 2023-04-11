@@ -38,7 +38,7 @@ jobs:
           pytest
 
       - name: update & restart app via ssh
-        uses: appleboy/ssh-action@b60142998894e495c513803efc6d5d72a72c968a
+        uses: appleboy/ssh-action@5f64c95280a8e7632da28096e00ccaecb296d200
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
