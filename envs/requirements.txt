@@ -42,7 +42,7 @@ pluggy==1.0.0
 pycparser==2.21
 Pygments==2.15.0
 pyOpenSSL==23.0.0
-pyramid==2.0.1
+pyramid==2.0.2
 pyramid-debugtoolbar==4.10
 pyramid-mako==1.1.0
 PySocks==1.7.1
