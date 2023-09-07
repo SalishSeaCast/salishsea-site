@@ -16,7 +16,7 @@ jobs:
         python-version: [ '3.10' ]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up conda environment and install salishsea-site package
         uses: conda-incubator/setup-miniconda@3b0f2504dd76ef23b6d31f291f4913fb60ab5ff3
