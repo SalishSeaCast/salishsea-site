@@ -18,19 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up conda environment and install salishsea-site package
-        uses: conda-incubator/setup-miniconda@3b0f2504dd76ef23b6d31f291f4913fb60ab5ff3
+      - name: Set up Conda environment with Micromamba
+        uses: mamba-org/setup-micromamba@db1df3ba9e07ea86f759e98b575c002747e9e757
         with:
-           miniforge-variant: Mambaforge-pypy3
-           miniforge-version: latest
-           use-mamba: true
-           auto-update-conda: false
-           auto-activate-base: false
-           channels: conda-forge,nodefaults
-           channel-priority: true
-           python-version: ${{ matrix.python-version }}
            environment-file: envs/environment-test.yaml
-           activate-environment: salishsea-site-test
+           environment-name: salishsea-site-test
+           # environment caching does not play nicely with --editable installed packages
+           cache-environment: false
+           cache-downloads: true
+           # persist downloads cache for 1 day
+           cache-downloads-key: downloads-${{ steps.date.outputs.date }}
+           create-args: >-
+             python=${{ inputs.python-version }}
 
       - name: pytest package
         shell: bash -l {0}
