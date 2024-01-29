@@ -28,7 +28,7 @@
       <p>
         The salishsea.eos.ubc.ca site content,
         build tools,
-        and documentation are copyright ${request.copyright_years} by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group in the Department of Earth, Ocean, and Atmospheric Sciences at The University of British Columbia.
+        and documentation are copyright 2013 – present by the Mesoscale Ocean and Atmospheric Dynamics (MOAD) group in the Department of Earth, Ocean, and Atmospheric Sciences at The University of British Columbia.
         Please see <a href=${request.route_url('about.contributors')}>Contributors</a> for details.
       </p>
       <p>
