@@ -287,16 +287,16 @@ biology_image_loops = ImageLoopGroup(
         ImageLoop(
             model_var="microzooplankton",
             metadata=FigureMetadata(
-                title="Microzooplankton Fields Along Thalweg and Near Surface",
-                link_text="Depth Integrated Microzooplankton",
+                title="Z1 Zooplankton Fields Along Thalweg and Near Surface",
+                link_text="Depth Integrated Z1 Zooplankton",
                 svg_name="microzooplankton_thalweg_and_surface",
             ),
         ),
         ImageLoop(
             model_var="mesozooplankton",
             metadata=FigureMetadata(
-                title="Mesozooplankton Fields Along Thalweg and Near Surface",
-                link_text="Depth Integrated Mesozooplankton",
+                title="Z2 Zooplankton Fields Along Thalweg and Near Surface",
+                link_text="Depth Integrated Z2 Zooplankton",
                 svg_name="mesozooplankton_thalweg_and_surface",
             ),
         ),
