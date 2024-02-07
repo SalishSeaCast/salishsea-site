@@ -308,6 +308,14 @@ biology_image_loops = ImageLoopGroup(
                 svg_name="Fraser_tracer_thalweg_and_surface",
             ),
         ),
+        ImageLoop(
+            model_var="turbidity",
+            metadata=FigureMetadata(
+                title="Fraser River Turbidity Fields Along Thalweg and at Surface",
+                link_text="Surface Fraser River Turbidity",
+                svg_name="turbidity_thalweg_and_surface",
+            ),
+        ),
     ],
 )
 
