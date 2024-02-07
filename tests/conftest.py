@@ -23,7 +23,7 @@ import pytest
 from pyramid import testing
 
 
-@pytest.yield_fixture(scope="function")
+@pytest.fixture(scope="function")
 def pconfig():
     config = testing.setUp(request=testing.DummyRequest)
     yield config
