@@ -19,6 +19,7 @@
 
 """salishsea_site SalishSeaCast views
 """
+import copy
 import logging
 import os
 import urllib.parse
@@ -742,11 +743,14 @@ def nowcast_biology(request):
         ],
         "biology loops": [],
     }
+    unavailable_loops = []
     for image_loop in biology_image_loops.loops:
         images_available = image_loop.available("nowcast-green", results_date)
-        if images_available:
-            available_figures["biology loops"].append(images_available)
-            image_loop.hrs = image_loop.hours("nowcast-green", results_date)
+        if not images_available:
+            unavailable_loops.append(image_loop)
+            continue
+        available_figures["biology loops"].append(images_available)
+        image_loop.hrs = image_loop.hours("nowcast-green", results_date)
     if not any(available_figures["baynes sound"] + available_figures["biology loops"]):
         raise HTTPNotFound
     figure_links = (
@@ -757,13 +761,16 @@ def nowcast_biology(request):
         if available_figures["baynes sound"]
         else []
     )
+    image_loops = copy.deepcopy(biology_image_loops)
+    for image_loop in unavailable_loops:
+        image_loops.loops.remove(image_loop)
     return {
         "results_date": results_date,
         "run_type": "nowcast-green",
         "run_date": results_date,
         "figure_links": figure_links,
         "available_figures": available_figures,
-        "image_loops": biology_image_loops,
+        "image_loops": image_loops,
         "baynes_sound_figures": baynes_sound_figures,
     }
 
