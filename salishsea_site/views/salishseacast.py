@@ -333,14 +333,14 @@ timeseries_figure_group = FigureGroup(
             svg_name="nitrate_diatoms_timeseries",
         ),
         FigureMetadata(
-            title="Mesodinium rubrum and Flagellates Concentrations",
-            link_text="Surface Mesodinium rubrum and Flagellates Concentrations",
-            svg_name="mesodinium_flagellates_timeseries",
+            title="Diatoms and Flagellates Concentrations",
+            link_text="Surface Diatoms and Flagellates Concentrations",
+            svg_name="diatoms_flagellates_timeseries",
         ),
         FigureMetadata(
-            title="Mesozooplankton and Microzooplankton Concentrations",
-            link_text="Surface Mesozooplankton and Microzooplankton Concentrations",
-            svg_name="mesozoo_microzoo_timeseries",
+            title="Z1 and Z2 and Zooplankton Concentrations",
+            link_text="Surface Z1 and Z2 and Zooplankton Concentrations",
+            svg_name="z1_z2_zooplankton_timeseries",
         ),
     ],
 )
