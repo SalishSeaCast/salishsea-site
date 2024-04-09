@@ -14,9 +14,9 @@ dependencies:
   - mock
   - pillow
   - pip
-  - sphinx
-  - sphinx_rtd_theme=1.2
-  - sphinx-notfound-page
+  - sphinx=7.2.6
+  - sphinx-notfound-page=1.0.0
+  - sphinx-rtd-theme=2.0.0
 
   - pip:
     - pyramid
