@@ -8,7 +8,8 @@ channels:
   - nodefaults
 
 dependencies:
-  - python=3.10
+  - pip
+  - python=3.12
 
   # Sphinx and extensions we use
   - sphinx=7.2.6
