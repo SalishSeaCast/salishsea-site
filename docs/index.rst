@@ -36,7 +36,7 @@ salishsea.eos.ubc.ca Site Web App
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
@@ -309,13 +309,13 @@ Building the Documentation
 --------------------------
 
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
 
 The documentation for the :kbd:`salishsea-site` package is written in `reStructuredText`_ and converted to HTML using `Sphinx`_.
 
 If you have write access to the `repository`_ on GitHub,
-whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
+whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io.
 
 Additions,
 improvements,
@@ -383,7 +383,7 @@ The HTML rendering of the docs ends up in :file:`docs/_build/html/`.
 You can open the :file:`index.html` file in that directory tree in your browser to preview the results of the build before committing and pushing your changes to Bitbucket.
 
 If you have write access to the `repository`_ on GitHub,
-whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io/en/latest/.
+whenever you push changes to GitHub the documentation is automatically re-built and rendered at https://salishsea-site.readthedocs.io.
 
 
 .. _SalishSeaSiteLinkCheckingTheDocumentation:
@@ -419,7 +419,7 @@ The output looks something like::
   writing output... [100%] index
   (line   21) ok        https://docs.python.org/3.8/
   (line   21) ok        https://black.readthedocs.io/en/stable/
-  (line   21) ok        https://salishsea-site.readthedocs.io/en/latest/
+  (line   21) ok        https://salishsea-site.readthedocs.io
   (line   21) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
   (line   21) ok        https://www.apache.org/licenses/LICENSE-2.0
   (line   48) ok        https://salishsea.eos.ubc.ca/
