@@ -45,7 +45,7 @@ salishsea.eos.ubc.ca Site Web App
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
     :alt: Pytest with Coverage Status
 .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
+    :target: https://app.codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CodeQL/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL
@@ -108,7 +108,7 @@ The :file:`salishsea_site` directory tree contains the app package:
   The templates are organized in sub-directories that correspond to the view modules.
 
   .. _page templates: https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
-  .. _HTML5: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
+  .. _HTML5: https://developer.mozilla.org/en-US/docs/Glossary/HTML5
   .. _Bootstrap 3: https://getbootstrap.com/
   .. _Mako template library: https://www.makotemplates.org/
 
@@ -183,7 +183,7 @@ or
 if you don't have `ssh key authentication`_ set up on GitHub
 (or copy the link from the :guilabel:`Clone or download` button on the `repository`_ page).
 
-.. _ssh key authentication: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
+.. _ssh key authentication: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 
 .. _SalishSeaSiteDevelopmentEnvironment:
@@ -231,7 +231,7 @@ Coding Style
 The :kbd:`salishsea-site` package uses the `black`_ code formatting tool to maintain a coding style that is very close to `PEP 8`_.
 
 .. _black: https://black.readthedocs.io/en/stable/
-.. _PEP 8: https://www.python.org/dev/peps/pep-0008/
+.. _PEP 8: https://peps.python.org/pep-0008/
 
 :command:`black` is installed as part of the :ref:`SalishSeaSiteDevelopmentEnvironment` setup.
 
@@ -540,7 +540,7 @@ Continuous Integration
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
     :alt: Pytest with Coverage Status
 .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/SalishSeaCast/salishsea-site
+    :target: https://app.codecov.io/gh/SalishSeaCast/salishsea-site
     :alt: Codecov Testing Coverage Report
 
 The :kbd:`salishsea-site` package unit test suite is run and a coverage report is generated whenever changes are pushed to GitHub.
@@ -552,11 +552,11 @@ The testing coverage report is uploaded to `codecov.io`_
 .. _repo actions page: https://github.com/SalishSeaCast/salishsea-site/actions
 .. _repo commits page: https://github.com/SalishSeaCast/salishsea-site/commits/main
 .. _repo code overview page: https://github.com/SalishSeaCast/salishsea-site
-.. _codecov.io: https://codecov.io/gh/SalishSeaCast/salishsea-site
+.. _codecov.io: https://app.codecov.io/gh/SalishSeaCast/salishsea-site
 
 The `GitHub Actions`_ workflow configuration that defines the continuous integration tasks is in the :file:`.github/workflows/pytest-coverage.yaml` file.
 
-.. _GitHub Actions: https://help.github.com/en/actions
+.. _GitHub Actions: https://docs.github.com/en/actions
 
 
 .. _SalishSeaSiteVersionControlRepository:
