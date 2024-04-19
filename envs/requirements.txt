@@ -21,7 +21,7 @@ colorama==0.4.6
 coverage==7.4.4
 docutils==0.20.1
 esbonio==0.16.2
-exceptiongroup==1.1.3
+exceptiongroup==1.2.0
 hupper==1.12.1
 idna==3.7
 imagesize==1.4.1
@@ -53,8 +53,8 @@ python-dateutil==2.9.0.post0
 pytz==2024.1
 PyYAML==6.0.1
 requests==2.31.0
-sentry-sdk==1.44.1
-setuptools==69.2.0
+sentry-sdk==1.45.0
+setuptools==69.5.1
 six==1.16.0
 snowballstemmer==2.2.0
 Sphinx==7.2.6
@@ -65,8 +65,8 @@ sphinxcontrib-devhelp==1.0.5
 sphinxcontrib-htmlhelp==2.0.4
 sphinxcontrib-jquery==4.1
 sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==1.0.6
-sphinxcontrib-serializinghtml==1.1.9
+sphinxcontrib-qthelp==1.0.7
+sphinxcontrib-serializinghtml==1.1.10
 supervisor==4.2.5
 toml==0.10.2
 tomli==2.0.1
