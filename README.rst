@@ -18,7 +18,7 @@ salishsea.eos.ubc.ca Site
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
@@ -42,10 +42,10 @@ site where information and research results from various projects about the
 oceanography of the Salish Sea are published to the web.
 
 Documentation for the app is in the ``docs/`` directory and is rendered at
-https://salishsea-site.readthedocs.io/en/latest/.
+https://salishsea-site.readthedocs.io.
 
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
 
 
