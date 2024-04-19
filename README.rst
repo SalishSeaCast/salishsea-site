@@ -8,8 +8,8 @@ salishsea.eos.ubc.ca Site
 .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
     :target: https://www.apache.org/licenses/LICENSE-2.0
     :alt: Licensed under the Apache License, Version 2.0
-.. image:: https://img.shields.io/badge/python-3.10-blue.svg
-    :target: https://docs.python.org/3.10/
+.. image:: https://img.shields.io/badge/python-3.12-blue.svg
+    :target: https://docs.python.org/3.12/
     :alt: Python Version
 .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
     :target: https://github.com/SalishSeaCast/salishsea-site
@@ -18,7 +18,7 @@ salishsea.eos.ubc.ca Site
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
@@ -42,10 +42,10 @@ site where information and research results from various projects about the
 oceanography of the Salish Sea are published to the web.
 
 Documentation for the app is in the ``docs/`` directory and is rendered at
-https://salishsea-site.readthedocs.io/en/latest/.
+https://salishsea-site.readthedocs.io.
 
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io/en/latest/
+    :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
 
 

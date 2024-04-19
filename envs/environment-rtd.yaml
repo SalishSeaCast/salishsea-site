@@ -1,27 +1,28 @@
 # conda environment description file for docs build environment
 # on readthedocs.org
 
-name: sphinx-build
+name: salishsea-site-rtd
 
 channels:
   - conda-forge
   - nodefaults
 
 dependencies:
-  - python=3.10
-
-  # readthedocs packages
-  - mock
-  - pillow
   - pip
+  - python=3.12
+
+  # Sphinx and extensions we use
   - sphinx=7.2.6
   - sphinx-notfound-page=1.0.0
   - sphinx-rtd-theme=2.0.0
 
+  # readthedocs build system packages
+  - mock
+  - pillow
   - pip:
-    - pyramid
-    - sentry_sdk
-
-    # readthedocs packages
+    - commonmark
     - recommonmark
     - readthedocs-sphinx-ext
+
+    - pyramid
+    - sentry_sdk

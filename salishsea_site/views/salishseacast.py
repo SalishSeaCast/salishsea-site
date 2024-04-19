@@ -862,9 +862,9 @@ def _data_for_publish_template(
     }
     if any(tides_max_ssh_figures_available):
         figure_links.append(tides_max_ssh_figure_group.description)
-        template_data[
-            "tides_max_ssh_figures_available"
-        ] = tides_max_ssh_figures_available
+        template_data["tides_max_ssh_figures_available"] = (
+            tides_max_ssh_figures_available
+        )
         template_data["tides_max_ssh_figures"] = tides_max_ssh_figure_group
     return template_data
 

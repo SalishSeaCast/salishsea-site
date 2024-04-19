@@ -193,7 +193,9 @@ class TestResultsIndex:
             (arrow.get("2017-01-06 13:15:42+07:00"), 7, 14),
         ],
     )
-    def test_month_cols(self, mock_figure_available, now, this_month_cols, last_month_cols, monkeypatch):
+    def test_month_cols(
+        self, mock_figure_available, now, this_month_cols, last_month_cols, monkeypatch
+    ):
         def mock_now():
             return now
 
@@ -249,7 +251,14 @@ class TestResultsIndex:
     )
     @patch("salishsea_site.views.salishseacast._exclude_missing_dates")
     def test_exclude_missing_dates_calls(
-        self, m_exclude_missing_dates, mock_figure_available, figures, figs_type, run_type, model, mock_now
+        self,
+        m_exclude_missing_dates,
+        mock_figure_available,
+        figures,
+        figs_type,
+        run_type,
+        model,
+        mock_now,
     ):
         request = get_current_request()
         salishseacast.results_index(request)
@@ -305,7 +314,9 @@ class TestCurrentsPhysics:
         def mock_figure_available(self, run_type, run_date):
             return False
 
-        monkeypatch.setattr(salishseacast.FigureMetadata, "available", mock_figure_available)
+        monkeypatch.setattr(
+            salishseacast.FigureMetadata, "available", mock_figure_available
+        )
         request = get_current_request()
         with pytest.raises(HTTPNotFound):
             salishseacast.nowcast_currents_physics(request)
@@ -351,7 +362,9 @@ class TestBiology:
         def mock_img_loop_available(self, run_type, run_date):
             return False
 
-        monkeypatch.setattr(salishseacast.ImageLoop, "available", mock_img_loop_available)
+        monkeypatch.setattr(
+            salishseacast.ImageLoop, "available", mock_img_loop_available
+        )
 
         request = get_current_request()
         request.matchdict = {"results_date": "07may17"}
@@ -386,19 +399,24 @@ class TestBiology:
 @pytest.mark.usefixtures("pconfig")
 class TestTimeseries:
     """Unit tests for nowcast_timeseries view."""
+
     @staticmethod
     @pytest.fixture
     def mock_fig_group_available(monkeypatch):
         def _fig_group_available(*args, **kwargs):
             return [True]
 
-        monkeypatch.setattr(salishseacast.FigureGroup, "available", _fig_group_available)
+        monkeypatch.setattr(
+            salishseacast.FigureGroup, "available", _fig_group_available
+        )
 
     def test_no_figures_raises_httpnotfound(self, monkeypatch):
         def mock_fig_group_available(*args, **kwargs):
             return []
 
-        monkeypatch.setattr(salishseacast.FigureGroup, "available", mock_fig_group_available)
+        monkeypatch.setattr(
+            salishseacast.FigureGroup, "available", mock_fig_group_available
+        )
 
         request = get_current_request()
         request.matchdict = {"results_date": "27jun17"}
@@ -438,7 +456,9 @@ class TestNowcastComparison:
         def mock_figure_available(*args, **kwargs):
             return False
 
-        monkeypatch.setattr(salishseacast.FigureMetadata, "available", mock_figure_available)
+        monkeypatch.setattr(
+            salishseacast.FigureMetadata, "available", mock_figure_available
+        )
         request = get_current_request()
         with pytest.raises(HTTPNotFound):
             salishseacast.nowcast_comparison(request)
@@ -491,7 +511,9 @@ class TestDataForPublishTemplate:
         def mock_figure_available(self, run_type, run_date):
             return False
 
-        monkeypatch.setattr(salishseacast.FigureMetadata, "available", mock_figure_available)
+        monkeypatch.setattr(
+            salishseacast.FigureMetadata, "available", mock_figure_available
+        )
         request = get_current_request()
         with pytest.raises(HTTPNotFound):
             salishseacast._data_for_publish_template(
