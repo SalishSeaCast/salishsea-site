@@ -21,6 +21,57 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+
+[project]
+name = "salishsea_site"
+#dynamic = [ "version" ]
+version = "24.1.dev0"
+description = """\
+    Pyramid web app that serves the salishsea.eos.ubc.ca site.\
+    """
+readme = "README.rst"
+requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+#license-files = { paths = ["LICENSE"] }
+authors = [
+    { name = "Doug Latornell", email= "dlatornell@eoas.ubc.ca" }
+]
+keywords = [
+    "oceanography",
+    "ocean modelling",
+    "UBC-MOAD",
+    "Salish Sea",
+    "SalishSeaCast",
+    "website",
+    "pyramid-framework"]
+dependencies = [
+    # see envs/environment-prod.yaml for conda environment production installation,
+    # see envs/environment-dev.yaml for conda environment dev installation,
+    # see envs/requirements.txt for package versions used during recent development
+    "arrow",
+    "attrs",
+    "pyramid",
+    "pyramid_mako",
+    "pyyaml",
+    "requests",
+    "sentry-sdk",
+    "supervisor",
+    "waitress",
+]
+
+[project.urls]
+"Documentation" = "https://salishsea-site.readthedocs.io"
+"Changelog" = "https://github.com/SalishSeaCast/salishsea-site/releases"
+"Issue Tracker" = "https://github.com/SalishSeaCast/salishsea-site/issues"
+"Source Code" = "https://github.com/SalishSeaCast/salishsea-site"
+
+[project.entry-points."paste.app_factory"]
+main = "salishsea_site:main"
+
+
+[tool.setuptools]
+packages = ["salishsea_site", "images"]
+
 [tool.coverage.run]
 branch = true
 source = ["salishsea_site", "tests"]
