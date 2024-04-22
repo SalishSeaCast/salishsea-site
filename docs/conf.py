@@ -12,6 +12,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+import importlib.metadata
 import os
 import sys
 
@@ -20,20 +21,14 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-import configparser
+project = "salishsea_site"
 
-setup_cfg = configparser.ConfigParser()
-setup_cfg.read(os.path.abspath("../setup.cfg"))
-project = setup_cfg["metadata"]["name"]
-
-author = "Mesoscale Ocean and Atmospheric Dynamics (MOAD) group and The University of British Columbia"
 pkg_creation_year = 2014
-copyright = f"{pkg_creation_year} – present, {author}"
+copyright_years = f"{pkg_creation_year} – present"
+copyright = f"{copyright_years} by the UBC EOAS MOAD Group and The University of British Columbia"
 
 # The short X.Y version
-import salishsea_site
-
-version = salishsea_site.__version__
+version = importlib.metadata.version(project)
 # The full version, including alpha/beta/rc tags
 release = version
 

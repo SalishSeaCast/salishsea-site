@@ -19,8 +19,6 @@
 
 """Pyramid web app that serves the salishsea.eos.ubc.ca site
 """
-__version__ = "24.1.dev0"
-
 import os
 
 import sentry_sdk

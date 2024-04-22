@@ -23,36 +23,47 @@
 salishsea.eos.ubc.ca Site Web App
 *********************************
 
-.. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
-    :target: https://www.apache.org/licenses/LICENSE-2.0
-    :alt: Licensed under the Apache License, Version 2.0
-.. image:: https://img.shields.io/badge/python-3.12-blue.svg
-    :target: https://docs.python.org/3.12/
-    :alt: Python Version
-.. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
-    :target: https://github.com/SalishSeaCast/salishsea-site
-    :alt: Git on GitHub
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://black.readthedocs.io/en/stable/
-    :alt: The uncompromising Python code formatter
-.. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    :target: https://salishsea-site.readthedocs.io
-    :alt: Documentation Status
-.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
-    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
-    :alt: Sphinx linkcheck Status
-.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
-    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
-    :alt: Pytest with Coverage Status
-.. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
-    :target: https://app.codecov.io/gh/SalishSeaCast/salishsea-site
-    :alt: Codecov Testing Coverage Report
-.. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/CodeQL/badge.svg
-    :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL
-    :alt: CodeQL analysis
-.. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
-    :target: https://github.com/SalishSeaCast/salishsea-site/issues
-    :alt: Issue Tracker
++----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Continuous Integration** | .. image:: https://github.com/SalishSeaCast/salishsea-site/actions/workflows/pytest-with-coverage.yaml/badge.svg                                                                                         |
+|                            |      :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:pytest-with-coverage                                                                                                |
+|                            |      :alt: Pytest with Coverage Status                                                                                                                                                                   |
+|                            | .. image:: https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg                                                                                                                |
+|                            |      :target: https://app.codecov.io/gh/SalishSeaCast/salishsea-site                                                                                                                                     |
+|                            |      :alt: Codecov Testing Coverage Report                                                                                                                                                               |
+|                            | .. image:: https://github.com/SalishSeaCast/salishsea-site/actions/workflows/codeql-analysis.yaml/badge.svg                                                                                              |
+|                            |      :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL                                                                                                              |
+|                            |      :alt: CodeQL analysis                                                                                                                                                                               |
++----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Documentation**          | .. image:: https://readthedocs.org/projects/salishsea-nowcast/badge/?version=latest                                                                                                                      |
+|                            |      :target: https://salishsea-site.readthedocs.io                                                                                                                                                      |
+|                            |      :alt: Documentation Status                                                                                                                                                                          |
+|                            | .. image:: https://github.com/SalishSeaCast/salishsea-site/actions/workflows/sphinx-linkcheck.yaml/badge.svg                                                                                             |
+|                            |      :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:sphinx-linkcheck                                                                                                    |
+|                            |      :alt: Sphinx linkcheck                                                                                                                                                                              |
++----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Package**                | .. image:: https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github                                                                                                              |
+|                            |      :target: https://github.com/SalishSeaCast/salishsea-site/releases                                                                                                                                   |
+|                            |      :alt: Releases                                                                                                                                                                                      |
+|                            | .. image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SalishSeaCast/salishsea-site/main/pyproject.toml&logo=Python&logoColor=gold&label=Python   |
+|                            |      :target: https://docs.python.org/3.12/                                                                                                                                                              |
+|                            |      :alt: Python Version from PEP 621 TOML                                                                                                                                                              |
+|                            | .. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github                                                                                                                 |
+|                            |      :target: https://github.com/SalishSeaCast/salishsea-site/issues                                                                                                                                     |
+|                            |      :alt: Issue Tracker                                                                                                                                                                                 |
++----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Meta**                   | .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg                                                                                                                                    |
+|                            |      :target: https://www.apache.org/licenses/LICENSE-2.0                                                                                                                                                |
+|                            |      :alt: Licensed under the Apache License, Version 2.0                                                                                                                                                |
+|                            | .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github                                                                                                                       |
+|                            |      :target: https://github.com/SalishSeaCast/salishsea-site                                                                                                                                            |
+|                            |      :alt: Git on GitHub                                                                                                                                                                                 |
+|                            | .. image:: https://img.shields.io/badge/code%20style-black-000000.svg                                                                                                                                    |
+|                            |      :target: https://black.readthedocs.io/en/stable/                                                                                                                                                    |
+|                            |      :alt: The uncompromising Python code formatter                                                                                                                                                      |
+|                            | .. image:: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg                                                                                                                                    |
+|                            |      :target: https://github.com/pypa/hatch                                                                                                                                                              |
+|                            |      :alt: Hatch project                                                                                                                                                                                 |
++----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 The `salishsea.eos.ubc.ca`_ site is a dynamic web application written in `Python`_ 3 using the `Pyramid web framework`_.
 These docs provide a brief explanation of the structure of the app,
@@ -603,3 +614,65 @@ Please see https://salishsea.eos.ubc.ca/contributors for details.
 They are licensed under the Apache License, Version 2.0.
 https://www.apache.org/licenses/LICENSE-2.0
 Please see the LICENSE file for details of the license.
+
+
+Release Process
+===============
+
+.. image:: https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github
+    :target: https://github.com/SalishSeaCast/salishsea-site/releases
+    :alt: Releases
+.. image:: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
+    :target: https://github.com/pypa/hatch
+    :alt: Hatch project
+
+
+Releases are done at Doug's discretion when significant pieces of development work have been
+completed.
+
+The release process steps are:
+
+#. Use :command:`hatch version release` to bump the version from ``.devn`` to the next release
+   version identifier;
+   e.g. ``24.1.dev0`` to ``24.1``
+
+#. Commit the version bump
+
+#. Create an annotated tag for the release with :guilabel:`Git -> New Tag...` in PyCharm
+   or :command:`git tag -e -a vyy.n`;
+   :command:`git tag -e -a v24.1`
+
+#. Push the version bump commit and tag to GitHub
+
+#. Use the GitHub web interface to create a release,
+   editing the auto-generated release notes as necessary
+
+#. Use the GitHub :guilabel:`Issues -> Milestones` web interface to edit the release
+   milestone:
+
+   * Change the :guilabel:`Due date` to the release date
+   * Delete the "when it's ready" comment in the :guilabel:`Description`
+
+#. Use the GitHub :guilabel:`Issues -> Milestones` web interface to create a milestone for
+   the next release:
+
+   * Set the :guilabel:`Title` to the next release version,
+     prepended with a ``v``;
+     e.g. ``v24.2``
+   * Set the :guilabel:`Due date` to the end of the year of the next release
+   * Set the :guilabel:`Description` to something like
+     ``v24.2 release - when it's ready :-)``
+   * Create the next release milestone
+
+#. Review the open issues,
+   especially any that are associated with the milestone for the just released version,
+   and update their milestone.
+
+#. Close the milestone for the just released version.
+
+#. Use :command:`hatch version minor,dev` to bump the version for the next development cycle,
+   or use :command:`hatch version major,minor,dev` for a year rollover version bump
+
+#. Commit the version bump
+
+#. Push the version bump commit to GitHub

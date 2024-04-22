@@ -26,3 +26,6 @@ dependencies:
 
     - pyramid
     - sentry_sdk
+
+    # Install salishsea-site package in editable mode
+    - --editable ../

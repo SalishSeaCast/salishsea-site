@@ -19,8 +19,9 @@ dependencies:
   - pyyaml
   - requests
 
-  # For coding style
+  # For coding style, and pkg management
   - black
+  - hatch
 
   # For unit tests
   - pytest
@@ -42,5 +43,5 @@ dependencies:
     - supervisor
     - waitress
 
-    # install of salishsea-site package editable mode
+    # Install salishsea-site package in editable mode
     - --editable ../
