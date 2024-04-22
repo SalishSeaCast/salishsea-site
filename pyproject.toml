@@ -24,14 +24,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "salishsea_site"
-#dynamic = [ "version" ]
-version = "24.1.dev0"
+dynamic = [ "version" ]
 description = """\
     Pyramid web app that serves the salishsea.eos.ubc.ca site.\
     """
 readme = "README.rst"
 requires-python = ">=3.12"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
 license-files = { paths = ["LICENSE"] }
 authors = [
     { name = "Doug Latornell", email= "dlatornell@eoas.ubc.ca" }
@@ -82,3 +81,6 @@ include = [
     "salishsea_site",
     "images",
 ]
+
+[tool.hatch.version]
+path = "salishsea_site/__about__.py"
