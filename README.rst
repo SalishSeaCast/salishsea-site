@@ -20,6 +20,9 @@ salishsea.eos.ubc.ca Site
 .. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
     :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
+.. image:: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
+    :target: https://github.com/pypa/hatch
+    :alt: Hatch project
 .. image:: https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
     :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
     :alt: Sphinx linkcheck Status

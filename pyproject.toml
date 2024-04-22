@@ -18,8 +18,8 @@
 
 
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 
 [project]
@@ -32,7 +32,7 @@ description = """\
 readme = "README.rst"
 requires-python = ">=3.12"
 license = {text = "Apache-2.0"}
-#license-files = { paths = ["LICENSE"] }
+license-files = { paths = ["LICENSE"] }
 authors = [
     { name = "Doug Latornell", email= "dlatornell@eoas.ubc.ca" }
 ]
@@ -69,12 +69,16 @@ dependencies = [
 main = "salishsea_site:main"
 
 
-[tool.setuptools]
-packages = ["salishsea_site", "images"]
-
 [tool.coverage.run]
 branch = true
 source = ["salishsea_site", "tests"]
 
 [tool.coverage.report]
 show_missing = true
+
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "salishsea_site",
+    "images",
+]

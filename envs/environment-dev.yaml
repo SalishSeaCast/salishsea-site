@@ -19,8 +19,9 @@ dependencies:
   - pyyaml
   - requests
 
-  # For coding style
+  # For coding style, and pkg management
   - black
+  - hatch
 
   # For unit tests
   - pytest
