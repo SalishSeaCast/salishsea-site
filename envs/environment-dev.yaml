@@ -43,5 +43,5 @@ dependencies:
     - supervisor
     - waitress
 
-    # install of salishsea-site package editable mode
+    # Install salishsea-site package in editable mode
     - --editable ../
