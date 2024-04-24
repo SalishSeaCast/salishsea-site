@@ -16,6 +16,7 @@ black==24.4.0
 Brotli==1.1.0
 certifi==2024.2.2
 cffi==1.16.0
+cfgv==3.3.1
 charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
@@ -36,6 +37,7 @@ httpx==0.27.0
 hupper==1.12.1
 hyperframe==6.0.1
 hyperlink==21.0.0
+identify==2.5.36
 idna==3.7
 imagesize==1.4.1
 importlib_metadata==7.1.0
@@ -53,6 +55,7 @@ MarkupSafe==2.1.5
 mdurl==0.1.2
 more-itertools==10.2.0
 mypy-extensions==1.0.0
+nodeenv==1.8.0
 packaging==24.0
 PasteDeploy==3.1.0
 pathspec==0.12.1
@@ -62,6 +65,7 @@ plaster==1.1.2
 plaster-pastedeploy==1.0.1
 platformdirs==4.2.0
 pluggy==1.5.0
+pre_commit==3.7.0
 ptyprocess==0.7.0
 pycparser==2.22
 Pygments==2.17.2
@@ -102,6 +106,7 @@ translationstring==1.4
 trove-classifiers==2024.4.10
 types-python-dateutil==2.9.0.20240316
 typing_extensions==4.11.0
+ukkonen==1.0.1
 urllib3==2.2.1
 userpath==1.7.0
 venusian==3.1.0
