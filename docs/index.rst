@@ -235,44 +235,36 @@ To deactivate the environment use:
 Coding Style
 ------------
 
+.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+   :target: https://pre-commit.com
+   :alt: pre-commit
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://black.readthedocs.io/en/stable/
     :alt: The uncompromising Python code formatter
 
-The :kbd:`salishsea-site` package uses the `black`_ code formatting tool to maintain a coding style that is very close to `PEP 8`_.
+The :kbd:`salishsea-site` package uses Git pre-commit hooks managed by `pre-commit`_
+to maintain consistent code style and and other aspects of code,
+docs,
+and repo QA.
 
-.. _black: https://black.readthedocs.io/en/stable/
-.. _PEP 8: https://peps.python.org/pep-0008/
+.. _pre-commit: https://pre-commit.com/
 
-:command:`black` is installed as part of the :ref:`SalishSeaSiteDevelopmentEnvironment` setup.
-
-o run :command:`black` on the entire code-base use:
+To install the `pre-commit` hooks in a newly cloned repo,
+activate the conda development environment,
+and run :command:`pre-commit install`:
 
 .. code-block:: bash
 
-    $ cd SalishSeaCmd
-    $ conda activate salishsea-cmd
-    (salishsea-cmd)$ black ./
+    $ cd salishsea-site
+    $ conda activate salishsea-site
+    (salishsea-site)$ pre-commit install
 
-in the repository root directory.
-The output looks something like::
 
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/mako_filters.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/site.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/about.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/bloomcast.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/conftest.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/test_mako_filters.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/views/test_bloomcast.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/views/test_figures.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/wwatch3.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/figures.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/__init__.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/fvcom.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/tests/views/test_salishseacast.py
-  reformatted /media/doug/warehouse/MEOPAR/salishsea-site/salishsea_site/views/salishseacast.py
-  All done! ✨ 🍰 ✨
-  14 files reformatted, 4 file left unchanged.
+.. note::
+    You only need to install the hooks once immediately after you make a new clone of the
+    `salishsea-site repository`_ and build your :ref:`SalishSeaSiteDevelopmentEnvironment`.
+
+.. _salishsea-site repository: https://github.com/SalishSeaCast/salishsea-site
 
 
 .. _SalishSeaSiteRunningDevApp:
