@@ -112,7 +112,7 @@ userpath==1.7.0
 venusian==3.1.0
 virtualenv==20.25.3
 waitress==3.0.0
-WebOb==1.8.7
+WebOb==1.8.8
 wheel==0.43.0
 zipp==3.19.1
 zope.deprecation==5.0
