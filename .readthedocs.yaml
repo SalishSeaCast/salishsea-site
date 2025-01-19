@@ -5,6 +5,11 @@ build:
   tools:
     python: "mambaforge-23.11"
 
+sphinx:
+    builder: html
+    configuration: docs/conf.py
+    fail_on_warning: false
+
 conda:
   environment: envs/environment-rtd.yaml
 
