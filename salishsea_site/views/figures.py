@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""Classes for managing results figures.
-"""
+"""Classes for managing results figures."""
 import os
 from pathlib import Path
 

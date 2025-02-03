@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""salishsea_site WAVEWATCH III® results views
-"""
+"""salishsea_site WAVEWATCH III® results views"""
 import logging
 
 import arrow

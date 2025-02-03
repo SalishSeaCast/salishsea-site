@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""Unit tests for salishseacast views module.
-"""
+"""Unit tests for salishseacast views module."""
 from unittest.mock import patch
 
 import arrow

@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""Fixture for salishsea_site app test suite.
-"""
+"""Fixture for salishsea_site app test suite."""
 import pytest
 from pyramid import testing
 

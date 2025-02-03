@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""salishsea_site VHFR FVCOM results views
-"""
+"""salishsea_site VHFR FVCOM results views"""
 import logging
 
 import arrow
