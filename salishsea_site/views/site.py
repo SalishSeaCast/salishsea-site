@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""salishsea_site index page view
-"""
+"""salishsea_site index page view"""
 import logging
 
 from pyramid.view import view_config

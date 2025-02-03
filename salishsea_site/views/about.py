@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""salishsea_site About views
-"""
+"""salishsea_site About views"""
 import logging
 from pathlib import Path
 

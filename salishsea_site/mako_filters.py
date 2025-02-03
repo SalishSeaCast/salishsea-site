@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""salishsea-site app Mako template filter functions.
-"""
+"""salishsea-site app Mako template filter functions."""
 
 
 def slug(text):

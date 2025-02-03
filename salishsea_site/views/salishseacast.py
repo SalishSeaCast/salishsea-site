@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""salishsea_site SalishSeaCast views
-"""
+"""salishsea_site SalishSeaCast views"""
 import copy
 import logging
 import os

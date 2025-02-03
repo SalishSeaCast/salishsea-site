@@ -17,8 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-"""salishsea_site Bloomcast views
-"""
+"""salishsea_site Bloomcast views"""
 import datetime
 import logging
 from pathlib import Path
