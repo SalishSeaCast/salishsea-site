@@ -53,7 +53,7 @@
 
       <h3>Model Domain</h3>
       <p>
-         The region covered by the model includes the Straight of Georgia, Straight of Juan de Fuca, Johnstone Strait, Fraser River, and other connecting waterways.
+         The region covered by the model includes the Strait of Georgia, Strait of Juan de Fuca, Johnstone Strait, Fraser River, and other connecting waterways.
       </p>
       <img class="img-responsive center-block"
            src="${request.static_path('salishsea_site:static/img/SalishSeaImage.png')}"

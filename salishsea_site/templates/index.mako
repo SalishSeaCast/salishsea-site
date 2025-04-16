@@ -59,7 +59,7 @@
              alt="Salish Sea Oceanography Model Products">
       </a>
       <p class="index">
-        SOG biophysical model: best estimate of the first spring diatom bloom in the Straight of Georgia.
+        SOG biophysical model: best estimate of the first spring diatom bloom in the Strait of Georgia.
       </p>
     </div>
   </div>
