@@ -11,9 +11,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Need to specify Python version here because we use test env which gets its
+        # Need to specify the Python version here because we use test env, which gets its
         # Python version via matrix
-        python-version: [ '3.10' ]
+        python-version: [ '3.13' ]
 
     steps:
       - uses: actions/checkout@v4
