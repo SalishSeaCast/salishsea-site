@@ -29,7 +29,7 @@ description = """\
     Pyramid web app that serves the salishsea.eos.ubc.ca site.\
     """
 readme = "README.rst"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 license = "Apache-2.0"
 license-files = { paths = ["LICENSE"] }
 authors = [
