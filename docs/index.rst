@@ -34,7 +34,7 @@ salishsea.eos.ubc.ca Site Web App
 |                            |      :target: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL                                                                                                              |
 |                            |      :alt: CodeQL analysis                                                                                                                                                                               |
 +----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Documentation**          | .. image:: https://readthedocs.org/projects/salishsea-nowcast/badge/?version=latest                                                                                                                      |
+| **Documentation**          | .. image:: https://app.readthedocs.org/projects/salishsea-site/badge/?version=latest                                                                                                                     |
 |                            |      :target: https://salishsea-site.readthedocs.io                                                                                                                                                      |
 |                            |      :alt: Documentation Status                                                                                                                                                                          |
 |                            | .. image:: https://github.com/SalishSeaCast/salishsea-site/actions/workflows/sphinx-linkcheck.yaml/badge.svg                                                                                             |
@@ -45,7 +45,7 @@ salishsea.eos.ubc.ca Site Web App
 |                            |      :target: https://github.com/SalishSeaCast/salishsea-site/releases                                                                                                                                   |
 |                            |      :alt: Releases                                                                                                                                                                                      |
 |                            | .. image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SalishSeaCast/salishsea-site/main/pyproject.toml&logo=Python&logoColor=gold&label=Python   |
-|                            |      :target: https://docs.python.org/3.12/                                                                                                                                                              |
+|                            |      :target: https://docs.python.org/3.13/                                                                                                                                                              |
 |                            |      :alt: Python Version from PEP 621 TOML                                                                                                                                                              |
 |                            | .. image:: https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github                                                                                                                 |
 |                            |      :target: https://github.com/SalishSeaCast/salishsea-site/issues                                                                                                                                     |
@@ -162,13 +162,13 @@ Web App Package Development
 Python Versions
 ---------------
 
-.. image:: https://img.shields.io/badge/python-3.12-blue.svg
-    :target: https://docs.python.org/3.12/
+.. image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SalishSeaCast/salishsea-site/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
+    :target: https://docs.python.org/3.13/
     :alt: Python Version
 
 The :kbd:`salishsea-site` package is developed,
 tested,
-and deployed using `Python`_ 3.12.
+and deployed using `Python`_ 3.13.
 
 
 .. _SalishSeaSiteGettingTheCode:
@@ -305,7 +305,7 @@ To stop the dev server use :kbd:`Ctrl-C` in the terminal session where you ran t
 Building the Documentation
 --------------------------
 
-.. image:: https://readthedocs.org/projects/salishsea-site/badge/?version=latest
+.. image:: https://app.readthedocs.org/projects/salishsea-site/badge/?version=latest
     :target: https://salishsea-site.readthedocs.io
     :alt: Documentation Status
 
@@ -328,7 +328,7 @@ follow the instructions in the :ref:`SalishSeaSiteDevelopmentEnvironment` sectio
 In the development environment you can build the docs locally instead of having to push commits to GitHub to trigger a `build on readthedocs.org`_ and wait for it to complete.
 Below are instructions that explain how to:
 
-.. _build on readthedocs.org: https://readthedocs.org/projects/salishsea-site/builds/
+.. _build on readthedocs.org: https://app.readthedocs.org/projects/salishsea-site/builds/
 
 * build the docs with your changes,
   and preview them in Firefox
@@ -411,7 +411,7 @@ use:
 .. code-block:: bash
 
     (salishsea-site)$ cd salishsea-site/docs/
-    (salishsea-site) docs$ make linkcheck
+    (salishsea-site) docs$ make clean linkcheck
 
 The output looks something like:
 
@@ -436,67 +436,65 @@ The output looks something like:
     copying assets: done
     writing output... [100%] index
 
-    (           index: line  517) ok        https://coverage.readthedocs.io/en/latest/
-    (           index: line  115) ok        https://developer.mozilla.org/en-US/docs/Glossary/HTML5
     (           index: line   24) ok        https://black.readthedocs.io/en/stable/
-    (           index: line   24) ok        https://app.codecov.io/gh/SalishSeaCast/salishsea-site
+    (           index: line  545) ok        https://coverage.readthedocs.io/en/latest/
     (           index: line   30) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
-    (           index: line  208) ok        https://docs.conda.io/en/latest/
-    (           index: line  563) ok        https://docs.github.com/en/actions
+    (           index: line   37) ok        https://app.readthedocs.org/projects/salishsea-site/badge/?version=latest
+    (           index: line  115) ok        https://developer.mozilla.org/en-US/docs/Glossary/HTML5
     (           index: line  208) ok        https://docs.conda.io/en/latest/miniconda.html
+    (           index: line  591) ok        https://docs.github.com/en/actions
     (           index: line  197) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+    (           index: line   24) ok        https://app.codecov.io/gh/SalishSeaCast/salishsea-site
+    (           index: line   71) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
+    (           index: line  208) ok        https://docs.conda.io/en/latest/
     (           index: line   82) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html#narrative-documentation
     (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/firstapp.html#firstapp-chapter
     (           index: line  115) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
-    (           index: line  100) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/urldispatch.html
-    (           index: line   71) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
-    (           index: line  108) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
-    (           index: line   24) ok        https://docs.python.org/3.12/
-    (           index: line  141) ok        https://docs.pytest.org/en/latest/
+    (           index: line  325) ok        https://app.readthedocs.org/projects/salishsea-site/builds/
     (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
+    (           index: line  141) ok        https://docs.pytest.org/en/latest/
+    (           index: line   24) ok        https://docs.python.org/3.13/
+    (           index: line  108) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
+    (           index: line  100) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/urldispatch.html
+    (           index: line  605) ok        https://git-scm.com/
     (           index: line  108) ok        https://docs.python.org/3/library/stdtypes.html#dict
-    (           index: line  577) ok        https://git-scm.com/
     (           index: line  115) ok        https://getbootstrap.com/
     (           index: line   33) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/codeql-analysis.yaml/badge.svg
     (           index: line   27) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/pytest-with-coverage.yaml/badge.svg
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site
-    (           index: line  552) ok        https://github.com/SalishSeaCast/salishsea-site/actions
     (           index: line   40) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/sphinx-linkcheck.yaml/badge.svg
-    (           index: line  391) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
-    (           index: line  543) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/issues
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site
+    (           index: line  580) ok        https://github.com/SalishSeaCast/salishsea-site/actions
+    (           index: line  401) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
+    (           index: line  571) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:pytest-with-coverage
-    (           index: line  552) ok        https://github.com/SalishSeaCast/salishsea-site/commits/main
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:sphinx-linkcheck
-    (           index: line  545) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
-    (           index: line  393) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
-    (           index: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
-    (           index: line   54) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL
-    (           index: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+    (           index: line  573) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
+    (           index: line  403) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:sphinx-linkcheck
+    (           index: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
     (           index: line   63) ok        https://img.shields.io/badge/code%20style-black-000000.svg
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/releases
+    (           index: line   54) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
+    (           index: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     (           index: line   57) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
     (           index: line   50) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
-    (           index: line   47) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SalishSeaCast/salishsea-site/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
-    (           index: line  165) ok        https://img.shields.io/badge/python-3.12-blue.svg
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/issues
     (           index: line   44) ok        https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github
+    (           index: line   47) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SalishSeaCast/salishsea-site/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
     (           index: line  222) ok        https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
     (           index: line   24) ok        https://github.com/pypa/hatch
-    (           index: line  517) ok        https://pytest-cov.readthedocs.io/en/latest/
-    (           index: line  308) ok        https://readthedocs.org/projects/salishsea-site/badge/?version=latest
-    (           index: line  248) ok        https://pre-commit.com/
-    (           index: line   24) ok        https://pre-commit.com
-    (           index: line   37) ok        https://readthedocs.org/projects/salishsea-nowcast/badge/?version=latest
+    (           index: line  545) ok        https://pytest-cov.readthedocs.io/en/latest/
     (           index: line  183) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/repos_organization.html#salishsea-site-repo
-    (           index: line  208) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/work_env/anaconda_python.html#anacondapythondistro
+    (           index: line   24) ok        https://pre-commit.com
+    (           index: line  580) ok        https://github.com/SalishSeaCast/salishsea-site/commits/main
+    (           index: line  248) ok        https://pre-commit.com/
     (           index: line   71) ok        https://salishsea.eos.ubc.ca/
-    (           index: line   24) ok        https://salishsea-site.readthedocs.io
-    (           index: line  603) ok        https://salishsea.eos.ubc.ca/contributors
     (           index: line   24) ok        https://www.apache.org/licenses/LICENSE-2.0
-    (           index: line  325) ok        https://readthedocs.org/projects/salishsea-site/builds/
+    (           index: line  631) ok        https://salishsea.eos.ubc.ca/contributors
     (           index: line   71) ok        https://www.python.org/
     (           index: line  147) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+    (           index: line  208) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/work_env/anaconda_python.html#anacondapythondistro
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/releases
+    (           index: line   24) ok        https://salishsea-site.readthedocs.io
     (           index: line  115) ok        https://www.makotemplates.org/
     build succeeded.
 
@@ -521,7 +519,7 @@ use:
 .. code-block:: bash
 
     (salishsea-site)$ cd salishsea-site/
-    (salishsea-site)$ py.test
+    (salishsea-site)$ pytest
 
 to run the test suite.
 The output looks something like:
@@ -529,10 +527,10 @@ The output looks something like:
 .. code-block:: text
 
     ============================== test session starts     ===============================
-    platform linux -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+    platform linux -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0
     rootdir: /media/doug/warehouse/MEOPAR/salishsea-site
     configfile: pyproject.toml
-    plugins: cov-6.0.0, anyio-4.6.2.post1
+    plugins: anyio-4.9.0, cov-6.2.1
     collected 76 items
 
     tests/test_mako_filters.py .......                                              [  9%]
@@ -540,7 +538,7 @@ The output looks something like:
     tests/views/test_figures.py ...                                                 [ 15%]
     tests/views/test_salishseacast.py ....................................................
     ............                                                                    [100%]
-    ================================ 76 passed in 20.76s =================================
+    ================================ 76 passed in 2.6s ===================================
 
 You can monitor what lines of code the test suite exercises using the `coverage.py`_ and `pytest-cov`_ tools with the command:
 
