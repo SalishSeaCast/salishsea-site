@@ -25,7 +25,7 @@ import urllib.parse
 from pathlib import Path
 
 import arrow
-from pyramid.httpexceptions import HTTPNotFound
+from pyramid.httpexceptions import HTTPNotFound, HTTPForbidden
 from pyramid.view import view_config
 
 from salishsea_site.views.figures import (
@@ -888,8 +888,15 @@ def nowcast_logs(request):
     except KeyError:
         logger.warning("NOWCAST_LOGS environment variable is not set")
         raise HTTPNotFound
+    log_filename = request.matchdict["filename"]
+    if "debug" in log_filename:
+        token = request.matchdict["token"]
+        token = token.lstrip("/")
+        if token != "foo":
+            logger.warning("debug log file request token is invalid")
+            raise HTTPForbidden
     try:
-        return (logs_dir / request.matchdict["filename"]).open().read()
+        return (logs_dir / log_filename).open().read()
     except FileNotFoundError as e:
         logger.debug(e)
         raise HTTPNotFound
