@@ -22,6 +22,7 @@
 .. note:: :py:func:`pconfig` fixture is defined in :file:`tests/conftest.py`.
 """
 import logging
+import os
 from pathlib import Path
 from unittest.mock import call, patch
 
@@ -630,11 +631,11 @@ class TestNowcastLogs:
             salishseacast.nowcast_logs(request)
         assert caplog.records[0].levelno == logging.DEBUG
 
-    @patch("salishsea_site.views.salishseacast.Path", spec=Path)
-    def test_render_log_file(self, m_path, monkeypatch):
+    def test_render_log_file(self, tmp_path, monkeypatch):
+        test_log_file = tmp_path / "nowcast.log"
+        test_log_file.write_text("foo")
         request = get_current_request()
         request.matchdict = {"filename": "nowcast.log"}
-        m_path().__truediv__().open().read.return_value = "foo"
-        monkeypatch.setenv("NOWCAST_LOGS", "logs/nowcast/")
+        monkeypatch.setenv("NOWCAST_LOGS", os.fspath(tmp_path))
         response = salishseacast.nowcast_logs(request)
         assert response == "foo"
