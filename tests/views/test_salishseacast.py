@@ -22,12 +22,13 @@
 .. note:: :py:func:`pconfig` fixture is defined in :file:`tests/conftest.py`.
 """
 import logging
+import os
 from pathlib import Path
 from unittest.mock import call, patch
 
 import arrow
 import pytest
-from pyramid.httpexceptions import HTTPNotFound
+from pyramid.httpexceptions import HTTPNotFound, HTTPForbidden
 from pyramid.threadlocal import get_current_request
 
 from salishsea_site.views import salishseacast
@@ -612,9 +613,9 @@ class TestDataForPublishTemplate:
 class TestNowcastLogs:
     """Unit tests for nowcast_logs view."""
 
-    def test_envvar_not_set(self, caplog):
+    def test_nowcast_logs_envvar_not_set(self, caplog):
         request = get_current_request()
-        request.matchdict = {"filename": "foo"}
+        request.matchdict = {"filename": "foo", "token": ""}
         caplog.set_level(logging.DEBUG)
         with pytest.raises(HTTPNotFound):
             salishseacast.nowcast_logs(get_current_request())
@@ -623,18 +624,56 @@ class TestNowcastLogs:
 
     def test_log_file_not_found(self, caplog, monkeypatch):
         request = get_current_request()
-        request.matchdict = {"filename": "foo"}
+        request.matchdict = {"filename": "foo", "token": ""}
         monkeypatch.setenv("NOWCAST_LOGS", "logs/nowcast/")
         caplog.set_level(logging.DEBUG)
         with pytest.raises(HTTPNotFound):
             salishseacast.nowcast_logs(request)
         assert caplog.records[0].levelno == logging.DEBUG
 
-    @patch("salishsea_site.views.salishseacast.Path", spec=Path)
-    def test_render_log_file(self, m_path, monkeypatch):
+    def test_render_log_file(self, tmp_path, monkeypatch):
+        test_log_file = tmp_path / "nowcast.log"
+        test_log_file.write_text("foo")
         request = get_current_request()
-        request.matchdict = {"filename": "nowcast.log"}
-        m_path().__truediv__().open().read.return_value = "foo"
+        request.matchdict = {"filename": "nowcast.log", "token": ""}
+        monkeypatch.setenv("NOWCAST_LOGS", os.fspath(tmp_path))
+        response = salishseacast.nowcast_logs(request)
+        assert response == "foo"
+
+    def test_nowcast_debug_log_token_envvar_not_set(self, caplog, monkeypatch):
+        request = get_current_request()
+        request.matchdict = {"filename": "nowcast.debug.log", "token": ""}
         monkeypatch.setenv("NOWCAST_LOGS", "logs/nowcast/")
+        caplog.set_level(logging.DEBUG)
+        with pytest.raises(HTTPNotFound):
+            salishseacast.nowcast_logs(get_current_request())
+        assert caplog.records[0].levelno == logging.WARNING
+        assert (
+            caplog.messages[0]
+            == "NOWCAST_DEBUG_LOG_TOKEN environment variable is not set"
+        )
+
+    @pytest.mark.parametrize("token", ["", "invalid"])
+    def test_invalid_log_file_token(self, token, caplog, monkeypatch):
+        request = get_current_request()
+        request.matchdict = {"filename": "nowcast.debug.log", "token": token}
+        caplog.set_level(logging.DEBUG)
+        monkeypatch.setenv("NOWCAST_LOGS", "logs/nowcast/")
+        monkeypatch.setenv("NOWCAST_DEBUG_LOG_TOKEN", "super-secret-token")
+        with pytest.raises(HTTPForbidden):
+            salishseacast.nowcast_logs(get_current_request())
+        assert caplog.records[0].levelno == logging.WARNING
+        assert caplog.messages[0] == "debug log file request token is invalid"
+
+    def test_render_debug_log_file(self, tmp_path, monkeypatch):
+        test_log_file = tmp_path / "nowcast.debug.log"
+        test_log_file.write_text("foo")
+        request = get_current_request()
+        request.matchdict = {
+            "filename": "nowcast.debug.log",
+            "token": "super-secret-token",
+        }
+        monkeypatch.setenv("NOWCAST_LOGS", os.fspath(tmp_path))
+        monkeypatch.setenv("NOWCAST_DEBUG_LOG_TOKEN", "super-secret-token")
         response = salishseacast.nowcast_logs(request)
         assert response == "foo"
