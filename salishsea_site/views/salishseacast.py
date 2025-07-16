@@ -892,7 +892,12 @@ def nowcast_logs(request):
     if "debug" in log_filename:
         token = request.matchdict["token"]
         token = token.lstrip("/")
-        if token != "foo":
+        try:
+            valid_token = os.environ["NOWCAST_DEBUG_LOG_TOKEN"]
+        except KeyError:
+            logger.warning("NOWCAST_DEBUG_LOG_TOKEN environment variable is not set")
+            raise HTTPNotFound
+        if token != valid_token:
             logger.warning("debug log file request token is invalid")
             raise HTTPForbidden
     try:
