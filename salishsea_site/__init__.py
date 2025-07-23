@@ -102,20 +102,6 @@ def _salishseacast_routes(config):
     )
     config.add_route("nowcast.monitoring", "nemo/nowcast/monitoring")
     config.add_route("nowcast.logs", "nemo/nowcast/logs/{filename}{token:.*}")
-    # VHFR FVCOM model results routes
-    config.add_route("fvcom.results.index", "fvcom/results/")
-    config.add_route(
-        "fvcom.results.nowcast-x2.publish",
-        "fvcom/results/nowcast-x2/publish/{results_date}",
-    )
-    config.add_route(
-        "fvcom.results.nowcast-r12.publish",
-        "fvcom/results/nowcast-r12/publish/{results_date}",
-    )
-    config.add_route(
-        "fvcom.results.forecast-x2.publish",
-        "fvcom/results/forecast-x2/publish/{results_date}",
-    )
     # WAVEWATCH III® model results routes
     config.add_route("wwatch3.results.index", "wwatch3/results/")
     config.add_route(
@@ -149,13 +135,6 @@ def _salishseacast_routes(config):
     config.add_route(
         "results.nowcast.comparison.html",
         "nemo/results/nowcast/comparison_{results_date}.html",
-    )
-    config.add_route(
-        "fvcom.results.nowcast.publish", "fvcom/results/nowcast/publish/{results_date}"
-    )
-    config.add_route(
-        "fvcom.results.forecast.publish",
-        "fvcom/results/forecast/publish/{results_date}",
     )
 
 
