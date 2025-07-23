@@ -55,7 +55,6 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href=${request.route_url('salishseacast.about')}>About</a></li>
               <li><a href=${request.route_url('results.index')}>NEMO Results</a></li>
-              <li><a href=${request.route_url('fvcom.results.index')}>VHFR FVCOM Results</a></li>
               <li><a href=${request.route_url('wwatch3.results.index')}>WAVEWATCH III® Results</a></li>
               <li><a href=${request.erddap_url}>ERDDAP</a></li>
               <li><a href=${request.route_url('nowcast.monitoring')}>Automation Monitoring</a></li>
