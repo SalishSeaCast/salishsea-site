@@ -208,8 +208,8 @@ class ImageLoop:
     def filename(self, file_date, run_hr):
         """Return the figure file name.
 
-        :param run_date: Run date for which the figure was generated.
-        :type run_date: :py:class:`arrow.Arrow`
+        :param file_date: Run date for which the figure was generated.
+        :type file_date: :py:class:`arrow.Arrow`
 
         :param int run_hr: Run hour for which the figure was generated.
 
