@@ -40,7 +40,6 @@ class FigureMetadata:
     FIG_DIR_TMPLS = {
         "nemo": "/results/nowcast-sys/figures/{run_type}/{run_dmy}/",
         "surface currents": "/results/nowcast-sys/figures/surface_currents/{run_type}/{run_dmy}/",
-        "fvcom": "/results/nowcast-sys/figures/fvcom/{run_type}/{run_dmy}/",
         "wwatch3": "/results/nowcast-sys/figures/wwatch3/{run_type}/{run_dmy}/",
     }
 
@@ -54,8 +53,7 @@ class FigureMetadata:
         :type run_date: :py:class:`arrow.Arrow`
 
         :param str model: Model name to use to select figures directory
-                          template for figure file path construction;
-                          'nemo' or 'fvcom'.
+                          template for figure file path construction.
 
         :return: Figure is availability on the static figure file server.
         :rtype: boolean
@@ -84,8 +82,7 @@ class FigureMetadata:
         :type run_date: :py:class:`arrow.Arrow`
 
         :param str model: Model name to use to select figures directory
-                          template for figure file path construction;
-                          'nemo' or 'fvcom'.
+                          template for figure file path construction.
 
         :return: Figure file path.
         :rtype: str
@@ -123,8 +120,7 @@ class FigureGroup:
         :type run_date: :py:class:`arrow.Arrow`
 
         :param str model: Model name to use to select figures directory
-                          template for figure file path construction;
-                          'nemo' or 'fvcom'.
+                          template for figure file path construction.
 
         :return: Figures that are availability on the static figure file server.
         :rtype: list
@@ -140,10 +136,10 @@ class ImageLoop:
     #: Name of the model variable that the loop displays.
     model_var = attr.ib()
     #: First hour in the day for which image loop figures are stored;
-    #: e.g. 0 for hourly average NEMO fields, 1 for FVCOM fields
+    #: e.g. 0 for hourly average NEMO fields
     first_hr = attr.ib(default=0)
     #: Minute within the hour for which image loop figures are stored;
-    #: e.g. 30 for hourly average NEMO fields, 0 for FVCOM fields
+    #: e.g. 30 for hourly average NEMO fields
     image_minute = attr.ib(default=30)
 
     @property
@@ -187,8 +183,7 @@ class ImageLoop:
         :type run_date: :py:class:`arrow.Arrow`
 
         :param str model: Model name to use to select figures directory
-                          template for figure file path construction;
-                          'nemo' or 'fvcom'.
+                          template for figure file path construction.
 
         :param file_dates: Date for which to check figures availability;
                            defaults to ``run_date`` if empty.
@@ -213,8 +208,8 @@ class ImageLoop:
     def filename(self, file_date, run_hr):
         """Return the figure file name.
 
-        :param run_date: Run date for which the figure was generated.
-        :type run_date: :py:class:`arrow.Arrow`
+        :param file_date: Run date for which the figure was generated.
+        :type file_date: :py:class:`arrow.Arrow`
 
         :param int run_hr: Run hour for which the figure was generated.
 
@@ -235,8 +230,7 @@ class ImageLoop:
         :param int run_hr: Run hour for which the figure was generated.
 
         :param str model: Model name to use to select figures directory
-                          template for figure file path construction;
-                          'nemo' or 'fvcom'.
+                          template for figure file path construction.
 
         :param file_date: Date for which to calculate figure file path;
                            defaults to ``run_date`` if empty.
@@ -283,8 +277,7 @@ class ImageLoopGroup:
         :type run_date: :py:class:`arrow.Arrow`
 
         :param str model: Model name to use to select figures directory
-                          template for figure file path construction;
-                          'nemo' or 'fvcom'.
+                          template for figure file path construction.
 
         :return: Figure is availability on the static figure file server.
         :rtype: list
