@@ -125,7 +125,7 @@
       <h2 id="checklist">Checklist</h2>
       <p>
         The
-        <a href=${request.route_url('nowcast.logs', filename='nowcast_checklist.yaml')}>nowcast checklist</a>
+        <a href=${request.route_url('nowcast.logs', filename='nowcast_checklist.yaml', token='')}>nowcast checklist</a>
         is a YAML representation of the checklist dictionary that is maintained
         by the nowcast manager process.
         It reflects the present state of the nowcast system,
@@ -137,7 +137,7 @@
         That means that the checklist records only the results of the log file rotations
         for a period of time each morning.
         The
-        <a href=${request.route_url('nowcast.logs', filename='checklist.log')}>previous day's checklist</a>
+        <a href=${request.route_url('nowcast.logs', filename='checklist.log', token='')}>previous day's checklist</a>
         is also available.
         The checklist is stored in <kbd>/results/nowcast-sys/logs/nowcast/nowcast_checklist.yaml</kbd>
         on <kbd>skookum</kbd>.
@@ -150,14 +150,14 @@
         When the day's processing is completed the log file is rolled over,
         as are the previous log files.
         The log for the current day's run
-        (<a href="${request.route_url('nowcast.logs', filename='nowcast.log')}">nowcast.log</a>
+        (<a href="${request.route_url('nowcast.logs', filename='nowcast.log', token='')}">nowcast.log</a>
 )
         is rolled over to
-        <a href="${request.route_url('nowcast.logs', filename='nowcast.log.1')}">nowcast.log.1</a>,
+        <a href="${request.route_url('nowcast.logs', filename='nowcast.log.1', token='')}">nowcast.log.1</a>,
         and the previous
-        <a href="${request.route_url('nowcast.logs', filename='nowcast.log.1')}">nowcast.log.1</a>
+        <a href="${request.route_url('nowcast.logs', filename='nowcast.log.1', token='')}">nowcast.log.1</a>
         is rolled over to
-        <a href="${request.route_url('nowcast.logs', filename='nowcast.log.2')}">nowcast.log.2</a>,
+        <a href="${request.route_url('nowcast.logs', filename='nowcast.log.2', token='')}">nowcast.log.2</a>,
         etc.
         A total of 7 day's log files are retained.
       </p>
@@ -166,18 +166,18 @@
         There are 3 flavours of log files:
         <ul>
           <li>
-            <a href="${request.route_url('nowcast.logs', filename='nowcast.log')}">nowcast.log</a>
+            <a href="${request.route_url('nowcast.logs', filename='nowcast.log', token='')}">nowcast.log</a>
             which contains messages logged at the <kbd>info</kbd> level and above
             (<kbd>warning</kbd>, <kbd>error</kbd>, etc.).
             This is the most concise log file.
           </li>
           <li>
-            <a href="${request.route_url('nowcast.logs', filename='nowcast.debug.log')}">nowcast.debug.log</a>
+            <a href="${request.route_url('nowcast.logs', filename='nowcast.debug.log', token='')}">nowcast.debug.log</a>
             which contains messages logged at the <kbd>debug</kbd> level and above;
             i.e. all of the nitty-gritty details.
           </li>
           <li>
-            <a href="${request.route_url('nowcast.logs', filename='checklist.log')}">checklist.log</a>
+            <a href="${request.route_url('nowcast.logs', filename='checklist.log', token='')}">checklist.log</a>
             which contains a snapshot of the checklist file each morning before it is reset.
           </li>
         </ul>
@@ -198,10 +198,10 @@
               <tr>
                 <td width="431px">
                   <a
-                    href=${request.route_url('nowcast.logs', filename='nowcast.log')}><kbd class="link">nowcast.log</kbd></a>
+                    href=${request.route_url('nowcast.logs', filename='nowcast.log', token='')}><kbd class="link">nowcast.log</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   <a
-                    href=${request.route_url('nowcast.logs', filename='nowcast.debug.log')}><kbd class="link">nowcast.debug.log</kbd></a>
+                    href=${request.route_url('nowcast.logs', filename='nowcast.debug.log', token='')}><kbd class="link">nowcast.debug.log</kbd></a>
                 </td>
                 <td>
                   Current log files.
@@ -209,26 +209,26 @@
                   (forecast2) results have been processed and the current day's
                   run log files are rolled over to
                   <a
-                    href=${request.route_url('nowcast.logs', filename='nowcast.log.1')}><kbd class="link">nowcast.log.1</kbd></a>
+                    href=${request.route_url('nowcast.logs', filename='nowcast.log.1', token='')}><kbd class="link">nowcast.log.1</kbd></a>
                   and
                   <a
-                    href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.1')}><kbd class="link">nowcast.debug.log.1</kbd></a>.
+                    href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.1', token='')}><kbd class="link">nowcast.debug.log.1</kbd></a>.
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.1')}><kbd class="link">nowcast.log.1</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.1', token='')}><kbd class="link">nowcast.log.1</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.1')}><kbd class="link">nowcast.debug.log.1</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.1', token='')}><kbd class="link">nowcast.debug.log.1</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.1')}><kbd class="link">checklist.log.1</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.1', token='')}><kbd class="link">checklist.log.1</kbd></a>
                 </td>
                 <td>
                   Previous log files.
                   Roll over to
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.2')}><kbd class="link">nowcast.log.2</kbd></a>,
-                  <a href="${request.route_url('nowcast.logs', filename='nowcast.debug.log.2')}"><kbd class="link">nowcast.debug.log.2</kbd></a>,
-                  and <a href=${request.route_url('nowcast.logs', filename='checklist.log.2')}><kbd class="link">checklist.log.2</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.2', token='')}><kbd class="link">nowcast.log.2</kbd></a>,
+                  <a href="${request.route_url('nowcast.logs', filename='nowcast.debug.log.2', token='')}"><kbd class="link">nowcast.debug.log.2</kbd></a>,
+                  and <a href=${request.route_url('nowcast.logs', filename='checklist.log.2', token='')}><kbd class="link">checklist.log.2</kbd></a>
                   when <kbd>nowcast.log</kbd> rolls over to <kbd>nowcast.log.1</kbd>.
                 </td>
               </tr>
@@ -239,56 +239,56 @@
               </tr>
               <tr>
                 <td colspan="2">
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.2')}><kbd class="link">nowcast.log.2</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.2', token='')}><kbd class="link">nowcast.log.2</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.2')}><kbd class="link">nowcast.debug.log.2</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.2', token='')}><kbd class="link">nowcast.debug.log.2</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.2')}><kbd class="link">checklist.log.2</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.2', token='')}><kbd class="link">checklist.log.2</kbd></a>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.3')}><kbd class="link">nowcast.log.3</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.3', token='')}><kbd class="link">nowcast.log.3</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.3')}><kbd class="link">nowcast.debug.log.3</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.3', token='')}><kbd class="link">nowcast.debug.log.3</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.3')}><kbd class="link">checklist.log.3</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.3', token='')}><kbd class="link">checklist.log.3</kbd></a>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.4')}><kbd class="link">nowcast.log.4</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.4', token='')}><kbd class="link">nowcast.log.4</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.4')}><kbd class="link">nowcast.debug.log.4</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.4', token='')}><kbd class="link">nowcast.debug.log.4</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.4')}><kbd class="link">checklist.log.4</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.4', token='')}><kbd class="link">checklist.log.4</kbd></a>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.5')}><kbd class="link">nowcast.log.5</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.5', token='')}><kbd class="link">nowcast.log.5</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.5')}><kbd class="link">nowcast.debug.log.5</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.5', token='')}><kbd class="link">nowcast.debug.log.5</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.5')}><kbd class="link">checklist.log.5</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.5', token='')}><kbd class="link">checklist.log.5</kbd></a>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.6')}><kbd class="link">nowcast.log.6</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.6', token='')}><kbd class="link">nowcast.log.6</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.6')}><kbd class="link">nowcast.debug.log.6</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.6', token='')}><kbd class="link">nowcast.debug.log.6</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.6')}><kbd class="link">checklist.log.6</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.6', token='')}><kbd class="link">checklist.log.6</kbd></a>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.7')}><kbd class="link">nowcast.log.7</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.log.7', token='')}><kbd class="link">nowcast.log.7</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.7')}><kbd class="link">nowcast.debug.log.7</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='nowcast.debug.log.7', token='')}><kbd class="link">nowcast.debug.log.7</kbd></a>
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.7')}><kbd class="link">checklist.log.7</kbd></a>
+                  <a href=${request.route_url('nowcast.logs', filename='checklist.log.7', token='')}><kbd class="link">checklist.log.7</kbd></a>
                 </td>
               </tr>
             </tbody>
