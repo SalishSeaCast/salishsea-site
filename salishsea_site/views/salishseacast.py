@@ -18,6 +18,7 @@
 
 
 """salishsea_site SalishSeaCast views"""
+
 import copy
 import logging
 import os

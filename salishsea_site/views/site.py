@@ -18,6 +18,7 @@
 
 
 """salishsea_site index page view"""
+
 import logging
 
 from pyramid.view import view_config

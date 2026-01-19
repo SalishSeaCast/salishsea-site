@@ -18,6 +18,7 @@
 
 
 """Classes for managing results figures."""
+
 import os
 from pathlib import Path
 

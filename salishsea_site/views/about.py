@@ -18,6 +18,7 @@
 
 
 """salishsea_site About views"""
+
 import logging
 from pathlib import Path
 

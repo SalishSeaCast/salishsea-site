@@ -18,6 +18,7 @@
 
 
 """Unit tests for salishseacast views module."""
+
 from unittest.mock import patch
 
 import arrow
