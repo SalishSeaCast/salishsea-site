@@ -21,6 +21,7 @@
 
 .. note:: :py:func:`pconfig` fixture is defined in :file:`tests/conftest.py`.
 """
+
 import logging
 import os
 from pathlib import Path

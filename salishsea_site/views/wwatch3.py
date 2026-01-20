@@ -18,6 +18,7 @@
 
 
 """salishsea_site WAVEWATCH III® results views"""
+
 import logging
 
 import arrow

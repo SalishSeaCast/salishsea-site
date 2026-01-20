@@ -18,6 +18,7 @@
 
 
 """Fixture for salishsea_site app test suite."""
+
 import pytest
 from pyramid import testing
 

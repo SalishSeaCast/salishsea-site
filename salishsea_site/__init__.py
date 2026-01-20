@@ -18,6 +18,7 @@
 
 
 """Pyramid web app that serves the salishsea.eos.ubc.ca site"""
+
 import os
 
 import sentry_sdk

@@ -18,6 +18,7 @@
 
 
 """Unit tests for mako_filters module."""
+
 import pytest
 
 from salishsea_site import mako_filters
