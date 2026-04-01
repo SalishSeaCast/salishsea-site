@@ -71,7 +71,7 @@ pluggy==1.6.0
 pre_commit==4.5.1
 ptyprocess==0.7.0
 pycparser==2.22
-Pygments==2.19.2
+Pygments==2.20.0
 pyproject_hooks==1.2.0
 pyramid==2.1
 pyramid_debugtoolbar==4.12.1
