@@ -15,6 +15,7 @@ jobs:
   test-deploy:
     name: pytest & deploy on success
     runs-on: 'ubuntu-latest'
+    environment: production
     strategy:
       fail-fast: false
       matrix:
@@ -52,8 +53,13 @@ jobs:
 
       - name: update & restart app via ssh
         uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_SCRIPT: ${{ secrets.DEPLOY_PATH }}/deploy.sh
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          script: ${{ secrets.DEPLOY_PATH }}/deploy.sh
+          host: ${DEPLOY_HOST}
+          username: ${DEPLOY_USER}
+          key: ${DEPLOY_KEY}
+          script: ${DEPLOY_SCRIPT}
