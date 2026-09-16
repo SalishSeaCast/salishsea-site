@@ -18,7 +18,10 @@ jobs:
         python-version: [ '3.13' ]
 
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false  # Required to avoid exposing secrets to pytest run in forked PRs
 
       - name: Get current date for downloads cache key
         id: date
