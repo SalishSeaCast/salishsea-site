@@ -6,6 +6,11 @@ on:
   push:
     branches: [ 'main' ]
 
+# Helps prevent parallel runs of the workflow from overlapping
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test-deploy:
     name: pytest & deploy on success
