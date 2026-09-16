@@ -59,6 +59,7 @@ jobs:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           DEPLOY_SCRIPT: ${{ secrets.DEPLOY_PATH }}/deploy.sh
         with:
+          envs: DEPLOY_HOST, DEPLOY_USER, DEPLOY_KEY, DEPLOY_SCRIPT
           host: ${DEPLOY_HOST}
           username: ${DEPLOY_USER}
           key: ${DEPLOY_KEY}
