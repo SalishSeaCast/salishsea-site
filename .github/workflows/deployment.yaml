@@ -1,5 +1,7 @@
 name: deployment
 
+permissions: {}
+
 on:
   push:
     branches: [ 'main' ]
