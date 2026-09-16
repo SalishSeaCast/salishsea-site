@@ -11,7 +11,7 @@ on:
 jobs:
   sphinx-linkcheck:
     permissions:
-      contents: read
+      contents: read  # Required to access the repository's contents for docs build & links check
     strategy:
       fail-fast: false
       matrix:

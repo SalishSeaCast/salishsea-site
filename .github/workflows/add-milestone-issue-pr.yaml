@@ -15,6 +15,6 @@ on:
 jobs:
   add_milestone:
     permissions:
-      issues: write
-      pull-requests: write
+      issues: write  # Required to add a milestone to an issue
+      pull-requests: write  # Required to add a milestone to a pull request
     uses: UBC-MOAD/gha-workflows/.github/workflows/auto-milestone-issue-pr.yaml@main  # zizmor: ignore[unpinned-uses]
