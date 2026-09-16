@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7  # zizmor: ignore[unpinned-uses]
         with:
           persist-credentials: false  # Required to avoid exposing secrets to pytest run in forked PRs
 
