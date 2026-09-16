@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [ '3.13' ]
-    uses: UBC-MOAD/gha-workflows/.github/workflows/pytest-with-coverage.yaml@main
+    uses: UBC-MOAD/gha-workflows/.github/workflows/pytest-with-coverage.yaml@main  # zizmor: ignore[unpinned-uses]
     with:
       python-version: ${{ matrix.python-version }}
       conda-env-file: envs/environment-test.yaml
