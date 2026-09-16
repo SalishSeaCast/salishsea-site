@@ -11,6 +11,7 @@ on:
 
 jobs:
   pytest-with-coverage:
+    name: Run pytest-with-coverage
     permissions:
       contents: read  # Required to access the repository's contents for testing
       pull-requests: write  # Required to upload the code coverage report to pull requests

@@ -10,6 +10,7 @@ on:
 
 jobs:
   sphinx-linkcheck:
+    name: Sphinx linkcheck
     permissions:
       contents: read  # Required to access the repository's contents for docs build & links check
     strategy:
