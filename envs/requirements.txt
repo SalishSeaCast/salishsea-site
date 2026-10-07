@@ -115,7 +115,7 @@ ukkonen==1.1.0
 urllib3==2.8.0
 userpath==1.9.2
 venusian==3.1.1
-virtualenv==21.2.0
+virtualenv==21.7.13
 waitress==3.0.2
 WebOb==1.8.11
 zipp==3.23.0
