@@ -513,13 +513,12 @@ Running the Unit Tests
 The test suite for the :kbd:`salishsea-site` package is in :file:`salishsea-site/tests/`.
 The `pytest`_ tools is used for test fixtures and as the test runner for the suite.
 
-With your :kbd:`salishsea-site` development environment activated,
-use:
+Use:
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site/
-    (salishsea-site)$ pytest
+    $ cd salishsea-site/
+    $ pixi run pytest
 
 to run the test suite.
 The output looks something like:
@@ -527,18 +526,19 @@ The output looks something like:
 .. code-block:: text
 
     ============================== test session starts     ===============================
-    platform linux -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0
+    platform linux -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0
+    Using --randomly-seed=3391465206
     rootdir: /media/doug/warehouse/MEOPAR/salishsea-site
     configfile: pyproject.toml
-    plugins: anyio-4.9.0, cov-6.2.1
-    collected 76 items
+    plugins: cov-7.1.0, randomly-5.1.0
+    collected 80 items
 
-    tests/test_mako_filters.py .......                                              [  9%]
-    tests/views/test_bloomcast.py ..                                                [ 11%]
-    tests/views/test_figures.py ...                                                 [ 15%]
-    tests/views/test_salishseacast.py ....................................................
-    ............                                                                    [100%]
-    ================================ 76 passed in 2.6s ===================================
+    tests/test_mako_filters.py .......                                               [  8%]
+    tests/views/test_salishseacast.py ..............................................
+    ......................                                                           [ 93%]
+    tests/views/test_figures.py ...                                                  [ 97%]
+    tests/views/test_bloomcast.py ..                                                 [100%]
+    ================================ 80 passed in 0.31s ===================================
 
 You can monitor what lines of code the test suite exercises using the `coverage.py`_ and `pytest-cov`_ tools with the command:
 
@@ -548,8 +548,8 @@ You can monitor what lines of code the test suite exercises using the `coverage.
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site/
-    (salishsea-site)$ pytest --cov=./
+    $ cd salishsea-site/
+    $ pixi run pytest-cov
 
 The test coverage report will be displayed below the test suite run output.
 
@@ -558,7 +558,7 @@ you can use
 
 .. code-block:: bash
 
-    (salishsea-site)$ pytest --cov=./ --cov-report html
+    $ pixi run pytest-cov-html
 
 to produce an HTML report that you can view in your browser by opening :file:`salishsea-site/htmlcov/index.html`.
 

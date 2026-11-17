@@ -70,6 +70,7 @@ main = "salishsea_site:main"
 [tool.coverage.run]
 branch = true
 source = ["salishsea_site", "tests"]
+omit = [ ".pixi/*", "src/*" ]
 
 [tool.coverage.report]
 show_missing = true
@@ -94,6 +95,9 @@ salishsea_site = { path = ".", editable = true }
 
 [tool.pixi.tasks]
 
+[tool.pixi.environments]
+test = { features = ["test"], solve-group = "default" }
+
 [tool.pixi.environments.default]
 channels = ["conda-forge"]
 
@@ -111,3 +115,14 @@ waitress = ">=3.0.2,<4"
 
 [dependency-groups]
 default = ["pyramid-mako"]
+
+[tool.pixi.feature.test.dependencies]
+pytest = ">=9.2.0,<10"
+pytest-cov = ">=7.1.0,<8"
+pytest-randomly = ">=5.1.0,<6"
+tomli = ">=2.5.0,<3"
+
+[tool.pixi.feature.test.tasks]
+pytest = "pytest"
+pytest-cov = "pytest --cov=./"
+pytest-cov-html = "pytest --cov=./ --cov-report html"
