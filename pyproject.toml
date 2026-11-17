@@ -30,8 +30,7 @@ description = """\
     """
 readme = "README.rst"
 requires-python = ">=3.13"
-license = "Apache-2.0"
-license-files = { paths = ["LICENSE"] }
+license = { file = "LICENSE" }
 authors = [
     { name = "Doug Latornell", email= "dlatornell@eoas.ubc.ca" }
 ]
@@ -84,3 +83,13 @@ include = [
 
 [tool.hatch.version]
 path = "salishsea_site/__about__.py"
+
+
+[tool.pixi.workspace]
+channels = ['conda-forge']
+platforms = ['linux-64', "osx-arm64"]
+
+[tool.pixi.pypi-dependencies]
+salishsea_site = { path = ".", editable = true }
+
+[tool.pixi.tasks]

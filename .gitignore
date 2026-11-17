@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-### Local environemtn hooks
+### Local environment hooks
 pre-commit-hook.sh
 
 ## IntelliJ project files
@@ -122,6 +122,10 @@ env/
 ENV/
 env.bak/
 venv.bak/
+
+# pixi environments
+.pixi/*
+!.pixi/config.toml
 
 # Spyder project settings
 .spyderproject
