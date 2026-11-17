@@ -342,20 +342,20 @@ Building and Previewing the Documentation
 -----------------------------------------
 
 Building the documentation is driven by the :file:`docs/Makefile`.
-With your :kbd:`salishsea-site` development environment activated,
-use:
+To do a clean build of the documentation use:
 
 .. code-block:: bash
 
-    (salishsea-site)$ (cd docs && make clean html)
+    $ cd salishsea-site
+    $ pixi run docs
 
-to do a clean build of the documentation.
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (docs in docs): make clean html
     Removing everything under '_build'...
-    Running Sphinx v8.1.3
+    Running Sphinx v9.1.0
     loading translations [en]... done
     making output directory... done
     loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
@@ -372,8 +372,8 @@ The output looks something like:
     copying assets...
     copying static files...
     Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/language_data.js
-    Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/documentation_options.js
+    Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/js/versions.js
     copying static files: done
     copying extra files...
@@ -405,20 +405,20 @@ Link Checking the Documentation
     :alt: Sphinx linkcheck Status
 
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
-With your :kbd:`salishsea-site` environment activated,
-use:
+Run the link checker with:
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site/docs/
-    (salishsea-site) docs$ make clean linkcheck
+    $ cd salishsea-site
+    $ pixi run docs
 
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (linkcheck in docs): make clean linkcheck
     Removing everything under '_build'...
-    Running Sphinx v8.1.3
+    Running Sphinx v9.1.0
     loading translations [en]... done
     making output directory... done
     loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
@@ -437,64 +437,64 @@ The output looks something like:
     writing output... [100%] index
 
     (           index: line   24) ok        https://black.readthedocs.io/en/stable/
-    (           index: line  545) ok        https://coverage.readthedocs.io/en/latest/
     (           index: line   30) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
-    (           index: line   37) ok        https://app.readthedocs.org/projects/salishsea-site/badge/?version=latest
-    (           index: line  115) ok        https://developer.mozilla.org/en-US/docs/Glossary/HTML5
-    (           index: line  208) ok        https://docs.conda.io/en/latest/miniconda.html
-    (           index: line  591) ok        https://docs.github.com/en/actions
-    (           index: line  197) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
     (           index: line   24) ok        https://app.codecov.io/gh/SalishSeaCast/salishsea-site
-    (           index: line   71) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
+    (           index: line  115) ok        https://developer.mozilla.org/en-US/docs/Glossary/HTML5
+    (           index: line   37) ok        https://app.readthedocs.org/projects/salishsea-site/badge/?version=latest
     (           index: line  208) ok        https://docs.conda.io/en/latest/
+    (           index: line  543) ok        https://coverage.readthedocs.io/en/latest/
+    (           index: line  208) ok        https://docs.conda.io/en/latest/miniconda.html
+    (           index: line  589) ok        https://docs.github.com/en/actions
+    (           index: line  197) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+    (           index: line   71) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
     (           index: line   82) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html#narrative-documentation
     (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/firstapp.html#firstapp-chapter
-    (           index: line  115) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
     (           index: line  325) ok        https://app.readthedocs.org/projects/salishsea-site/builds/
-    (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
-    (           index: line  141) ok        https://docs.pytest.org/en/latest/
-    (           index: line   24) ok        https://docs.python.org/3.13/
-    (           index: line  108) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
+    (           index: line  115) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
     (           index: line  100) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/urldispatch.html
-    (           index: line  605) ok        https://git-scm.com/
-    (           index: line  108) ok        https://docs.python.org/3/library/stdtypes.html#dict
+    (           index: line   24) ok        https://docs.python.org/3.13/
+    (           index: line  108) ok        https://docs.python.org/3/builtins/stdtypes.html#dict
+    (           index: line  141) ok        https://docs.pytest.org/en/latest/
+    (           index: line  108) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
+    (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
+    (           index: line  603) ok        https://git-scm.com/
     (           index: line  115) ok        https://getbootstrap.com/
     (           index: line   33) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/codeql-analysis.yaml/badge.svg
-    (           index: line   27) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/pytest-with-coverage.yaml/badge.svg
     (           index: line   40) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/sphinx-linkcheck.yaml/badge.svg
+    (           index: line   27) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/pytest-with-coverage.yaml/badge.svg
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site
-    (           index: line  580) ok        https://github.com/SalishSeaCast/salishsea-site/actions
-    (           index: line  401) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
-    (           index: line  571) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:pytest-with-coverage
+    (           index: line  578) ok        https://github.com/SalishSeaCast/salishsea-site/actions
+    (           index: line  569) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL
-    (           index: line  573) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
-    (           index: line  403) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    (           index: line  401) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:sphinx-linkcheck
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:pytest-with-coverage
+    (           index: line  571) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
+    (           index: line  403) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    (           index: line  578) ok        https://github.com/SalishSeaCast/salishsea-site/commits/main
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/issues
     (           index: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
+    (           index: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     (           index: line   63) ok        https://img.shields.io/badge/code%20style-black-000000.svg
     (           index: line   54) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
-    (           index: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     (           index: line   57) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
-    (           index: line   50) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/issues
-    (           index: line   44) ok        https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github
     (           index: line   47) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SalishSeaCast/salishsea-site/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
-    (           index: line  222) ok        https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
+    (           index: line   44) ok        https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github
     (           index: line   24) ok        https://github.com/pypa/hatch
-    (           index: line  545) ok        https://pytest-cov.readthedocs.io/en/latest/
+    (           index: line  222) ok        https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
+    (           index: line   50) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
     (           index: line  183) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/repos_organization.html#salishsea-site-repo
-    (           index: line   24) ok        https://pre-commit.com
-    (           index: line  580) ok        https://github.com/SalishSeaCast/salishsea-site/commits/main
-    (           index: line  248) ok        https://pre-commit.com/
-    (           index: line   71) ok        https://salishsea.eos.ubc.ca/
-    (           index: line   24) ok        https://www.apache.org/licenses/LICENSE-2.0
-    (           index: line  631) ok        https://salishsea.eos.ubc.ca/contributors
-    (           index: line   71) ok        https://www.python.org/
-    (           index: line  147) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-    (           index: line  208) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/work_env/anaconda_python.html#anacondapythondistro
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/releases
+    (           index: line  543) ok        https://pytest-cov.readthedocs.io/en/latest/
+    (           index: line   24) ok        https://pre-commit.com
+    (           index: line  248) ok        https://pre-commit.com/
+    (           index: line  629) ok        https://salishsea.eos.ubc.ca/contributors
+    (           index: line   71) ok        https://salishsea.eos.ubc.ca/
+    (           index: line  208) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/work_env/anaconda_python.html#anacondapythondistro
     (           index: line   24) ok        https://salishsea-site.readthedocs.io
+    (           index: line   71) ok        https://www.python.org/
+    (           index: line   24) ok        https://www.apache.org/licenses/LICENSE-2.0
+    (           index: line  147) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
     (           index: line  115) ok        https://www.makotemplates.org/
     build succeeded.
 

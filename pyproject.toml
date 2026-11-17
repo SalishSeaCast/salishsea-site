@@ -98,6 +98,7 @@ salishsea_site = { path = ".", editable = true }
 [tool.pixi.environments]
 test = { features = ["test"], solve-group = "default" }
 test-py314 = ["py314", "test"]
+docs = { features = ["docs"], solve-group = "default" }
 
 [tool.pixi.environments.default]
 channels = ["conda-forge"]
@@ -116,6 +117,7 @@ waitress = ">=3.0.2,<4"
 
 [dependency-groups]
 default = ["pyramid-mako"]
+docs = ["sphinx-rtd-theme==3.1.0"]
 
 [tool.pixi.feature.test.dependencies]
 pytest = ">=9.2.0,<10"
@@ -130,3 +132,16 @@ pytest-cov-html = "pytest --cov=./ --cov-report html"
 
 [tool.pixi.feature.py314.dependencies]
 python = "3.14.*"
+
+[tool.pixi.feature.docs.dependencies]
+docutils = "0.22.4.*"
+sphinx = "9.1.0.*"
+sphinx-notfound-page = "1.1.0.*"
+commonmark = "0.9.1.*"
+recommonmark = "0.7.1.*"
+mock = "5.2.0.*"
+pillow = "12.2.0.*"
+
+[tool.pixi.feature.docs.tasks]
+docs = { cmd = "make clean html", cwd = "docs/" }
+linkcheck = { cmd = "make clean linkcheck", cwd = "docs/" }
