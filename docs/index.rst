@@ -57,6 +57,9 @@ salishsea.eos.ubc.ca Site Web App
 |                            | .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github                                                                                                                       |
 |                            |      :target: https://github.com/SalishSeaCast/salishsea-site                                                                                                                                            |
 |                            |      :alt: Git on GitHub                                                                                                                                                                                 |
+|                            | .. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json                                                                               |
+|                            |     :target: https://pixi.prefix.dev/latest/                                                                                                                                                             |
+|                            |     :alt: Pixi                                                                                                                                                                                           |
 |                            | .. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white                                                                                                  |
 |                            |      :target: https://pre-commit.com                                                                                                                                                                     |
 |                            |      :alt: pre-commit                                                                                                                                                                                    |
@@ -204,6 +207,10 @@ if you don't have `ssh key authentication`_ set up on GitHub
 
 Development Environment
 -----------------------
+
+.. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json
+    :target: https://pixi.prefix.dev/latest/
+    :alt: Pixi
 
 :py:obj:`salishsea-site` uses Pixi_ for package and environment management.
 If you don't already have Pixi_ installed,
