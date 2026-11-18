@@ -203,34 +203,51 @@ if you don't have `ssh key authentication`_ set up on GitHub
 .. _SalishSeaSiteDevelopmentEnvironment:
 
 Development Environment
-=======================
+-----------------------
 
-Setting up an isolated development environment using `Conda`_ is strongly recommended.
-Assuming that you have :ref:`AnacondaPythonDistro` or `Miniconda3`_ installed,
-you can create and activate an environment called :kbd:`salishsea-site` that will have all of the Python packages necessary for development,
-testing,
-and building the documentation with the commands:
+:py:obj:`salishsea-site` uses Pixi_ for package and environment management.
+If you don't already have Pixi_ installed,
+please follow its `installation instructions`_ to do so.
 
-.. _Conda: https://docs.conda.io/en/latest/
-.. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
+.. _Pixi: https://pixi.prefix.dev/latest/
+.. _`installation instructions`: https://pixi.prefix.dev/latest/installation/
 
-.. code-block:: bash
+Use :command:`pixi install` command to download the package dependencies and link them into environments.
 
-    $ cd salishsea-site
-    $ conda env create -f env/environment-dev.yaml
+Most commands are executed using :command:`pixi run` in the :file:`salishsea-site/` directory
+(or a sub-directory).
 
-The :kbd:`salishsea-site` package is installed in `editable install mode`_
-as part of the conda environment creation process.
-That means that the package is installed from the cloned repo via symlinks so that
-it will be automatically updated as the repo evolves.
+* The ``default`` environment has the packages installed that are required to run the
+  production deployment of the web application.
+
+* Other environments used by commands in the sections below have addition packages for running
+  the test suite,
+  building and link checking the documentation,
+  etc.
+
+* If you are using an integrated development environment like VSCode or PyCharm
+  where you need a Python interpreter to support coding assistance features,
+  run development tasks,
+  etc.,
+  use the interpreter in the ``dev`` environment.
+  You can get its full path with :command:`pixi run -e dev which python`
+
+You can launch a sub-shell in one of the environments with a command like :command:`pixi shell -e dev`.
+That is convenient if you are running a lot of commands because it removed the need to type
+:command:`pixi run -e dev` before each of them.
+Use :command:`exit` to leave the sub-shell.
+
+To get detailed information about the environments,
+the packages installed in them,
+`Pixi`_ tasks that are defined for them,
+etc.,
+use :command:`pixi info`.
+
+:py:obj:`salishsea-site` is installed in `editable install mode`_ in all of the environments that
+`Pixi`_ creates.
+That means that changes you make to the code are immediately reflected in the environments.
 
 .. _editable install mode: https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
-
-To deactivate the environment use:
-
-.. code-block:: bash
-
-    (salishsea-site)$ conda deactivate
 
 
 .. _SalishSeaSiteCodingStyle:
@@ -253,14 +270,12 @@ and repo QA.
 .. _pre-commit: https://pre-commit.com/
 
 To install the `pre-commit` hooks in a newly cloned repo,
-activate the conda development environment,
-and run :command:`pre-commit install`:
+run :command:`pre-commit install`:
 
 .. code-block:: bash
 
     $ cd salishsea-site
-    $ conda activate salishsea-site
-    (salishsea-site)$ pre-commit install
+    $ pixi run -e dev pre-commit install
 
 
 .. note::
@@ -279,8 +294,8 @@ You can run the app in a development server on you local machine with the comman
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site
-    (salishsea-site)$ pserve --reload development.ini
+    $ cd salishsea-site
+    $ pixi run -e dev pserve --reload development.ini
 
 With the dev server running you can view the site by navigating to :kbd:`http://localhost:6543/` in your browser.
 
@@ -410,7 +425,7 @@ Run the link checker with:
 .. code-block:: bash
 
     $ cd salishsea-site
-    $ pixi run docs
+    $ pixi run linkcheck
 
 The output looks something like:
 
@@ -500,7 +515,7 @@ The output looks something like:
 
     Look for any errors in the above output or in _build/linkcheck/output.txt
 
-:command:`make linkcheck` is run monthly via a `scheduled GitHub Actions workflow`_
+:command:`linkcheck` is run monthly via a `scheduled GitHub Actions workflow`_
 
 .. _scheduled GitHub Actions workflow: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
 

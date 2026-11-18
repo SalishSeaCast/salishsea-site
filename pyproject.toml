@@ -96,9 +96,9 @@ salishsea_site = { path = ".", editable = true }
 [tool.pixi.tasks]
 
 [tool.pixi.environments]
-test = { features = ["test"], solve-group = "default" }
 test-py314 = ["py314", "test"]
 docs = { features = ["docs"], solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
 
 [tool.pixi.environments.default]
 channels = ["conda-forge"]
@@ -112,12 +112,14 @@ python = "3.14.*"
 pyyaml = ">=6.0.3,<7"
 requests = ">=2.34.2,<3"
 sentry-sdk = ">=2.75.0,<3"
+setuptools = "<82"
 supervisor = ">=4.3.0"
 waitress = ">=3.0.2,<4"
 
 [dependency-groups]
 default = ["pyramid-mako"]
 docs = ["sphinx-rtd-theme==3.1.0"]
+dev = ["sphinx-rtd-theme==3.1.0"]
 
 [tool.pixi.feature.test.dependencies]
 pytest = ">=9.2.0,<10"
@@ -145,3 +147,26 @@ pillow = "12.2.0.*"
 [tool.pixi.feature.docs.tasks]
 docs = { cmd = "make clean html", cwd = "docs/" }
 linkcheck = { cmd = "make clean linkcheck", cwd = "docs/" }
+
+[tool.pixi.feature.dev.dependencies]
+pyramid_debugtoolbar = ">=4.9,<5"
+# For coding style, repo QA, and pkg management
+black = ">=26.10.1,<27"
+hatch = ">=1.18.2,<2"
+pip = ">=26.2.2,<27"
+pre-commit = ">=4.7.0,<5"
+pytest = ">=9.2.0,<10"
+pytest-cov = ">=7.1.0,<8"
+pytest-randomly = ">=5.1.0,<6"
+tomli = ">=2.5.0,<3"
+# For documentation links checking
+docutils = "0.22.4.*"
+sphinx = "9.1.0.*"
+sphinx-notfound-page = "1.1.0.*"
+commonmark = "0.9.1.*"
+recommonmark = "0.7.1.*"
+mock = "5.2.0.*"
+pillow = "12.2.0.*"
+
+[tool.pixi.feature.dev.tasks]
+pytest = "pytest --randomly-seed=last"
