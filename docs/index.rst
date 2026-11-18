@@ -187,13 +187,13 @@ Clone the :ref:`salishsea-site-repo` code and documentation `repository`_ from G
 
 .. _repository: https://github.com/SalishSeaCast/salishsea-site
 
-.. code-block:: bash
+.. code-block:: console
 
     $ git clone git@github.com:SalishSeaCast/salishsea-site.git
 
 or
 
-.. code-block:: bash
+.. code-block:: console
 
     $ git clone https://github.com/SalishSeaCast/salishsea-site.git
 
@@ -279,7 +279,7 @@ and repo QA.
 To install the `pre-commit` hooks in a newly cloned repo,
 run :command:`pre-commit install`:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run -e dev pre-commit install
@@ -299,7 +299,7 @@ Running the App in Dev Mode
 
 You can run the app in a development server on you local machine with the command:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run -e dev pserve --reload development.ini
@@ -366,7 +366,7 @@ Building and Previewing the Documentation
 Building the documentation is driven by the :file:`docs/Makefile`.
 To do a clean build of the documentation use:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run docs
@@ -429,7 +429,7 @@ Link Checking the Documentation
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
 Run the link checker with:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run linkcheck
@@ -537,7 +537,7 @@ The `pytest`_ tools is used for test fixtures and as the test runner for the sui
 
 Use:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site/
     $ pixi run -e test pytest
@@ -568,7 +568,7 @@ You can monitor what lines of code the test suite exercises using the `coverage.
 .. _pytest-cov: https://pytest-cov.readthedocs.io/en/latest/
 
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site/
     $ pixi run -e test pytest-cov
@@ -578,7 +578,7 @@ The test coverage report will be displayed below the test suite run output.
 Alternatively,
 you can use
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pixi run -e test pytest-cov-html
 
