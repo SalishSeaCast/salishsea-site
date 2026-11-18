@@ -187,13 +187,13 @@ Clone the :ref:`salishsea-site-repo` code and documentation `repository`_ from G
 
 .. _repository: https://github.com/SalishSeaCast/salishsea-site
 
-.. code-block:: bash
+.. code-block:: console
 
     $ git clone git@github.com:SalishSeaCast/salishsea-site.git
 
 or
 
-.. code-block:: bash
+.. code-block:: console
 
     $ git clone https://github.com/SalishSeaCast/salishsea-site.git
 
@@ -279,7 +279,7 @@ and repo QA.
 To install the `pre-commit` hooks in a newly cloned repo,
 run :command:`pre-commit install`:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run -e dev pre-commit install
@@ -299,7 +299,7 @@ Running the App in Dev Mode
 
 You can run the app in a development server on you local machine with the command:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run -e dev pserve --reload development.ini
@@ -366,14 +366,15 @@ Building and Previewing the Documentation
 Building the documentation is driven by the :file:`docs/Makefile`.
 To do a clean build of the documentation use:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run docs
 
 The output looks something like:
 
-.. code-block:: text
+.. code-block:: output
+   :class: no-copybutton
 
     ✨ Pixi task (docs in docs): make clean html
     Removing everything under '_build'...
@@ -429,14 +430,15 @@ Link Checking the Documentation
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
 Run the link checker with:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site
     $ pixi run linkcheck
 
 The output looks something like:
 
-.. code-block:: text
+.. code-block:: output
+   :class: no-copybutton
 
     ✨ Pixi task (linkcheck in docs): make clean linkcheck
     Removing everything under '_build'...
@@ -537,7 +539,7 @@ The `pytest`_ tools is used for test fixtures and as the test runner for the sui
 
 Use:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site/
     $ pixi run -e test pytest
@@ -545,7 +547,8 @@ Use:
 to run the test suite.
 The output looks something like:
 
-.. code-block:: text
+.. code-block:: output
+   :class: no-copybutton
 
     ============================== test session starts     ===============================
     platform linux -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0
@@ -568,7 +571,7 @@ You can monitor what lines of code the test suite exercises using the `coverage.
 .. _pytest-cov: https://pytest-cov.readthedocs.io/en/latest/
 
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd salishsea-site/
     $ pixi run -e test pytest-cov
@@ -578,7 +581,7 @@ The test coverage report will be displayed below the test suite run output.
 Alternatively,
 you can use
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pixi run -e test pytest-cov-html
 
