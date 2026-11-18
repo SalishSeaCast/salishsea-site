@@ -18,11 +18,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ '3.13' ]
-    uses: UBC-MOAD/gha-workflows/.github/workflows/pytest-with-coverage.yaml@main  # zizmor: ignore[unpinned-uses]
+        # Need to specify the environment in a matrix because that's what the reusable
+        # workflow expects
+        environment: [ 'test-py314' ]
+
+    uses: UBC-MOAD/gha-workflows/.github/workflows/pixi-pytest-with-coverage.yaml@main  # zizmor: ignore[unpinned-uses]
     with:
-      python-version: ${{ matrix.python-version }}
-      conda-env-file: envs/environment-test.yaml
-      conda-env-name: salishsea-site-test
+      environment: ${{ matrix.environment }}
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

@@ -57,6 +57,9 @@ salishsea.eos.ubc.ca Site Web App
 |                            | .. image:: https://img.shields.io/badge/version%20control-git-blue.svg?logo=github                                                                                                                       |
 |                            |      :target: https://github.com/SalishSeaCast/salishsea-site                                                                                                                                            |
 |                            |      :alt: Git on GitHub                                                                                                                                                                                 |
+|                            | .. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json                                                                               |
+|                            |     :target: https://pixi.prefix.dev/latest/                                                                                                                                                             |
+|                            |     :alt: Pixi                                                                                                                                                                                           |
 |                            | .. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white                                                                                                  |
 |                            |      :target: https://pre-commit.com                                                                                                                                                                     |
 |                            |      :alt: pre-commit                                                                                                                                                                                    |
@@ -203,34 +206,55 @@ if you don't have `ssh key authentication`_ set up on GitHub
 .. _SalishSeaSiteDevelopmentEnvironment:
 
 Development Environment
-=======================
+-----------------------
 
-Setting up an isolated development environment using `Conda`_ is strongly recommended.
-Assuming that you have :ref:`AnacondaPythonDistro` or `Miniconda3`_ installed,
-you can create and activate an environment called :kbd:`salishsea-site` that will have all of the Python packages necessary for development,
-testing,
-and building the documentation with the commands:
+.. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json
+    :target: https://pixi.prefix.dev/latest/
+    :alt: Pixi
 
-.. _Conda: https://docs.conda.io/en/latest/
-.. _Miniconda3: https://docs.conda.io/en/latest/miniconda.html
+:py:obj:`salishsea-site` uses Pixi_ for package and environment management.
+If you don't already have Pixi_ installed,
+please follow its `installation instructions`_ to do so.
 
-.. code-block:: bash
+.. _Pixi: https://pixi.prefix.dev/latest/
+.. _`installation instructions`: https://pixi.prefix.dev/latest/installation/
 
-    $ cd salishsea-site
-    $ conda env create -f env/environment-dev.yaml
+Use :command:`pixi install` command to download the package dependencies and link them into environments.
 
-The :kbd:`salishsea-site` package is installed in `editable install mode`_
-as part of the conda environment creation process.
-That means that the package is installed from the cloned repo via symlinks so that
-it will be automatically updated as the repo evolves.
+Most commands are executed using :command:`pixi run` in the :file:`salishsea-site/` directory
+(or a sub-directory).
+
+* The ``default`` environment has the packages installed that are required to run the
+  production deployment of the web application.
+
+* Other environments used by commands in the sections below have addition packages for running
+  the test suite,
+  building and link checking the documentation,
+  etc.
+
+* If you are using an integrated development environment like VSCode or PyCharm
+  where you need a Python interpreter to support coding assistance features,
+  run development tasks,
+  etc.,
+  use the interpreter in the ``dev`` environment.
+  You can get its full path with :command:`pixi run -e dev which python`
+
+You can launch a sub-shell in one of the environments with a command like :command:`pixi shell -e dev`.
+That is convenient if you are running a lot of commands because it removed the need to type
+:command:`pixi run -e dev` before each of them.
+Use :command:`exit` to leave the sub-shell.
+
+To get detailed information about the environments,
+the packages installed in them,
+`Pixi`_ tasks that are defined for them,
+etc.,
+use :command:`pixi info`.
+
+:py:obj:`salishsea-site` is installed in `editable install mode`_ in all of the environments that
+`Pixi`_ creates.
+That means that changes you make to the code are immediately reflected in the environments.
 
 .. _editable install mode: https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
-
-To deactivate the environment use:
-
-.. code-block:: bash
-
-    (salishsea-site)$ conda deactivate
 
 
 .. _SalishSeaSiteCodingStyle:
@@ -253,14 +277,12 @@ and repo QA.
 .. _pre-commit: https://pre-commit.com/
 
 To install the `pre-commit` hooks in a newly cloned repo,
-activate the conda development environment,
-and run :command:`pre-commit install`:
+run :command:`pre-commit install`:
 
 .. code-block:: bash
 
     $ cd salishsea-site
-    $ conda activate salishsea-site
-    (salishsea-site)$ pre-commit install
+    $ pixi run -e dev pre-commit install
 
 
 .. note::
@@ -279,8 +301,8 @@ You can run the app in a development server on you local machine with the comman
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site
-    (salishsea-site)$ pserve --reload development.ini
+    $ cd salishsea-site
+    $ pixi run -e dev pserve --reload development.ini
 
 With the dev server running you can view the site by navigating to :kbd:`http://localhost:6543/` in your browser.
 
@@ -342,20 +364,20 @@ Building and Previewing the Documentation
 -----------------------------------------
 
 Building the documentation is driven by the :file:`docs/Makefile`.
-With your :kbd:`salishsea-site` development environment activated,
-use:
+To do a clean build of the documentation use:
 
 .. code-block:: bash
 
-    (salishsea-site)$ (cd docs && make clean html)
+    $ cd salishsea-site
+    $ pixi run docs
 
-to do a clean build of the documentation.
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (docs in docs): make clean html
     Removing everything under '_build'...
-    Running Sphinx v8.1.3
+    Running Sphinx v9.1.0
     loading translations [en]... done
     making output directory... done
     loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
@@ -372,8 +394,8 @@ The output looks something like:
     copying assets...
     copying static files...
     Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/language_data.js
-    Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/documentation_options.js
+    Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/basic.css
     Writing evaluated template result to /media/doug/warehouse/MEOPAR/salishsea-site/docs/_build/html/_static/js/versions.js
     copying static files: done
     copying extra files...
@@ -405,20 +427,20 @@ Link Checking the Documentation
     :alt: Sphinx linkcheck Status
 
 Sphinx also provides a link checker utility which can be run to find broken or redirected links in the docs.
-With your :kbd:`salishsea-site` environment activated,
-use:
+Run the link checker with:
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site/docs/
-    (salishsea-site) docs$ make clean linkcheck
+    $ cd salishsea-site
+    $ pixi run linkcheck
 
 The output looks something like:
 
 .. code-block:: text
 
+    ✨ Pixi task (linkcheck in docs): make clean linkcheck
     Removing everything under '_build'...
-    Running Sphinx v8.1.3
+    Running Sphinx v9.1.0
     loading translations [en]... done
     making output directory... done
     loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
@@ -437,70 +459,70 @@ The output looks something like:
     writing output... [100%] index
 
     (           index: line   24) ok        https://black.readthedocs.io/en/stable/
-    (           index: line  545) ok        https://coverage.readthedocs.io/en/latest/
     (           index: line   30) ok        https://codecov.io/gh/SalishSeaCast/salishsea-site/branch/main/graph/badge.svg
-    (           index: line   37) ok        https://app.readthedocs.org/projects/salishsea-site/badge/?version=latest
-    (           index: line  115) ok        https://developer.mozilla.org/en-US/docs/Glossary/HTML5
-    (           index: line  208) ok        https://docs.conda.io/en/latest/miniconda.html
-    (           index: line  591) ok        https://docs.github.com/en/actions
-    (           index: line  197) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
     (           index: line   24) ok        https://app.codecov.io/gh/SalishSeaCast/salishsea-site
-    (           index: line   71) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
+    (           index: line  115) ok        https://developer.mozilla.org/en-US/docs/Glossary/HTML5
+    (           index: line   37) ok        https://app.readthedocs.org/projects/salishsea-site/badge/?version=latest
     (           index: line  208) ok        https://docs.conda.io/en/latest/
+    (           index: line  543) ok        https://coverage.readthedocs.io/en/latest/
+    (           index: line  208) ok        https://docs.conda.io/en/latest/miniconda.html
+    (           index: line  589) ok        https://docs.github.com/en/actions
+    (           index: line  197) ok        https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+    (           index: line   71) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html
     (           index: line   82) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/index.html#narrative-documentation
     (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/firstapp.html#firstapp-chapter
-    (           index: line  115) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
     (           index: line  325) ok        https://app.readthedocs.org/projects/salishsea-site/builds/
-    (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
-    (           index: line  141) ok        https://docs.pytest.org/en/latest/
-    (           index: line   24) ok        https://docs.python.org/3.13/
-    (           index: line  108) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
+    (           index: line  115) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/templates.html
     (           index: line  100) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/urldispatch.html
-    (           index: line  605) ok        https://git-scm.com/
-    (           index: line  108) ok        https://docs.python.org/3/library/stdtypes.html#dict
+    (           index: line   24) ok        https://docs.python.org/3.13/
+    (           index: line  108) ok        https://docs.python.org/3/builtins/stdtypes.html#dict
+    (           index: line  141) ok        https://docs.pytest.org/en/latest/
+    (           index: line  108) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/views.html
+    (           index: line   79) ok        https://docs.pylonsproject.org/projects/pyramid/en/latest/quick_tutorial/index.html
+    (           index: line  603) ok        https://git-scm.com/
     (           index: line  115) ok        https://getbootstrap.com/
     (           index: line   33) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/codeql-analysis.yaml/badge.svg
-    (           index: line   27) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/pytest-with-coverage.yaml/badge.svg
     (           index: line   40) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/sphinx-linkcheck.yaml/badge.svg
+    (           index: line   27) ok        https://github.com/SalishSeaCast/salishsea-site/actions/workflows/pytest-with-coverage.yaml/badge.svg
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site
-    (           index: line  580) ok        https://github.com/SalishSeaCast/salishsea-site/actions
-    (           index: line  401) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
-    (           index: line  571) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:pytest-with-coverage
+    (           index: line  578) ok        https://github.com/SalishSeaCast/salishsea-site/actions
+    (           index: line  569) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Apytest-with-coverage
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:CodeQL
-    (           index: line  573) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
-    (           index: line  403) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    (           index: line  401) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:sphinx-linkcheck
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow:pytest-with-coverage
+    (           index: line  571) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/pytest-with-coverage/badge.svg
+    (           index: line  403) ok        https://github.com/SalishSeaCast/salishsea-site/workflows/sphinx-linkcheck/badge.svg
+    (           index: line  578) ok        https://github.com/SalishSeaCast/salishsea-site/commits/main
+    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/issues
     (           index: line   66) ok        https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
+    (           index: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     (           index: line   63) ok        https://img.shields.io/badge/code%20style-black-000000.svg
     (           index: line   54) ok        https://img.shields.io/badge/license-Apache%202-cb2533.svg
-    (           index: line   60) ok        https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     (           index: line   57) ok        https://img.shields.io/badge/version%20control-git-blue.svg?logo=github
-    (           index: line   50) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
-    (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/issues
-    (           index: line   44) ok        https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github
     (           index: line   47) ok        https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/SalishSeaCast/salishsea-site/main/pyproject.toml&logo=Python&logoColor=gold&label=Python
-    (           index: line  222) ok        https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
+    (           index: line   44) ok        https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github
     (           index: line   24) ok        https://github.com/pypa/hatch
-    (           index: line  545) ok        https://pytest-cov.readthedocs.io/en/latest/
+    (           index: line  222) ok        https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs
+    (           index: line   50) ok        https://img.shields.io/github/issues/SalishSeaCast/salishsea-site?logo=github
     (           index: line  183) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/repos_organization.html#salishsea-site-repo
-    (           index: line   24) ok        https://pre-commit.com
-    (           index: line  580) ok        https://github.com/SalishSeaCast/salishsea-site/commits/main
-    (           index: line  248) ok        https://pre-commit.com/
-    (           index: line   71) ok        https://salishsea.eos.ubc.ca/
-    (           index: line   24) ok        https://www.apache.org/licenses/LICENSE-2.0
-    (           index: line  631) ok        https://salishsea.eos.ubc.ca/contributors
-    (           index: line   71) ok        https://www.python.org/
-    (           index: line  147) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-    (           index: line  208) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/work_env/anaconda_python.html#anacondapythondistro
     (           index: line   24) ok        https://github.com/SalishSeaCast/salishsea-site/releases
+    (           index: line  543) ok        https://pytest-cov.readthedocs.io/en/latest/
+    (           index: line   24) ok        https://pre-commit.com
+    (           index: line  248) ok        https://pre-commit.com/
+    (           index: line  629) ok        https://salishsea.eos.ubc.ca/contributors
+    (           index: line   71) ok        https://salishsea.eos.ubc.ca/
+    (           index: line  208) ok        https://salishsea-meopar-docs.readthedocs.io/en/latest/work_env/anaconda_python.html#anacondapythondistro
     (           index: line   24) ok        https://salishsea-site.readthedocs.io
+    (           index: line   71) ok        https://www.python.org/
+    (           index: line   24) ok        https://www.apache.org/licenses/LICENSE-2.0
+    (           index: line  147) ok        https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
     (           index: line  115) ok        https://www.makotemplates.org/
     build succeeded.
 
     Look for any errors in the above output or in _build/linkcheck/output.txt
 
-:command:`make linkcheck` is run monthly via a `scheduled GitHub Actions workflow`_
+:command:`linkcheck` is run monthly via a `scheduled GitHub Actions workflow`_
 
 .. _scheduled GitHub Actions workflow: https://github.com/SalishSeaCast/salishsea-site/actions?query=workflow%3Asphinx-linkcheck
 
@@ -513,13 +535,12 @@ Running the Unit Tests
 The test suite for the :kbd:`salishsea-site` package is in :file:`salishsea-site/tests/`.
 The `pytest`_ tools is used for test fixtures and as the test runner for the suite.
 
-With your :kbd:`salishsea-site` development environment activated,
-use:
+Use:
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site/
-    (salishsea-site)$ pytest
+    $ cd salishsea-site/
+    $ pixi run -e test pytest
 
 to run the test suite.
 The output looks something like:
@@ -527,18 +548,19 @@ The output looks something like:
 .. code-block:: text
 
     ============================== test session starts     ===============================
-    platform linux -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0
+    platform linux -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0
+    Using --randomly-seed=3391465206
     rootdir: /media/doug/warehouse/MEOPAR/salishsea-site
     configfile: pyproject.toml
-    plugins: anyio-4.9.0, cov-6.2.1
-    collected 76 items
+    plugins: cov-7.1.0, randomly-5.1.0
+    collected 80 items
 
-    tests/test_mako_filters.py .......                                              [  9%]
-    tests/views/test_bloomcast.py ..                                                [ 11%]
-    tests/views/test_figures.py ...                                                 [ 15%]
-    tests/views/test_salishseacast.py ....................................................
-    ............                                                                    [100%]
-    ================================ 76 passed in 2.6s ===================================
+    tests/test_mako_filters.py .......                                               [  8%]
+    tests/views/test_salishseacast.py ..............................................
+    ......................                                                           [ 93%]
+    tests/views/test_figures.py ...                                                  [ 97%]
+    tests/views/test_bloomcast.py ..                                                 [100%]
+    ================================ 80 passed in 0.31s ===================================
 
 You can monitor what lines of code the test suite exercises using the `coverage.py`_ and `pytest-cov`_ tools with the command:
 
@@ -548,8 +570,8 @@ You can monitor what lines of code the test suite exercises using the `coverage.
 
 .. code-block:: bash
 
-    (salishsea-site)$ cd salishsea-site/
-    (salishsea-site)$ pytest --cov=./
+    $ cd salishsea-site/
+    $ pixi run -e test pytest-cov
 
 The test coverage report will be displayed below the test suite run output.
 
@@ -558,7 +580,7 @@ you can use
 
 .. code-block:: bash
 
-    (salishsea-site)$ pytest --cov=./ --cov-report html
+    $ pixi run -e test pytest-cov-html
 
 to produce an HTML report that you can view in your browser by opening :file:`salishsea-site/htmlcov/index.html`.
 
@@ -620,7 +642,7 @@ and enhancement ideas are recorded and managed in the issue tracker at https://g
 
 
 License
-=======
+-------
 
 .. image:: https://img.shields.io/badge/license-Apache%202-cb2533.svg
     :target: https://www.apache.org/licenses/LICENSE-2.0
@@ -638,7 +660,7 @@ Please see the LICENSE file for details of the license.
 
 
 Release Process
-===============
+---------------
 
 .. image:: https://img.shields.io/github/v/release/SalishSeaCast/salishsea-site?logo=github
     :target: https://github.com/SalishSeaCast/salishsea-site/releases
@@ -653,26 +675,35 @@ completed.
 
 The release process steps are:
 
-#. Use :command:`hatch version release` to bump the version from ``.devn`` to the next release
+#. Use :command:`pixi run -e dev hatch version release` to bump the version from ``.devn`` to the next release
    version identifier;
-   e.g. ``24.1.dev0`` to ``24.1``
+   e.g. ``26.1.dev0`` to ``26.1``
+
+#. Use :command:`pixi update` to update the lock file to reflect the new version identifier
 
 #. Commit the version bump
 
 #. Create an annotated tag for the release with :guilabel:`Git -> New Tag...` in PyCharm
    or :command:`git tag -e -a vyy.n`;
-   :command:`git tag -e -a v24.1`
+   :command:`git tag -e -a v26.1`
 
 #. Push the version bump commit and tag to GitHub
 
 #. Use the GitHub web interface to create a release,
    editing the auto-generated release notes into sections:
 
-   * Features
-   * Bug Fixes
-   * Documentation
-   * Maintenance
-   * Dependency Updates
+   .. code-block:: markdown
+
+        ### Features
+
+        ### Bug Fixes
+
+        ### Documentation
+
+        ### Maintenance
+
+        ### Dependency Updates
+
 
 #. Use the GitHub :guilabel:`Issues -> Milestones` web interface to edit the release
    milestone:
@@ -685,10 +716,10 @@ The release process steps are:
 
    * Set the :guilabel:`Title` to the next release version,
      prepended with a ``v``;
-     e.g. ``v24.2``
+     e.g. ``v26.2``
    * Set the :guilabel:`Due date` to the end of the year of the next release
    * Set the :guilabel:`Description` to something like
-     ``v24.2 release - when it's ready :-)``
+     ``v26.2 release - when it's ready :-)``
    * Create the next release milestone
 
 #. Review the open issues,
@@ -697,8 +728,10 @@ The release process steps are:
 
 #. Close the milestone for the just released version.
 
-#. Use :command:`hatch version minor,dev` to bump the version for the next development cycle,
-   or use :command:`hatch version major,minor,dev` for a year rollover version bump
+#. Use :command:`pixi run -e dev hatch version minor,dev` to bump the version for the next development cycle,
+   or use :command:`pixi run -e dev hatch version major,minor,dev` for a year rollover version bump
+
+#. Use :command:`pixi update` to update the lock file to reflect the new version identifier
 
 #. Commit the version bump
 
