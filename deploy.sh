@@ -28,6 +28,7 @@ cd ${APP_REPO}
 echo $(pwd)
 GIT_SSH_COMMAND='ssh -i ~/.ssh/salishsea-site-deployment_id_rsa -o IdentitiesOnly=yes' ${GIT} pull
 echo "Updating environment"
+source.env
 pixi run supervisorctl --configuration supervisord-prod.ini shutdown
 pixi install --frozen
 echo "Restarting app"
