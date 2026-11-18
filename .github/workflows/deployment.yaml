@@ -16,12 +16,11 @@ jobs:
     name: pytest & deploy on success
     runs-on: 'ubuntu-latest'
     environment: production
+    continue-on-error: false
     strategy:
-      fail-fast: false
       matrix:
-        # Need to specify the Python version here because we use test env, which gets its
-        # Python version via matrix
-        python-version: [ '3.13' ]
+        # Specify the test env here so that we have a single source of truth for Pixi setup and running the test suite
+        environment: [ 'test-py314' ]
 
     steps:
       - name: Checkout repository
@@ -29,27 +28,16 @@ jobs:
         with:
           persist-credentials: false  # Required to avoid exposing secrets to pytest run in forked PRs
 
-      - name: Get current date for downloads cache key
-        id: date
-        run: echo "date=$(date +%Y-%m-%d)" >> "${GITHUB_OUTPUT}"
-
-      - name: Set up Conda environment with Micromamba
-        uses: mamba-org/setup-micromamba@f457c30a868e4760d3a6fcea5f25dc655b8edf39
+      - name: Set up Pixi
+        uses: prefix-dev/setup-pixi@ad1da6449d9e506fd127fd67ab2d054a769f6a94
         with:
-           environment-file: envs/environment-test.yaml
-           environment-name: salishsea-site-test
-           # environment caching does not play nicely with --editable installed packages
-           cache-environment: false
-           cache-downloads: true
-           # persist downloads cache for 1 day
-           cache-downloads-key: downloads-${{ steps.date.outputs.date }}-deploy
-           create-args: >-
-             python=${{ matrix.python-version }}
+          cache: true
+          environments: ${{ matrix.environment }}
 
-      - name: pytest package
-        shell: bash -l {0}
-        run: |
-          pytest
+      - name: Run pytest
+        run: pixi run -e ${INPUTS_ENVIRONMENT} pytest
+        env:
+          INPUTS_ENVIRONMENT: ${{ matrix.environment }}
 
       - name: update & restart app via ssh
         uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2

@@ -19,14 +19,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-# Deploy changes to site by pulling revisions from GitHub and restarting app server
+# Deploy changes to site by pulling revisions from GitHub, updating Pixi environment, and restarting app server
 
 APP_REPO=/SalishSeaCast/salishsea-site
-APP_ENV=/SalishSeaCast/salishsea-site-env
 GIT=/usr/bin/git
 
 cd ${APP_REPO}
 echo $(pwd)
 GIT_SSH_COMMAND='ssh -i ~/.ssh/salishsea-site-deployment_id_rsa -o IdentitiesOnly=yes' ${GIT} pull
+echo "Updating environment"
+pixi run supervisorctl --configuration supervisord-prod.ini shutdown
+pixi install --frozen
 echo "Restarting app"
-${APP_ENV}/bin/supervisorctl --configuration supervisord-prod.ini restart salishsea-site
+pixi run supervisord --configuration supervisord-prod.ini
