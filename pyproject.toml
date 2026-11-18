@@ -43,9 +43,6 @@ keywords = [
     "website",
     "pyramid-framework"]
 dependencies = [
-    # see envs/environment-prod.yaml for conda environment production installation,
-    # see envs/environment-dev.yaml for conda environment dev installation,
-    # see envs/requirements.txt for package versions used during recent development
     "arrow",
     "attrs",
     "pyramid",
